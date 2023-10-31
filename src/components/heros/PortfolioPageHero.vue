@@ -2,22 +2,22 @@
 import { computed } from 'vue';
 
 import AppHero from '@/components/heros/AppHero.vue';
-import { useLock } from '@/composables/useLock';
-import useNetwork from '@/composables/useNetwork';
+// import { useLock } from '@/composables/useLock';
+// import useNetwork from '@/composables/useNetwork';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import useWeb3 from '@/services/web3/useWeb3';
 
 import HeroConnectWalletButton from './HeroConnectWalletButton.vue';
 import { useUserPools } from '@/providers/local/user-pools.provider';
-import { isVeBalSupported } from '@/composables/useVeBAL';
+// import { isVeBalSupported } from '@/composables/useVeBAL';
 import ProceedToSyncModal from '../contextual/pages/vebal/cross-chain-boost/ProceedToSyncModal.vue';
-import configs from '@/lib/config';
-import { Network } from '@/lib/config/types';
-import {
-  useCrossChainSync,
-  veBalSyncSupportedNetworks,
-} from '@/providers/cross-chain-sync.provider';
-import { NetworkSyncState } from '@/providers/cross-chain-sync.provider';
+// import configs from '@/lib/config';
+// import { Network } from '@/lib/config/types';
+// import {
+//   useCrossChainSync,
+//   veBalSyncSupportedNetworks,
+// } from '@/providers/cross-chain-sync.provider';
+// import { NetworkSyncState } from '@/providers/cross-chain-sync.provider';
 
 /**
  * COMPOSABLES
@@ -26,13 +26,9 @@ const showProceedModal = ref(false);
 const { fNum } = useNumbers();
 const { isWalletReady, isWalletConnecting } = useWeb3();
 const { totalFiatValue, isLoading: isLoadingPools } = useUserPools();
-const { totalLockedValue } = useLock();
-const { networkId } = useNetwork();
-const {
-  l2VeBalBalances,
-  isLoading: isLoadingSyncState,
-  networksSyncState,
-} = useCrossChainSync();
+// const { totalLockedValue } = useLock();
+// const { networkId } = useNetwork();
+// const { networksSyncState } = useCrossChainSync();
 /**
  * COMPUTED
  */
@@ -45,29 +41,29 @@ const totalInvestedLabel = computed((): string =>
   fNum(totalFiatValue.value, FNumFormats.fiat)
 );
 
-const totalVeBalLabel = computed((): string =>
-  fNum(totalLockedValue.value, FNumFormats.fiat)
-);
+// const totalVeBalLabel = computed((): string =>
+//   fNum(totalLockedValue.value, FNumFormats.fiat)
+// );
 
 const isLoadingTotalValue = computed((): boolean => isLoadingPools.value);
 
-const showVeBalBalanceTooltip = computed(() => {
-  if (!veBalSyncSupportedNetworks.includes(networkId.value)) {
-    return false;
-  }
+// const showVeBalBalanceTooltip = computed(() => {
+//   if (!veBalSyncSupportedNetworks.includes(networkId.value)) {
+//     return false;
+//   }
 
-  if (networksSyncState.value[networkId.value] === NetworkSyncState.Synced) {
-    return false;
-  }
+//   if (networksSyncState.value[networkId.value] === NetworkSyncState.Synced) {
+//     return false;
+//   }
 
-  return true;
-});
+//   return true;
+// });
 
-const veBalBalanceTooltip = computed(() => {
-  return `Sync your veBAL balance from Ethereum Mainnet (L1) to ${
-    configs[networkId.value].chainName
-  } to get your max staking boost. Sync via the veBAL page on L1. Note: If you have just synced on L1, it may take up to an hour to display here.`;
-});
+// const veBalBalanceTooltip = computed(() => {
+//   return `Sync your veBAL balance from Ethereum Mainnet (L1) to ${
+//     configs[networkId.value].chainName
+//   } to get your max staking boost. Sync via the veBAL page on L1. Note: If you have just synced on L1, it may take up to an hour to display here.`;
+// });
 </script>
 
 <template>
@@ -86,15 +82,15 @@ const veBalBalanceTooltip = computed(() => {
       <div v-else class="mb-1 text-3xl font-semibold text-white">
         {{ totalInvestedLabel }}
       </div>
-      <div v-if="!isVeBalSupported" class="inline-block relative mt-2">
+      <!-- <div v-if="!isVeBalSupported" class="relative inline-block mt-2">
         <BalLoadingBlock
           v-if="isLoadingTotalValue || isLoadingSyncState"
-          class="mx-auto w-40 h-8"
+          class="w-40 h-8 mx-auto"
           white
         />
         <div
           v-else
-          class="group flex items-center px-3 h-8 text-sm font-medium text-yellow-500 hover:text-white focus:text-white rounded-tr rounded-bl border border-yellow-500 transition-colors cursor-pointer vebal-banner"
+          class="flex items-center h-8 px-3 text-sm font-medium text-yellow-500 transition-colors border border-yellow-500 rounded-tr rounded-bl cursor-pointer group hover:text-white focus:text-white vebal-banner"
           @click="showProceedModal = true"
         >
           <span
@@ -124,7 +120,7 @@ const veBalBalanceTooltip = computed(() => {
             </template>
           </BalTooltip>
         </div>
-      </div>
+      </div> -->
     </template>
     <template v-else>
       <div class="text-3xl font-semibold text-white">

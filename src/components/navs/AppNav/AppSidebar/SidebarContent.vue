@@ -14,8 +14,9 @@ import { Goals, trackGoal } from '@/composables/useFathom';
 import TwitterIcon from '@/components/_global/icons/brands/TwitterIcon.vue';
 import DiscordIcon from '@/components/_global/icons/brands/DiscordIcon.vue';
 import MediumIcon from '@/components/_global/icons/brands/MediumIcon.vue';
-import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
+// import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
 import GithubIcon from '@/components/_global/icons/brands/GithubIcon.vue';
+import { isVeBalSupported } from '@/composables/useVeBAL';
 
 /**
  * PROPS & EMITS
@@ -44,49 +45,55 @@ const navLinks = [
     label: t('claim'),
     path: `/${networkSlug}/claim`,
     goal: Goals.ClickNavClaim,
+    hide: !isVeBalSupported,
   },
   {
     label: t('portfolio'),
     path: `/${networkSlug}/portfolio`,
     goal: Goals.ClickNavPortfolio,
   },
-  { label: 'veBAL', path: `/${networkSlug}/vebal`, goal: Goals.ClickNavVebal },
-];
-
-const ecosystemLinks = [
-  { label: t('build'), url: 'https://balancer.fi/build' },
-  { label: t('blog'), url: 'https://medium.com/balancer-protocol' },
-  { label: t('docs'), url: 'https://docs.balancer.fi/' },
-  { label: t('governance'), url: 'https://vote.balancer.fi/#/' },
-  { label: t('analytics'), url: 'https://dune.xyz/balancerlabs' },
-  { label: t('forum'), url: 'https://forum.balancer.fi/' },
   {
-    label: t('grants'),
-    url: 'http://grants.balancer.community',
+    label: 'vTSYMM',
+    path: `/${networkSlug}/vebal`,
+    goal: Goals.ClickNavVebal,
+    hide: !isVeBalSupported,
   },
 ];
+
+// const ecosystemLinks = [
+//   { label: t('build'), url: 'https://balancer.fi/build' },
+//   { label: t('blog'), url: 'https://medium.com/balancer-protocol' },
+//   { label: t('docs'), url: 'https://docs.balancer.fi/' },
+//   { label: t('governance'), url: 'https://vote.balancer.fi/#/' },
+//   { label: t('analytics'), url: 'https://dune.xyz/balancerlabs' },
+//   { label: t('forum'), url: 'https://forum.balancer.fi/' },
+//   {
+//     label: t('grants'),
+//     url: 'http://grants.balancer.community',
+//   },
+// ];
 
 const socialLinks = {
   TwitterIcon: {
     component: TwitterIcon,
-    url: 'https://twitter.com/BalancerLabs',
+    url: 'https://twitter.com/0xSymmetric',
   },
   DiscordIcon: {
     component: DiscordIcon,
-    url: 'https://discord.balancer.fi/',
+    url: 'https://discord.gg/z8hJqrFYs3',
   },
   MediumIcon: {
     component: MediumIcon,
-    url: 'https://medium.com/balancer-protocol',
+    url: 'https://medium.com/@Symmetric.finance',
   },
 
-  YoutubeIcon: {
-    component: YoutubeIcon,
-    url: 'https://www.youtube.com/channel/UCBRHug6Hu3nmbxwVMt8x_Ow',
-  },
+  // YoutubeIcon: {
+  //   component: YoutubeIcon,
+  //   url: 'https://www.youtube.com/channel/UCBRHug6Hu3nmbxwVMt8x_Ow',
+  // },
 
   GithubIcon: {
-    url: 'https://github.com/balancer/',
+    url: 'https://github.com/centfinance/',
     component: GithubIcon,
   },
 };
@@ -127,13 +134,13 @@ watch(blockNumber, async () => {
         v-for="link in navLinks"
         :key="link.label"
         class="side-bar-link"
-        @click="navTo(link.path, link.goal)"
+        @click="link.hide ? null : navTo(link.path, link.goal)"
       >
-        {{ link.label }}
+        {{ link.hide ? '' : link.label }}
       </div>
     </div>
 
-    <div class="grid mt-5 text-sm grid-col-1">
+    <!-- <div class="grid mt-5 text-sm grid-col-1">
       <span class="px-4 pb-1 font-medium text-secondary">Ecosystem</span>
       <BalLink
         v-for="link in ecosystemLinks"
@@ -146,7 +153,7 @@ watch(blockNumber, async () => {
         {{ link.label }}
         <BalIcon name="arrow-up-right" size="sm" class="ml-1 text-secondary" />
       </BalLink>
-    </div>
+    </div> -->
 
     <div class="px-4 mt-6">
       <div class="mt-2 side-bar-btn" @click="toggleDarkMode">
@@ -167,13 +174,13 @@ watch(blockNumber, async () => {
       >
         <component :is="getSocialComponent(componentName)" />
       </BalLink>
-      <BalLink
+      <!-- <BalLink
         href="mailto:contact@balancer.finance"
         class="social-link"
         noStyle
       >
         <EmailIcon />
-      </BalLink>
+      </BalLink> -->
     </div>
 
     <div class="px-4 mt-6 text-xs">

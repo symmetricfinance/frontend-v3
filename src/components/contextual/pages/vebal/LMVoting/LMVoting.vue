@@ -188,8 +188,8 @@ watch(isRefetchingVotingPools, async () => {
       </div>
     </div>
 
-    <VotingAlert v-if="veBalLockTooShort" title="veBAL not locked for 7 days">
-      You must have veBAL locked for more than 7 days to vote on gauges.
+    <VotingAlert v-if="veBalLockTooShort" title="vTSYMM not locked for 7 days">
+      You must have vTSYMM locked for more than 7 days to vote on gauges.
     </VotingAlert>
 
     <VotingAlert
@@ -197,22 +197,22 @@ watch(isRefetchingVotingPools, async () => {
       title="Resubmit your votes to utilize your full voting power"
     >
       Votes on pools are set at the time of the vote. Since you’ve added new
-      veBAL since your original vote, you have additional voting power which is
+      vTSYMM since your original vote, you have additional voting power which is
       not being used. Use the 'Edit votes' button to resubmit your votes.
     </VotingAlert>
 
     <VotingAlert
       v-if="noVeBalBalance && !isLoading"
-      title="You need some veBAL to vote on gauges"
+      title="You need some vTSYMM to vote on gauges"
     >
-      Get veBAL by locking up LP tokens from the 80% BAL / 20% WETH pool.
+      Get vTSYMM by locking up LP tokens from the 80% BAL / 20% WETH pool.
     </VotingAlert>
 
     <VotingAlert
       v-if="veBalExpired"
-      title="You can't vote because your veBAL has expired"
+      title="You can't vote because your vTSYMM has expired"
     >
-      You need some veBAL to vote on gauges. Unlock and relock your
+      You need some vTSYMM to vote on gauges. Unlock and relock your
       B-80BAL-20-WETH to get some veBAL.
     </VotingAlert>
 

@@ -7,6 +7,7 @@ import { useLock } from '@/composables/useLock';
 import { providerUserPools } from '@/providers/local/user-pools.provider';
 import { provideUserStaking } from '@/providers/local/user-staking.provider';
 import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedInAffectedPoolAlert.vue';
+import { isVeBalSupported } from '@/composables/useVeBAL';
 
 /**
  * PROVIDERS
@@ -33,7 +34,7 @@ const { lockPool, lock } = useLock();
         </div>
         <BalStack vertical spacing="2xl">
           <UnstakedPoolsTable />
-          <StakedPoolsTable />
+          <StakedPoolsTable v-if="isVeBalSupported" />
           <VeBalPoolTable
             v-if="lockPool && Number(lock?.lockedAmount) > 0"
             :lock="lock"

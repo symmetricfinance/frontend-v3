@@ -2,6 +2,206 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html[data-theme='default'] {
+    /* Gray */
+    --color-gray-50: 248, 250, 252;
+    --color-gray-100: 234, 240, 246;
+    --color-gray-200: 226, 232, 240;
+    --color-gray-300: 203, 213, 225;
+    --color-gray-400: 148, 163, 184;
+    --color-gray-500: 100, 116, 139;
+    --color-gray-600: 71, 85, 105;
+    --color-gray-700: 51, 65, 85;
+    --color-gray-800: 30, 41, 59;
+    --color-gray-850: 22, 32, 49;
+    --color-gray-900: 15, 23, 42;
+
+    /* Primary */
+    --color-primary-50: 83, 85, 94;
+    --color-primary-100: 73, 75, 84;
+    --color-primary-200: 63, 65, 74;
+    --color-primary-300: 53, 55, 64;
+    --color-primary-400: 43, 45, 54;
+    --color-primary-500: 33, 35, 44;
+    --color-primary-600: 23, 25, 34;
+    --color-primary-700: 13, 15, 24;
+    --color-primary-800: 3, 5, 14;
+    --color-primary-900: 0, 0, 4;
+
+    /* Primary Dark */
+    --color-primary-dark-50: 106, 124, 255;
+    --color-primary-dark-100: 96, 114, 255;
+    --color-primary-dark-200: 86, 104, 255;
+    --color-primary-dark-300: 76, 94, 255;
+    --color-primary-dark-400: 66, 84, 255;
+    --color-primary-dark-500: 56, 74, 255;
+    --color-primary-dark-600: 46, 64, 245;
+    --color-primary-dark-700: 36, 54, 235;
+    --color-primary-dark-800: 26, 44, 225;
+    --color-primary-dark-900: 16, 34, 215;
+
+    /* Blue */
+    --color-blue-50: 239, 246, 255;
+    --color-blue-100: 219, 234, 254;
+    --color-blue-200: 191, 219, 254;
+    --color-blue-300: 147, 197, 253;
+    --color-blue-400: 96, 165, 250;
+    --color-blue-500: 59, 130, 246;
+    --color-blue-600: 37, 99, 235;
+    --color-blue-700: 29, 78, 216;
+    --color-blue-800: 30, 64, 175;
+    --color-blue-900: 30, 58, 138;
+
+    /* Pink */
+    --color-pink-50: 253, 242, 248;
+    --color-pink-100: 252, 231, 243;
+    --color-pink-200: 251, 207, 232;
+    --color-pink-300: 249, 168, 212;
+    --color-pink-400: 252, 37, 255;
+    --color-pink-500: 242, 27, 246;
+    --color-pink-600: 232, 17, 236;
+    --color-pink-700: 222, 7, 226;
+    --color-pink-800: 212, 0, 216;
+    --color-pink-900: 202, 0, 206;
+
+    /* Purple */
+    --color-purple-50: 250, 245, 255;
+    --color-purple-100: 250, 245, 255;
+    --color-purple-200: 233, 213, 255;
+    --color-purple-300: 216, 180, 254;
+    --color-purple-400: 192, 132, 252;
+    --color-purple-500: 168, 85, 247;
+    --color-purple-600: 147, 51, 234;
+    --color-purple-700: 126, 34, 206;
+    --color-purple-800: 107, 33, 168;
+    --color-purple-900: 88, 28, 135;
+
+    /* Yellow */
+    --color-yellow-50: 255, 251, 234;
+    --color-yellow-100: 255, 246, 213;
+    --color-yellow-200: 255, 238, 173;
+    --color-yellow-300: 254, 230, 132;
+    --color-yellow-400: 254, 221, 92;
+    --color-yellow-500: 254, 213, 51;
+    --color-yellow-600: 248, 198, 1;
+    --color-yellow-700: 192, 153, 1;
+    --color-yellow-800: 136, 109, 1;
+    --color-yellow-900: 80, 64, 0;
+
+    /* Orange */
+    --color-orange-50: 255, 251, 235;
+    --color-orange-100: 254, 243, 199;
+    --color-orange-200: 253, 230, 138;
+    --color-orange-300: 252, 211, 77;
+    --color-orange-400: 251, 191, 36;
+    --color-orange-500: 245, 158, 11;
+    --color-orange-600: 217, 119, 6;
+    --color-orange-700: 180, 83, 9;
+    --color-orange-800: 146, 64, 14;
+    --color-orange-900: 120, 53, 15;
+  }
+
+  html[data-theme='telos'] {
+    /* Gray */
+    --color-gray-50: 248, 248, 250;
+    --color-gray-100: 235, 235, 240;
+    --color-gray-200: 220, 220, 230;
+    --color-gray-300: 200, 200, 210;
+    --color-gray-400: 160, 160, 170;
+    --color-gray-500: 120, 120, 130;
+    --color-gray-600: 90, 90, 100;
+    --color-gray-700: 60, 60, 70;
+    --color-gray-800: 40, 40, 50;
+    --color-gray-850: 30, 30, 40;
+    --color-gray-900: 20, 20, 30;
+
+    /* Primary */
+    --color-primary-50: 83, 85, 94;
+    --color-primary-100: 73, 75, 84;
+    --color-primary-200: 63, 65, 74;
+    --color-primary-300: 53, 55, 64;
+    --color-primary-400: 43, 45, 54;
+    --color-primary-500: 33, 35, 44;
+    --color-primary-600: 23, 25, 34;
+    --color-primary-700: 13, 15, 24;
+    --color-primary-800: 3, 5, 14;
+    --color-primary-900: 0, 0, 4;
+
+    /* Primary Dark */
+    --color-primary-dark-50: 106, 124, 255;
+    --color-primary-dark-100: 96, 114, 255;
+    --color-primary-dark-200: 86, 104, 255;
+    --color-primary-dark-300: 76, 94, 255;
+    --color-primary-dark-400: 66, 84, 255;
+    --color-primary-dark-500: 56, 74, 255;
+    --color-primary-dark-600: 46, 64, 245;
+    --color-primary-dark-700: 36, 54, 235;
+    --color-primary-dark-800: 26, 44, 225;
+    --color-primary-dark-900: 16, 34, 215;
+
+    /* Blue */
+    --color-blue-50: 235, 230, 255;
+    --color-blue-100: 220, 205, 255;
+    --color-blue-200: 185, 155, 255;
+    --color-blue-300: 160, 120, 250;
+    --color-blue-400: 130, 80, 225; /* This is the new value */
+    --color-blue-500: 110, 60, 210;
+    --color-blue-600: 90, 40, 190;
+    --color-blue-700: 70, 30, 170;
+    --color-blue-800: 50, 20, 150;
+    --color-blue-900: 30, 10, 130;
+
+    /* Pink */
+    --color-pink-50: 253, 242, 248;
+    --color-pink-100: 252, 231, 243;
+    --color-pink-200: 251, 207, 232;
+    --color-pink-300: 249, 168, 212;
+    --color-pink-400: 252, 37, 255;
+    --color-pink-500: 242, 27, 246;
+    --color-pink-600: 232, 17, 236;
+    --color-pink-700: 222, 7, 226;
+    --color-pink-800: 212, 0, 216;
+    --color-pink-900: 202, 0, 206;
+
+    /* Purple */
+    --color-purple-50: 250, 245, 255;
+    --color-purple-100: 250, 245, 255;
+    --color-purple-200: 233, 213, 255;
+    --color-purple-300: 216, 180, 254;
+    --color-purple-400: 192, 132, 252;
+    --color-purple-500: 168, 85, 247;
+    --color-purple-600: 147, 51, 234;
+    --color-purple-700: 126, 34, 206;
+    --color-purple-800: 107, 33, 168;
+    --color-purple-900: 88, 28, 135;
+
+    /* Yellow */
+    --color-yellow-50: 243, 242, 255;
+    --color-yellow-100: 233, 232, 255;
+    --color-yellow-200: 218, 217, 255;
+    --color-yellow-300: 210, 209, 253;
+    --color-yellow-400: 207, 206, 251;
+    --color-yellow-500: 203, 202, 249; /* This is the new value */
+    --color-yellow-600: 183, 182, 239;
+    --color-yellow-700: 163, 162, 229;
+    --color-yellow-800: 143, 142, 219;
+    --color-yellow-900: 123, 122, 209;
+
+    /* Orange */
+    --color-orange-50: 255, 251, 235;
+    --color-orange-100: 254, 243, 199;
+    --color-orange-200: 253, 230, 138;
+    --color-orange-300: 252, 211, 77;
+    --color-orange-400: 251, 191, 36;
+    --color-orange-500: 245, 158, 11;
+    --color-orange-600: 217, 119, 6;
+    --color-orange-700: 180, 83, 9;
+    --color-orange-800: 146, 64, 14;
+    --color-orange-900: 120, 53, 15;
+  }
+}
+
 @layer utilities {
   .text-primary {
     @apply text-gray-900 dark:text-gray-100;
@@ -88,13 +288,11 @@
   }
 
   .link {
-    @apply text-blue-600 hover:text-purple-600 focus:text-purple-600 dark:text-blue-400 dark:hover:text-yellow-500
-      dark:focus:text-yellow-500 hover:underline focus:underline transition-all;
+    @apply text-blue-600 transition-all hover:text-purple-600 focus:text-purple-600 dark:text-blue-400 dark:hover:text-yellow-500 dark:focus:text-yellow-500 hover:underline focus:underline;
   }
 
   .link-black {
-    @apply text-gray-900 hover:text-purple-600 focus:text-purple-600 dark:text-gray-100 dark:hover:text-yellow-500
-      dark:focus:text-yellow-500 hover:underline focus:underline transition-all;
+    @apply text-gray-900 transition-all hover:text-purple-600 focus:text-purple-600 dark:text-gray-100 dark:hover:text-yellow-500 dark:focus:text-yellow-500 hover:underline focus:underline;
   }
 
   .text-shadow {

@@ -319,7 +319,7 @@ export const joinPoolProvider = (
         approvalActions: approvalActions.value,
         transactionDeadline: transactionDeadline.value,
       });
-
+      console.log('to: ', output);
       bptOut.value = output.bptOut;
       priceImpact.value = output.priceImpact;
 

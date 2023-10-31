@@ -5,10 +5,10 @@ import { RiskKey } from '@/types/pools';
 <template>
   <div class="pb-4 risks">
     <div class="pb-3">
-      <h1>Balancer Protocol Risks</h1>
+      <h1>Symmetric Protocol Risks</h1>
       <p>
         There are many inherent risks developers accept when working in DeFi and
-        using the Balancer Protocol. This page aims to summarize the top risks
+        using the Symmetric Protocol. This page aims to summarize the top risks
         to help you with your risk decisions. It is important to note that this
         list is not exhaustive, and there may be additional risks not explicitly
         mentioned here. As the risk environment is fluid, we expect to
@@ -105,7 +105,7 @@ import { RiskKey } from '@/types/pools';
             </li>
           </ul>
         </li>
-        <li class="toc-link">
+        <!-- <li class="toc-link">
           <router-link to="risks#network-risks"
             ><span class="font-semibold"
               >Layer 2 network risks</span
@@ -125,7 +125,7 @@ import { RiskKey } from '@/types/pools';
               <router-link to="risks#gnosis">Gnosis chain</router-link>
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </nav>
 
@@ -136,7 +136,7 @@ import { RiskKey } from '@/types/pools';
       <h4>Smart contract risk</h4>
       <p>
         Smart contract risk is a general risk when using DeFi protocols,
-        including Balancer. Smart contracts are self-executing pieces of code
+        including Symmetric. Smart contracts are self-executing pieces of code
         that run on certain blockchains, like Ethereum. Although they are
         designed to be secure, they can be vulnerable to bugs and exploits.
       </p>
@@ -148,36 +148,36 @@ import { RiskKey } from '@/types/pools';
         is important to carefully evaluate the security of the protocols before
         using them.
       </p>
-      <h5>The Balancer Vault</h5>
+      <h5>The Symmetric Vault</h5>
       <p>
-        The main architectural change between Balancer V1 and Balancer V2 is the
-        transition to&nbsp;a single vault that holds and manages all the assets
-        added by all Balancer pools. This separates the AMM logic from the token
-        management and accounting. Token management/accounting is done by the
-        vault while the AMM logic is individual to each pool. This provides many
-        advantages, including flexibility and gas efficiency.
+        The main architectural change between Symmetric V1 and Symmetric V2 is
+        the transition to&nbsp;a single vault that holds and manages all the
+        assets added by all Symmetric pools. This separates the AMM logic from
+        the token management and accounting. Token management/accounting is done
+        by the vault while the AMM logic is individual to each pool. This
+        provides many advantages, including flexibility and gas efficiency.
       </p>
       <p>
-        One critique of this approach is that the Balancer Vault could be a
+        One critique of this approach is that the Symmetric Vault could be a
         single point of failure—i.e. hack the vault, get all the tokens of the
-        protocol. This Balancer Vault architecture was heavily audited prior to
+        protocol. This Symmetric Vault architecture was heavily audited prior to
         launch and has now been battle-tested since May 2021, securing over $3b.
         It has also been forked by other teams across different networks,
         including Beethoven X on Fantom, without issue.
       </p>
-      <h5>How does Balancer work to mitigate this risk?</h5>
+      <h5>How does Symmetric work to mitigate this risk?</h5>
       <ul>
         <li>
           Development teams have engaged with top tier smart contract auditing
           firms to identify and fix bugs before deployment.
         </li>
         <li>
-          The core of Balancer smart contracts are immutable and do not use
+          The core of Symmetric smart contracts are immutable and do not use
           proxies or other upgrade mechanisms. Note: Within DeFI, upgradable
           contracts are a major way exploits have been introduced.
         </li>
         <li>
-          In addition, Balancer has a bug bounty program via
+          In addition, Symmetric has a bug bounty program via
           <a class="link" href="https://immunefi.com/bounty/balancer/"
             >Immunefi</a
           >
@@ -217,17 +217,17 @@ import { RiskKey } from '@/types/pools';
         a profit.
       </p>
       <p>
-        In addition, the composable nature of DeFi means that a pool on Balancer
-        may contain tokens that may be manipulated by an attacker on a third
-        party protocol, which further increases risk.
+        In addition, the composable nature of DeFi means that a pool on
+        Symmetric may contain tokens that may be manipulated by an attacker on a
+        third party protocol, which further increases risk.
       </p>
       <p>
         These types of economic exploits are difficult to detect and prevent.
       </p>
-      <h5>How does Balancer work to mitigate this risk?</h5>
+      <h5>How does Symmetric work to mitigate this risk?</h5>
       <ul>
         <li>
-          Balancer strives to deliver careful economic modeling, rigorous
+          Symmetric strives to deliver careful economic modeling, rigorous
           mechanism design, testing and audits by top tier auditing firms.
         </li>
       </ul>
@@ -259,7 +259,7 @@ import { RiskKey } from '@/types/pools';
 
       <ul>
         <li>
-          Unsupported tokens on Balancer Protocol, including:
+          Unsupported tokens on Symmetric Protocol, including:
           <ul class="mt-2">
             <li>
               <router-link to="risks#rebasing-tokens"
@@ -310,15 +310,15 @@ import { RiskKey } from '@/types/pools';
         </p>
       </div>
 
-      <h5>How does Balancer mitigate these risks?</h5>
+      <h5>How does Symmetric mitigate these risks?</h5>
       <ul>
         <li>
-          Since the Balancer protocol is permissionless, anyone can create a
+          Since the Symmetric protocol is permissionless, anyone can create a
           liquidity pool composed of any ERC-20 token. This makes this type of
           risk difficult to mitigate.
         </li>
         <li>
-          The Balancer App UI may be updated to exclude blacklisted tokens and
+          The Symmetric App UI may be updated to exclude blacklisted tokens and
           pools but LPs should not rely on this.
         </li>
         <li>
@@ -329,7 +329,7 @@ import { RiskKey } from '@/types/pools';
           <code>stETH</code>.
         </li>
         <li>
-          For Balancer Managed Pools, a novel feature called ‘circuit breakers’
+          For Symmetric Managed Pools, a novel feature called ‘circuit breakers’
           has been designed to halt swapping if there is a large, uncorrelated
           drop in a token’s value.
         </li>
@@ -349,7 +349,7 @@ import { RiskKey } from '@/types/pools';
         </li>
         <li>
           LP’s should review all pool tokens before providing liquidity to
-          ensure no constituent pool tokens are unsupported by the Balancer
+          ensure no constituent pool tokens are unsupported by the Symmetric
           Protocol (e.g. rebasing tokens).
         </li>
         <li>
@@ -389,22 +389,23 @@ import { RiskKey } from '@/types/pools';
     <div :id="RiskKey.Governance" class="risk">
       <h4>DAO Governance risk</h4>
       <p>
-        Balancer currently uses off-chain voting mechanisms to signal the will
-        of veBAL token holders (vote-escrow BAL). This off-chain voting is done
-        via <a class="link" href="https://snapshot.org/">Snapshot</a>—originally
-        developed in-house by Balancer Labs.
+        Symmetric currently uses off-chain voting mechanisms to signal the will
+        of veSYMM token holders (vote-escrow SYMM). This off-chain voting is
+        done via
+        <a class="link" href="https://snapshot.org/">Snapshot</a>—originally
+        developed in-house by Symmetric Labs.
       </p>
       <p>
-        A summary of the immutability of the Balancer Protocol’s smart
+        A summary of the immutability of the Symmetric Protocol’s smart
         contracts:
       </p>
       <ul>
         <li>
-          Balancer V1 contracts are immutable, so there were no core protocol
+          Symmetric V1 contracts are immutable, so there were no core protocol
           parameters that could be changed.
         </li>
         <li>
-          Balancer V2 contracts do allow for some tweaking of core protocol
+          Symmetric V2 contracts do allow for some tweaking of core protocol
           parameters, including the ability to:
           <ul class="mt-2">
             <li>
@@ -421,21 +422,21 @@ import { RiskKey } from '@/types/pools';
               Set relayer addresses: relayers are (user opt-in, audited)
               contracts that can make calls to the vault (with the transaction
               “sender” being any arbitrary address) and use the sender’s ERC20
-              vault allowance, internal balance or BPTs on their behalf
+              vault allowance, internal balance or SPTs on their behalf
             </li>
             <li>
               Set dynamic-fee controllers: addresses (initially assigned to
               Gauntlet) that may change the swap fee for pools created by the
-              dynamic-fee pool factory that will be deployed by Balancer Labs
+              dynamic-fee pool factory that will be deployed by Symmetric Labs
             </li>
-            <li>Add and remove veBAL gauges</li>
+            <li>Add and remove veSYMM gauges</li>
           </ul>
         </li>
       </ul>
       <p>
-        Note: The system of Balancer Governance may change in the future. For
-        example, Balancer community members have expressed interest in moving
-        from the Multisig towards on-chain governance execution by veBAL token
+        Note: The system of Symmetric Governance may change in the future. For
+        example, Symmetric community members have expressed interest in moving
+        from the Multisig towards on-chain governance execution by veSYMM token
         holders.
       </p>
       <p>
@@ -450,8 +451,8 @@ import { RiskKey } from '@/types/pools';
             href="https://docs.balancer.fi/concepts/governance/multisig.html#dao-multisig-signer-set"
             >Multisig signer set</a
           >
-          could go rogue and disregard the decision made by veBAL holders in the
-          off-chain voting.
+          could go rogue and disregard the decision made by veSYMM holders in
+          the off-chain voting.
         </li>
         <li>
           The
@@ -467,17 +468,17 @@ import { RiskKey } from '@/types/pools';
           against the interests of the majority of the community.
         </li>
       </ul>
-      <h5>How Balancer aims to mitigate this risk:</h5>
+      <h5>How Symmetric aims to mitigate this risk:</h5>
       <ul>
         <li>
-          The core of Balancer smart contracts are immutable and do not use
+          The core of Symmetric smart contracts are immutable and do not use
           proxies or other upgrade mechanisms. Only parameters, which are
           considered to be less ‘dangerous’ may be tweaked.
         </li>
         <li>
           The Multisig does&nbsp;not&nbsp;have custody of, nor control over,
-          funds from liquidity providers locked inside Balancer Protocol
-          contracts. Balancer V2 was designed so that even if a multisig goes
+          funds from liquidity providers locked inside Symmetric Protocol
+          contracts. Symmetric V2 was designed so that even if a multisig goes
           rogue, all the liquidity is safe and can be withdrawn by their
           rightful owners.
         </li>
@@ -485,7 +486,7 @@ import { RiskKey } from '@/types/pools';
       <h5>How LPs can mitigate this risk:</h5>
       <ul>
         <li>
-          LPs should stay up to date with Balancer Governance by following
+          LPs should stay up to date with Symmetric Governance by following
           discussions on the forum and participating in the off-chain voting.
         </li>
         <li>
@@ -507,7 +508,7 @@ import { RiskKey } from '@/types/pools';
         powerful new financial primitive, native to DeFi.
       </p>
       <p>
-        Flash Loans may be used on Balancer and interact with the Balancer
+        Flash Loans may be used on Symmetric and interact with the Symmetric
         Vault.
       </p>
       <p>
@@ -517,14 +518,14 @@ import { RiskKey } from '@/types/pools';
         relatively new with the full range of attack surfaces still being
         discovered.
       </p>
-      <h5>How Balancer aims to mitigate this risk:</h5>
+      <h5>How Symmetric aims to mitigate this risk:</h5>
       <ul>
         <li>
-          The Balancer Vault is non-reentrant, which blocks most Flash Loan
+          The Symmetric Vault is non-reentrant, which blocks most Flash Loan
           attacks.
         </li>
         <li>
-          Balancer strives to deliver careful economic modeling, rigorous
+          Symmetric strives to deliver careful economic modeling, rigorous
           mechanism design, testing and audits by top tier auditing firms.
         </li>
       </ul>
@@ -533,7 +534,7 @@ import { RiskKey } from '@/types/pools';
     <div :id="RiskKey.Mutable" class="risk">
       <h4>Mutable pool attributes</h4>
       <p>
-        Balancer is a flexible AMM that allows people to create different types
+        Symmetric is a flexible AMM that allows people to create different types
         of liquidity pools, including those with immutable and/or mutable pool
         attributes.
       </p>
@@ -560,22 +561,22 @@ import { RiskKey } from '@/types/pools';
           Who can change each attribute
           <ul>
             <li>
-              On Balancer pools, if an attribute is editable, the address that
+              On Symmetric pools, if an attribute is editable, the address that
               can make the edit is also specified. The two most common parties
               that are set to be able to change pool attributes are either the
-              Pool Owner or Balancer Governance.
+              Pool Owner or Symmetric Governance.
             </li>
           </ul>
         </li>
       </ul>
-      <h5>How does Balancer work to mitigate this risk?</h5>
+      <h5>How does Symmetric work to mitigate this risk?</h5>
       <ul>
         <li>
-          For known pool types, the Balancer App UI transparently displays pool
+          For known pool types, the Symmetric App UI transparently displays pool
           attributes and specifies if it is editable and if so, by whom.
         </li>
         <li>
-          Balancer Managed Pools are designed to have mutable attributes that
+          Symmetric Managed Pools are designed to have mutable attributes that
           can be changed by the Pool Owner. For certain ‘dangerous operations’,
           there are ‘timelock delays’ which give LPs a period to review the
           proposed changes and withdraw funds if they do not agree with the
@@ -614,7 +615,7 @@ import { RiskKey } from '@/types/pools';
       </p>
       <p>
         Slippage tolerance is a setting in both the Add/Remove liquidity flows
-        on the Balancer App UI. Setting a low slippage tolerance protects you
+        on the Symmetric App UI. Setting a low slippage tolerance protects you
         from front-running bots and miner extractable value (MEV).
       </p>
       <h5>Due to high Gas fees</h5>
@@ -633,20 +634,20 @@ import { RiskKey } from '@/types/pools';
         mining incentives. If the gas fees are higher than the returns they get
         from providing liquidity, LPs may end up with a net loss.
       </p>
-      <h5>How Balancer aims to mitigate this risk:</h5>
+      <h5>How Symmetric aims to mitigate this risk:</h5>
       <ul>
         <li>
-          The Balancer Smart Order router is used to route liquidity efficiently
-          via pools to minimize price impact.
+          The Symmetric Smart Order router is used to route liquidity
+          efficiently via pools to minimize price impact.
         </li>
         <li>
-          The Balancer App UI gives LP’s control over their slippage settings.
+          The Symmetric App UI gives LP’s control over their slippage settings.
         </li>
         <li>
-          LP’s are warned via the Balancer App UI when the price impact is
-          excessive. Once price impact exceeds a certain threshold, the Balancer
-          App UI prevents user’s from executing a transaction where they would
-          otherwise get rekt.
+          LP’s are warned via the Symmetric App UI when the price impact is
+          excessive. Once price impact exceeds a certain threshold, the
+          Symmetric App UI prevents user’s from executing a transaction where
+          they would otherwise get rekt.
         </li>
       </ul>
       <h5>How LP’s can mitigate this risk:</h5>
@@ -667,9 +668,9 @@ import { RiskKey } from '@/types/pools';
       <h4>Impermanent loss</h4>
       <p>
         Impermanent loss is a risk that liquidity providers (LPs) face when
-        providing liquidity to an automated market maker (AMM) like Balancer. It
-        is the difference between the value of holding assets in a pool versus
-        holding them outside of the pool.
+        providing liquidity to an automated market maker (AMM) like Symmetric.
+        It is the difference between the value of holding assets in a pool
+        versus holding them outside of the pool.
       </p>
       <p>
         If the price of the assets in the pool changes, LPs may experience a
@@ -685,21 +686,21 @@ import { RiskKey } from '@/types/pools';
         This risk is particularly relevant for pools with volatile assets where
         token prices are likely diverge over time.
       </p>
-      <h5>How does Balancer work to mitigate this risk?</h5>
+      <h5>How does Symmetric work to mitigate this risk?</h5>
       <ul>
         <li>
           All AMMs either have impermanent loss or reduced yield to LPs.
-          Balancer aims to make its pools as capital efficient as possible so
+          Symmetric aims to make its pools as capital efficient as possible so
           that the yield LPs make is more likely to exceed any impermanent loss.
         </li>
         <li>
-          The Balancer protocol supports unbalanced pools which LPs can use to
+          The Symmetric protocol supports unbalanced pools which LPs can use to
           reduce impermanent loss. For example, there is lower impermanent loss
           in an 80/20 pool (or any other unbalanced pools) versus a 50/50 pool
           with the same underlying tokens.
         </li>
         <li>
-          Note: Some ecosystem developers are building on top of Balancer to
+          Note: Some ecosystem developers are building on top of Symmetric to
           create novel pools, including Managed Pools, with rebalancing
           algorithms designed to minimize impermanent loss.
         </li>
@@ -708,7 +709,7 @@ import { RiskKey } from '@/types/pools';
       <ul>
         <li>
           LPs should consider the risk of impermanent risk carefully before
-          providing liquidity to a Balancer pool.
+          providing liquidity to a Symmetric pool.
         </li>
         <li>
           The longer an LP holds their position, the more likely it is that
@@ -732,8 +733,8 @@ import { RiskKey } from '@/types/pools';
       <p>
         DeFi users, including liquidity providers and swappers, typically
         interact with front-end user interfaces to interact with a protocol’s
-        smart contracts. An example is the app.balancer.fi front-end UI instance
-        which interacts with Balancer Protocol smart contracts.
+        smart contracts. An example is the app.Symmetric.fi front-end UI
+        instance which interacts with Symmetric Protocol smart contracts.
       </p>
 
       <p class="mb-0">
@@ -760,22 +761,22 @@ import { RiskKey } from '@/types/pools';
         </li>
       </ul>
 
-      <h5>How does Balancer work to mitigate this risk?</h5>
+      <h5>How does Symmetric work to mitigate this risk?</h5>
       <ul>
         <li>
-          Since the Balancer smart contracts can be interacted with by any
+          Since the Symmetric smart contracts can be interacted with by any
           front-end UI, there is less reliance on any one single UI. The
-          Balancer App UI code is open source with an MIT License which allow
+          Symmetric App UI code is open source with an MIT License which allow
           other third party developers to fork the code, make improvements and
           compete for users.
         </li>
         <li>
           Users or third party developers can keep track of changes and review
-          the open source repository on the Balancer Github for potential
+          the open source repository on the Symmetric Github for potential
           malicious code.
         </li>
         <li>
-          The developers of the Balancer App UI have provided instructions on
+          The developers of the Symmetric App UI have provided instructions on
           how to clone and run local environments of the app. This allows people
           to have the ability to keep deprecated features or modify the code to
           add new features that they prefer.
@@ -784,7 +785,7 @@ import { RiskKey } from '@/types/pools';
       <h5>How can LPs mitigate this risk?</h5>
       <ul>
         <li>
-          LP’s can learn how to interact with Balancer smart contracts on third
+          LP’s can learn how to interact with Symmetric smart contracts on third
           party websites, like
           <a class="link" href="https://etherscan.io/">Etherscan</a>.
         </li>
@@ -808,11 +809,13 @@ import { RiskKey } from '@/types/pools';
         entire DeFi ecosystem.
       </p>
       <p>
-        It's also possible that the Balancer App UI may be wholly or partially
+        It's also possible that the Symmetric App UI may be wholly or partially
         suspended or terminated for any or no reason, which may limit your
         access to your tokens via this website. In this scenario, you may be
         able to recover funds by forking the open-source code on
-        <a class="link" href="https://github.com/balancer/frontend-v2/"
+        <a
+          class="link"
+          href="https://github.com/centfinance/Symmetric.Frontend-v3/"
           >Github</a
         >
         and running your own local instance, or by using a third party website,
@@ -823,7 +826,7 @@ import { RiskKey } from '@/types/pools';
     <div :id="RiskKey.PoolType" class="risk">
       <h3>Pool type risks</h3>
       <p>
-        Balancer is designed to be infinitely extendible to allow for any
+        Symmetric is designed to be infinitely extendible to allow for any
         conceivable pool type with custom curves, logic and parameters, and
         more. The general risks of the most popular pool types are listed below.
       </p>
@@ -837,7 +840,7 @@ import { RiskKey } from '@/types/pools';
           >Weighted math</a
         >, which makes them great for general cases, including tokens that don't
         necessarily have any price correlation (ex. DAI/WETH). Unlike weighted
-        pools in other AMMs that only provide 50/50 weightings, Balancer
+        pools in other AMMs that only provide 50/50 weightings, Symmetric
         Weighted Pools enable users to build pools with more than two tokens and
         custom weightings, such as pools with 80/20 or 60/20/20 weightings. Some
         risks of weighted pools include:
@@ -853,9 +856,9 @@ import { RiskKey } from '@/types/pools';
           Toxic token risk
           <ul>
             <li>
-              Balancer weighted pools are not limited to just having two tokens.
-              The more tokens in a pool, the more risk that one of these could
-              become toxic.
+              Symmetric weighted pools are not limited to just having two
+              tokens. The more tokens in a pool, the more risk that one of these
+              could become toxic.
             </li>
           </ul>
         </li>
@@ -960,7 +963,7 @@ import { RiskKey } from '@/types/pools';
           <p>
             Oracles are data providers which supply external information to
             smart contracts. Oracles, like Chainlink, may be used to source
-            exchange rates between pool tokens for a rate provider in Balancer
+            exchange rates between pool tokens for a rate provider in Symmetric
             MetaStable pools. The risks of using Oracles to supply exchange
             rates include:
           </p>
@@ -1082,7 +1085,7 @@ import { RiskKey } from '@/types/pools';
         >, as described above.
       </p>
     </div>
-    <hr />
+    <!-- <hr />
     <div :id="RiskKey.Network" class="risk">
       <h3>Layer 2 network risks</h3>
       <p>
@@ -1124,8 +1127,8 @@ import { RiskKey } from '@/types/pools';
       <p>
         <a class="link" href="https://www.optimism.io/">Optimism</a> is a Layer
         2 scaling solution for Ethereum that uses Optimistic Rollups to improve
-        transaction throughput and reduce fees. Although, the Balancer App UI
-        doesn’t support Optimism, the Balancer Protocol smart contracts are
+        transaction throughput and reduce fees. Although, the Symmetric App UI
+        doesn’t support Optimism, the Symmetric Protocol smart contracts are
         deployed on Optimism and currently used by
         <a class="link" href="https://op.beets.fi/">Beethoven X</a>.
       </p>
@@ -1169,7 +1172,7 @@ import { RiskKey } from '@/types/pools';
         consensus compared to Ethereum Mainnet.
       </p>
     </div>
-    <hr />
+    <hr /> -->
     <div>
       <p>
         Navigating these challenges calls for active engagement and open
@@ -1179,8 +1182,8 @@ import { RiskKey } from '@/types/pools';
         suggestions or propose changes for this page directly via the
         <a
           class="link"
-          href="https://github.com/balancer/frontend-v2/blob/develop/src/pages/risks.vue"
-          >Balancer Github</a
+          href="https://github.com/centfinance/Symmetric.Frontend-v3/blob/develop/src/pages/risks.vue"
+          >Symmetric Github</a
         >.
       </p>
     </div>

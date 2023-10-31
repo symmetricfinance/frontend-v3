@@ -15,12 +15,12 @@ export function testnetVotingPools(
     id: '0xf8a0623ab66f985effc1c69d05f1af4badb01b00000200000000000000000060',
     address: '0xf8a0623ab66F985EfFc1C69D05F1af4BaDB01b00',
     type: GqlPoolMinimalType.Stable,
-    symbol: 'veBAL',
+    symbol: 'vTSYMM',
     tokens: [
       {
         address: '0x33A99Dcc4C85C014cf12626959111D5898bbCAbF',
         weight: null,
-        symbol: 'veBAL',
+        symbol: 'vTSYMM',
         logoURI:
           'https://raw.githubusercontent.com/balancer/assets/master/assets/0x5c6ee304399dbdb9c8ef030ab642b10820db8f56.png',
       },

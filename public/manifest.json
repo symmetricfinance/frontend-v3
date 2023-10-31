@@ -1,9 +1,9 @@
 {
-  "short_name": "Balancer",
-  "name": "Balancer",
-  "description": "Swap tokens and manage your assets on Balancer Protocol",
+  "short_name": "Symmetric",
+  "name": "Symmetric",
+  "description": "Swap tokens and manage your assets on Symmetric Protocol",
   "providedBy": {
-    "name": "Balancer",
+    "name": "Symmetric",
     "url": "https://balancer.fi"
   },
   "icons": [

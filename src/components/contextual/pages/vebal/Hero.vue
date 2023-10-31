@@ -41,7 +41,7 @@ function navigateToGetVeBAL() {
       <div
         class="py-8 lg:py-4 px-4 lg:px-8 2xl:px-0 xl:pt-0 max-w-md hero-text"
       >
-        <p class="font-medium eyebrow">veBAL</p>
+        <p class="font-medium eyebrow">vTSYMM</p>
         <h1 class="mb-5 text-white title">
           {{ $t('veBAL.hero.title') }}
         </h1>
@@ -105,7 +105,7 @@ function navigateToGetVeBAL() {
               width="330"
               height="377"
               :src="coin2"
-              alt="B-80BAL-20WETH LP token"
+              alt="S-80TSYMM-20WTLOS LP token"
             />
           </div>
           <div class="font-semibold caption">

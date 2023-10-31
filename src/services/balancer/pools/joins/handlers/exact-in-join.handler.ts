@@ -72,7 +72,7 @@ export class ExactInJoinHandler implements JoinPoolHandler {
       _amountsIn,
       slippage
     );
-
+    console.log(this.joinRes);
     if (!this.joinRes) {
       throw new Error('Failed to fetch expected output.');
     }

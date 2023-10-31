@@ -28,11 +28,11 @@
     "pools-fetch-error": "Failed to fetch pools.",
     "price-fetch-error": "Our pricing provider, CoinGecko, is currently down.",
     "retry-label": "Refresh to try again",
-    "boostedPools": "Increased yields, greater capital efficiency, deeper liquidity. Try Balancer Boosted pools now →",
+    "boostedPools": "Increased yields, greater capital efficiency, deeper liquidity. Try Symmetric Boosted pools now →",
     "vebalL2": "Staking is live on Polygon and Arbitrum. Incentives for eligible pools will resume on April 28.",
     "withdrawToInternalBalance": {
       "title": "Withdraw to Vault balance",
-      "description": "This transaction will withdraw your tokens from this pool to your Balancer Vault balance. \n\nYou will then be able to withdraw the relevant tokens from the Vault using the"
+      "description": "This transaction will withdraw your tokens from this pool to your Symmetric Vault balance. \n\nYou will then be able to withdraw the relevant tokens from the Vault using the"
     }
   },
   "allow": "Allow",
@@ -55,7 +55,7 @@
     "InsufficientValidTo": "The order you are signing is already expired. This can happen if you set a short expiration in the settings and waited too long before signing the transaction. Please try again.",
     "InsufficientFunds": "The account doesn't have enough funds.",
     "UnsupportedToken": "One of the tokens you are swapping is unsupported.",
-    "WrongOwner": "The signature is invalid.\n\nIt's likely that the signing method provided by your wallet doesn't comply with the standards required by Balancer.\n\nCheck whether your Wallet app supports off-chain signing (EIP-712 or ETHSIGN).",
+    "WrongOwner": "The signature is invalid.\n\nIt's likely that the signing method provided by your wallet doesn't comply with the standards required by Symmetric.\n\nCheck whether your Wallet app supports off-chain signing (EIP-712 or ETHSIGN).",
     "NotFound": "Token pair selected has insufficient liquidity.",
     "OrderNotFound": "The order you are trying to cancel does not exist.",
     "AlreadyCancelled": "Order is already cancelled.",
@@ -101,7 +101,7 @@
   "available": "Available",
   "availableToClaim": "Available to claim:",
   "balance": "Balance",
-  "balancerGovernance": "Balancer governance",
+  "balancerGovernance": "Symmetric governance",
   "balances": "Balances",
   "basedOnLast24h": "based on the last 24h",
   "basedOnTokensInWallet": "Based on pool tokens in your wallet",
@@ -109,19 +109,19 @@
   "browseLists": "Browse lists",
   "browserWallet": "Browser Wallet",
   "bugBounty": "Bug bounty",
-  "builtOnBalancer": "Built on Balancer protocol",
+  "builtOnBalancer": "Built on Symmetric protocol",
   "boosted": "Boosted",
   "boostedTooltip": "This pool has a Boosted Pool component. In addition to accumulating swap fees, Boosted pools also generate yield for LPs by lending excess liquidity to other yield generating DeFi protocols.",
   "clpTooltip": "Designed for capital efficiency,  ‘Concentrated Liquidity Pools’ (CLPs) are a class of AMMs that price the exchange of assets within a defined range. As such, any CLP only provides liquidity for trading activity restricted to this specific region.",
   "buy": "Buy",
   "build": "Build",
   "blog": "Blog",
-  "boostedPool": "Balancer Boosted pool",
-  "byConnectingWallet": "By connecting a wallet, I agree to Balancer Foundation’s",
+  "boostedPool": "Symmetric Boosted pool",
+  "byConnectingWallet": "By connecting a wallet, I agree to Symmetric Foundation’s",
   "brandedRedirect": {
     "xave": {
       "title": "Xave Finance",
-      "description": "Xave Finance  (pronounced \"Save Finance\") allows financial services companies (\"fintechs\") to leverage DeFi for real time remittance transfers and high yield consumer savings. Xave does this in a capital efficient way by building liquid FX markets via our custom FXPools integrated with the Balancer V2 Vault.",
+      "description": "Xave Finance  (pronounced \"Save Finance\") allows financial services companies (\"fintechs\") to leverage DeFi for real time remittance transfers and high yield consumer savings. Xave does this in a capital efficient way by building liquid FX markets via our custom FXPools integrated with the Symmetric V2 Vault.",
       "btnText": "Manage liquidity on app.xave.co"
     },
     "gyro": {
@@ -139,7 +139,7 @@
   "claimHero": {
     "title": "Claim liquidity incentives",
     "legacyTitle": "Claim legacy incentives",
-    "description": "Balancer Protocol liquidity incentives are directed to pools by veBAL voters. Stake in these pools to earn incentives. Boost with veBAL for up to 2.5x extra.",
+    "description": "Symmetric Protocol liquidity incentives are directed to pools by vTSYMM voters. Stake in these pools to earn incentives. Boost with vTSYMM for up to 2.5x extra.",
     "legacyDescription": "Liquidity mining incentive systems before the launch of ve8020-tokenomics have been deprecated. If you provided liquidity before this change and have outstanding incentives you can claim them here.",
     "tipLabel": {
       "addLiquidity": "Add liquidity",
@@ -148,23 +148,23 @@
       "claim": "Claim anytime"
     },
     "tips": {
-      "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Ethereum Mainnet and supported Layer 2's like Polygon and Arbitrum (see the table on the veBAL page). Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
+      "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Ethereum Mainnet and supported Layer 2's like Polygon and Arbitrum (see the table on the vTSYMM page). Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
       "stake": "If you've provided liquidity in an eligible pool, you'll have an option to stake your Liquidity Provider (LP) tokens from that pool. Stake them to receive liquidity mining incentives in addition to any swap fees.",
-      "boost": "Get veBAL to boost your liquidity mining incentives by up to 2.5x, including on L2 networks via cross-chain boosts. The more veBAL you hold, the larger your boost. veBAL holders also earn protocol fees and can vote to direct future pool emissions.",
-      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just BAL). Additionally, veBAL holders also get a share of protocol revenue, in both bb-a-USD and BAL."
+      "boost": "Get vTSYMM to boost your liquidity mining incentives by up to 2.5x, including on L2 networks via cross-chain boosts. The more vTSYMM you hold, the larger your boost. vTSYMM holders also earn protocol fees and can vote to direct future pool emissions.",
+      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just SYMM). Additionally, vTSYMM holders also get a share of protocol revenue, in both bb-a-USD and SYMM."
     }
   },
   "claimPage": {
     "tips": {
       "BalIncentives": "Incentives for LPs who stake in eligible pools (based on the previous week's voting). This doesn't include swap fees or intrinsic yield from certain yield bearing tokens which accumulate into LP positions automatically.",
-      "ProtocolAndVebal": "Additional incentives for veBAL holders: For locking in the B-80BAL-20WETH pool (based on the previous week's voting), and their share of protocol revenue.",
-      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any BAL liquidity incentives."
+      "ProtocolAndVebal": "Additional incentives for vTSYMM holders: For locking in the S-80TSYMM-20WTLOS pool (based on the previous week's voting), and their share of protocol revenue.",
+      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any SYMM liquidity incentives."
     }
   },
   "claimAll": "Claim all",
-  "claimBAL": "Claim $BAL for",
+  "claimBAL": "Claim $SYMM for",
   "claiming": "Claiming...",
-  "claimSuccess": "You successfully claimed $BAL!",
+  "claimSuccess": "You successfully claimed $SYMM!",
   "classic": "Classic",
   "clearForms": "Clear forms",
   "clearTransactions": "Clear transactions",
@@ -187,7 +187,7 @@
   "copperLaunchPromo": {
     "buttonLabel": "View this auction on Copper",
     "description": "Copper is the platform for FLAs—a simple crowdfunding mechanism that enables projects and ideas from across the world to raise money from individuals without barriers to entry.",
-    "poweredByBalancer": "Copper is built on Balancer V2 and uses Liquidity Bootstrapping Pools to power its FLAs",
+    "poweredByBalancer": "Copper is built on Symmetric V2 and uses Liquidity Bootstrapping Pools to power its FLAs",
     "title": "A Copper fair launch auction pool (FLA)"
   },
   "continueAnyway": "Continue anyway",
@@ -208,14 +208,14 @@
     "enterTokenPrice": "Enter the estimated current price of {0} in $USD",
     "existingPoolInfo": "There’s already another pool with exactly the same tokens and fee structure. It’s recommended to add your liquidity to the other pool or to go back and change your Pool Creation parameters in a material way to avoid fractured liquidity and lower profits for both pools.",
     "fixedFeeRadioLabel": "Permanently fix fees to the initial rate",
-    "governanceFees": "Allow Balancer governance to manage fees",
-    "governanceFeesTooltip": "Enable this to give Balancer governance the ability to dynamically manage the fees of this pool in order to maximize profits. But note, Balancer governance is under no obligation to actually manage the fees and will likely only do so if there is significant swap volume.",
+    "governanceFees": "Allow Symmetric governance to manage fees",
+    "governanceFeesTooltip": "Enable this to give Symmetric governance the ability to dynamically manage the fees of this pool in order to maximize profits. But note, Symmetric governance is under no obligation to actually manage the fees and will likely only do so if there is significant swap volume.",
     "invalidInitialWeightsInfo": "One or more tokens has an initial weight less than 1% which may cause funding to fail. If the token has a missing price, enter in a price. Otherwise, adjust the initial balances in the previous step.",
     "invalidInitialWeightsTitle": "Invalid initial weight",
     "maxInitialLiquidity": "Max initial liquidity",
     "maxLiquidityTooltip": "This is the max amount of liquidity you can provide to the pool with the current token selection.",
     "myAddressOption": "My address: {0}",
-    "nativeAssetWarning": "Your ETH/WETH balance may not be sufficient for seed this pool and may cause pool funding to fail. You can adjust whether you use ETH or WETH for seed liquidity in the previous step.",
+    "nativeAssetWarning": "Your TLOS/WTLOS balance may not be sufficient for seed this pool and may cause pool funding to fail. You can adjust whether you use ETH or WETH for seed liquidity in the previous step.",
     "poolSummary": "Pool summary",
     "poolAlreadyExists": "This pool already exists",
     "previewPool": "Preview new {0} pool",
@@ -237,21 +237,21 @@
     "zeroWeightInfo": "All tokens in a pool must have a weighting greater than zero. Either remove or replace {0} or set it above 0.01%."
   },
   "crossChainBoost": {
-    "title": "Cross chain veBAL boosts",
-    "infoDescription": "Sidechains & Layer 2 networks like Polygon and Arbitrum don’t know your veBAL balance on Ethereum Mainnet, unless you sync it. On any network where you stake, you should sync your veBAL balance to get your max possible boost. Resync after acquiring more veBAL to continue boosting to your max.",
+    "title": "Cross chain vTSYMM boosts",
+    "infoDescription": "Sidechains & Layer 2 networks like Polygon and Arbitrum don’t know your vTSYMM balance on Ethereum Mainnet, unless you sync it. On any network where you stake, you should sync your vTSYMM balance to get your max possible boost. Resync after acquiring more vTSYMM to continue boosting to your max.",
     "sync": "Sync",
     "currentBalance": "Current balance",
     "postSyncBalance": "Post-sync balance",
     "syncedNetworks": "Synced networks",
-    "syncToNetwork": "Sync veBAL to {network}",
-    "syncingToNetwork": "Syncing veBAL to {network}",
+    "syncToNetwork": "Sync vTSYMM to {network}",
+    "syncingToNetwork": "Syncing vTSYMM to {network}",
     "unsyncedNetworks": "Unsynced networks",
-    "unsyncedAllDescription": "Sync veBAL across networks for a boosted APR on your staked positions.",
+    "unsyncedAllDescription": "Sync vTSYMM across networks for a boosted APR on your staked positions.",
     "syncedAllDescription": "All networks are synced",
-    "emptyState": "Once you have some veBAL, sync your balance here to other networks.",
+    "emptyState": "Once you have some vTSYMM, sync your balance here to other networks.",
     "syncProcessWarning": {
       "title": "Wait until sync finalizes before restaking / triggering a gauge update on L2",
-      "description": "Your sync has been initiated but it may take up to 30 mins to update across L2s. Once your veBAL is synced, you will need to interact with each gauge to register your new max boost. You can either claim, restake, or click the Update button, which will appear on each individual pool page staking section."
+      "description": "Your sync has been initiated but it may take up to 30 mins to update across L2s. Once your vTSYMM is synced, you will need to interact with each gauge to register your new max boost. You can either claim, restake, or click the Update button, which will appear on each individual pool page staking section."
     },
     "syncComplete": {
       "title": "Remember to restake to the new boost-aware L2 pool gauges",
@@ -259,27 +259,27 @@
     },
     "updateGauge": {
       "title": "Trigger pool gauge updates to get your boosts sooner",
-      "description": "Pool gauges don’t automatically recognize changes in veBAL until triggered. Updates are triggered when any user interacts with a gauge, such as by claiming BAL, staking or unstaking. Trigger individual gauges yourself for your boosts to apply immediately."
+      "description": "Pool gauges don’t automatically recognize changes in vTSYMM until triggered. Updates are triggered when any user interacts with a gauge, such as by claiming SYMM, staking or unstaking. Trigger individual gauges yourself for your boosts to apply immediately."
     },
     "selectNetworkModal": {
-      "title": "Sync veBAL: Select networks",
-      "description": "Layer 2 networks don’t know your veBAL balance from Ethereum, unless you sync it. Each network costs additional gas to sync, so it’s best to only sync networks where you plan to stake."
+      "title": "Sync vTSYMM: Select networks",
+      "description": "Layer 2 networks don’t know your vTSYMM balance from Ethereum, unless you sync it. Each network costs additional gas to sync, so it’s best to only sync networks where you plan to stake."
     },
     "syncNetworkModal": {
-      "title": "Sync veBAL",
-      "singleNetworkTitle": "Sync veBAL to {0}",
-      "description": "This will sync your veBAL balance and give you a staking boost on {0}."
+      "title": "Sync vTSYMM",
+      "singleNetworkTitle": "Sync vTSYMM to {0}",
+      "description": "This will sync your vTSYMM balance and give you a staking boost on {0}."
     },
     "syncInitiatedModal": {
-      "title": "veBAL sync initiated",
-      "description": "Your veBAL balance is now being synced to the following networks:",
-      "warningTitle": "Your L2 veBAL sync is in progress",
+      "title": "vTSYMM sync initiated",
+      "description": "Your vTSYMM balance is now being synced to the following networks:",
+      "warningTitle": "Your L2 vTSYMM sync is in progress",
       "warningDescription": "Your sync has been initiated but it may take up to 30 mins to update across L2s. Please check the your portfolio on the destination chain/s after this time, there will be actions available to update boost on your positions. You can also update all your positions by claiming rewards on the synced chain."
     },
     "syncNetworkAction": {
-      "title": "This will sync your veBAL balance and give you a staking boost across the networks listed below."
+      "title": "This will sync your vTSYMM balance and give you a staking boost across the networks listed below."
     },
-    "syncInProgress": "A sync operation is currently in progress. Wait until it completes before restaking any of your positions on {network} to get your maximum veBAL boost."
+    "syncInProgress": "A sync operation is currently in progress. Wait until it completes before restaking any of your positions on {network} to get your maximum vTSYMM boost."
   },
   "migratePool": {
     "aaveBoostedPool": {
@@ -308,7 +308,7 @@
     },
     "migrateReason": {
       "title": "Migrate to avoid vulnerability",
-      "description": "A security vulnerability was recently disclosed. Although, no funds are a risk, insofar as the exploit could only be executed by pool owners or Balancer Governance itself which is composed of known participants in the Balancer ecosystem, it is recommended to migrate your funds asap."
+      "description": "A security vulnerability was recently disclosed. Although, no funds are a risk, insofar as the exploit could only be executed by pool owners or Symmetric Governance itself which is composed of known participants in the Symmetric ecosystem, it is recommended to migrate your funds asap."
     },
     "stabal3Pool": {
       "whyMigrate": {
@@ -420,7 +420,7 @@
   "dynamicSwapFeeLabel": "Dynamic swap fees: Currently <span class='font-semibold'>{0}</span>",
   "docs": "Docs",
   "earnings": "Earnings",
-  "earnBAL": "Earn $BAL when swapping eligible tokens",
+  "earnBAL": "Earn $SYMM when swapping eligible tokens",
   "effectivePrice": "Effective price:",
   "enterAmount": "Enter amount",
   "enterAPrice": "Enter a price",
@@ -447,15 +447,15 @@
       "linkText": "Fjord Foundry website"
     },
     "Beets": {
-      "description": "Powered by Balancer technology, Beethoven X provides a composable liquidity base layer on Fantom and Optimism. From Boosted Pools to Maturity Adjusted fNFTs, the DEX offers a suite of powerful financial primitives.",
+      "description": "Powered by Symmetric technology, Beethoven X provides a composable liquidity base layer on Fantom and Optimism. From Boosted Pools to Maturity Adjusted fNFTs, the DEX offers a suite of powerful financial primitives.",
       "linkText": "Beethoven X website"
     },
     "Xave": {
-      "description": "Xave Finance enables real time remittance transfers and high yield consumer savings for Fintechs, with capital efficient liquid FX markets (via custom FXPools) integrated with the Balancer Vault.",
+      "description": "Xave Finance enables real time remittance transfers and high yield consumer savings for Fintechs, with capital efficient liquid FX markets (via custom FXPools) integrated with the Symmetric Vault.",
       "linkText": "Xave website"
     },
     "Gyroscope": {
-      "description": "Gyroscope is a new stablecoin that, like a physical gyroscope, aims to remain stable as the surrounding environment changes. Gyroscope AMMs—Concentrated Liquidity Pools (CLPs)—leverage Balancer's customizable AMM logic.",
+      "description": "Gyroscope is a new stablecoin that, like a physical gyroscope, aims to remain stable as the surrounding environment changes. Gyroscope AMMs—Concentrated Liquidity Pools (CLPs)—leverage Symmetric's customizable AMM logic.",
       "linkText": "Gyroscope website"
     }
   },
@@ -505,35 +505,35 @@
       "header": "The fees on this transaction exceed 20% of the swap amount."
     }
   },
-  "goToBalancerV1Site": "Go to the Balancer V1 site ->",
+  "goToBalancerV1Site": "Go to the Symmetric V1 site ->",
   "goToMigratedPool": "Go to migrated pool",
   "governance": "Governance",
   "grants": "Grants",
   "deprecatedPool": {
     "tooltip": "This pool has been deprecated. If you're a Liquidity Provider, please migrate to the new upgraded pool.",
     "hasNewPool": {
-      "title": "Move your liquidity for future BAL incentives",
+      "title": "Move your liquidity for future SYMM incentives",
       "description": "Liquidity mining incentives are being phased out for this pool, since the upgraded pool is now live. LPs are encouraged to unstake existing positions, withdraw their liquidity and add it to the newly incentivized pool."
     },
     "generic": {
-      "title": "Move your liquidity for future BAL incentives",
+      "title": "Move your liquidity for future SYMM incentives",
       "description": "Liquidity mining incentives are being phased out for this pool, since upgraded pools are now live. LPs are encouraged to unstake existing positions, withdraw their liquidity and add it to the newly incentivized pools."
     },
     "gaugeKilledReason": "This pool's gauge will soon be killed. A new version of this pool has been created that uses Aave v3."
   },
   "newVersion": {
     "Aave3": "A new version of this pool has been created that uses Aave v3",
-    "BalIncentives": "A new version of this pool has been created. Please migrate to continue earning BAL incentives"
+    "BalIncentives": "A new version of this pool has been created. Please migrate to continue earning SYMM incentives"
   },
   "highPriceImpact": "High price impact",
   "highPriceImpactDetailed": "This swap is significantly moving the market price.",
-  "highRiskPool": "This is a higher-risk pool that contains one or more unlisted tokens. A liquidity pool is only as good as its weakest token! If a token were blacklisted, infinitely minted, frozen, or exploited in any other way, the value of this pool could go to 0. Balancer Foundation is never liable for losses incurred through using our UI or the Balancer protocol. Be careful, and do your own research!",
+  "highRiskPool": "This is a higher-risk pool that contains one or more unlisted tokens. A liquidity pool is only as good as its weakest token! If a token were blacklisted, infinitely minted, frozen, or exploited in any other way, the value of this pool could go to 0. Symmetric Foundation is never liable for losses incurred through using our UI or the Symmetric protocol. Be careful, and do your own research!",
   "home": "Home",
   "hourAbbrev": "h",
   "incentives": "incentives",
   "incentiveToken": "Incentive token",
   "incentivizedPool": "incentivized pool",
-  "inclXInVeBal": "{0} in veBAL",
+  "inclXInVeBal": "{0} in vTSYMM",
   "initialBPT": "Initial BPT",
   "initialWeight": "Initial weight",
   "insufficientBalance": "Not enough funds",
@@ -567,7 +567,7 @@
         "default": "Add liquidity preview"
       },
       "tooltips": {
-        "approval": "You must approve {0} to add liquidity for this token on Balancer. Approvals are required once per token, per wallet."
+        "approval": "You must approve {0} to add liquidity for this token on Symmetric. Approvals are required once per token, per wallet."
       }
     },
     "warning": {
@@ -586,7 +586,7 @@
         "paragraph2": "However, since your connected wallet doesn’t have any pool tokens, go to the ‘Single token’ tab above to add liquidity to this pool with non-pool tokens."
       },
       "blockedPool": {
-        "title": "This pool contains one or more tokens that have not been vetted by the Balancer community: {0}.",
+        "title": "This pool contains one or more tokens that have not been vetted by the Symmetric community: {0}.",
         "description": "For the protection of LPs, adding liquidity to the pool has been disabled. Click",
         "description2": "to learn how to submit the token(s) for review."
       }
@@ -600,7 +600,7 @@
   },
   "investmentPool": "Liquidity pool",
   "investmentPools": "Liquidity pools",
-  "investmentPoolsAbout": "Stake your assets to get $BAL tokens for participating in Balancer V2 liquidity mining.",
+  "investmentPoolsAbout": "Stake your assets to get $SYMM tokens for participating in Symmetric V2 liquidity mining.",
   "investmentPoolsAboutLink": "Learn more ->",
   "investmentSettled": "Your liquidity add has settled",
   "investmentSuccess": "Your tokens have been added to this pool, and you have received a new LP token representing this action.",
@@ -610,22 +610,22 @@
   "joinPool": "Join pool",
   "language": "Language",
   "learnMore": "Learn more",
-  "lockToGetVeBAL": "Lock this to get veBAL",
+  "lockToGetVeBAL": "Lock this to get vTSYMM",
   "light": "Light",
   "liquidityBootstrappingPool": "Liquidity Bootstrapping Pool",
   "liquidityIncentives": "liquidity incentives",
   "liquidityMining": "Liquidity mining",
   "liquidityMiningAPR": "Liquidity Mining APR",
   "liquidityMiningIncentives": "Liquidity mining incentives",
-  "liquidityMiningIncentivesCopy": "Liquidity incentives on {0} are paused for 1 week during its upgrade to the veBAL system. Incentives will resume on April 28.",
+  "liquidityMiningIncentivesCopy": "Liquidity incentives on {0} are paused for 1 week during its upgrade to the vTSYMM system. Incentives will resume on April 28.",
   "liquidityMiningPopover": {
-    "airdropEligibility": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $BAL distributions as incentives. $BAL token holders own the Balancer Protocol and can help shape its future by voting on governance proposals.",
+    "airdropEligibility": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $SYMM distributions as incentives. $SYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
     "airdropExplainer": "Weekly distributions from liquidity mining on {0} are airdropped on Wednesdays, sent directly to your wallet using disperse.app",
     "claimFreezeWarning": {
       "description": "Since you have several weeks' worth of tokens unclaimed, your screen may appear to freeze after pressing the claim button while it is processed. Just leave your browser open and your wallet will eventually pop open for you to complete the claim.",
       "title": "Too many claims"
     },
-    "networksExplainer": "Switch networks in the header to see your current cumulative $BAL incentives on {0} and {1}.",
+    "networksExplainer": "Switch networks in the header to see your current cumulative $SYMM incentives on {0} and {1}.",
     "noRewards": {
       "description": "Certain eligible pools have ‘liquidity mining’ token incentives which are distributed to liquidity providers weekly in proportion to their contribution.",
       "title": "You have no token incentives to claim"
@@ -635,7 +635,7 @@
     },
     "title": "Token incentives"
   },
-  "liquidityProviderCopy": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $BAL distributions as incentives. $BAL token holders own the Balancer Protocol and can help shape its future by voting on governance proposals.",
+  "liquidityProviderCopy": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $SYMM distributions as incentives. $SYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
   "liquidityProvision": "Liquidity provision",
   "loading": "Loading...",
   "loadingBestPrice": "Looking for the best price...",
@@ -644,10 +644,10 @@
   "locked": "Locked",
   "locking": {
     "expiredLockLpTokens": "Expired lock LP tokens",
-    "expiredLockTooltip": "Your previous locking period has expired, so you no longer have any veBAL or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or veBAL incentives. However, you'll still get the minimum 1.0x rate. Redeem your expired locked B-80BAL-20WETH LP tokens and then create a new lock to get veBAL.",
-    "lockBptForVeBal": "Lock LP for veBAL",
-    "lockedLpTokensTooltip": "The USD value of your veBAL. These are your locked LP tokens in the BAL 80% / WETH 20% pool.",
-    "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the BAL 80% / WETH 20% pool that has not been locked."
+    "expiredLockTooltip": "Your previous locking period has expired, so you no longer have any vTSYMM or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or vTSYMM incentives. However, you'll still get the minimum 1.0x rate. Redeem your expired locked S-80TSYMM-20WTLOS LP tokens and then create a new lock to get vTSYMM.",
+    "lockBptForVeBal": "Lock LP for vTSYMM",
+    "lockedLpTokensTooltip": "The USD value of your vTSYMM. These are your locked LP tokens in the SYMM 80% / WETH 20% pool.",
+    "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the SYMM 80% / WETH 20% pool that has not been locked."
   },
   "logOut": "Log out",
   "lost": "Lost",
@@ -669,7 +669,7 @@
   "migrate": "Migrate",
   "migrateCard": {
     "title": "Migrate liquidity",
-    "description": "Liquidity mining incentives have expired for this pool. For future BAL incentives: unstake, withdraw and add liquidity to an incentivized pool.",
+    "description": "Liquidity mining incentives have expired for this pool. For future SYMM incentives: unstake, withdraw and add liquidity to an incentivized pool.",
     "viewBtn": "View incentivized pools",
     "recommendedPool": "Recommended incentivized pools",
     "upgradedPool": "Upgraded incentivized pool"
@@ -677,7 +677,7 @@
   "modals": {
     "veBalRedirectModal": {
       "title": "Proceed to mainnet",
-      "description": "Getting and using veBAL to vest and vote must be performed on the Ethereum mainnet. \n\n You can still earn liquidity mining incentives on Arbitrum, Polygon and Gnosis by adding liquidity to eligible pools. However to vote to direct emissions to your favored pools and to earn the protocol fees, you will need to use veBAL on Ethereum Mainnet by locking B-80BAL-20WETH."
+      "description": "Getting and using vTSYMM to vest and vote must be performed on the Ethereum mainnet. \n\n You can still earn liquidity mining incentives on Arbitrum, Polygon and Gnosis by adding liquidity to eligible pools. However to vote to direct emissions to your favored pools and to earn the protocol fees, you will need to use vTSYMM on Ethereum Mainnet by locking S-80TSYMM-20WTLOS."
     }
   },
   "month": "month",
@@ -693,11 +693,11 @@
   "mustBeValidAddress": "This is not a valid Ethereum address",
   "myApr": "My APR",
   "myBalance": "My balance",
-  "myBalancerBalance": "My Balancer balance",
+  "myBalancerBalance": "My Symmetric balance",
   "myBoost": "My boost",
   "myPortfolio": "My portfolio",
   "myShare": "My share",
-  "myLiquidityInBalancerPools": "My liquidity in Balancer pools",
+  "myLiquidityInBalancerPools": "My liquidity in Symmetric pools",
   "myWallet": "My Ethereum wallet",
   "myWallet2": "My wallet",
   "name": "Name",
@@ -726,7 +726,7 @@
   "noUnstakedInvestments": "You have no unstaked liquidity on {0}",
   "noStakedInvestments": "You have no staked liquidity on {0}",
   "noNativeCurrency": "You’ll need some {0} for gas fees in order to transact on {1}.",
-  "noNativeCurrencyEthereum": "You’ll need some {0} for gas fees in order to do most basic transactions on {1}. However, you may continue to swap any tokens you’ve previously approved for use on Balancer with this wallet, by using the ‘swap gasless’ option.",
+  "noNativeCurrencyEthereum": "You’ll need some {0} for gas fees in order to do most basic transactions on {1}. However, you may continue to swap any tokens you’ve previously approved for use on Symmetric with this wallet, by using the ‘swap gasless’ option.",
   "noPoolsFound": "No pools found",
   "noPriceImpact": "Best price",
   "noPriceImpactTip": "Adding tokens proportionally gets you the best price.",
@@ -735,8 +735,8 @@
   "noRecentActivity": "Your recent activity will appear here…",
   "noResults": "No results",
   "noResultsTable": {
-    "noBalIncentives": "No BAL incentives to claim from staking",
-    "noProtocolRevenue": "Nothing to claim from holding veBAL"
+    "noBalIncentives": "No SYMM incentives to claim from staking",
+    "noProtocolRevenue": "Nothing to claim from holding vTSYMM"
   },
   "noSwapsPool": "No swaps in this pool.",
   "noTokensInWallet": "You don't have any tokens in your connected wallet on {0}",
@@ -757,7 +757,7 @@
   "pages": {
     "claim": {
       "title": "Claim your liquidity mining incentives",
-      "description": "Incentives to attract liquidity are set by the Balancer protocol and partners. Stakers in eligible pools can claim incentives every block. People with veBAL get a boosted rate—up to 2.5x extra.",
+      "description": "Incentives to attract liquidity are set by the Symmetric protocol and partners. Stakers in eligible pools can claim incentives every block. People with vTSYMM get a boosted rate—up to 2.5x extra.",
       "titles": {
         "incentivesOnOtherNetworks": "Incentives on other networks",
         "legacyIncentives": "Legacy incentives"
@@ -768,7 +768,7 @@
     },
     "balances": {
       "title": "My Vault balances",
-      "eulerHack": "Euler eTokens (e.g. eUSDC, eUSDT and eDAI) affected by the Euler hack have been paused and are not transferrable from the Balancer Vault. To redeem your share of the recovered funds of the Euler hack, if you haven't done so already, go to:"
+      "eulerHack": "Euler eTokens (e.g. eUSDC, eUSDT and eDAI) affected by the Euler hack have been paused and are not transferrable from the Symmetric Vault. To redeem your share of the recovered funds of the Euler hack, if you haven't done so already, go to:"
     }
   },
   "pastEarnings": {
@@ -779,7 +779,7 @@
   "pendingEstimate": "Pending: (estimate)",
   "perWeek": "per week",
   "policies": {
-    "balancerThirdPartyInfo": "Balancer is an open source, permissionless, decentralized protocol. The smart contracts that power the ecosystem may be used by anyone. This website is the Balancer Foundation's front-end to the ecosystem and it is also open-source. You are free to fork it on Github and modify it as you wish",
+    "balancerThirdPartyInfo": "Symmetric is an open source, permissionless, decentralized protocol. The smart contracts that power the ecosystem may be used by anyone. This website is the Symmetric Foundation's front-end to the ecosystem and it is also open-source. You are free to fork it on Github and modify it as you wish",
     "cookiesPolicy": "Cookies Policy",
     "privacyPolicy": "Privacy Policy",
     "risks": "Risks",
@@ -837,7 +837,7 @@
       "title": "My pool balance",
       "altTitle": "My pool liquidity balance",
       "poolsRisks": "pool's risks",
-      "risksDisclaimer": "Liquidity Providers encounter risks when using DeFi and Balancer pools. Before proceeding, view this",
+      "risksDisclaimer": "Liquidity Providers encounter risks when using DeFi and Symmetric pools. Before proceeding, view this",
       "underlyingTokens": "Underlying pool tokens"
     },
     "myWalletTokensCard": {
@@ -869,12 +869,12 @@
   "poolOwner": "Pool Owner",
   "delegateOwner": {
     "title": "Delegate owner",
-    "tooltip": "Permissioned functions validated by the Balancer Vault Authorizer"
+    "tooltip": "Permissioned functions validated by the Symmetric Vault Authorizer"
   },
   "noOwner": "No owner",
   "poolWarnings": {
     "bugWarning20220513": {
-      "title": "This pool contains double-entrypoint tokens, which have been found to be incompatible with Balancer. It is currently not possible to withdraw all assets from the pool proportionally. While it is possible to withdraw in a single asset, liquidity providers are advised to wait. A mechanism is being implemented to allow for proportional withdrawals. <a href=\"https://forum.balancer.fi/t/medium-severity-bug-found/3161\" target=\"blank\" rel=\"noreferrer\" class=\"underline\">Learn more </a>"
+      "title": "This pool contains double-entrypoint tokens, which have been found to be incompatible with Symmetric. It is currently not possible to withdraw all assets from the pool proportionally. While it is possible to withdraw in a single asset, liquidity providers are advised to wait. A mechanism is being implemented to allow for proportional withdrawals. <a href=\"https://forum.balancer.fi/t/medium-severity-bug-found/3161\" target=\"blank\" rel=\"noreferrer\" class=\"underline\">Learn more </a>"
     },
     "poolOwnerVulnWarningGovernance": {
       "title": "This pool is affected by a vulnerability disclosed <a href=\"https://forum.balancer.fi/t/vulnerability-disclosure/3179\" target=\"blank\" rel=\"noreferrer\" class=\"underline\">here</a>. Reach out on Discord if you need help creating a new pool with the same composition.",
@@ -938,7 +938,7 @@
   "proportionalSuggestion": "Proportional suggestion",
   "proportionalWithdrawal": "Proportional withdrawal",
   "protocolFees": "Protocol fees",
-  "protocolIncentives": "Protocol revenue & veBAL incentives",
+  "protocolIncentives": "Protocol revenue & vTSYMM incentives",
   "rank": "Rank (1{0})",
   "receipt": "Receipt",
   "receive": "Receive",
@@ -956,7 +956,7 @@
   "seeMore": "See more",
   "seeOnExplorer": "See on explorer",
   "seePools": "See pools",
-  "seeV1BalancerInvestments": "Want to see your funds on Balancer V1?",
+  "seeV1BalancerInvestments": "Want to see your funds on Symmetric V1?",
   "select": "Select",
   "selectToken": "Select token",
   "sell": "Sell",
@@ -970,7 +970,7 @@
     "sentry": "Used for error tracking and performance monitoring."
   },
   "settings": "Settings",
-  "setUpEthereumWallet": "Balancer is a DeFi app on Ethereum. Set up an Ethereum Wallet to swap and provide liquidity here.",
+  "setUpEthereumWallet": "Symmetric is a DeFi app on Ethereum. Set up an Ethereum Wallet to swap and provide liquidity here.",
   "singleToken": "Single token",
   "singleTokenMax": "Single token max",
   "slippageTolerance": "Slippage tolerance",
@@ -1027,52 +1027,52 @@
         "vote": "Vote to direct liquidity mining emissions"
       },
       "tokens": {
-        "balWETH": "BAL + WETH",
-        "lpToken": "B-80BAL-20WETH",
-        "veBAL": "veBAL"
+        "balWETH": "TSYMM + TLOS",
+        "lpToken": "S-80TSYMM-20WTLOS",
+        "veBAL": "vTSYMM"
       },
       "tokenInfo": {
-        "balWETH": "Add liquidity to the 80% BAL / 20% WETH pool to get the B-80BAL-20WETH LP token.",
-        "lpToken": "Lock up the LP tokens from the 80% BAL / 20% WETH pool for up to a year to get veBAL. The longer you lock, the more veBAL you get.",
-        "veBAL": "Use veBAL to earn extra on your staked pools. Only some pools are eligible for staking. Check any pools that you are in, and stake it to earn liquidity mining incentives. You can also use veBAL to vote to direct future liquidity mining emissions"
+        "balWETH": "Add liquidity to the 80% SYMM / 20% WETH pool to get the S-80TSYMM-20WTLOS LP token.",
+        "lpToken": "Lock up the LP tokens from the 80% SYMM / 20% WETH pool for up to a year to get vTSYMM. The longer you lock, the more vTSYMM you get.",
+        "veBAL": "Use vTSYMM to earn extra on your staked pools. Only some pools are eligible for staking. Check any pools that you are in, and stake it to earn liquidity mining incentives. You can also use vTSYMM to vote to direct future liquidity mining emissions"
       },
       "buttons": {
-        "getVeBAL": "Get veBAL",
+        "getVeBAL": "Get vTSYMM",
         "learnMore": "Learn more"
       }
     },
     "myVeBAL": {
-      "title": "My veBAL",
+      "title": "My vTSYMM",
       "cards": {
         "myLpToken": {
-          "label": "My B-80BAL-20WETH"
+          "label": "My S-80TSYMM-20WTLOS"
         },
         "myLockedLpToken": {
-          "label": "My locked B-80BAL-20WETH"
+          "label": "My locked S-80TSYMM-20WTLOS"
         },
         "lockedEndDate": {
           "label": "Locked until",
           "secondaryText": "{0} days"
         },
         "myVeBAL": {
-          "label": "My veBAL",
-          "secondaryText": "{0} of all veBAL"
+          "label": "My vTSYMM",
+          "secondaryText": "{0} of all vTSYMM"
         },
-        "myExpiredLockTooltip": "Your previous lockup period has expired, so you no longer have any veBAL or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or veBAL incentives. However, you’ll still get the minimum 1.0x rate. Tap the minus icon to redeem your expired locked B-80BAL-20WETH LP tokens and then create a new lock to get veBAL."
+        "myExpiredLockTooltip": "Your previous lockup period has expired, so you no longer have any vTSYMM or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or vTSYMM incentives. However, you’ll still get the minimum 1.0x rate. Tap the minus icon to redeem your expired locked S-80TSYMM-20WTLOS LP tokens and then create a new lock to get vTSYMM."
       }
     },
     "communityVeBAL": {
-      "title": "Community veBAL",
+      "title": "Community vTSYMM",
       "cards": {
-        "totalVeBAL": "Total veBAL",
+        "totalVeBAL": "Total vTSYMM",
         "avgLockUpPeriod": "Ave. lock-up period",
-        "effectiveBalLocked": "Effective BAL locked",
-        "shareOfBalLocked": "Share of BAL locked"
+        "effectiveBalLocked": "Effective SYMM locked",
+        "shareOfBalLocked": "Share of SYMM locked"
       },
       "stats": {
         "currentWeekVoting": "Current week voting",
         "nextWeekVoting": "Next week voting",
-        "balIncentives": "BAL incentives"
+        "balIncentives": "SYMM incentives"
       },
       "table": {
         "poolGauge": "Pool gauge",
@@ -1082,14 +1082,14 @@
     },
     "liquidityMining": {
       "title": "Pools eligible for liquidity mining",
-      "description": "Liquidity incentives are directed by the community of veBAL holders. If you hold veBAL, vote below on any pools across Ethereum and Layer 2’s. Your vote will persist until you change it and editing a pool can only be done once in 10 days.",
+      "description": "Liquidity incentives are directed by the community of vTSYMM holders. If you hold vTSYMM, vote below on any pools across Ethereum and Layer 2’s. Your vote will persist until you change it and editing a pool can only be done once in 10 days.",
       "myUnallocatedVotes": "My unallocated votes:",
-      "myUnallocatedVotesTooltip": "veBAL holders can vote for a single pool or multiple pools in whatever weights they choose, up to their max of 100%. Note: If you’ve previously voted for a pool but no longer have any veBAL, your votes will not count.",
+      "myUnallocatedVotesTooltip": "vTSYMM holders can vote for a single pool or multiple pools in whatever weights they choose, up to their max of 100%. Note: If you’ve previously voted for a pool but no longer have any vTSYMM, your votes will not count.",
       "unallocatedVotes": "My unallocated votes: {0}.",
       "votingPeriod": "Voting period ends: {0}d {1}h {2}m {3}s",
-      "votingPeriodTooltip": "There is a weekly vote for veBAL holders which ends at 0:00 UTC on Thursdays. This vote determines the BAL incentives allocation for all Stakers in these pools for the next week. Although you don’t have to vote to get a boosted yield, your vote can help you earn more by voting on pools where you are a staker.",
+      "votingPeriodTooltip": "There is a weekly vote for vTSYMM holders which ends at 0:00 UTC on Thursdays. This vote determines the SYMM incentives allocation for all Stakers in these pools for the next week. Although you don’t have to vote to get a boosted yield, your vote can help you earn more by voting on pools where you are a staker.",
       "votingPeriodCountdown": "{0}d : {1}h : {2}m : {3}s",
-      "votingPowerExpiredTooltip": "Your previous lock period has expired, so you no longer have any veBAL or voting power. Any votes that have been allocated in the past will no longer count. Lock up B-80BAL-20WETH LP tokens to get veBAL for higher yields and voting power.",
+      "votingPowerExpiredTooltip": "Your previous lock period has expired, so you no longer have any vTSYMM or voting power. Any votes that have been allocated in the past will no longer count. Lock up S-80TSYMM-20WTLOS LP tokens to get vTSYMM for higher yields and voting power.",
       "table": {
         "chain": "Chain",
         "assets": "Assets",
@@ -1106,7 +1106,7 @@
         "nextPeriod": "Next period: {0}"
       },
       "limitsTooltip": {
-        "distributionsCappedVeBAL": "Distributions to the veBAL gauge are capped at 10%",
+        "distributionsCappedVeBAL": "Distributions to the vTSYMM gauge are capped at 10%",
         "distributionsCappedAt": "Distributions to this gauge are capped at {0}%"
       },
       "popover": {
@@ -1131,7 +1131,7 @@
         "remainingVotes": "Your remaining votes: {0}",
         "remainingVotesEditing": "Your remaining votes: {0} ({1} current allocation in this pool + {2} unallocated votes)",
         "remainingVotesExceeded": "This exceeds your remaining votes of: {0}",
-        "resubmitVote": "Voting power is set at the time of the vote. If you get more veBAL later, resubmit your vote to use your increased power.",
+        "resubmitVote": "Voting power is set at the time of the vote. If you get more vTSYMM later, resubmit your vote to use your increased power.",
         "voteLockInfo": "Votes are timelocked for 10 days. If you vote now, no edits can be made until {0}.",
         "warnings": {
           "votedTooRecently": {
@@ -1139,12 +1139,12 @@
             "description": "You won't be able to make any edits to this vote allocation for {0}"
           },
           "veBalLockTooShort": {
-            "title": "veBAL not locked for 7 days",
-            "description": "You must have veBAL locked for more than 7 days to vote on gauges."
+            "title": "vTSYMM not locked for 7 days",
+            "description": "You must have vTSYMM locked for more than 7 days to vote on gauges."
           },
           "veBalVoteOverLimitWarning": {
-            "title": "You may be wasting your vote: veBAL cap hit",
-            "description": "Distributions to veBAL holders of weekly emissions are capped at 10%. Any votes exceeding this amount at Thursday 0:00 UTC will not be counted."
+            "title": "You may be wasting your vote: vTSYMM cap hit",
+            "description": "Distributions to vTSYMM holders of weekly emissions are capped at 10%. Any votes exceeding this amount at Thursday 0:00 UTC will not be counted."
           },
           "lpVoteOverLimitWarning": {
             "title": "You may be wasting your vote",
@@ -1158,16 +1158,16 @@
       "resubmit": {
         "hint": {
           "title": "Resubmit your votes to utilize your full voting power",
-          "description": "Votes on pools are set at the time of your last vote. Since you’ve added new veBAL after your original vote, the additional voting power is not being used."
+          "description": "Votes on pools are set at the time of your last vote. Since you’ve added new vTSYMM after your original vote, the additional voting power is not being used."
         },
-        "resubmitWarning": "Votes on pools are set at the time of the vote. Since you’ve added new veBAL since your original vote, you have additional voting power which is not being used. To use your full voting power, resubmit your votes."
+        "resubmitWarning": "Votes on pools are set at the time of the vote. Since you’ve added new vTSYMM since your original vote, you have additional voting power which is not being used. To use your full voting power, resubmit your votes."
       }
     },
     "notSupported": {
       "title": "Locking is unavailable on this network",
-      "description": "Get veBAL on Ethereum Mainnet"
+      "description": "Get vTSYMM on Ethereum Mainnet"
     },
-    "votingTransitionDescription": "Liquidity mining emissions as directed by veBAL holders start on 7 April 2022 at 0:00 UTC! Voting is now live, so get veBAL and vote for pools. Your vote will persist until you edit. Editing can only be done once in 10 days."
+    "votingTransitionDescription": "Liquidity mining emissions as directed by vTSYMM holders start on 7 April 2022 at 0:00 UTC! Voting is now live, so get vTSYMM and vote for pools. Your vote will persist until you edit. Editing can only be done once in 10 days."
   },
   "getVeBAL": {
     "lockableTokens": {
@@ -1179,27 +1179,27 @@
       "steps": {
         "investPart1": "Add liquidity to the",
         "investPart2": "pool.",
-        "lock": "Lock-up the resulting LP token ({0}). The longer you lock (1 year max), the more veBAL you get."
+        "lock": "Lock-up the resulting LP token ({0}). The longer you lock (1 year max), the more vTSYMM you get."
       },
       "earn": {
-        "boost": "veBAL holders get boosted liquidity mining yields (up to 2.5x) and increased voting power.",
+        "boost": "vTSYMM holders get boosted liquidity mining yields (up to 2.5x) and increased voting power.",
         "voting": "Use this voting power to choose which pool gauges get allocated liquidity mining incentives. Vote on the pools where you have added liquidity to earn more yield."
       }
     },
     "myVeBAL": {
-      "title": "My veBAL",
+      "title": "My vTSYMM",
       "lockedEndDate": "Locked until",
       "expiredOn": "Expired on",
-      "percentVeBAL": "% of total veBAL"
+      "percentVeBAL": "% of total vTSYMM"
     },
     "lockForm": {
-      "title": "Lock to get veBAL",
+      "title": "Lock to get vTSYMM",
       "lockAmount": {
         "title": "How much do you want to lock?"
       },
       "lockEndDate": {
         "title": "Lock until",
-        "tooltip": "The longer you lock your stake, the more veBAL voting power you get (up to 4 years). You can extend the lock later. Be careful, locking is not reversible."
+        "tooltip": "The longer you lock your stake, the more vTSYMM voting power you get (up to 4 years). You can extend the lock later. Be careful, locking is not reversible."
       },
       "summary": {
         "receive": {
@@ -1247,7 +1247,7 @@
           "explainer": "Lock-up end dates can only be on Thursdays at 0:00 UTC. To get as close as possible to a 1 year lock, locking on Thursday is recommended.",
           "table": {
             "lockPeriod": "Lock period",
-            "totalVeBAL": "Total veBAL"
+            "totalVeBAL": "Total vTSYMM"
           }
         },
         "increasedLockAmount": "Increased lock amount",
@@ -1278,18 +1278,18 @@
           "loadingLabel": "Confirm lock in wallet"
         }
       },
-      "returnToVeBalPage": "Return to veBAL page",
+      "returnToVeBalPage": "Return to vTSYMM page",
       "firstVeBALReceived": {
         "title": "Vote on pools to direct liquidity incentives",
-        "description": "Your voting weight is set at the time of the vote. If you acquire additional veBAL, resubmit your votes to utilize your newly acquired voting power. Voting per pool can only be done once every 10 days."
+        "description": "Your voting weight is set at the time of the vote. If you acquire additional vTSYMM, resubmit your votes to utilize your newly acquired voting power. Voting per pool can only be done once every 10 days."
       }
     },
     "notSupported": {
       "title": "Locking is unavailable on this network",
-      "description": "Get veBAL on Ethereum Mainnet"
+      "description": "Get vTSYMM on Ethereum Mainnet"
     }
   },
-  "getVeBALToVote": "Get veBAL to vote",
+  "getVeBALToVote": "Get vTSYMM to vote",
   "unlockVeBAL": {
     "expiredLockableTokens": {
       "title": "Expired locked tokens"
@@ -1322,20 +1322,20 @@
           "loadingLabel": "Confirm unlock in wallet"
         }
       },
-      "returnToVeBalPage": "Return to veBAL page"
+      "returnToVeBalPage": "Return to vTSYMM page"
     },
     "notSupported": {
       "title": "Unlocking is unavailable on this network",
       "description": "Unlock on Ethereum Mainnet"
     }
   },
-  "tableShowsBalancerV2Pools": "This table shows only Balancer V2 pools.",
+  "tableShowsBalancerV2Pools": "This table shows only Symmetric V2 pools.",
   "theme": "Theme",
   "yieldAprRewards": {
     "apr": {
       "token": "Token APR",
       "boosted": "Boosted APR",
-      "veBAL": "veBAL APR"
+      "veBAL": "vTSYMM APR"
     },
     "fiat": {
       "token": "Token rewards",
@@ -1360,7 +1360,7 @@
   "tokensLowerCase": "tokens",
   "tokensParen": "Token(s)",
   "tokenPrices": "Token prices",
-  "unlistedTokenWarningTitle": "You have added a token that is not included in the Balancer Tokenlist.",
+  "unlistedTokenWarningTitle": "You have added a token that is not included in the Symmetric Tokenlist.",
   "unlistedTokenWarning": "You will not be able to complete pool creation until it's included. To add a token to our Tokenlist please follow our process described",
   "tooltips": {
     "addLiquidity": {
@@ -1372,8 +1372,8 @@
       "total": "The total value in {0} you’ll be withdrawing from this pool."
     },
     "veBalApr": {
-      "title": "Max locking/veBAL APR",
-      "breakdown1": "BAL",
+      "title": "Max locking/vTSYMM APR",
+      "breakdown1": "SYMM",
       "breakdown2": "bb-a-USD"
     }
   },
@@ -1390,11 +1390,11 @@
       "wrapUnwrap": "This option has been disabled because Wrap/Unwrap transactions always require a gas transaction."
     },
     "label": "Swap gasless",
-    "tooltip": "‘Swap gasless’ on the Balancer CoW Protocol for free signature swaps, MEV protection, and the best prices with intelligent swap routing across DeFi exchanges. Turn it off to swap only through Balancer liquidity pools using gas."
+    "tooltip": "‘Swap gasless’ on the Symmetric CoW Protocol for free signature swaps, MEV protection, and the best prices with intelligent swap routing across DeFi exchanges. Turn it off to swap only through Symmetric liquidity pools using gas."
   },
   "swapLiquidity": "Swap liquidity",
   "swapSettled": "Your swap has settled",
-  "swapsThroughWeth": "Swaps from ETH route through Balancer liquidity pools and incur gas fees.",
+  "swapsThroughWeth": "Swaps from ETH route through Symmetric liquidity pools and incur gas fees.",
   "swapSubmissionError": {
     "actionLabel": "Dismiss",
     "title": "An error has occurred"
@@ -1434,11 +1434,11 @@
         "title": "Approve Batch relayer"
       },
       "tokenApproval": {
-        "content": "Your permission is required to swap this token on Balancer. Approvals are required once per token, per wallet.",
+        "content": "Your permission is required to swap this token on Symmetric. Approvals are required once per token, per wallet.",
         "title": "Approve {0}"
       },
       "sign": {
-        "content": "Upon your signature, the Balancer CoW Protocol will find an optimal route amongst other swappers or from liquidity on other DeFi exchanges, with MEV protection.",
+        "content": "Upon your signature, the Symmetric CoW Protocol will find an optimal route amongst other swappers or from liquidity on other DeFi exchanges, with MEV protection.",
         "title": "Sign a free message to swap"
       },
       "swap": {
@@ -1489,7 +1489,7 @@
     "increaseLock": "Increase lock",
     "unlock": "Unlock",
     "sync": "Sync",
-    "userGaugeCheckpoint": "Pool gauge veBAL update"
+    "userGaugeCheckpoint": "Pool gauge vTSYMM update"
   },
   "transactionDeadline": "Transaction deadline",
   "transactionDeadlineTooltip": "Your swap will expire and not execute if it is pending for more than the selected duration. Only executed transactions incur fees for swaps between ERC-20 tokens.",
@@ -1542,18 +1542,18 @@
     "migratePool": "{0} {1} to {2}",
     "wrapUnwrap": "{0} {1} to {2}",
     "tooltips": {
-      "approveForInvesting": "You must approve {0} to add liquidity for this token on Balancer. Approvals are required once per token, per wallet.",
+      "approveForInvesting": "You must approve {0} to add liquidity for this token on Symmetric. Approvals are required once per token, per wallet.",
       "approveForLocking": "You must approve {0} to lock this token. Approvals are required once per token, per wallet.",
-      "approveForStaking": "You must approve {0} to stake this token on Balancer. Approvals are required once per token, per wallet.",
-      "approveForSwapping": "You must approve {0} to swap this token on Balancer. Approvals are required once per token, per wallet.",
+      "approveForStaking": "You must approve {0} to stake this token on Symmetric. Approvals are required once per token, per wallet.",
+      "approveForSwapping": "You must approve {0} to swap this token on Symmetric. Approvals are required once per token, per wallet.",
       "approveForUnwrapping": "You must approve {0} to unwrap this token. Approvals are required once per token, per wallet.",
       "unapprove": "You must unapprove {0} before a new approval value can be set"
     }
   },
   "transactionType": "Transaction type",
   "unallocated": "Unallocated",
-  "unavailableOnNetwork": "Sorry! Balancer is not available on this network",
-  "unavailableOnNetworkWithName": "Sorry! Balancer is not available on {0}",
+  "unavailableOnNetwork": "Sorry! Symmetric is not available on this network",
+  "unavailableOnNetworkWithName": "Sorry! Symmetric is not available on {0}",
   "unsupportedNetwork": "Unsupported network",
   "unknown": "Unknown",
   "unknownPoolType": "Unknown pool type",
@@ -1574,8 +1574,8 @@
   "v2": "V2",
   "value": "Value",
   "vault": "Vault",
-  "vebal": "veBAL",
-  "veBalProtocolLiquidity": "veBAL protocol liquidity",
+  "vebal": "vTSYMM",
+  "veBalProtocolLiquidity": "vTSYMM protocol liquidity",
   "vestVote": "Vest+Vote",
   "viewAllAssets": "View all assets ({0})",
   "viewAndManangeOnElement": "View and manage all pools on Element.fi",

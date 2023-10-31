@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useNetwork from '@/composables/useNetwork';
 import { lsGet, lsSet } from '@/lib/utils';
-import { useUserIsDepositedInAffectedPool } from '@/pages/recovery-exit/useUserIsDepositedInAffectedPool';
+// import { useUserIsDepositedInAffectedPool } from '@/pages/recovery-exit/useUserIsDepositedInAffectedPool';
 import LS_KEYS from '@/constants/local-storage.keys';
 
 /**
@@ -15,7 +15,10 @@ const dismissed = ref<boolean>(
  * COMPOSABLES
  */
 const { networkSlug } = useNetwork();
-const { isUserDepositedInAffectedPool } = useUserIsDepositedInAffectedPool();
+
+//TODO
+// const { isUserDepositedInAffectedPool } = useUserIsDepositedInAffectedPool();
+const isUserDepositedInAffectedPool = false;
 
 function handleClose() {
   lsSet(LS_KEYS.Alerts.RecoveryExitDismissed, true);

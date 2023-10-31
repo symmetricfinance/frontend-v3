@@ -21,6 +21,7 @@ export default function useTokenPricesQuery(
   pricesToInject: Ref<TokenPrices> = ref({}),
   options: QueryOptions = {}
 ) {
+  console.log(pricesToInject);
   const { networkId } = useNetwork();
   const queryKey = reactive(
     QUERY_KEYS.Tokens.Prices(networkId, pricesToInject)
@@ -44,9 +45,9 @@ export default function useTokenPricesQuery(
   }
 
   const api = getApi();
+
   const queryFn = async () => {
     const { prices } = await api.GetCurrentTokenPrices();
-
     let pricesMap = priceArrayToMap(prices);
     pricesMap = injectCustomTokens(pricesMap, pricesToInject.value);
     console.log('Fetching', Object.values(prices).length, 'prices');

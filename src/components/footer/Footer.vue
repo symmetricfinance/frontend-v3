@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import IconDiscord from '@/components/icons/IconDiscord.vue';
 import IconGithub from '@/components/icons/IconGithub.vue';
-import IconLinkedin from '@/components/icons/IconLinkedin.vue';
-import IconMail from '@/components/icons/IconMail.vue';
+// import IconLinkedin from '@/components/icons/IconLinkedin.vue';
+// import IconMail from '@/components/icons/IconMail.vue';
 import IconMedium from '@/components/icons/IconMedium.vue';
 import IconTwitter from '@/components/icons/IconTwitter.vue';
-import IconYoutube from '@/components/icons/IconYoutube.vue';
+// import IconYoutube from '@/components/icons/IconYoutube.vue';
 import { EXTERNAL_LINKS } from '@/constants/links';
 
 import useNetwork from '@/composables/useNetwork';
@@ -76,7 +76,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
             </p>
           </div>
 
-          <div class="flex flex-wrap md:order-3 gap-3 md:gap-4">
+          <!-- <div class="flex flex-wrap gap-3 md:order-3 md:gap-4">
             <BalLink
               :href="EXTERNAL_LINKS.Balancer.Home"
               external
@@ -146,7 +146,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
               {{ $t('analytics') }}
               <BalIcon name="arrow-up-right" size="sm" class="arrow" />
             </BalLink>
-          </div>
+          </div> -->
         </div>
         <div class="flex flex-col gap-8">
           <div class="md:order-2">
@@ -173,13 +173,13 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                 >
                   <IconMedium />
                 </BalLink>
-                <BalLink
+                <!-- <BalLink
                   :href="EXTERNAL_LINKS.Balancer.Social.Youtube"
                   external
                   noStyle
                 >
                   <IconYoutube />
-                </BalLink>
+                </BalLink> -->
                 <BalLink
                   :href="EXTERNAL_LINKS.Balancer.Social.Github"
                   external
@@ -187,20 +187,20 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                 >
                   <IconGithub />
                 </BalLink>
-                <BalLink
+                <!-- <BalLink
                   :href="EXTERNAL_LINKS.Balancer.Social.Linkedin"
                   external
                   noStyle
                 >
                   <IconLinkedin />
-                </BalLink>
-                <BalLink
+                </BalLink> -->
+                <!-- <BalLink
                   :href="EXTERNAL_LINKS.Balancer.Social.Mail"
                   external
                   noStyle
                 >
                   <IconMail />
-                </BalLink>
+                </BalLink> -->
               </div>
             </div>
           </div>

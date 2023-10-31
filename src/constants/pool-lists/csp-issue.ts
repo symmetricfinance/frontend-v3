@@ -26,6 +26,7 @@ export const NO_RECOVERY_EXIT_POOL_IDS: Record<Network, string[]> = {
   [Network.FANTOM]: [],
   [Network.GOERLI]: [],
   [Network.OPTIMISM]: [],
+  [Network.TELOSTESTNET]: [],
 };
 
 export const CSP_ISSUE_POOL_IDS: Record<Network, string[]> = {
@@ -381,6 +382,7 @@ export const CSP_ISSUE_POOL_IDS: Record<Network, string[]> = {
   [Network.FANTOM]: [],
   [Network.GOERLI]: [],
   [Network.OPTIMISM]: [],
+  [Network.TELOSTESTNET]: [],
 };
 
 export const HIGH_RISK_POOL_IDS: string[] = [

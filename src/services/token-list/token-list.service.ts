@@ -37,6 +37,7 @@ export default class TokenListService {
     const balancerLists = [Balancer.Allowlisted];
     const All = [...balancerLists, ...External];
     const Approved = [Balancer.Allowlisted, ...External];
+    console.log('approved', Approved);
 
     return {
       All,

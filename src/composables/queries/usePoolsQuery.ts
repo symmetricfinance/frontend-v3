@@ -76,7 +76,6 @@ export default function usePoolsQuery(
         const pools = await balancerSubgraphService.pools.get(
           getQueryArgs(options)
         );
-
         const poolDecorator = new PoolDecorator(pools);
         let decoratedPools = await poolDecorator.decorate(tokenMeta.value);
 

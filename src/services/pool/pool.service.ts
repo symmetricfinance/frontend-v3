@@ -44,6 +44,7 @@ export default class PoolService {
     let totalLiquidity = this.pool.totalLiquidity;
 
     try {
+      console.log(this.pool);
       const sdkTotalLiquidity = await getBalancerSDK().pools.liquidity(
         this.pool as unknown as SDKPool
       );

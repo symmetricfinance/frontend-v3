@@ -8,6 +8,7 @@ import { useUserPools } from '@/providers/local/user-pools.provider';
 import StakePreviewModal from '@/components/contextual/pages/pool/staking/StakePreviewModal.vue';
 import { providePoolStaking } from '@/providers/local/pool-staking.provider';
 import { PoolAction } from './types';
+import { isVeBalSupported } from '@/composables/useVeBAL';
 
 /**
  * STATE
@@ -75,7 +76,7 @@ onMounted(() => {
 <template>
   <div>
     <BalStack vertical spacing="sm">
-      <h5 class="px-4 xl:px-0">
+      <h5 v-if="isVeBalSupported" class="px-4 xl:px-0">
         {{ $t('staking.unstakedPools') }}
       </h5>
       <PoolsTable

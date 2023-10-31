@@ -13,7 +13,9 @@ export class SubgraphFallbackService {
     return this.urls[this.urlIndex.value];
   });
 
-  constructor(private readonly urls = configService.subgraphUrls || []) {}
+  constructor(private readonly urls = configService.subgraphUrls || []) {
+    console.log(urls);
+  }
 
   public async get(payload: unknown): Promise<AxiosResponse | void> {
     if (!payload) {
@@ -21,6 +23,7 @@ export class SubgraphFallbackService {
     }
     try {
       const response = await axios.post(this.url.value, payload);
+      console.log(response);
       const errorMessage = response?.data.errors?.message;
       if (errorMessage) {
         throw new Error(errorMessage);

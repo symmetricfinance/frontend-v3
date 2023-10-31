@@ -40,6 +40,7 @@ export interface Contracts {
   lidoRelayer: string;
   balancerHelpers: string;
   batchRelayer: string;
+  balancerQueries: string;
   veBAL: string;
   gaugeController: string;
   gaugeCheckpointer?: string;
@@ -83,6 +84,7 @@ export enum Network {
   ARBITRUM = 42161,
   AVALANCHE = 43114,
   SEPOLIA = 11155111,
+  TELOSTESTNET = 41,
 }
 
 export interface Config {

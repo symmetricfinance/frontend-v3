@@ -10,6 +10,7 @@ import { PoolWarning } from '@/types/pools';
 import { usePoolWarning } from '@/composables/usePoolWarning';
 import { useDisabledJoinPool } from '@/composables/useDisabledJoinPool';
 import { POOLS } from '@/constants/pools';
+import { isVeBalSupported } from '@/composables/useVeBAL';
 
 type Props = {
   pool: Pool;
@@ -59,7 +60,10 @@ function isActionDisabled(action: PoolAction) {
     PoolAction.Stake,
     PoolAction.MigrateGauge,
   ];
-  return isDeprecated && actionsToDisable.includes(action);
+  return (
+    (isDeprecated && actionsToDisable.includes(action)) ||
+    (action == 'stake' && !isVeBalSupported.value)
+  );
 }
 
 const menuItems = computed(() => {
