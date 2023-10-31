@@ -111,7 +111,9 @@ function applyNetworkPathRedirects(router: Router): Router {
           to.redirectedFrom?.fullPath.includes('/pool')
         ) {
           const newPath = to.redirectedFrom?.fullPath ?? to.fullPath;
-          router.push({ path: `/${config[Network.MAINNET].slug}${newPath}` });
+          router.push({
+            path: `/${config[Network.TELOSTESTNET].slug}${newPath}`,
+          });
         } else if (
           !to.redirectedFrom ||
           routerHandledRedirects.includes(to.redirectedFrom?.name as string) ||
@@ -121,7 +123,7 @@ function applyNetworkPathRedirects(router: Router): Router {
         } else {
           const newPath = to.redirectedFrom?.fullPath ?? to.fullPath;
           const newNetwork = newPath.includes('/pool')
-            ? config[Network.MAINNET].slug
+            ? config[Network.TELOSTESTNET].slug
             : networkSlug;
           router.push({ path: `/${newNetwork}${newPath}` });
         }

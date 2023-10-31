@@ -12,8 +12,8 @@ import {
 import { APR_THRESHOLD, VOLUME_THRESHOLD } from '@/constants/pools';
 import { Pool } from '@/services/pool/types';
 import { AprBreakdown } from '@balancer-labs/sdk';
-import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
-import useNetwork from '@/composables/useNetwork';
+// import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
+// import useNetwork from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -39,8 +39,8 @@ const props = withDefaults(defineProps<Props>(), {
  */
 const { fNum } = useNumbers();
 const { t } = useI18n();
-const { l2VeBalBalances } = useCrossChainSync();
-const { networkId } = useNetwork();
+// const { l2VeBalBalances } = useCrossChainSync();
+// const { networkId } = useNetwork();
 
 /**
  * COMPUTED
@@ -52,19 +52,19 @@ const aprLabel = computed((): string => {
   return totalAprLabel(poolAPRs, props.pool?.boost);
 });
 
-const syncVeBalTooltip = computed(() => {
-  const vebalBalance = Number(l2VeBalBalances.value?.[networkId.value]);
+// const syncVeBalTooltip = computed(() => {
+//   const vebalBalance = Number(l2VeBalBalances.value?.[networkId.value]);
 
-  if (vebalBalance > 0) {
-    return 'Remember to resync if you have acquired more veBAL since your last sync, to get a higher boosted staking rate. Resync on the veBAL page on Ethereum Mainnet.';
-  }
+//   if (vebalBalance > 0) {
+//     return 'Remember to resync if you have acquired more veBAL since your last sync, to get a higher boosted staking rate. Resync on the veBAL page on Ethereum Mainnet.';
+//   }
 
-  if (vebalBalance === 0) {
-    return 'If you have veBAL, sync your balance on the veBAL page on Ethereum Mainnet to get higher boosted staking rates across L2 networks.';
-  }
+//   if (vebalBalance === 0) {
+//     return 'If you have veBAL, sync your balance on the veBAL page on Ethereum Mainnet to get higher boosted staking rates across L2 networks.';
+//   }
 
-  return '';
-});
+//   return '';
+// });
 
 const stats = computed(() => {
   const volumeSnapshot = Number(props.pool?.volumeSnapshot || '0');
@@ -103,7 +103,7 @@ const stats = computed(() => {
           ? '-'
           : aprLabel.value,
       loading: props.loadingApr,
-      tooltip: syncVeBalTooltip.value,
+      // tooltip: syncVeBalTooltip.value,
     },
   ];
 });

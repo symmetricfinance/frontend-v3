@@ -23,7 +23,7 @@ const contracts: Contracts = {
   veBALHelpers: '',
   feeDistributor: '',
   feeDistributorDeprecated: '',
-  faucet: '',
+  faucet: '0x110f9bFBE4a8042375EC8De1384980fd7201fea5',
   omniVotingEscrow: '',
 };
 
