@@ -446,7 +446,7 @@ function onAlertMountChange() {
               <span class="mt-2"
                 >{{ $t('unlistedTokenWarning') }}
                 <a
-                  href="https://github.com/balancer/frontend-v2/wiki/How-tos#add-tokens-to-tokenlist"
+                  href="https://github.com/centfinance/Symmetric.Frontend-v3/wiki/How-tos"
                   target="_blank"
                   class="underline"
                   >{{ $t('here') }}</a

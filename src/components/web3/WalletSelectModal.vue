@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 
 import WalletButton from '@/components/web3/WalletButton.vue';
-import { EXTERNAL_LINKS } from '@/constants/links';
+// import { EXTERNAL_LINKS } from '@/constants/links';
 import { SupportedWallets } from '@/providers/wallet.provider';
 import LS_KEYS from '@/constants/local-storage.keys';
 import { useWalletHelpers } from '@/composables/useWalletHelpers';
@@ -112,8 +112,8 @@ function onBalRulesAccepted() {
       ]"
     >
       <WalletButton v-for="wallet in wallets" :key="wallet" :wallet="wallet" />
-      <div
-        class="p-4 bg-gradient-to-b from-gray-50 dark:from-gray-900 to-gray-100 dark:to-gray-850 rounded-lg"
+      <!-- <div
+        class="p-4 rounded-lg bg-gradient-to-b from-gray-50 dark:from-gray-900 to-gray-100 dark:to-gray-850"
       >
         <h6>{{ $t('newToEthereum') }}</h6>
         <p class="text-sm">
@@ -125,7 +125,7 @@ function onBalRulesAccepted() {
             </span>
           </BalLink>
         </p>
-      </div>
+      </div> -->
     </div>
   </BalModal>
 </template>

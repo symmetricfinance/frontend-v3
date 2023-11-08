@@ -173,6 +173,7 @@
   "communitySwapFeeLabel": "Delegated swap fees; currently fixed: <span class='font-semibold'>{0}</span>",
   "composition": "Composition",
   "composableStablePool": "Composable Stable Pool",
+  "composableStable": "Composable Stable Pool",
   "configuration": "Configuration",
   "confirm": "Confirm",
   "confirming": "Confirming...",

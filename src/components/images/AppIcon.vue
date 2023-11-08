@@ -22,6 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
  */
 const { darkMode } = useDarkMode();
 
+// const slug = useNetwork().networkSlug;
+
 /**
  * COMPUTED
  */

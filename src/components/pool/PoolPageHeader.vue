@@ -117,7 +117,7 @@ const hasCustomToken = computed(() => {
 const poolTypeLabel = computed(() => {
   if (!props.pool?.factory) return '';
   const key = POOLS.Factories[props.pool.factory];
-
+  console.log(props.pool.factory);
   return key ? t(key) : t('unknownPoolType');
 });
 
@@ -296,7 +296,7 @@ function symbolFor(titleTokenIndex: number): string {
   >
     {{ $t('investment.warning.blockedPool.description') }}
     <a
-      href="https://github.com/balancer/frontend-v2/wiki/How-tos#add-a-new-pool"
+      href="https://github.com/centfinance/Symmetric.Frontend-v3/wiki/How-tos"
       target="_blank"
       class="underline"
       >{{ $t('here') }}</a
@@ -316,7 +316,7 @@ function symbolFor(titleTokenIndex: number): string {
   >
     {{ $t('Click') }}
     <a
-      href="https://github.com/balancer/frontend-v2/wiki/How-tos#add-a-new-pool"
+      href="https://github.com/centfinance/Symmetric.Frontend-v3/wiki/How-tos"
       target="_blank"
       class="underline"
       >{{ $t('here') }}</a

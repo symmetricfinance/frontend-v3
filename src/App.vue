@@ -81,6 +81,23 @@ const { t } = useI18n();
 const router = useRouter();
 const { networkSlug } = useNetwork();
 
+const themeMap = {
+  'telos-testnet': 'telos',
+  telos: 'telos',
+  celo: 'celo',
+  sepolia: 'celo',
+  'gnosis-chain': 'gnosis-chain',
+};
+// Function to update theme based on the route slug
+const updateTheme = () => {
+  // Assuming your slug is part of the path like /theme/slug
+  // You need to adjust this based on your actual route structure
+  const themeSlug = route.path.split('/')[1]; // Get the slug from the path
+  console.log(themeSlug);
+  const theme = themeMap[themeSlug] || 'telos'; // Set the theme or default if not found
+  document.documentElement.setAttribute('data-theme', theme);
+};
+
 // OPTIONAL FEATURE ALERTS are enabled by featureAlertEnabled toggle
 const featureAlert: Alert = {
   id: 'csp-alert',
@@ -100,6 +117,7 @@ if (featureAlertEnabled) addAlert(featureAlert);
  * WATCHERS
  */
 watch(route, newRoute => {
+  updateTheme();
   updateBgColorFor(newRoute);
   if (newRoute.meta.layout) {
     layout.value = newRoute.meta.layout as string;

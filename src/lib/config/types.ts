@@ -84,7 +84,9 @@ export enum Network {
   ARBITRUM = 42161,
   AVALANCHE = 43114,
   SEPOLIA = 11155111,
+  TELOS = 40,
   TELOSTESTNET = 41,
+  // CELO = 11155111,
 }
 
 export interface Config {

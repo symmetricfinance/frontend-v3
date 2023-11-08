@@ -47,7 +47,7 @@ type ContractMap = Record<string, string>;
 // })();
 
 async function generate() {
-  const network = 'telos-testnet';
+  const network = 'telos';
   console.log(`Generating contract addresses for network ${network}...`);
   const addresses: any = require(`./addresses-temp.json`);
 

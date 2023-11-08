@@ -188,7 +188,7 @@ function toggleModal(): void {
 }
 
 .unselected {
-  @apply bg-blue-500 dark:bg-blue-400 text-white;
+  @apply bg-blue-500 dark:bg-blue-800 text-white;
 }
 
 .selected {
