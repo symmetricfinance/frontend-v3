@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import {
-  getRedirectUrlFor,
+  // getRedirectUrlFor,
   handleNetworkSlug,
   networkFromSlug,
   networkSlug,
@@ -51,14 +51,14 @@ export function hardRedirectTo(url: string) {
  */
 function applyNetworkSubdomainRedirect(router: Router): Router {
   router.beforeEach((to, from, next) => {
-    const redirectUrl = getRedirectUrlFor(
-      window.location.host,
-      to.redirectedFrom?.fullPath ?? to.fullPath,
-      to.params
-    );
+    // const redirectUrl = getRedirectUrlFor(
+    //   window.location.host,
+    //   to.redirectedFrom?.fullPath ?? to.fullPath,
+    //   to.params
+    // );
 
-    if (redirectUrl) window.location.href = redirectUrl;
-    else next();
+    // if (redirectUrl) window.location.href = redirectUrl;
+    next();
   });
 
   return router;
