@@ -6,23 +6,43 @@ import { Connector, ConnectorId } from '../connector';
 import { Network } from '@/lib/config/types';
 import useDarkMode from '@/composables/useDarkMode';
 
-const { MAINNET, ARBITRUM, AVALANCHE, BASE, GNOSIS, POLYGON, ZKEVM } = Network;
+const {
+  // MAINNET,
+  // ARBITRUM,
+  // AVALANCHE,
+  // BASE,
+  // GNOSIS,
+  // POLYGON,
+  // ZKEVM,
+  TELOS,
+  TELOSTESTNET,
+} = Network;
 
 export class WalletConnectConnector extends Connector {
   id = ConnectorId.WalletConnect;
   async connect() {
     const provider = await EthereumProvider.init({
-      projectId: 'ee9c0c7e1b8b86ebdfb8fd93bb116ca8',
-      chains: [MAINNET],
-      optionalChains: [AVALANCHE, ARBITRUM, BASE, GNOSIS, POLYGON, ZKEVM],
+      projectId: '90da6e11e9ce2448f2872dae5e52b189',
+      chains: [TELOS],
+      optionalChains: [
+        // AVALANCHE,
+        // ARBITRUM,
+        // BASE,
+        // GNOSIS,
+        // POLYGON,
+        // ZKEVM,
+        TELOSTESTNET,
+      ],
       rpcMap: {
-        [MAINNET]: configService.getNetworkRpc(MAINNET),
-        [ARBITRUM]: configService.getNetworkRpc(ARBITRUM),
-        [AVALANCHE]: configService.getNetworkRpc(AVALANCHE),
-        [BASE]: configService.getNetworkRpc(BASE),
-        [GNOSIS]: configService.getNetworkRpc(GNOSIS),
-        [POLYGON]: configService.getNetworkRpc(POLYGON),
-        [ZKEVM]: configService.getNetworkRpc(ZKEVM),
+        // [MAINNET]: configService.getNetworkRpc(MAINNET),
+        // [ARBITRUM]: configService.getNetworkRpc(ARBITRUM),
+        // [AVALANCHE]: configService.getNetworkRpc(AVALANCHE),
+        // [BASE]: configService.getNetworkRpc(BASE),
+        // [GNOSIS]: configService.getNetworkRpc(GNOSIS),
+        // [POLYGON]: configService.getNetworkRpc(POLYGON),
+        // [ZKEVM]: configService.getNetworkRpc(ZKEVM),
+        [TELOS]: configService.getNetworkRpc(TELOS),
+        [TELOSTESTNET]: configService.getNetworkRpc(TELOSTESTNET),
       },
       showQrModal: true,
       qrModalOptions: { themeMode: useDarkMode().darkMode ? 'dark' : 'light' },
