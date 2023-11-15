@@ -15,7 +15,10 @@ const pools: Pools = {
   DynamicFees: {
     Gauntlet: [],
   },
-  BlockList: [''],
+  BlockList: [
+    '0x9023df6f6bcb1bae6298e6c783810bea75353659000000000000000000000005',
+    '0xe79aa3ea990ad29a13a544d3ebfdb7bbc8a04ef1000200000000000000000007',
+  ],
   IncludedPoolTypes: [
     'Weighted',
     'Stable',
@@ -29,7 +32,7 @@ const pools: Pools = {
   Stable: {
     AllowList: [
       '0x058d4893efa235d86cceed5a7eef0809b76c8c66000000000000000000000004',
-      '0x9023df6f6bcb1bae6298e6c783810bea75353659000000000000000000000005',
+      '0x9a77bd2edbbb68173275cda967b76e9213949ace000000000000000000000008',
     ],
   },
   Investment: {
