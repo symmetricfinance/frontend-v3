@@ -24,7 +24,7 @@ const NETWORK_ID =
   urlNetworkId ||
   localStorageNetworkId ||
   (Number(import.meta.env.VITE_NETWORK) as Network) ||
-  Network.TELOSTESTNET;
+  Network.TELOS;
 if (windowAvailable) localStorage.setItem('networkId', NETWORK_ID.toString());
 export const networkSlug = config[NETWORK_ID].slug;
 export const networkConfig = config[NETWORK_ID];
@@ -154,7 +154,7 @@ export function getRedirectUrlFor(
 
   if (subdomainNetwork) {
     // Legacy network subdomain, we need to redirect to app.balancer.fi.
-    const newDomain = appUrl().replace(subdomain, 'app');
+    const newDomain = appUrl().replace(subdomain, 'telos');
     // If networkSlug provided it will be in the fullPath, so pass empty string instead.
     const newNetwork = params?.networkSlug
       ? ''
