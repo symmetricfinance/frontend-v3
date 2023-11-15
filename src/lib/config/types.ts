@@ -86,7 +86,7 @@ export enum Network {
   SEPOLIA = 11155111,
   TELOS = 40,
   TELOSTESTNET = 41,
-  // CELO = 11155111,
+  CELO = 42220,
 }
 
 export interface Config {

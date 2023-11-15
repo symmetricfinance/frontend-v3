@@ -1,5 +1,5 @@
 import { initRelayer } from './Relayer';
-import { Relayer } from '@balancer-labs/sdk';
+import { Relayer } from '@symmetric-v3/sdk';
 
 export const defaultRelayerSignature = 'test relayer signature';
 

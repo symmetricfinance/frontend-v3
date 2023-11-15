@@ -1,4 +1,4 @@
-import { toNormalizedWeights } from '@balancer-labs/sdk';
+import { toNormalizedWeights } from '@symmetric-v3/sdk';
 import {
   Vault__factory,
   WeightedPool__factory,

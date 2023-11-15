@@ -3,7 +3,7 @@ import {
   SwapType,
   SwapTypes,
   parseFixed,
-} from '@balancer-labs/sdk';
+} from '@symmetric-v3/sdk';
 import { BigNumber, formatFixed } from '@ethersproject/bignumber';
 import {
   AddressZero,

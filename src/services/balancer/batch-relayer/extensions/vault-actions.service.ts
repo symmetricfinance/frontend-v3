@@ -6,7 +6,7 @@ import {
   EncodeJoinPoolInput,
   ExitPoolData,
 } from '../relayer-types';
-import { ExitPoolRequest } from '@balancer-labs/sdk';
+import { ExitPoolRequest } from '@symmetric-v3/sdk';
 
 export class VaultActionsService {
   public encodeBatchSwap(params: EncodeBatchSwapInput): string {

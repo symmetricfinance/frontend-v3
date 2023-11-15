@@ -4,7 +4,7 @@ import { PoolDecorator } from '@/services/pool/decorators/pool.decorator';
 import {
   GraphQLArgs,
   PoolRepository as SDKPoolRepository,
-} from '@balancer-labs/sdk';
+} from '@symmetric-v3/sdk';
 import { balancerAPIService } from '@/services/balancer/api/balancer-api.service';
 import { Pool } from '@/services/pool/types';
 import { TokenInfoMap } from '@/types/TokenList';

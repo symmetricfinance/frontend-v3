@@ -1,5 +1,5 @@
 import { Pool } from '@/services/pool/types';
-import { BalancerSDK, PoolWithMethods } from '@balancer-labs/sdk';
+import { BalancerSDK, PoolWithMethods } from '@symmetric-v3/sdk';
 import { TransactionResponse } from '@ethersproject/abstract-provider';
 import { Ref } from 'vue';
 import {

@@ -6,7 +6,7 @@ import {
   FundManagement,
   JoinPoolRequest,
   SwapType,
-} from '@balancer-labs/sdk';
+} from '@symmetric-v3/sdk';
 
 export type OutputReference = {
   index: number;

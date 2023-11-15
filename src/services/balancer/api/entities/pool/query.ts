@@ -1,4 +1,4 @@
-import { GraphQLArgs } from '@balancer-labs/sdk';
+import { GraphQLArgs } from '@symmetric-v3/sdk';
 import { merge } from 'lodash';
 
 const defaultArgs: GraphQLArgs = {

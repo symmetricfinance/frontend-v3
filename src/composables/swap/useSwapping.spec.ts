@@ -9,7 +9,7 @@ import {
   UserSettingsProviderSymbol,
   UserSettingsResponse,
 } from '@/providers/user-settings.provider';
-import { BalancerSDK, SwapInfo } from '@balancer-labs/sdk';
+import { BalancerSDK, SwapInfo } from '@symmetric-v3/sdk';
 import { BigNumber } from '@ethersproject/bignumber';
 import { mountComposableWithFakeTokensProvider as mountComposable } from '@tests/mount-helpers';
 import { mock, mockDeep } from 'vitest-mock-extended';

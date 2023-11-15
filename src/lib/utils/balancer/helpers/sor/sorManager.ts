@@ -5,7 +5,7 @@ import {
   SwapInfo,
   SwapOptions,
   SwapTypes,
-} from '@balancer-labs/sdk';
+} from '@symmetric-v3/sdk';
 import { BigNumber } from '@ethersproject/bignumber';
 import { AddressZero } from '@ethersproject/constants';
 import { Provider } from '@ethersproject/providers';

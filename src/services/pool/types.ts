@@ -1,9 +1,9 @@
 import { BigNumber } from 'ethers';
 import { Address } from '@/types';
-import { Pool as SDKPool, PoolToken, PoolType } from '@balancer-labs/sdk';
+import { Pool as SDKPool, PoolToken, PoolType } from '@symmetric-v3/sdk';
 
-export type { SubPool, PoolToken } from '@balancer-labs/sdk';
-export { PoolType } from '@balancer-labs/sdk';
+export type { SubPool, PoolToken } from '@symmetric-v3/sdk';
+export { PoolType } from '@symmetric-v3/sdk';
 export interface Pool extends SDKPool {
   tokens: PoolToken[];
   onchain?: OnchainPoolData;

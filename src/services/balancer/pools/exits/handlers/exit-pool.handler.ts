@@ -1,4 +1,4 @@
-import { Address, BalancerSDK } from '@balancer-labs/sdk';
+import { Address, BalancerSDK } from '@symmetric-v3/sdk';
 import { AmountOut } from '@/providers/local/exit-pool.provider';
 import { Pool } from '@/services/pool/types';
 import { TokenInfoMap } from '@/types/TokenList';
