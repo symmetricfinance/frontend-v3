@@ -9,21 +9,6 @@ function getNetworkIconName(network: Network) {
 export function buildNetworkIconURL(network: Network | string): string {
   const networkName =
     typeof network === 'string' ? network : getNetworkIconName(network);
-  console.log('network: ', network);
-  // if (
-  //   network === 41 ||
-  //   network === 'telos-testnet' ||
-  //   network === 40 ||
-  //   network === 'telos'
-  // ) {
-  //   const result = new URL(
-  //     // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url
-  //     // Warning: Don't extract this template into a variable or it will stop working in production builds
-  //     `/src/assets/images/icons/networks/telos.png`,
-  //     import.meta.url
-  //   ).href;
-  //   return result;
-  // }
 
   const result = new URL(
     // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url

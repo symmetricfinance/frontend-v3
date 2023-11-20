@@ -117,7 +117,6 @@ const hasCustomToken = computed(() => {
 const poolTypeLabel = computed(() => {
   if (!props.pool?.factory) return '';
   const key = POOLS.Factories[props.pool.factory];
-  console.log(props.pool.factory);
   return key ? t(key) : t('unknownPoolType');
 });
 
