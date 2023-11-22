@@ -3,9 +3,9 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
-import coin1 from '@/assets/images/coins/coins-1.png';
-import coin2 from '@/assets/images/coins/coins-2.png';
-import coin3 from '@/assets/images/coins/coins-3.png';
+// import coin1 from '@/assets/images/coins/coins-1.png';
+// import coin2 from '@/assets/images/coins/coins-2.png';
+// import coin3 from '@/assets/images/coins/coins-3.png';
 
 /**
  * COMPOSABLES
@@ -76,7 +76,7 @@ function navigateToGetVeBAL() {
           </BalBtn>
         </div>
       </div>
-      <div class="coins">
+      <!-- <div class="coins">
         <div class="group coin">
           <div class="w-full coin-wrapper">
             <BalImage
@@ -89,7 +89,7 @@ function navigateToGetVeBAL() {
           </div>
           <div class="font-semibold caption">
             <p
-              class="inline mr-1 text-sm lg:text-base tracking-tighter lg:tracking-normal"
+              class="inline mr-1 text-sm tracking-tighter lg:text-base lg:tracking-normal"
             >
               {{ $t('veBAL.hero.tokens.balWETH') }}
             </p>
@@ -110,7 +110,7 @@ function navigateToGetVeBAL() {
           </div>
           <div class="font-semibold caption">
             <p
-              class="inline mr-1 text-sm lg:text-base tracking-tighter lg:tracking-normal"
+              class="inline mr-1 text-sm tracking-tighter lg:text-base lg:tracking-normal"
             >
               {{ $t('veBAL.hero.tokens.lpToken') }}
             </p>
@@ -131,7 +131,7 @@ function navigateToGetVeBAL() {
           </div>
           <div class="font-semibold caption">
             <p
-              class="inline mr-1 text-sm lg:text-base tracking-tighter lg:tracking-normal"
+              class="inline mr-1 text-sm tracking-tighter lg:text-base lg:tracking-normal"
             >
               {{ $t('veBAL.hero.tokens.veBAL') }}
             </p>
@@ -140,7 +140,7 @@ function navigateToGetVeBAL() {
             </BalTooltip>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

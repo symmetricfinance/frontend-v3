@@ -23,15 +23,14 @@ const config: Config = {
   ws: ``,
   explorer: 'https://teloscan.io',
   explorerName: 'Teloscan',
-  subgraph:
-    'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
+  subgraph: 'https://thegraph.symm.fi/subgraphs/name/symmetric/telos',
   balancerApi: '',
   poolsUrlV2:
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
   subgraphs: {
     main: [
+      'https://thegraph.symm.fi/subgraphs/name/symmetric/telos',
       'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
-      'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos/1.0.0/gn',
     ],
     aave: '',
     gauge: '',

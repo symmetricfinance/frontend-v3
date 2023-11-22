@@ -5,7 +5,7 @@
 import Hero from '@/components/contextual/pages/vebal/Hero.vue';
 import LMVoting from '@/components/contextual/pages/vebal/LMVoting/LMVoting.vue';
 import MyVeBAL from '@/components/contextual/pages/vebal/MyVeBAL/MyVeBAL.vue';
-import CrossChainBoostCards from '@/components/contextual/pages/vebal/cross-chain-boost/CrossChainBoostCards.vue';
+// import CrossChainBoostCards from '@/components/contextual/pages/vebal/cross-chain-boost/CrossChainBoostCards.vue';
 import { isVeBalSupported } from '@/composables/useVeBAL';
 
 import { provideUserStaking } from '@/providers/local/user-staking.provider';
@@ -28,9 +28,9 @@ provideVoting();
         <div class="px-4 mb-5">
           <MyVeBAL />
         </div>
-        <div>
+        <!-- <div>
           <CrossChainBoostCards />
-        </div>
+        </div> -->
       </div>
     </div>
     <div

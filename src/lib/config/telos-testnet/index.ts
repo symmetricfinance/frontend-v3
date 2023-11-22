@@ -17,7 +17,7 @@ const config: Config = {
   network: 'telos-testnet',
   trustWalletNetwork: 'telos-testnet',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: true,
   rpc: `https://testnet15a.telos.net/evm`,
   ws: ``,

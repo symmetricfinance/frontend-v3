@@ -23,8 +23,8 @@ import { configService } from '@/services/config/config.service';
 import { BalanceMap } from '@/services/token/concerns/balances.concern';
 import useWeb3 from '@/services/web3/useWeb3';
 import { TOKENS } from '@/constants/tokens';
-import { buildNetworkIconURL } from '@/lib/utils/urls';
-import { Network } from '@/lib/config/types';
+// import { buildNetworkIconURL } from '@/lib/utils/urls';
+// import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
 
 /**
@@ -53,29 +53,29 @@ const {
 /**
  * STATE
  */
-interface NetworkMetadata {
-  id: string;
-  name: string;
-  key: Network;
-}
+// interface NetworkMetadata {
+//   id: string;
+//   name: string;
+//   key: Network;
+// }
 
-const networks: NetworkMetadata[] = [
-  {
-    id: 'ethereum',
-    name: 'Ethereum',
-    key: Network.MAINNET,
-  },
-  {
-    id: 'polygon',
-    name: 'Polygon',
-    key: Network.POLYGON,
-  },
-  {
-    id: 'arbitrum',
-    name: 'Arbitrum',
-    key: Network.ARBITRUM,
-  },
-];
+// const networks: NetworkMetadata[] = [
+//   {
+//     id: 'ethereum',
+//     name: 'Ethereum',
+//     key: Network.MAINNET,
+//   },
+//   {
+//     id: 'polygon',
+//     name: 'Polygon',
+//     key: Network.POLYGON,
+//   },
+//   {
+//     id: 'arbitrum',
+//     name: 'Arbitrum',
+//     key: Network.ARBITRUM,
+//   },
+// ];
 
 /**
  * COMPUTED
@@ -84,11 +84,11 @@ const loading = computed(
   (): boolean => isClaimsLoading.value && isWalletReady.value
 );
 
-const networkBtns = computed(() => {
-  return networks.filter(
-    network => network.key.toString() !== configService.network.key
-  );
-});
+// const networkBtns = computed(() => {
+//   return networks.filter(
+//     network => network.key.toString() !== configService.network.key
+//   );
+// });
 
 const balRewardsData = computed((): RewardRow[] => {
   if (!isWalletReady.value) return [];
@@ -251,7 +251,7 @@ onBeforeMount(async () => {
             <div class="px-4 xl:px-0">
               <div class="flex items-center mt-6 mb-2">
                 <h3 class="inline-block mr-1.5 text-xl">
-                  BAL {{ $t('incentives') }}
+                  tSYMM {{ $t('incentives') }}
                 </h3>
                 <BalTooltip
                   iconSize="xs"
@@ -331,8 +331,8 @@ onBeforeMount(async () => {
         >
           {{ $t('noClaimableIncentives') }}
         </BalBlankSlate>
-        <div class="px-4 xl:px-0 mb-16">
-          <h2 class="mt-8 font-body text-2xl font-semibold">
+        <!-- <div class="px-4 mb-16 xl:px-0">
+          <h2 class="mt-8 text-2xl font-semibold font-body">
             {{ $t('pages.claim.titles.incentivesOnOtherNetworks') }}
           </h2>
           <BalFlexGrid class="mt-4" flexWrap>
@@ -346,7 +346,7 @@ onBeforeMount(async () => {
               <img
                 :src="buildNetworkIconURL(network.id as unknown as  Network)"
                 :alt="network.id"
-                class="mr-2 w-6 h-6 rounded-full shadow-sm"
+                class="w-6 h-6 mr-2 rounded-full shadow-sm"
               />
               {{ $t('pages.claim.btns.claimOn') }} {{ network.name }}
             </BalBtn>
@@ -359,7 +359,7 @@ onBeforeMount(async () => {
             >{{ $t('legacyClaims') }}
             <BalIcon name="arrow-right" size="sm" class="mx-1"
           /></BalLink>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
