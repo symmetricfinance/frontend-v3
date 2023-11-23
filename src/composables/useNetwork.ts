@@ -125,7 +125,7 @@ export function handleNetworkSlug(
 ) {
   const networkFromUrl = networkFromSlug(networkSlug);
   const localStorageNetwork = networkFor(
-    localStorage.getItem('networkId') ?? '1'
+    localStorage.getItem('networkId') ?? '40'
   );
   if (!networkFromUrl) {
     // missing or incorrect network name -> next() withtout network change

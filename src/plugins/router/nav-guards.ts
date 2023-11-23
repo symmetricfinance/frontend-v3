@@ -80,6 +80,7 @@ function applyNetworkSubdomainRedirect(router: Router): Router {
  */
 function applyNetworkPathRedirects(router: Router): Router {
   router.beforeEach((to, from, next) => {
+    console.log(to);
     if (redirecting.value) {
       next();
     } else {
@@ -172,12 +173,12 @@ function applyMetaData(router: Router): Router {
 function applyVotingRedirects(router: Router): Router {
   router.beforeEach((to, from, next) => {
     if (
-      to.name === 'vebal-voting' &&
+      to.name === 'vtsymm-voting' &&
       Object.keys(votingRequest.value).length === 0
     ) {
       next({
-        name: 'vebal',
-        params: { networkSlug: 'ethereum' },
+        name: 'vtsymm',
+        params: { networkSlug: 'telos' },
       });
     } else next();
   });

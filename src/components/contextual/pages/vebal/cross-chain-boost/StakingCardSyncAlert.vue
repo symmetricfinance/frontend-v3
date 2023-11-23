@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import useNetwork from '@/composables/useNetwork';
-import {
-  NetworkSyncState,
-  useCrossChainSync,
-} from '@/providers/cross-chain-sync.provider';
+// import useNetwork from '@/composables/useNetwork';
+// import {
+//   // NetworkSyncState,
+//   // useCrossChainSync,
+// } from '@/providers/cross-chain-sync.provider';
 import { usePoolStaking } from '@/providers/local/pool-staking.provider';
 import CheckpointGaugeModal from './CheckpointGaugeModal.vue';
 import useWeb3 from '@/services/web3/useWeb3';
-import config from '@/lib/config';
+// import config from '@/lib/config';
 import { PoolWarning } from '@/types/pools';
 import { usePoolWarning } from '@/composables/usePoolWarning';
 import { useUserStaking } from '@/providers/local/user-staking.provider';
@@ -24,9 +24,9 @@ const emit = defineEmits(['shouldStakingCardBeOpened']);
 const shouldShowWarningAlert = ref(false);
 const showCheckpointModal = ref(false);
 
-const { networksSyncState, shouldPokeGauge } = useCrossChainSync();
+// const { networksSyncState, shouldPokeGauge } = useCrossChainSync();
 const { hasNonPrefGaugeBalance, poolGauges, stakedShares } = usePoolStaking();
-const { networkId } = useNetwork();
+// const { networkId } = useNetwork();
 const { isMismatchedNetwork } = useWeb3();
 const { isAffectedBy } = usePoolWarning(computed(() => props.poolId));
 const { userGaugeShares } = useUserStaking();
@@ -50,18 +50,18 @@ const tipText = computed(() => {
   if (hasNonPrefGaugeBalance.value) {
     const title = 'Restake to be eligible for future incentives';
     let text = '';
-    if (
-      networksSyncState.value[networkId.value] === NetworkSyncState.Unsynced
-    ) {
-      text = `After your veBAL syncs to ${
-        config[networkId.value].chainName
-      }, restake to move from the deprecated pool gauge to the new boost-aware pool gauge. If you restake before the veBAL syncs, you’ll need to perform another interaction on the gauge to start receiving your staking boost.`;
-    }
+    // if (
+    //   networksSyncState.value[networkId.value] === NetworkSyncState.Unsynced
+    // ) {
+    //   text = `After your veBAL syncs to ${
+    //     config[networkId.value].chainName
+    //   }, restake to move from the deprecated pool gauge to the new boost-aware pool gauge. If you restake before the veBAL syncs, you’ll need to perform another interaction on the gauge to start receiving your staking boost.`;
+    // }
 
-    if (networksSyncState.value[networkId.value] === NetworkSyncState.Synced) {
-      text =
-        'To get your staking boost on this pool, restake to move from the deprecated pool gauge to the new boost-aware pool gauge.';
-    }
+    // if (networksSyncState.value[networkId.value] === NetworkSyncState.Synced) {
+    //   text =
+    //     'To get your staking boost on this pool, restake to move from the deprecated pool gauge to the new boost-aware pool gauge.';
+    // }
 
     return {
       title,
@@ -100,11 +100,11 @@ async function setWarningAlertState() {
   try {
     emit('shouldStakingCardBeOpened');
 
-    const shouldPoke = await shouldPokeGauge(id);
+    // const shouldPoke = await shouldPokeGauge(id);
 
-    if (shouldPoke) {
-      shouldShowWarningAlert.value = true;
-    }
+    // if (shouldPoke) {
+    //   shouldShowWarningAlert.value = true;
+    // }
   } catch (error) {
     console.log(error);
   }

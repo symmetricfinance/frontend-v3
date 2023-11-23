@@ -39,7 +39,7 @@ const config: Config = {
   bridgeUrl: 'https://bridge.telos.net/bridge',
   supportsEIP1559: false,
   supportsElementPools: false,
-  blockTime: 2,
+  blockTime: 0.02,
   nativeAsset: {
     name: 'TLOS',
     address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',

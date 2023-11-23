@@ -41,6 +41,7 @@ export class PoolDecorator {
       // decoration of them if the pool came from the API.
       if (fullDecoration) {
         const poolSnapshot = poolSnapshots.find(p => p.id === pool.id);
+        console.log(poolSnapshot);
         poolService.setFeesSnapshot(poolSnapshot);
         poolService.setVolumeSnapshot(poolSnapshot);
         await poolService.setTotalLiquidity();
@@ -74,6 +75,7 @@ export class PoolDecorator {
    */
   private async getSnapshots(): Promise<Pool[]> {
     const blockNumber = await getTimeTravelBlock();
+    console.log(blockNumber);
     const block = { number: blockNumber };
     const isInPoolIds = { id: { in: this.pools.map(pool => pool.id) } };
     try {

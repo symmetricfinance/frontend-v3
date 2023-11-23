@@ -313,7 +313,7 @@ watch(isRefetchingVotingPools, async () => {
         <div v-if="isWalletReady" class="flex-0 ml-5 w-32 h-8">
           <BalBtn
             :tag="votingDisabled ? 'div' : 'router-link'"
-            :to="{ name: 'vebal-voting', params: { networkSlug } }"
+            :to="{ name: 'vtsymm-voting', params: { networkSlug } }"
             :label="hasSubmittedVotes ? 'Edit votes' : 'Vote'"
             color="gradient"
             :disabled="votingDisabled"

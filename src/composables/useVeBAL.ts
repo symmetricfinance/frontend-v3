@@ -22,6 +22,10 @@ export const isVeBalSupported = computed<boolean>(
   () => configService.network.addresses.veBAL !== ''
 );
 
+export const isGaugesSupported = computed<boolean>(
+  () => configService.network.addresses.gaugeController !== ''
+);
+
 /**
  * METHODS
  */
@@ -105,6 +109,7 @@ export default function useVeBal() {
   return {
     // computed
     isVeBalSupported,
+    isGaugesSupported,
     veBalTokenInfo,
     veBalBalance,
     hasVeBalBalance,

@@ -6,7 +6,7 @@ import Hero from '@/components/contextual/pages/vebal/Hero.vue';
 import LMVoting from '@/components/contextual/pages/vebal/LMVoting/LMVoting.vue';
 import MyVeBAL from '@/components/contextual/pages/vebal/MyVeBAL/MyVeBAL.vue';
 // import CrossChainBoostCards from '@/components/contextual/pages/vebal/cross-chain-boost/CrossChainBoostCards.vue';
-import { isVeBalSupported } from '@/composables/useVeBAL';
+import { isVeBalSupported, isGaugesSupported } from '@/composables/useVeBAL';
 
 import { provideUserStaking } from '@/providers/local/user-staking.provider';
 import { providerUserPools } from '@/providers/local/user-pools.provider';
@@ -34,18 +34,18 @@ provideVoting();
       </div>
     </div>
     <div
-      v-if="isVeBalSupported"
+      v-if="isGaugesSupported"
       class="xl:container xl:px-4 pt-16 xl:pt-20 xl:mx-auto"
     >
       <div class="xl:px-0 mb-16">
         <LMVoting />
       </div>
     </div>
-    <div v-else class="text-center">
+    <!-- <div v-else class="text-center">
       <div class="text-lg font-semibold">
         {{ $t('veBAL.notSupported.title') }}
       </div>
       <div>{{ $t('veBAL.notSupported.description') }}</div>
-    </div>
+    </div> -->
   </div>
 </template>

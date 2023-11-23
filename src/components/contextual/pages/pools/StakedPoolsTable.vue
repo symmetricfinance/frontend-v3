@@ -11,8 +11,8 @@ import StakePreviewModal from '../pool/staking/StakePreviewModal.vue';
 import ProceedToSyncModal from '@/components/contextual/pages/vebal/cross-chain-boost/ProceedToSyncModal.vue';
 import { providePoolStaking } from '@/providers/local/pool-staking.provider';
 
-import PortfolioSyncTip from '../vebal/cross-chain-boost/PortfolioSyncTip.vue';
-import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
+// import PortfolioSyncTip from '../vebal/cross-chain-boost/PortfolioSyncTip.vue';
+// import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
 
 import CheckpointGaugeModal from '../vebal/cross-chain-boost/CheckpointGaugeModal.vue';
 import CheckpointAllGaugesModal from '../vebal/cross-chain-boost/CheckpointAllGaugesModal.vue';
@@ -54,7 +54,7 @@ const {
   hasNonPrefGaugesPoolsAddresses,
   userGaugeShares,
 } = useUserStaking();
-const { shouldPokeGauge } = useCrossChainSync();
+// const { shouldPokeGauge } = useCrossChainSync();
 
 const { refetchAllUserPools } = useUserPools();
 const { isWalletReady, isWalletConnecting } = useWeb3();
@@ -136,10 +136,10 @@ watch(
           throw new Error('No gauge id');
         }
 
-        const shouldPoke = await shouldPokeGauge(id);
-        if (shouldPoke) {
-          shouldPokePoolsMap.value[gauge.gauge.poolAddress] = id;
-        }
+        // const shouldPoke = await shouldPokeGauge(id);
+        // if (shouldPoke) {
+        //   shouldPokePoolsMap.value[gauge.gauge.poolAddress] = id;
+        // }
       } catch (e) {
         console.log(e);
       }
@@ -155,11 +155,11 @@ watch(
       <h5 class="px-4 xl:px-0">
         {{ $t('staking.stakedPools') }}
       </h5>
-      <PortfolioSyncTip
+      <!-- <PortfolioSyncTip
         :shouldPokePoolsMap="shouldPokePoolsMap"
         @show-proceed-modal="showProceedModal = true"
         @show-poke-all-gauge-modal="showPokeAllGaugesModal = true"
-      />
+      /> -->
       <PoolsTable
         :key="poolsToRenderKey"
         :data="stakedPools"

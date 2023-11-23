@@ -18,6 +18,7 @@ export const isNativeAssetWrap = (
   tokenIn: string,
   tokenOut: string
 ): boolean => {
+  console.log(tokenIn, tokenOut);
   const nativeAddress = configService.network.tokens.Addresses.nativeAsset;
   const wNativeAddress = configService.network.tokens.Addresses.wNativeAsset;
   return tokenIn === nativeAddress && tokenOut === wNativeAddress;

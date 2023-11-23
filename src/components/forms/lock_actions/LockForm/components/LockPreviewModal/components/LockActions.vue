@@ -24,7 +24,7 @@ import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
 import { ApprovalAction } from '@/composables/approvals/types';
 import useTokenApprovalActions from '@/composables/approvals/useTokenApprovalActions';
 import { captureBalancerException } from '@/lib/utils/errors';
-import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
+// import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
 
 /**
  * TYPES
@@ -80,7 +80,7 @@ const { fNum } = useNumbers();
 const { totalVotes, unallocatedVotes } = useVotingPools();
 const { networkSlug } = useNetwork();
 const { getTokenApprovalActions } = useTokenApprovalActions();
-const { refetch: refetchSyncData } = useCrossChainSync();
+// const { refetch: refetchSyncData } = useCrossChainSync();
 
 const lockActions = props.lockType.map((lockType, actionIndex) => ({
   label: t(`getVeBAL.previewModal.actions.${lockType}.label`, [
@@ -147,7 +147,7 @@ async function handleTransaction(
       const confirmedAt = await getTxConfirmedAt(receipt);
       lockActionStates[actionIndex].confirmedAt = dateTimeLabelFor(confirmedAt);
 
-      refetchSyncData();
+      // refetchSyncData();
     },
     onTxFailed: () => {
       lockActionStates[actionIndex].confirming = false;
@@ -260,16 +260,16 @@ onBeforeMount(async () => {
           />
         </BalLink>
       </div>
-      <BalAlert
+      <!-- <BalAlert
         v-if="lockConfirmed && !veBalLockInfo.hasExistingLock"
         class="mt-4"
         type="tip"
         :title="t('getVeBAL.previewModal.firstVeBALReceived.title')"
         :description="t('getVeBAL.previewModal.firstVeBALReceived.description')"
       >
-      </BalAlert>
+      </BalAlert> -->
       <BalAlert
-        v-else-if="shouldResubmitVotes"
+        v-if="shouldResubmitVotes"
         class="mt-4"
         type="warning"
         :title="t('veBAL.liquidityMining.resubmit.hint.title')"
@@ -278,7 +278,7 @@ onBeforeMount(async () => {
       </BalAlert>
       <BalBtn
         tag="router-link"
-        :to="{ name: 'vebal', params: { networkSlug } }"
+        :to="{ name: 'vtsymm', params: { networkSlug } }"
         color="gray"
         outline
         block

@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router';
 import DesktopLinkItem from './DesktopLinkItem.vue';
 import useNetwork, { isTestnet } from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
-import { isVeBalSupported } from '@/composables/useVeBAL';
+import { isVeBalSupported, isGaugesSupported } from '@/composables/useVeBAL';
 
 /**
  * COMPOSABLES
@@ -39,7 +39,7 @@ function isActive(page: string): boolean {
       {{ $t('swap') }}
     </DesktopLinkItem>
     <DesktopLinkItem
-      v-if="isVeBalSupported"
+      v-if="isGaugesSupported"
       :to="{ name: 'claim', params: { networkSlug } }"
       :active="isActive('claim')"
       prefetch
@@ -66,8 +66,8 @@ function isActive(page: string): boolean {
     </DesktopLinkItem>
     <DesktopLinkItem
       v-if="isVeBalSupported"
-      :to="{ name: 'vebal', params: { networkSlug } }"
-      :active="isActive('vebal')"
+      :to="{ name: 'vtsymm', params: { networkSlug } }"
+      :active="isActive('vtsymm')"
       prefetch
       @click="trackGoal(Goals.ClickNavVebal)"
     >

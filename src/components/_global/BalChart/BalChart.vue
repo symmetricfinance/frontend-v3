@@ -131,7 +131,9 @@ const chartConfig = computed(() => ({
       formatter: props.axisLabelFormatter.xAxis
         ? value => fNum(value, props.axisLabelFormatter.xAxis)
         : undefined,
-      color: tailwind.theme.colors.gray['400'],
+      color: darkMode.value
+        ? tailwind.theme.colors.white
+        : tailwind.theme.colors.black,
     },
     splitArea: {
       show: false,
@@ -160,7 +162,9 @@ const chartConfig = computed(() => ({
       formatter: props.axisLabelFormatter.yAxis
         ? value => fNum(value, props.axisLabelFormatter.yAxis)
         : undefined,
-      color: tailwind.theme.colors.gray['400'],
+      color: darkMode.value
+        ? tailwind.theme.colors.white
+        : tailwind.theme.colors.black,
     },
     nameGap: 25,
   },
@@ -192,7 +196,7 @@ const chartConfig = computed(() => ({
       : tailwind.theme.colors.white,
     formatter: params => {
       return `
-            <div class='flex flex-col font-body bg-white dark:bg-gray-850 dark:text-white'>
+            <div class='flex flex-col bg-white font-body dark:bg-gray-850 dark:text-white'>
               <span>${params[0].value[0]}</span>
               ${params
                 .map(

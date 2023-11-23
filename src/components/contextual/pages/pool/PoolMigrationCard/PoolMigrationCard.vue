@@ -146,7 +146,7 @@ const title = computed(() => {
               color="transparent"
               outline
               :label="$t('migrateCard.viewBtn')"
-              @click="$router.push({ name: 'vebal', params: { networkSlug } })"
+              @click="$router.push({ name: 'vtsymm', params: { networkSlug } })"
             />
           </div>
         </div>

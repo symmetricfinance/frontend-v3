@@ -16,7 +16,7 @@ import DiscordIcon from '@/components/_global/icons/brands/DiscordIcon.vue';
 import MediumIcon from '@/components/_global/icons/brands/MediumIcon.vue';
 // import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
 import GithubIcon from '@/components/_global/icons/brands/GithubIcon.vue';
-import { isVeBalSupported } from '@/composables/useVeBAL';
+import { isVeBalSupported, isGaugesSupported } from '@/composables/useVeBAL';
 
 /**
  * PROPS & EMITS
@@ -45,7 +45,7 @@ const navLinks = [
     label: t('claim'),
     path: `/${networkSlug}/claim`,
     goal: Goals.ClickNavClaim,
-    hide: !isVeBalSupported,
+    hide: !isGaugesSupported,
   },
   {
     label: t('portfolio'),
@@ -54,7 +54,7 @@ const navLinks = [
   },
   {
     label: 'vTSYMM',
-    path: `/${networkSlug}/vebal`,
+    path: `/${networkSlug}/vtsymm`,
     goal: Goals.ClickNavVebal,
     hide: !isVeBalSupported,
   },

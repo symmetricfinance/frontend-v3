@@ -97,7 +97,7 @@ const cards = computed(() => {
       plusIconTo: {
         name: 'add-liquidity',
         params: { id: lockablePoolId.value, networkSlug },
-        query: { returnRoute: 'vebal' },
+        query: { returnRoute: 'vtsymm' },
       },
     },
     {
@@ -110,7 +110,7 @@ const cards = computed(() => {
         ? fNum(props.veBalLockInfo?.lockedAmount ?? '0', FNumFormats.token)
         : '—',
       showPlusIcon: isWalletReady.value && !isExpired ? true : false,
-      plusIconTo: { name: 'get-vebal', query: { returnRoute: 'vebal' } },
+      plusIconTo: { name: 'get-vtsymm', query: { returnRoute: 'vtsymm' } },
       showUnlockIcon: isExpired ? true : false,
     },
     {
@@ -124,7 +124,7 @@ const cards = computed(() => {
             ])
           : '-',
       showPlusIcon: hasExistingLock && !isExpired ? true : false,
-      plusIconTo: { name: 'get-vebal', query: { returnRoute: 'vebal' } },
+      plusIconTo: { name: 'get-vtsymm', query: { returnRoute: 'vtsymm' } },
     },
     {
       id: 'myVeBAL',

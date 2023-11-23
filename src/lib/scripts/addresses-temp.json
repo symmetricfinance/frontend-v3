@@ -38,6 +38,28 @@
     ],
     "status": "ACTIVE"
   },
+  "20220325-authorizer-adaptor": {
+    "contracts": [
+      {
+        "name": "AuthorizerAdaptor",
+        "address": "0xAF27669B65161ef323B2Ec8314ddF30e8d51c4a8"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220325-gauge-controller": {
+    "contracts": [
+      {
+        "name": "VotingEscrow",
+        "address": "0x0D0b7efc6e20b96841f37b28219a595a81c4615A"
+      },
+      {
+        "name": "GaugeController",
+        "address": "0x7ac8CF03C7c48d1E1eEB2Cb2B3A50B1B1430ae7b"
+      }
+    ],
+    "status": "ACTIVE"
+  },
   "20220325-test-balancer-token": {
     "contracts": [
       {
@@ -133,6 +155,15 @@
       {
         "name": "MockComposableStablePool",
         "address": "0x8Fb9AE94AC6869Bb10C0eb46Fb2500Ffe2706dBe"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20231122-tsymm-token": {
+    "contracts": [
+      {
+        "name": "SymmToken",
+        "address": "0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca"
       }
     ],
     "status": "ACTIVE"

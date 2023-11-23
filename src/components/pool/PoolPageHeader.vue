@@ -228,13 +228,13 @@ function symbolFor(titleTokenIndex: number): string {
     class="mt-2"
     block
   />
-  <BalAlert
+  <!-- <BalAlert
     v-if="missingPrices"
     type="warning"
     :title="$t('noPriceInfo')"
     class="mt-2"
     block
-  />
+  /> -->
   <BalAlert
     v-if="!disableJoinsReason.nonVettedTokensAfterTimestamp && hasCustomToken"
     type="warning"

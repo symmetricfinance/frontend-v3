@@ -52,12 +52,12 @@ const emit = defineEmits<{
 }>();
 
 const services = [
-  'infura',
-  'alchemy',
+  // 'infura',
+  // 'alchemy',
   'the-graph',
-  'fathom-analytics',
-  'TRM-labs',
-  'sentry',
+  // 'fathom-analytics',
+  // 'TRM-labs',
+  // 'sentry',
 ];
 </script>
 

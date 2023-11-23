@@ -176,7 +176,7 @@ import { RiskKey } from '@/types/pools';
           proxies or other upgrade mechanisms. Note: Within DeFI, upgradable
           contracts are a major way exploits have been introduced.
         </li>
-        <li>
+        <!-- <li>
           In addition, Symmetric has a bug bounty program via
           <a class="link" href="https://immunefi.com/bounty/balancer/"
             >Immunefi</a
@@ -185,7 +185,7 @@ import { RiskKey } from '@/types/pools';
           are distributed based on threat level—for critical smart contract
           vulnerabilities, there is a minimum reward of 250 ETH and a maximum
           reward of 1,000 ETH.
-        </li>
+        </li> -->
       </ul>
       <h5>How can LPs mitigate this risk?</h5>
       <ul>
@@ -390,7 +390,7 @@ import { RiskKey } from '@/types/pools';
       <h4>DAO Governance risk</h4>
       <p>
         Symmetric currently uses off-chain voting mechanisms to signal the will
-        of veSYMM token holders (vote-escrow SYMM). This off-chain voting is
+        of vtSYMM token holders (vote-escrow SYMM). This off-chain voting is
         done via
         <a class="link" href="https://snapshot.org/">Snapshot</a>—originally
         developed in-house by Symmetric Labs.
@@ -429,14 +429,14 @@ import { RiskKey } from '@/types/pools';
               Gauntlet) that may change the swap fee for pools created by the
               dynamic-fee pool factory that will be deployed by Symmetric Labs
             </li>
-            <li>Add and remove veSYMM gauges</li>
+            <li>Add and remove vtSYMM gauges</li>
           </ul>
         </li>
       </ul>
       <p>
         Note: The system of Symmetric Governance may change in the future. For
         example, Symmetric community members have expressed interest in moving
-        from the Multisig towards on-chain governance execution by veSYMM token
+        from the Multisig towards on-chain governance execution by vtSYMM token
         holders.
       </p>
       <p>
@@ -451,7 +451,7 @@ import { RiskKey } from '@/types/pools';
             href="https://docs.balancer.fi/concepts/governance/multisig.html#dao-multisig-signer-set"
             >Multisig signer set</a
           >
-          could go rogue and disregard the decision made by veSYMM holders in
+          could go rogue and disregard the decision made by vtSYMM holders in
           the off-chain voting.
         </li>
         <li>

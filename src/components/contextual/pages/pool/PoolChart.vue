@@ -205,7 +205,7 @@ function getTVLData(periodSnapshots: PoolSnapshot[]) {
   }
 
   return {
-    color: [tailwind.theme.colors.blue['600']],
+    color: [tailwind.theme.colors.green['600']],
     hoverBorderColor: tailwind.theme.colors.pink['500'],
     hoverColor: darkMode.value
       ? tailwind.theme.colors.gray['900']
@@ -276,7 +276,7 @@ function getFeesData(
       : Number(periodSnapshots[pariodLastSnapshotIdx].swapFees));
 
   return {
-    color: [tailwind.theme.colors.yellow['400']],
+    color: [tailwind.theme.colors.green['400']],
     chartType: 'bar',
     hoverColor: tailwind.theme.colors.pink['500'],
     data: [

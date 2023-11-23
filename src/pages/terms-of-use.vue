@@ -609,8 +609,8 @@
         an operating company organized in the British Virgin Islands (BVI).
         Please contact us if you have any questions about these Terms or other
         topics, by sending an email to
-        <a class="link" href="mailto:termsofuse@Symmetric.finance"
-          >termsofuse@balancer.finance</a
+        <a class="link" href="mailto:support@symmetric.finance"
+          >support@symmetric.finance</a
         >.
       </p>
     </div>

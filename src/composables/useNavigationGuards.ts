@@ -19,7 +19,7 @@ export default function useNavigationGuards() {
   router.beforeEach((to, from, next) => {
     localStorage.setItem('networkId', networkId.value.toString());
 
-    if (to.name == 'vebal') {
+    if (to.name == 'vtsymm') {
       if (isVeBalSupported.value) next();
       else {
         setSidebarOpen(false);
