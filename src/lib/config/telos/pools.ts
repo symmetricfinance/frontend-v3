@@ -2,7 +2,7 @@ import { Pools } from '@/types/pools';
 
 const pools: Pools = {
   IdsMap: {
-    veBAL: '0x037d0b5511eff40ff31da11a9a0619efc3b87ec9000200000000000000000006',
+    veBAL: '0xbf0fa44e5611c31429188b7dcc59ffe794d1980e000200000000000000000009',
   },
   Pagination: {
     PerPage: 10,
@@ -42,6 +42,7 @@ const pools: Pools = {
     // Only effective after given timestamp here: usePool.ts#createdAfterTimestamp
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
     AllowList: [
+      '0xbf0fa44e5611c31429188b7dcc59ffe794d1980e000200000000000000000009', //80TSYMM20WTLOS
       '0x2d714951f7165a51e8bd61f92d8a979ab0ed4b59000200000000000000000006',
     ],
   },

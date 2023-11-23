@@ -148,23 +148,23 @@
       "claim": "Claim anytime"
     },
     "tips": {
-      "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Ethereum Mainnet and supported Layer 2's like Polygon and Arbitrum (see the table on the vTSYMM page). Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
+      "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Telos. Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
       "stake": "If you've provided liquidity in an eligible pool, you'll have an option to stake your Liquidity Provider (LP) tokens from that pool. Stake them to receive liquidity mining incentives in addition to any swap fees.",
-      "boost": "Get vTSYMM to boost your liquidity mining incentives by up to 2.5x, including on L2 networks via cross-chain boosts. The more vTSYMM you hold, the larger your boost. vTSYMM holders also earn protocol fees and can vote to direct future pool emissions.",
-      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just SYMM). Additionally, vTSYMM holders also get a share of protocol revenue, in both bb-a-USD and SYMM."
+      "boost": "Get vTSYMM to boost your liquidity mining incentives by up to 2.5x. The more vTSYMM you hold, the larger your boost. vTSYMM holders also earn protocol fees and can vote to direct future pool emissions.",
+      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just tSYMM). Additionally, vTSYMM holders also get a share of protocol revenue, in both USDC and tSYMM."
     }
   },
   "claimPage": {
     "tips": {
       "BalIncentives": "Incentives for LPs who stake in eligible pools (based on the previous week's voting). This doesn't include swap fees or intrinsic yield from certain yield bearing tokens which accumulate into LP positions automatically.",
       "ProtocolAndVebal": "Additional incentives for vTSYMM holders: For locking in the S-80TSYMM-20WTLOS pool (based on the previous week's voting), and their share of protocol revenue.",
-      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any SYMM liquidity incentives."
+      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any tSYMM liquidity incentives."
     }
   },
   "claimAll": "Claim all",
-  "claimBAL": "Claim $SYMM for",
+  "claimBAL": "Claim $tSYMM for",
   "claiming": "Claiming...",
-  "claimSuccess": "You successfully claimed $SYMM!",
+  "claimSuccess": "You successfully claimed $tSYMM!",
   "classic": "Classic",
   "clearForms": "Clear forms",
   "clearTransactions": "Clear transactions",
@@ -260,7 +260,7 @@
     },
     "updateGauge": {
       "title": "Trigger pool gauge updates to get your boosts sooner",
-      "description": "Pool gauges don’t automatically recognize changes in vTSYMM until triggered. Updates are triggered when any user interacts with a gauge, such as by claiming SYMM, staking or unstaking. Trigger individual gauges yourself for your boosts to apply immediately."
+      "description": "Pool gauges don’t automatically recognize changes in vTSYMM until triggered. Updates are triggered when any user interacts with a gauge, such as by claiming tSYMM, staking or unstaking. Trigger individual gauges yourself for your boosts to apply immediately."
     },
     "selectNetworkModal": {
       "title": "Sync vTSYMM: Select networks",
@@ -421,7 +421,7 @@
   "dynamicSwapFeeLabel": "Dynamic swap fees: Currently <span class='font-semibold'>{0}</span>",
   "docs": "Docs",
   "earnings": "Earnings",
-  "earnBAL": "Earn $SYMM when swapping eligible tokens",
+  "earnBAL": "Earn $tSYMM when swapping eligible tokens",
   "effectivePrice": "Effective price:",
   "enterAmount": "Enter amount",
   "enterAPrice": "Enter a price",
@@ -513,18 +513,18 @@
   "deprecatedPool": {
     "tooltip": "This pool has been deprecated. If you're a Liquidity Provider, please migrate to the new upgraded pool.",
     "hasNewPool": {
-      "title": "Move your liquidity for future SYMM incentives",
+      "title": "Move your liquidity for future tSYMM incentives",
       "description": "Liquidity mining incentives are being phased out for this pool, since the upgraded pool is now live. LPs are encouraged to unstake existing positions, withdraw their liquidity and add it to the newly incentivized pool."
     },
     "generic": {
-      "title": "Move your liquidity for future SYMM incentives",
+      "title": "Move your liquidity for future tSYMM incentives",
       "description": "Liquidity mining incentives are being phased out for this pool, since upgraded pools are now live. LPs are encouraged to unstake existing positions, withdraw their liquidity and add it to the newly incentivized pools."
     },
     "gaugeKilledReason": "This pool's gauge will soon be killed. A new version of this pool has been created that uses Aave v3."
   },
   "newVersion": {
     "Aave3": "A new version of this pool has been created that uses Aave v3",
-    "BalIncentives": "A new version of this pool has been created. Please migrate to continue earning SYMM incentives"
+    "BalIncentives": "A new version of this pool has been created. Please migrate to continue earning tSYMM incentives"
   },
   "highPriceImpact": "High price impact",
   "highPriceImpactDetailed": "This swap is significantly moving the market price.",
@@ -601,7 +601,7 @@
   },
   "investmentPool": "Liquidity pool",
   "investmentPools": "Liquidity pools",
-  "investmentPoolsAbout": "Stake your assets to get $SYMM tokens for participating in Symmetric V2 liquidity mining.",
+  "investmentPoolsAbout": "Stake your assets to get $tSYMM tokens for participating in Symmetric V2 liquidity mining.",
   "investmentPoolsAboutLink": "Learn more ->",
   "investmentSettled": "Your liquidity add has settled",
   "investmentSuccess": "Your tokens have been added to this pool, and you have received a new LP token representing this action.",
@@ -620,13 +620,13 @@
   "liquidityMiningIncentives": "Liquidity mining incentives",
   "liquidityMiningIncentivesCopy": "Liquidity incentives on {0} are paused for 1 week during its upgrade to the vTSYMM system. Incentives will resume on April 28.",
   "liquidityMiningPopover": {
-    "airdropEligibility": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $SYMM distributions as incentives. $SYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
+    "airdropEligibility": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $tSYMM distributions as incentives. $tSYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
     "airdropExplainer": "Weekly distributions from liquidity mining on {0} are airdropped on Wednesdays, sent directly to your wallet using disperse.app",
     "claimFreezeWarning": {
       "description": "Since you have several weeks' worth of tokens unclaimed, your screen may appear to freeze after pressing the claim button while it is processed. Just leave your browser open and your wallet will eventually pop open for you to complete the claim.",
       "title": "Too many claims"
     },
-    "networksExplainer": "Switch networks in the header to see your current cumulative $SYMM incentives on {0} and {1}.",
+    "networksExplainer": "Switch networks in the header to see your current cumulative $tSYMM incentives on {0} and {1}.",
     "noRewards": {
       "description": "Certain eligible pools have ‘liquidity mining’ token incentives which are distributed to liquidity providers weekly in proportion to their contribution.",
       "title": "You have no token incentives to claim"
@@ -636,7 +636,7 @@
     },
     "title": "Token incentives"
   },
-  "liquidityProviderCopy": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $SYMM distributions as incentives. $SYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
+  "liquidityProviderCopy": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $tSYMM distributions as incentives. $tSYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
   "liquidityProvision": "Liquidity provision",
   "loading": "Loading...",
   "loadingBestPrice": "Looking for the best price...",
@@ -647,8 +647,8 @@
     "expiredLockLpTokens": "Expired lock LP tokens",
     "expiredLockTooltip": "Your previous locking period has expired, so you no longer have any vTSYMM or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or vTSYMM incentives. However, you'll still get the minimum 1.0x rate. Redeem your expired locked S-80TSYMM-20WTLOS LP tokens and then create a new lock to get vTSYMM.",
     "lockBptForVeBal": "Lock LP for vTSYMM",
-    "lockedLpTokensTooltip": "The USD value of your vTSYMM. These are your locked LP tokens in the SYMM 80% / WETH 20% pool.",
-    "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the SYMM 80% / WETH 20% pool that has not been locked."
+    "lockedLpTokensTooltip": "The USD value of your vTSYMM. These are your locked LP tokens in the tSYMM 80% / WETH 20% pool.",
+    "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the tSYMM 80% / WETH 20% pool that has not been locked."
   },
   "logOut": "Log out",
   "lost": "Lost",
@@ -670,7 +670,7 @@
   "migrate": "Migrate",
   "migrateCard": {
     "title": "Migrate liquidity",
-    "description": "Liquidity mining incentives have expired for this pool. For future SYMM incentives: unstake, withdraw and add liquidity to an incentivized pool.",
+    "description": "Liquidity mining incentives have expired for this pool. For future tSYMM incentives: unstake, withdraw and add liquidity to an incentivized pool.",
     "viewBtn": "View incentivized pools",
     "recommendedPool": "Recommended incentivized pools",
     "upgradedPool": "Upgraded incentivized pool"
@@ -736,7 +736,7 @@
   "noRecentActivity": "Your recent activity will appear here…",
   "noResults": "No results",
   "noResultsTable": {
-    "noBalIncentives": "No SYMM incentives to claim from staking",
+    "noBalIncentives": "No tSYMM incentives to claim from staking",
     "noProtocolRevenue": "Nothing to claim from holding vTSYMM"
   },
   "noSwapsPool": "No swaps in this pool.",
@@ -1033,8 +1033,8 @@
         "veBAL": "vTSYMM"
       },
       "tokenInfo": {
-        "balWETH": "Add liquidity to the 80% SYMM / 20% WETH pool to get the S-80TSYMM-20WTLOS LP token.",
-        "lpToken": "Lock up the LP tokens from the 80% SYMM / 20% WETH pool for up to a year to get vTSYMM. The longer you lock, the more vTSYMM you get.",
+        "balWETH": "Add liquidity to the 80% tSYMM / 20% WETH pool to get the S-80TSYMM-20WTLOS LP token.",
+        "lpToken": "Lock up the LP tokens from the 80% tSYMM / 20% WETH pool for up to a year to get vTSYMM. The longer you lock, the more vTSYMM you get.",
         "veBAL": "Use vTSYMM to earn extra on your staked pools. Only some pools are eligible for staking. Check any pools that you are in, and stake it to earn liquidity mining incentives. You can also use vTSYMM to vote to direct future liquidity mining emissions"
       },
       "buttons": {
@@ -1067,13 +1067,13 @@
       "cards": {
         "totalVeBAL": "Total vTSYMM",
         "avgLockUpPeriod": "Ave. lock-up period",
-        "effectiveBalLocked": "Effective SYMM locked",
-        "shareOfBalLocked": "Share of SYMM locked"
+        "effectiveBalLocked": "Effective tSYMM locked",
+        "shareOfBalLocked": "Share of tSYMM locked"
       },
       "stats": {
         "currentWeekVoting": "Current week voting",
         "nextWeekVoting": "Next week voting",
-        "balIncentives": "SYMM incentives"
+        "balIncentives": "tSYMM incentives"
       },
       "table": {
         "poolGauge": "Pool gauge",
@@ -1088,7 +1088,7 @@
       "myUnallocatedVotesTooltip": "vTSYMM holders can vote for a single pool or multiple pools in whatever weights they choose, up to their max of 100%. Note: If you’ve previously voted for a pool but no longer have any vTSYMM, your votes will not count.",
       "unallocatedVotes": "My unallocated votes: {0}.",
       "votingPeriod": "Voting period ends: {0}d {1}h {2}m {3}s",
-      "votingPeriodTooltip": "There is a weekly vote for vTSYMM holders which ends at 0:00 UTC on Thursdays. This vote determines the SYMM incentives allocation for all Stakers in these pools for the next week. Although you don’t have to vote to get a boosted yield, your vote can help you earn more by voting on pools where you are a staker.",
+      "votingPeriodTooltip": "There is a weekly vote for vTSYMM holders which ends at 0:00 UTC on Thursdays. This vote determines the tSYMM incentives allocation for all Stakers in these pools for the next week. Although you don’t have to vote to get a boosted yield, your vote can help you earn more by voting on pools where you are a staker.",
       "votingPeriodCountdown": "{0}d : {1}h : {2}m : {3}s",
       "votingPowerExpiredTooltip": "Your previous lock period has expired, so you no longer have any vTSYMM or voting power. Any votes that have been allocated in the past will no longer count. Lock up S-80TSYMM-20WTLOS LP tokens to get vTSYMM for higher yields and voting power.",
       "table": {
@@ -1374,8 +1374,8 @@
     },
     "veBalApr": {
       "title": "Max locking/vTSYMM APR",
-      "breakdown1": "SYMM",
-      "breakdown2": "bb-a-USD"
+      "breakdown1": "tSYMM",
+      "breakdown2": "USDC"
     }
   },
   "total": "Total",

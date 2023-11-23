@@ -60,7 +60,7 @@ function navigateToGetVeBAL() {
           </BalBtn>
           <BalBtn
             tag="a"
-            href="https://docs.balancer.fi/concepts/governance/veBAL/"
+            href="https://app.gitbook.com/o/NKTnzcgjVQfCtEzzgtha/s/wkytfAGEDQIWmdtqgcJz/tsymm-and-vtsymm"
             target="_blank"
             rel="noreferrer"
             color="white"
@@ -74,6 +74,92 @@ function navigateToGetVeBAL() {
               class="ml-px group-hover:text-pink-500 transition-colors"
             />
           </BalBtn>
+        </div>
+      </div>
+      <div class="hero-graphic-container">
+        <div
+          class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-4 xl:gap-12 items-center w-full fade-in-slow"
+        >
+          <div class="group tip">
+            <img
+              width="144"
+              height="144"
+              class="tip-icon"
+              src="@/assets/images/icons/claims-header/add-liquidity.svg"
+            />
+            <p class="mt-2 font-semibold tip-label text-shadow">
+              {{ $t('claimHero.tipLabel.addLiquidity') }}
+              <BalTooltip
+                iconSize="xs"
+                textAlign="left"
+                class="relative top-px"
+                iconClass="text-white"
+                width="60"
+              >
+                {{ $t('claimHero.tips.addLiquidity') }}
+              </BalTooltip>
+            </p>
+          </div>
+          <div class="group tip">
+            <img
+              width="144"
+              height="144"
+              class="tip-icon"
+              src="@/assets/images/icons/claims-header/stake.svg"
+            />
+            <p class="mt-2 font-semibold tip-label text-shadow">
+              {{ $t('claimHero.tipLabel.stake') }}
+              <BalTooltip
+                iconSize="xs"
+                textAlign="left"
+                class="relative top-px"
+                iconClass="text-white"
+                width="60"
+              >
+                {{ $t('claimHero.tips.stake') }}
+              </BalTooltip>
+            </p>
+          </div>
+          <div class="group tip">
+            <img
+              width="144"
+              height="144"
+              class="tip-icon"
+              src="@/assets/images/icons/claims-header/vebal.svg"
+            />
+            <p class="mt-2 font-semibold tip-label text-shadow">
+              {{ $t('claimHero.tipLabel.boost') }}
+              <BalTooltip
+                iconSize="xs"
+                textAlign="left"
+                class="relative top-px"
+                iconClass="text-white"
+                width="60"
+              >
+                {{ $t('claimHero.tips.boost') }}
+              </BalTooltip>
+            </p>
+          </div>
+          <div class="group tip">
+            <img
+              width="144"
+              height="144"
+              class="tip-icon"
+              src="@/assets/images/icons/claims-header/claim.svg"
+            />
+            <p class="mt-2 font-semibold tip-label text-shadow">
+              {{ $t('claimHero.tipLabel.claim') }}
+              <BalTooltip
+                iconSize="xs"
+                textAlign="left"
+                class="relative top-px"
+                iconClass="text-white"
+                width="60"
+              >
+                {{ $t('claimHero.tips.claim') }}
+              </BalTooltip>
+            </p>
+          </div>
         </div>
       </div>
       <!-- <div class="coins">
@@ -180,7 +266,7 @@ function navigateToGetVeBAL() {
 }
 
 .hero-content {
-  @apply flex flex-col md:flex-row md:items-center max-w-screen-2xl mx-auto md:gap-4 lg:gap-8 py-4 md:py-8
+  @apply flex flex-col md:flex-row md:items-center max-w-screen-2xl mx-auto md:gap-2 lg:gap-4 py-4 md:py-8
     xl:pl-4 w-full z-10;
 }
 
