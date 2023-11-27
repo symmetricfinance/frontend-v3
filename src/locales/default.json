@@ -138,14 +138,20 @@
   "claim": "Claim",
   "claimHero": {
     "title": "Claim liquidity incentives",
-    "legacyTitle": "Claim legacy incentives",
+    "legacyTitle": "Initial Liquidity Airdrop",
     "description": "Symmetric Protocol liquidity incentives are directed to pools by vTSYMM voters. Stake in these pools to earn incentives. Boost with vTSYMM for up to 2.5x extra.",
-    "legacyDescription": "Liquidity mining incentive systems before the launch of ve8020-tokenomics have been deprecated. If you provided liquidity before this change and have outstanding incentives you can claim them here.",
+    "legacyDescription": "From November 27th to December 1st, Symmetric is conducting an exciting Airdrop event, offering a chance to share in a pool of $3,000 in tSYMM tokens and $3,000 in TLOS. This opportunity is open to users who lock their tSYMM/WTLOS 80/20 LP tokens in exchange for vtSYMM. The total amount available for distribution will be determined by the overall liquidity locked, ensuring a fair and proportional reward for vtSYMM holders. This distribution will be calculated based on the amount and duration of LP tokens locked, with the final snapshot scheduled for December 1, 2024, at 4:00 PM UTC. It's a fantastic opportunity to increase your holdings with minimal effort. Join in and make the most of this offer!",
     "tipLabel": {
       "addLiquidity": "Add liquidity",
       "stake": "Stake your LP",
       "boost": "Get a boost",
       "claim": "Claim anytime"
+    },
+    "airdropTipLabel": {
+      "addLiquidity": "Add liquidity to the tSYMM/WTLOS pool",
+      "stake": "Lock your LP tokens to get vtSYMM",
+      "boost": "Get a boost",
+      "claim": "Receive tSYMM and TLOS rewards"
     },
     "tips": {
       "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Telos. Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
@@ -761,7 +767,7 @@
       "description": "Incentives to attract liquidity are set by the Symmetric protocol and partners. Stakers in eligible pools can claim incentives every block. People with vTSYMM get a boosted rate—up to 2.5x extra.",
       "titles": {
         "incentivesOnOtherNetworks": "Incentives on other networks",
-        "legacyIncentives": "Legacy incentives"
+        "legacyIncentives": "Claim your Airdrop"
       },
       "btns": {
         "claimOn": "Claim on"

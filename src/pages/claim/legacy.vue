@@ -3,38 +3,15 @@ import HeroClaim from '@/components/contextual/pages/claim/HeroClaim.vue';
 import LegacyClaims from '@/components/contextual/pages/claim/LegacyClaims.vue';
 import { MerkleOrchardVersion } from '@/services/claim/claim.service';
 import useWeb3 from '@/services/web3/useWeb3';
-import {
-  isArbitrum,
-  isMainnet,
-  isGoerli,
-  isPolygon,
-} from '@/composables/useNetwork';
 
 /**
  * COMPOSABLES
  */
-const { isWalletReady, account } = useWeb3();
+const { isWalletReady } = useWeb3();
 
 /**
  * COMPUTED
  */
-const legacyClaimUI = computed(() => {
-  if (isMainnet.value) {
-    return [
-      { token: '$BAL', subdomain: 'claim' },
-      { token: '$VITA', subdomain: 'claim-vita' },
-      { token: '$LDO', subdomain: 'claim-lido' },
-    ];
-  } else if (isArbitrum.value) {
-    return [
-      { token: '$BAL', subdomain: 'claim-arbitrum' },
-      { token: '$MCDEX', subdomain: 'claim-mcdex' },
-      { token: '$PICKLE', subdomain: 'claim-pickle' },
-    ];
-  }
-
-  return [];
-});
 </script>
 
 <template>
@@ -50,23 +27,13 @@ const legacyClaimUI = computed(() => {
             {{ $t('pages.claim.titles.legacyIncentives') }}
           </h2>
 
-          <h3 class="mt-8 font-body text-lg font-semibold">
-            Merkle Orchard V1
-          </h3>
-          <LegacyClaims
-            :merkleOrchardVersion="MerkleOrchardVersion.V1"
-            class="mt-2"
-          />
-
-          <h3 class="mt-8 font-body text-lg font-semibold">
-            Merkle Orchard V2
-          </h3>
+          <h3 class="mt-8 font-body text-lg font-semibold">Rewards</h3>
           <LegacyClaims
             :merkleOrchardVersion="MerkleOrchardVersion.V2"
             class="mt-2"
           />
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <div class="mb-2 font-semibold">
               Looking for other claimable tokens?
             </div>
@@ -134,7 +101,7 @@ const legacyClaimUI = computed(() => {
                 </template>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </template>
     </div>

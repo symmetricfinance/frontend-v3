@@ -69,6 +69,15 @@
     ],
     "status": "ACTIVE"
   },
+  "20220420-smart-wallet-checker": {
+    "contracts": [
+      {
+        "name": "SmartWalletChecker",
+        "address": "0x434a833edbe4A88AD48ddf99e72ed4b148960B6E"
+      }
+    ],
+    "status": "ACTIVE"
+  },
   "20220721-balancer-queries": {
     "contracts": [
       {
@@ -83,6 +92,15 @@
       {
         "name": "ProtocolFeePercentagesProvider",
         "address": "0x4e4131dC27ed9501ac5fEb76F94572fDAe9f0fD0"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20230222-merkle-orchard-v2": {
+    "contracts": [
+      {
+        "name": "MerkleOrchard",
+        "address": "0x4C8Aa9ce762412dB5a2e874Ab4e40d312f19fa52"
       }
     ],
     "status": "ACTIVE"
