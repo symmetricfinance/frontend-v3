@@ -67,6 +67,13 @@ const BALTokenPlaceholder = computed<ClaimableToken>(() => ({
   fiatValue: '0',
 }));
 
+const TLOSTokenPlaceholder = computed<ClaimableToken>(() => ({
+  token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+  symbol: 'WTLOS',
+  amount: '0',
+  fiatValue: '0',
+}));
+
 const isLoading = computed((): boolean => isQueryLoading(userClaimsQuery));
 
 const userClaims = computed(() =>
@@ -89,7 +96,7 @@ const claimableTokens = computed<ClaimableToken[]>(() => {
       })
     );
   }
-  return [BALTokenPlaceholder.value];
+  return [BALTokenPlaceholder.value, TLOSTokenPlaceholder.value];
 });
 
 const totalClaimableTokensFiatValue = computed(() =>

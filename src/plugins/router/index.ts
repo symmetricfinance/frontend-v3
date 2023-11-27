@@ -149,8 +149,8 @@ const routes: RouteRecordRaw[] = [
     component: ClaimPage,
   },
   {
-    path: '/:networkSlug/claim/legacy',
-    name: 'legacy-claim',
+    path: '/:networkSlug/airdrop',
+    name: 'airdrop',
     component: LegacyClaimPage,
   },
   {

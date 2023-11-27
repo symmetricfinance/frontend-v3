@@ -1,10 +1,23 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 type Props = {
   title: string;
   description: string;
 };
 
 defineProps<Props>();
+
+function navigateToGetVeBAL() {
+  router.push({
+    name: 'get-vtsymm',
+    query: {
+      returnRoute: 'vtsymm',
+    },
+  });
+}
 </script>
 
 <template>
@@ -18,6 +31,27 @@ defineProps<Props>();
           <p class="max-w-3xl body-text text-shadow">
             {{ description }}
           </p>
+          <div class="flex mt-6">
+            <BalBtn class="mr-3 hero-btn btn-gold" @click="navigateToGetVeBAL">
+              {{ $t('veBAL.hero.buttons.getVeBAL') }}
+            </BalBtn>
+            <BalBtn
+              tag="a"
+              href="https://medium.com/@Symmetric.Finance/introducing-tsymm-and-vtsymm-120bfe2d60c0"
+              target="_blank"
+              rel="noreferrer"
+              color="white"
+              class="hero-btn"
+              outline
+            >
+              {{ $t('veBAL.hero.buttons.learnMore') }}
+              <BalIcon
+                name="arrow-up-right"
+                size="sm"
+                class="ml-px group-hover:text-pink-500 transition-colors"
+              />
+            </BalBtn>
+          </div>
         </div>
       </div>
       <div class="hero-graphic-container">
@@ -32,8 +66,8 @@ defineProps<Props>();
               src="@/assets/images/icons/claims-header/add-liquidity.svg"
             />
             <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.addLiquidity') }}
-              <BalTooltip
+              {{ $t('claimHero.airdropTipLabel.addLiquidity') }}
+              <!-- <BalTooltip
                 iconSize="xs"
                 textAlign="left"
                 class="relative top-px"
@@ -41,7 +75,7 @@ defineProps<Props>();
                 width="60"
               >
                 {{ $t('claimHero.tips.addLiquidity') }}
-              </BalTooltip>
+              </BalTooltip> -->
             </p>
           </div>
           <div class="group tip">
@@ -52,8 +86,8 @@ defineProps<Props>();
               src="@/assets/images/icons/claims-header/stake.svg"
             />
             <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.stake') }}
-              <BalTooltip
+              {{ $t('claimHero.airdropTipLabel.stake') }}
+              <!-- <BalTooltip
                 iconSize="xs"
                 textAlign="left"
                 class="relative top-px"
@@ -61,10 +95,10 @@ defineProps<Props>();
                 width="60"
               >
                 {{ $t('claimHero.tips.stake') }}
-              </BalTooltip>
+              </BalTooltip> -->
             </p>
           </div>
-          <div class="group tip">
+          <!-- <div class="group tip">
             <img
               width="144"
               height="144"
@@ -83,7 +117,7 @@ defineProps<Props>();
                 {{ $t('claimHero.tips.boost') }}
               </BalTooltip>
             </p>
-          </div>
+          </div> -->
           <div class="group tip">
             <img
               width="144"
@@ -92,8 +126,8 @@ defineProps<Props>();
               src="@/assets/images/icons/claims-header/claim.svg"
             />
             <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.claim') }}
-              <BalTooltip
+              {{ $t('claimHero.airdropTipLabel.claim') }}
+              <!-- <BalTooltip
                 iconSize="xs"
                 textAlign="left"
                 class="relative top-px"
@@ -101,7 +135,7 @@ defineProps<Props>();
                 width="60"
               >
                 {{ $t('claimHero.tips.claim') }}
-              </BalTooltip>
+              </BalTooltip> -->
             </p>
           </div>
         </div>

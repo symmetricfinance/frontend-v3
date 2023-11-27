@@ -73,6 +73,15 @@ function isActive(page: string): boolean {
     >
       vTSYMM
     </DesktopLinkItem>
+    <DesktopLinkItem
+      v-if="isVeBalSupported"
+      :to="{ name: 'airdrop', params: { networkSlug } }"
+      :active="isActive('airdrop')"
+      prefetch
+      @click="trackGoal(Goals.ClickNavVebal)"
+    >
+      Airdrop
+    </DesktopLinkItem>
   </div>
 </template>
 

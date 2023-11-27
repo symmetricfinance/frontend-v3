@@ -2,7 +2,7 @@ import { Pools } from '@/types/pools';
 
 const pools: Pools = {
   IdsMap: {
-    veBAL: '',
+    veBAL: '0xbf0fa44e5611c31429188b7dcc59ffe794d1980e000200000000000000000009',
   },
   Pagination: {
     PerPage: 10,
