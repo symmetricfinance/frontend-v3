@@ -58,12 +58,12 @@ const navLinks = [
     goal: Goals.ClickNavVebal,
     hide: !isVeBalSupported,
   },
-  {
-    label: 'Airdrop',
-    path: `/${networkSlug}/airdrop`,
-    goal: Goals.ClickNavVebal,
-    hide: !isVeBalSupported,
-  },
+  // {
+  //   label: 'Airdrop',
+  //   path: `/${networkSlug}/airdrop`,
+  //   goal: Goals.ClickNavVebal,
+  //   hide: !isVeBalSupported,
+  // },
 ];
 
 // const ecosystemLinks = [
