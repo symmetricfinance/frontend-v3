@@ -50,7 +50,7 @@ const config: Config = {
     decimals: 18,
     deeplinkId: 'tlos',
     logoURI: 'tokens/tlos.png',
-    minTransactionBuffer: '0.005',
+    minTransactionBuffer: '1',
   },
   thirdParty: {
     coingecko: {
