@@ -35,7 +35,7 @@ const { handleFailed, handleSuccess, txState, votingActions } =
         block
         class="mt-2"
       >
-        Return to veBAL list
+        Return to vtSYMM list
       </BalBtn>
     </div>
   </transition>

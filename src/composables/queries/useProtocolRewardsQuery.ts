@@ -22,9 +22,9 @@ type QueryOptions = UseQueryOptions<ProtocolRewardsQueryResponse>;
 /**
  * SERVICES
  */
-const feeDistributorV1 = new FeeDistributor(
-  configService.network.addresses.feeDistributorDeprecated
-);
+// const feeDistributorV1 = new FeeDistributor(
+//   configService.network.addresses.feeDistributorDeprecated
+// );
 const feeDistributorV2 = new FeeDistributor(
   configService.network.addresses.feeDistributor
 );
@@ -64,11 +64,10 @@ export default function useProtocolRewardsQuery(options: QueryOptions = {}) {
    */
   const queryFn = async () => {
     try {
-      const [v1, v2] = await Promise.all([
-        feeDistributorV1.getClaimableBalances(account.value),
+      const [v2] = await Promise.all([
         feeDistributorV2.getClaimableBalances(account.value),
       ]);
-      return { v1, v2 };
+      return { v2 };
     } catch (error) {
       console.error('Failed to fetch claimable protocol balances', error);
       return {};

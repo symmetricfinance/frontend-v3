@@ -46,7 +46,7 @@ export class StakingRewardsService {
     );
 
     let veBALTotalSupply = '0';
-    if (networkId.value === Network.MAINNET) {
+    if (networkId.value === Network.TELOS) {
       const lockInfo = await new BalancerContractsService().veBAL.getLockInfo(
         userAddress
       );

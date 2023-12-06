@@ -54,7 +54,11 @@ const pools: Pools = {
   },
   Stakable: {
     VotingGaugePools: [],
-    AllowList: [],
+    AllowList: [
+      '0x058d4893efa235d86cceed5a7eef0809b76c8c66000000000000000000000004',
+      '0x9a77bd2edbbb68173275cda967b76e9213949ace000000000000000000000008',
+      '0x2d714951f7165a51e8bd61f92d8a979ab0ed4b59000200000000000000000006',
+    ],
   },
   Metadata: {
     '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000c': {
