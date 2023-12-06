@@ -45,7 +45,7 @@ const navLinks = [
     label: t('claim'),
     path: `/${networkSlug}/claim`,
     goal: Goals.ClickNavClaim,
-    hide: true,
+    hide: !isVeBalSupported,
   },
   {
     label: t('portfolio'),

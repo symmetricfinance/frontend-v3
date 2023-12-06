@@ -35,7 +35,8 @@ const config: Config = {
       'https://thegraph.symm.fi/subgraphs/name/symmetric/telos',
     ],
     aave: '',
-    gauge: '',
+    gauge:
+      'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos-gauges/prod/gn',
     blocks: '',
   },
   bridgeUrl: 'https://bridge.telos.net/bridge',
