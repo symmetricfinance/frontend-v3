@@ -75,7 +75,7 @@ const columns = ref<ColumnDefinition<RewardRow>[]>([
     align: 'right',
     width: 150,
     totalsCell: 'totalAmountCell',
-    accessor: ({ amount }) => `${fNum(amount, FNumFormats.token)} BAL`,
+    accessor: ({ amount }) => `${fNum(amount, FNumFormats.token)} tSYMM`,
   },
   {
     name: t('value'),
@@ -168,7 +168,7 @@ function redirectToPool({ pool }: { pool: GaugePool }) {
       </template>
       <template #totalAmountCell>
         <div class="flex justify-end">
-          {{ fNum(totalClaimAmount, FNumFormats.token) }} BAL
+          {{ fNum(totalClaimAmount, FNumFormats.token) }} tSYMM
         </div>
       </template>
       <template #totalValueCell>
