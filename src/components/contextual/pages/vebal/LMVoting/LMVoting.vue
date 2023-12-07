@@ -205,7 +205,7 @@ watch(isRefetchingVotingPools, async () => {
       v-if="noVeBalBalance && !isLoading"
       title="You need some vTSYMM to vote on gauges"
     >
-      Get vTSYMM by locking up LP tokens from the 80% BAL / 20% WETH pool.
+      Get vTSYMM by locking up LP tokens from the 80% tSYMM / 20% WTLOS pool.
     </VotingAlert>
 
     <VotingAlert

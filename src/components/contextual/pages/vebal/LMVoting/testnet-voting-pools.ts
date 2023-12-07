@@ -194,5 +194,58 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     },
   };
 
-  return [STLOS_WTLOS, USDC_USDT, WTLOS_USDT];
+  const tSYMM_WTLOS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xbf0fa44e5611c31429188b7dcc59ffe794d1980e000200000000000000000009',
+    address: '0xbf0FA44e5611C31429188B7dcc59ffe794D1980e',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: 'S-80TSYMM-20WTLOS',
+    tokens: [
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.8',
+        symbol: 'tSYMM',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/TSYMM.png',
+      },
+      {
+        address: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+        weight: '0.2',
+        symbol: 'WTLOS',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/telos.png',
+      },
+    ],
+    gauge: {
+      address: '0x91132ddd744d00d1954b3ee51ffcfde2518bba4c',
+      isKilled: false,
+      relativeWeightCap: '1.0',
+      addedTimestamp: 1701860941,
+    },
+  };
+
+  const Team_Allocation: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000c',
+    address: '',
+    type: GqlPoolMinimalType.Unknown,
+    symbol: 'Team Allocation',
+    tokens: [
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.8',
+        symbol: 'tSYMM',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/TSYMM.png',
+      },
+    ],
+    gauge: {
+      address: '0xcda30664d0df20b19cb35a834594fa8a6a001e5c',
+      isKilled: false,
+      relativeWeightCap: '0.167',
+      addedTimestamp: 1701860941,
+    },
+  };
+
+  return [tSYMM_WTLOS, STLOS_WTLOS, USDC_USDT, WTLOS_USDT, Team_Allocation];
 }

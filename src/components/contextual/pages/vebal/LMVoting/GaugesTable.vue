@@ -13,7 +13,7 @@ import {
   isGyro,
   isStableLike,
   isUnknownType,
-  isVeBalPool,
+  // isVeBalPool,
   poolURLFor,
 } from '@/composables/usePoolHelpers';
 import { VotingPool } from '@/composables/queries/useVotingPoolsQuery';
@@ -145,6 +145,12 @@ function isInternalUrl(url: string): boolean {
 }
 
 function redirectToPool(pool: VotingPool, inNewTab) {
+  if (
+    pool.id ===
+    '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000c'
+  ) {
+    return;
+  }
   const redirectUrl = poolURLFor(pool, pool.network);
   if (!isInternalUrl(redirectUrl)) {
     window.location.href = redirectUrl;
@@ -287,7 +293,7 @@ function getPickedTokens(tokens: VotingPool['tokens']) {
           <div v-if="!isLoading" class="flex justify-end py-4 px-6">
             <GaugeVoteInfo :pool="pool" />
             <div class="flex justify-end w-6">
-              <IconLimit
+              <!-- <IconLimit
                 v-if="isVeBalPool(pool.id)"
                 size="sm"
                 amount="10"
@@ -296,9 +302,9 @@ function getPickedTokens(tokens: VotingPool['tokens']) {
                     'veBAL.liquidityMining.limitsTooltip.distributionsCappedVeBAL'
                   )
                 "
-              />
+              /> -->
               <IconLimit
-                v-else-if="
+                v-if="
                   pool.gauge?.relativeWeightCap &&
                   pool.gauge.relativeWeightCap !== '1.0'
                 "
