@@ -89,6 +89,19 @@ export enum Network {
   CELO = 42220,
 }
 
+type Reward = {
+  token: string;
+  gauge: string;
+  rate: bigint;
+  period_finish: number;
+};
+
+type Rewards = {
+  [key: string]: {
+    [key: string]: Reward;
+  };
+};
+
 export interface Config {
   key: string;
   chainId: Network;
@@ -150,4 +163,5 @@ export interface Config {
   };
   tokenlists: TokenListURLMap;
   rateProviders: Record<string, Record<string, boolean>>;
+  rewards?: Rewards;
 }

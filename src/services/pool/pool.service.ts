@@ -13,12 +13,15 @@ import { TokenInfoMap } from '@/types/TokenList';
 
 import { OnchainDataFormater } from './decorators/onchain-data.formater';
 import { AprBreakdown } from '@symmetric-v3/sdk';
-import { networkId } from '@/composables/useNetwork';
+import useNetwork, { networkId } from '@/composables/useNetwork';
 import { getBalancerSDK } from '@/dependencies/balancer-sdk';
 import { Pool as SDKPool } from '@symmetric-v3/sdk';
 import { captureBalancerException } from '@/lib/utils/errors';
+import { formatUnits } from '@ethersproject/units';
+import { subgraphRequest } from '@/lib/utils/subgraph';
 
 export default class PoolService {
+  REWARD_PRICE: number | undefined;
   constructor(public pool: Pool) {
     this.format();
   }
@@ -44,7 +47,6 @@ export default class PoolService {
     let totalLiquidity = this.pool.totalLiquidity;
 
     try {
-      console.log(this.pool);
       const sdkTotalLiquidity = await getBalancerSDK().pools.liquidity(
         this.pool as unknown as SDKPool
       );
@@ -65,7 +67,7 @@ export default class PoolService {
    * @summary Calculates APRs for pool.
    */
   public async setAPR(): Promise<AprBreakdown> {
-    let apr = this.pool.apr;
+    let apr: any = this.pool.apr;
 
     try {
       const sdkApr = await getBalancerSDK().pools.apr(this.pool);
@@ -73,6 +75,34 @@ export default class PoolService {
     } catch (error) {
       captureBalancerException({ error });
       console.error(`Failed to calc APR for: ${this.pool.id}`, error);
+    }
+    // has local rewards
+    const timestamp = roundDownTimestamp(Date.now() / 1000);
+    const rewards = useNetwork().networkConfig.rewards;
+    if (rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]) {
+      // Get gauge
+      const reward = rewards[timestamp][this.pool.id];
+      const yearlyReward = BigInt(reward.rate) * BigInt(86400) * BigInt(365);
+
+      const rewardData: any = localStorage.getItem('REWARD_PRICE');
+      console.log(rewardData);
+      if (rewardData) {
+        const { price } = JSON.parse(rewardData);
+        const rewardPrice = parseFloat(price);
+        const yearlyRewardUsd =
+          parseFloat(formatUnits(yearlyReward.toString(), 18)) * rewardPrice;
+        const totalSupply = await gaugeTotalSupply(this.pool.address);
+        const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
+        const rewardValue =
+          yearlyRewardUsd / parseFloat(totalSupplyUsd.toString());
+        const rewardValueScaled = Math.round(10000 * rewardValue);
+        apr.rewardAprs = {
+          total: rewardValueScaled,
+          breakdown: {
+            [reward.token]: rewardValueScaled,
+          },
+        };
+      }
     }
 
     return (this.pool.apr = apr as AprBreakdown);
@@ -133,4 +163,38 @@ export default class PoolService {
       differenceInWeeks(Date.now(), this.pool.createTime * oneSecondInMs) < 1
     );
   }
+}
+
+const gaugeTotalSupply = async (poolAddress: string): Promise<number> => {
+  try {
+    const data = await subgraphRequest<{
+      pool: { preferentialGauge: { totalSupply: number } };
+    }>({
+      url: useNetwork().networkConfig.subgraphs.gauge,
+      query: {
+        pool: {
+          __args: {
+            id: poolAddress.toLowerCase(),
+          },
+          preferentialGauge: {
+            totalSupply: true,
+          },
+        },
+      },
+    });
+
+    return data.pool.preferentialGauge.totalSupply;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+function roundDownTimestamp(timestamp: number): number {
+  const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+  const day = date.getUTCDay(); // Get the day of the week (0 - Sunday, 1 - Monday, ..., 6 - Saturday)
+  const daysToThursday = (day + 7 - 4) % 7; // Calculate the number of days to Thursday (4 - Thursday)
+  date.setUTCDate(date.getUTCDate() - daysToThursday); // Subtract the number of days to Thursday
+  date.setUTCHours(0, 0, 0, 0); // Set the time to midnight (00:00:00)
+  return Math.floor(date.getTime() / 1000); // Convert back to Unix timestamp in seconds
 }
