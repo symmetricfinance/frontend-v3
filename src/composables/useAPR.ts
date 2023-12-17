@@ -22,9 +22,15 @@ export function hasBalEmissions(aprs?: AprBreakdown): boolean {
   return bnum(aprs?.stakingApr?.min || 0).gt(0);
 }
 
+export function hasProtocolRewards(aprs?: AprBreakdown): boolean {
+  if (!aprs) return false;
+  return bnum(aprs?.protocolApr || 0).gt(0);
+}
+
 export function useAPR() {
   return {
     hasStakingRewards,
     hasBalEmissions,
+    hasProtocolRewards,
   };
 }

@@ -268,10 +268,12 @@ function boostFor(pool: Pool): string {
 }
 
 function aprLabelFor(pool: Pool): string {
+  console.log(pool.id);
   const poolAPRs = pool?.apr;
   if (!poolAPRs) return '0';
-
-  return totalAprLabel(poolAPRs, boostFor(pool));
+  const label = totalAprLabel(poolAPRs, boostFor(pool));
+  console.log(label);
+  return label;
 }
 
 function lockedUntil(lockEndDate?: number) {

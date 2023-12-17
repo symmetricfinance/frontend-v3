@@ -27,13 +27,13 @@ import {
   SubPool,
   allLinearTypes,
 } from '@/services/pool/types';
-import { hasBalEmissions } from './useAPR';
+// import { hasBalEmissions, hasProtocolRewards } from './useAPR';
 import { cloneDeep, uniq, uniqWith } from 'lodash';
 import {
   appUrl,
   getNetworkSlug,
   isMainnet,
-  isPoolBoostsEnabled,
+  // isPoolBoostsEnabled,
 } from './useNetwork';
 import useNumbers, { FNumFormats, numF } from './useNumbers';
 import { dateToUnixTimestamp } from './useTime';
@@ -305,16 +305,17 @@ export function totalAprLabel(aprs: AprBreakdown, boost?: string): string {
   if (aprs.swapFees > APR_THRESHOLD) {
     return '-';
   }
-  if (boost) {
-    return numF(absMaxApr(aprs, boost), FNumFormats.bp);
-  }
   if (
-    (hasBalEmissions(aprs) && isPoolBoostsEnabled.value) ||
+    // ((hasBalEmissions(aprs) || hasProtocolRewards(aprs)) &&
+    //   isPoolBoostsEnabled.value) ||
     aprs.protocolApr > 0
   ) {
     const minAPR = numF(aprs.min, FNumFormats.bp);
     const maxAPR = numF(aprs.max, FNumFormats.bp);
     return `${minAPR} - ${maxAPR}`;
+  }
+  if (boost) {
+    return numF(absMaxApr(aprs, boost), FNumFormats.bp);
   }
 
   return numF(aprs.min, FNumFormats.bp);
