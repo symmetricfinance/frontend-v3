@@ -298,12 +298,25 @@ export function absMaxApr(aprs: AprBreakdown, boost?: string): string {
   return aprs.max.toString();
 }
 
+export function absMaxBoostApr(aprs: AprBreakdown): string {
+  const nonStakingApr = bnum(aprs.swapFees)
+    .plus(aprs.tokenAprs.total)
+    .plus(aprs.rewardAprs.total);
+  const stakingApr = bnum(aprs.stakingApr.min).times(2.5).toString();
+  return nonStakingApr.plus(stakingApr).toString();
+}
+
 /**
  * @summary Returns total APR label, whether range or single value.
  */
 export function totalAprLabel(aprs: AprBreakdown, boost?: string): string {
   if (aprs.swapFees > APR_THRESHOLD) {
     return '-';
+  }
+  if (boost && !hasProtocolRewards(aprs)) {
+    const minAPR = numF(absMaxApr(aprs, boost), FNumFormats.bp);
+    const maxAPR = numF(absMaxBoostApr(aprs), FNumFormats.bp);
+    return `${minAPR} - ${maxAPR}`;
   }
   if (
     ((hasBalEmissions(aprs) || hasProtocolRewards(aprs)) &&
@@ -313,9 +326,6 @@ export function totalAprLabel(aprs: AprBreakdown, boost?: string): string {
     const minAPR = numF(aprs.min, FNumFormats.bp);
     const maxAPR = numF(aprs.max, FNumFormats.bp);
     return `${minAPR} - ${maxAPR}`;
-  }
-  if (boost) {
-    return numF(absMaxApr(aprs, boost), FNumFormats.bp);
   }
 
   return numF(aprs.min, FNumFormats.bp);
