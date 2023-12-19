@@ -313,6 +313,9 @@ export function totalAprLabel(aprs: AprBreakdown, boost?: string): string {
   if (aprs.swapFees > APR_THRESHOLD) {
     return '-';
   }
+  if (boost && Number(boost) > 1) {
+    return `${numF(absMaxApr(aprs, boost), FNumFormats.bp)}`;
+  }
   if (boost && !hasProtocolRewards(aprs)) {
     const minAPR = numF(absMaxApr(aprs, boost), FNumFormats.bp);
     const maxAPR = numF(absMaxBoostApr(aprs), FNumFormats.bp);

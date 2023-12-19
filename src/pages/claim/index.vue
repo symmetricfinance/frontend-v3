@@ -2,6 +2,7 @@
 import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { computed, onBeforeMount, watch } from 'vue';
+import axios from 'axios';
 
 import HeroClaim from '@/components/contextual/pages/claim/HeroClaim.vue';
 import BalClaimsTable, {
@@ -188,6 +189,24 @@ function gaugeTitle(pool: GaugePool): string {
     .join(' / ');
 }
 
+// function rewardUSDValue(tokenAddress: string, amount: string): string {
+//   const token = getToken(tokenAddress);
+//   if (!token) return '0';
+//   if (token.symbol === 'tSYMM') {
+//     return fNum(
+//       bnum(amount).times(bbAUSDToken.getRate()).toString(),
+//       FNumFormats.fiat
+//     );
+//   }
+//   if (token.symbol === 'WTLOS') {
+//     return fNum(
+//       bnum(amount).times(bbAUSDToken.getRate()).toString(),
+//       FNumFormats.fiat
+//     );
+//   }
+//   return toFiat(amount, tokenAddress);
+// }
+
 function formatRewardsData(data?: BalanceMap): ProtocolRewardRow[] {
   if (!isWalletReady.value || !data) return [];
 
@@ -203,6 +222,25 @@ function formatRewardsData(data?: BalanceMap): ProtocolRewardRow[] {
   });
 }
 
+async function getTokenPrices() {
+  try {
+    const response = await axios.get(
+      `https://api.geckoterminal.com/api/v2/simple/networks/tlos/token_price/${TOKENS.Addresses.BAL}%2C${TOKENS.Addresses.WETH}`
+    );
+    const tokenPrices = response.data.data.attributes.token_prices;
+    injectPrices({
+      [TOKENS.Addresses.BAL as string]: Number(
+        tokenPrices['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']
+      ),
+      [TOKENS.Addresses.WETH as string]: Number(
+        tokenPrices['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']
+      ),
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 /**
  * @summary Fetches bb-a-USD rate as an appoximation of USD price.
  */
@@ -231,6 +269,7 @@ watch(gaugePools, async newPools => {
  * LIFECYCLE
  */
 onBeforeMount(async () => {
+  await getTokenPrices();
   await getBBaUSDPrice();
 });
 </script>

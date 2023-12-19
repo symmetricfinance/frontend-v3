@@ -3,9 +3,9 @@ import { useQuery, UseQueryOptions } from '@tanstack/vue-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import useNetwork from '../useNetwork';
 import { getApi } from '@/dependencies/balancer-api';
-import { GqlTokenPrice } from '@/services/api/graphql/generated/api-types';
+// import { GqlTokenPrice } from '@/services/api/graphql/generated/api-types';
 import { oneMinInMs } from '../useTime';
-import { getAddress } from '@ethersproject/address';
+// import { getAddress } from '@ethersproject/address';
 
 /**
  * TYPES
@@ -26,12 +26,12 @@ export default function useTokenPricesQuery(
     QUERY_KEYS.Tokens.Prices(networkId, pricesToInject)
   );
 
-  function priceArrayToMap(prices: GqlTokenPrice[]): TokenPrices {
-    return prices.reduce(
-      (obj, item) => ((obj[getAddress(item.address)] = item.price), obj),
-      {}
-    );
-  }
+  // function priceArrayToMap(prices: GqlTokenPrice[]): TokenPrices {
+  //   return prices.reduce(
+  //     (obj, item) => ((obj[getAddress(item.address)] = item.price), obj),
+  //     {}
+  //   );
+  // }
 
   function injectCustomTokens(
     prices: TokenPrices,
@@ -48,10 +48,12 @@ export default function useTokenPricesQuery(
   const queryFn = async () => {
     console.log('API: ', api);
     if (api) {
-      const { prices } = await api.GetCurrentTokenPrices();
-      let pricesMap = priceArrayToMap(prices);
-      pricesMap = injectCustomTokens(pricesMap, pricesToInject.value);
-      console.log('Fetching', Object.values(prices).length, 'prices');
+      // const { prices } = await api.GetCurrentTokenPrices();
+      let pricesMap = {};
+      // priceArrayToMap(prices);
+      pricesMap = injectCustomTokens({}, pricesToInject.value);
+      console.log('pricesMap: ', pricesMap);
+      // console.log('Fetching', Object.values(prices).length, 'prices');
 
       return pricesMap;
     }

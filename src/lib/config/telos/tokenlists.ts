@@ -5,7 +5,10 @@ const tokenlists: TokenListURLMap = {
     Allowlisted:
       'https://raw.githubusercontent.com/centfinance/tokenlists/main/generated/symmetric.tokenlist.json',
   },
-  External: [],
+  External: [
+    // 'https://raw.githubusercontent.com/telosnetwork/token-list/main/telosevm.tokenlist.json',
+    // 'https://raw.githubusercontent.com/swapsicledex/swapsicle-default-token-list/master/swapsicle.tokenlist.json',
+  ],
 };
 
 export default tokenlists;
