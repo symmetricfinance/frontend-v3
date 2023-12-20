@@ -412,7 +412,7 @@ export const tokensProvider = (
    */
   function priceFor(address: string): number {
     try {
-      const price = selectByAddressFast(prices.value, getAddress(address));
+      const price = prices.value[address]; // const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
       }
