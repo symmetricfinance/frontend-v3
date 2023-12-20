@@ -189,7 +189,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     gauge: {
       address: '0xa9d436ab58989354a5c3705f24a5130779055e47',
       isKilled: false,
-      relativeWeightCap: '0.6',
+      relativeWeightCap: '0.2',
       addedTimestamp: 1701860941,
     },
   };
@@ -242,7 +242,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     gauge: {
       address: '0xcda30664d0df20b19cb35a834594fa8a6a001e5c',
       isKilled: false,
-      relativeWeightCap: '0.167',
+      relativeWeightCap: '0.17',
       addedTimestamp: 1701860941,
     },
   };
