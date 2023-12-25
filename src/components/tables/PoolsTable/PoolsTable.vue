@@ -38,7 +38,8 @@ import { poolMetadata } from '@/lib/config/metadata';
 import PoolsTableExtraInfo from './PoolsTableExtraInfo.vue';
 import PoolsTableActionSelector from './PoolsTableActionSelector.vue';
 import { PoolAction } from '@/components/contextual/pages/pools/types';
-
+import { isVe8020Pool } from '@/composables/useVotingPools';
+import Ve8020Chip from '@/components/contextual/pages/vebal/LMVoting/Ve8020Chip.vue';
 /**
  * TYPES
  */
@@ -379,6 +380,8 @@ function goToPoolPage(id: string) {
               :pickedTokens="selectedTokens"
             />
           </div>
+          <Ve8020Chip v-if="isVe8020Pool(pool)" />
+
           <PoolsTableExtraInfo :pool="pool" />
         </div>
       </template>
