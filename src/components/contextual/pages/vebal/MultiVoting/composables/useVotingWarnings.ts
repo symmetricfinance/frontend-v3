@@ -13,10 +13,10 @@ export function useVotingWarnings(pool: VotingPool) {
   // Is votes next period value above voting cap?
   const votesNextPeriodOverCap = computed((): boolean => {
     const gaugeVoteWeightNormalized = scale(pool.votesNextPeriod, -18);
-    if (isVeBalGauge) {
-      const veBalMaxVotingWeight = '0.1';
-      return gaugeVoteWeightNormalized.gte(bnum(veBalMaxVotingWeight));
-    }
+    // if (isVeBalGauge) {
+    //   const veBalMaxVotingWeight = '0.1';
+    //   return gaugeVoteWeightNormalized.gte(bnum(veBalMaxVotingWeight));
+    // }
     if (!pool.gauge.relativeWeightCap) return false;
 
     return gaugeVoteWeightNormalized.gte(bnum(pool.gauge.relativeWeightCap));
@@ -30,9 +30,9 @@ export function useVotingWarnings(pool: VotingPool) {
     if (votesNextPeriodOverCap.value) {
       if (isVeBalGauge) {
         return {
-          title: 'You may be wasting your vote: veBAL cap hit',
+          title: 'You may be wasting your vote: vtSYMM cap hit',
           description:
-            'Distributions to veBAL holders of weekly emissions are capped at 10%. Any votes exceeding this amount at Thursday 0:00 UTC will not be counted.',
+            'Distributions to vtSYMM holders of weekly emissions are capped at 50%. Any votes exceeding this amount at Thursday 0:00 UTC will not be counted.',
         };
       } else {
         return {

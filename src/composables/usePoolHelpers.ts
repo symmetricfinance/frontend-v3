@@ -309,7 +309,11 @@ export function absMaxBoostApr(aprs: AprBreakdown): string {
 /**
  * @summary Returns total APR label, whether range or single value.
  */
-export function totalAprLabel(aprs: AprBreakdown, boost?: string): string {
+export function totalAprLabel(
+  aprs: AprBreakdown,
+  boost?: string,
+  showMax?: boolean
+): string {
   if (aprs.swapFees > APR_THRESHOLD) {
     return '-';
   }
@@ -320,6 +324,9 @@ export function totalAprLabel(aprs: AprBreakdown, boost?: string): string {
     const minAPR = numF(absMaxApr(aprs, boost), FNumFormats.bp);
     const maxAPR = numF(absMaxBoostApr(aprs), FNumFormats.bp);
     return `${minAPR} - ${maxAPR}`;
+  }
+  if (showMax) {
+    return numF(aprs.max, FNumFormats.bp);
   }
   if (
     ((hasBalEmissions(aprs) || hasProtocolRewards(aprs)) &&

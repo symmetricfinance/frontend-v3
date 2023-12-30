@@ -269,10 +269,9 @@ function boostFor(pool: Pool): string {
 }
 
 function aprLabelFor(pool: Pool): string {
-  console.log(pool.id);
   const poolAPRs = pool?.apr;
   if (!poolAPRs) return '0';
-  const label = totalAprLabel(poolAPRs, boostFor(pool));
+  const label = totalAprLabel(poolAPRs, boostFor(pool), props.showPoolShares);
   console.log(label);
   return label;
 }
