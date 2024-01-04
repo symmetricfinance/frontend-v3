@@ -137,7 +137,7 @@ export const rewards = {
       symbol: 'WTLOS-USDT',
       token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
       tokenSymbol: 'WTLOS',
-      gauge: '0a9d436ab58989354a5c3705f24a5130779055e47',
+      gauge: '0xa9d436ab58989354a5c3705f24a5130779055e47',
       rate: BigInt('10000000000000000000000') / BigInt('604800'),
       period_finish: 0,
       decimals: 18,

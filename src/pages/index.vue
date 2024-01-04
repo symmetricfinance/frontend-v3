@@ -18,7 +18,9 @@ import PoolFeatureSelect from '@/components/inputs/PoolFeatureSelect.vue';
 import { useTokens } from '@/providers/tokens.provider';
 import { PoolAttributeFilter, PoolTypeFilter } from '@/types/pools';
 import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedInAffectedPoolAlert.vue';
+import useNumbers from '@/composables/useNumbers';
 
+const { fNum } = useNumbers();
 const featuredProtocolsSentinel = ref<HTMLDivElement | null>(null);
 const isFeaturedProtocolsVisible = ref(false);
 useIntersectionObserver(featuredProtocolsSentinel, ([{ isIntersecting }]) => {
@@ -62,6 +64,31 @@ const { upToSmallBreakpoint } = useBreakpoints();
 const { networkSlug, networkConfig } = useNetwork();
 
 const isPaginated = computed(() => pools.value.length >= 10);
+
+const totalLiquidity = computed(() => {
+  return pools.value.reduce((total, pool) => {
+    return total + Number(pool.totalLiquidity);
+  }, 0);
+});
+
+const tvl = computed(() => {
+  return fNum(totalLiquidity.value, {
+    style: 'currency',
+    maximumFractionDigits: 0,
+  });
+});
+
+const volumeSnapshot = computed(() => {
+  return pools.value.reduce((total, pool) => {
+    return total + Number(pool.volumeSnapshot);
+  }, 0);
+});
+
+const feesSnapshot = computed(() => {
+  return pools.value.reduce((total, pool) => {
+    return total + Number(pool.feesSnapshot);
+  }, 0);
+});
 
 /**
  * METHODS
@@ -179,11 +206,39 @@ onBeforeMount(async () => {
       <UserInvestedInAffectedPoolAlert />
       <BalStack vertical>
         <div class="px-4 xl:px-0">
-          <div class="flex justify-between items-end mb-2">
+          <div>
             <h3>
               {{ networkConfig.chainName }}
               <span class="lowercase">{{ $t('pools') }}</span>
             </h3>
+          </div>
+          <BalLoadingBlock
+            v-if="isLoading"
+            :class="['', 'min-w-full']"
+            square
+            :style="{ width: `200px`, height: '48px' }"
+          />
+          <div
+            v-else
+            class="flex justify-start items-center p-4 mt-4 mb-4 space-x-4 text-sm dark:bg-gray-850 rounded-lg border dark:border-0"
+          >
+            <div>
+              TVL: <span class="font-bold">{{ tvl }}</span>
+            </div>
+            <div>
+              Volume 24h:
+              <span class="font-bold">{{
+                fNum(volumeSnapshot, { style: 'currency' })
+              }}</span>
+            </div>
+            <div>
+              Fees 24h:
+              <span class="font-bold">{{
+                fNum(feesSnapshot, { style: 'currency' })
+              }}</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-end mb-2">
             <BalBtn
               v-if="upToSmallBreakpoint"
               color="blue"
