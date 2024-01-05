@@ -16,7 +16,7 @@ import { isVeBalSupported } from '@/composables/useVeBAL';
 const showStakeModal = ref(false);
 const stakePool = ref<Pool | undefined>();
 const networkName = configService.network.shortName;
-const hiddenColumns = ['poolVolume', 'migrate', 'lockEndDate', 'volume'];
+const hiddenColumns = ['apr', 'poolVolume', 'migrate', 'lockEndDate', 'volume'];
 
 /**
  * PROVIDERS
