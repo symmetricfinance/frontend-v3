@@ -320,6 +320,36 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     },
   };
 
+  const WTLOS_USDC: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x2b014535525aad053b8811c22a337e57caae82df00020000000000000000000f',
+    address: '0x2b014535525aAD053B8811c22a337e57caaE82DF',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '40USDT-60WTLOS',
+    tokens: [
+      {
+        address: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+        weight: '0.6',
+        symbol: 'WTLOS',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/telos.png',
+      },
+      {
+        address: '0xF9485b3fffd191e28a089C21cD745cc228a181E3',
+        weight: '0.4',
+        symbol: 'USDC',
+        logoURI:
+          'https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png',
+      },
+    ],
+    gauge: {
+      address: '0x9614933e16d6753ee9be1736b2850862984fdc3a',
+      isKilled: false,
+      relativeWeightCap: '0.2',
+      addedTimestamp: 1705510584,
+    },
+  };
+
   const tSYMM_WTLOS: ApiVotingPool = {
     chain: testnet as GqlChain,
     id: '0xbf0fa44e5611c31429188b7dcc59ffe794d1980e000200000000000000000009',
@@ -381,6 +411,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     BTCb_ETH_USDC,
     USDM_USDC_USDT,
     rfTLOS_STLOS,
+    WTLOS_USDC,
     Team_Allocation,
   ];
 }
