@@ -29,6 +29,7 @@ export default class BlockService {
   public async fetchBlockByApprox(timestamp: string): Promise<number> {
     const secsSinceTimestamp = getSecondsSince(Number(timestamp));
     const currentBlock = await this.rpc.getBlockNumber();
+
     const blocksSinceTimestamp = Math.floor(
       secsSinceTimestamp / this.config.network.blockTime
     );
