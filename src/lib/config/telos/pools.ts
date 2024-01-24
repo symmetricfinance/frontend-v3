@@ -79,7 +79,7 @@ const pools: Pools = {
     },
   },
   Deep: [
-    '0x2db50a0e0310723ef0c2a165cb9a9f80d772ba2f00020000000000000000000d', // Weth/stabal
+    '0x5e99843486cf052baf0925a0cdeb40920477295900000000000000000000000b', // USDM/USDC-USDT
   ],
   Deprecated: {},
   GaugeMigration: {},
