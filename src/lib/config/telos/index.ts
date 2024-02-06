@@ -25,8 +25,7 @@ const config: Config = {
   explorer: 'https://teloscan.io',
   explorerName: 'Teloscan',
   subgraph:
-    'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos/prod/gn',
-
+    'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
   balancerApi: '',
   poolsUrlV2:
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
