@@ -43,6 +43,15 @@ export interface EncodeJoinPoolInput {
   outputReference: BigNumber;
 }
 
+export interface EncodeWrapAaveStaticTokenInput {
+  staticToken: string;
+  sender: string;
+  recipient: string;
+  amount: BigNumberish;
+  fromUnderlying: boolean;
+  outputReference: BigNumberish;
+}
+
 export interface EncodeUnwrapAaveStaticTokenInput {
   staticToken: string;
   sender: string;
