@@ -10,14 +10,14 @@ import { Config, Network } from './types';
 // import polygon from './polygon';
 // import sepolia from './sepolia';
 // import zkevm from './zkevm';
-import telos from './telos';
-import telosTestnet from './telos-testnet';
-// import celo from './celo';
+// import telos from './telos';
+// import telosTestnet from './telos-testnet';
+import celo from './celo';
 
 const config: Record<Network | number, Config> = {
-  [Network.TELOS]: telos,
-  [Network.TELOSTESTNET]: telosTestnet,
-  // [Network.CELO]: celo,
+  // [Network.TELOS]: telos,
+  // [Network.TELOSTESTNET]: telosTestnet,
+  [Network.CELO]: celo,
   // [Network.MAINNET]: mainnet,
   // [Network.GOERLI]: goerli,
   // [Network.POLYGON]: polygon,
