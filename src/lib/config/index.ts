@@ -4,7 +4,7 @@ import { Config, Network } from './types';
 // import avalanche from './avalanche';
 // import base from './base';
 // import goerli from './goerli';
-// import gnosisChain from './gnosis-chain';
+import gnosisChain from './gnosis-chain';
 // import mainnet from './mainnet';
 // import optimism from './optimism';
 // import polygon from './polygon';
@@ -23,7 +23,7 @@ const config: Record<Network | number, Config> = {
   // [Network.POLYGON]: polygon,
   // [Network.ARBITRUM]: arbitrum,
   // [Network.OPTIMISM]: optimism,
-  // [Network.GNOSIS]: gnosisChain,
+  [Network.GNOSIS]: gnosisChain,
   // [Network.ZKEVM]: zkevm,
   // [Network.AVALANCHE]: avalanche,
   // [Network.SEPOLIA]: sepolia,
