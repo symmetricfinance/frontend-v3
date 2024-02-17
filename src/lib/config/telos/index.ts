@@ -5,7 +5,7 @@ import pools from './pools';
 import tokenlists from './tokenlists';
 import tokens from './tokens';
 import rateProviders from './rateProviders';
-// import { rewards } from './rewards';
+import { rewards } from './rewards';
 
 const config: Config = {
   key: '40',
@@ -25,15 +25,15 @@ const config: Config = {
   explorer: 'https://teloscan.io',
   explorerName: 'Teloscan',
   subgraph:
-    'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
+    'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos/prod/gn',
   balancerApi: '',
   poolsUrlV2:
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
   subgraphs: {
     main: [
-      'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
-
       'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos/prod/gn',
+
+      'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
     ],
     aave: '',
     gauge:
@@ -71,7 +71,7 @@ const config: Config = {
   },
   tokenlists,
   rateProviders,
-  // rewards,
+  rewards,
 };
 
 export default config;
