@@ -5,7 +5,7 @@ import pools from './pools';
 import tokenlists from './tokenlists';
 import tokens from './tokens';
 import rateProviders from './rateProviders';
-import { rewards } from './rewards';
+// import { rewards } from './rewards';
 
 const config: Config = {
   key: '40',
@@ -71,7 +71,7 @@ const config: Config = {
   },
   tokenlists,
   rateProviders,
-  rewards,
+  // rewards,
 };
 
 export default config;
