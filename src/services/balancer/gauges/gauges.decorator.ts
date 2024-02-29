@@ -34,12 +34,14 @@ export class GaugesDecorator {
 
     const nativeGauges = subgraphGauges.filter(gauge => !gauge.streamer);
     this.callClaimableRewards(nativeGauges, userAddress, gaugesDataMap, false);
-    const oldL2Gauges = subgraphGauges.filter(gauge => !!gauge.streamer);
-    this.callClaimableRewards(oldL2Gauges, userAddress, gaugesDataMap, true);
+    // const oldL2Gauges = subgraphGauges.filter(gauge => !!gauge.streamer);
+    // this.callClaimableRewards(oldL2Gauges, userAddress, gaugesDataMap, true);
 
     gaugesDataMap = await this.multicaller.execute<OnchainGaugeDataMap>(
       gaugesDataMap
     );
+
+    console.log(gaugesDataMap);
 
     return subgraphGauges.map(subgraphGauge => ({
       ...subgraphGauge,
@@ -97,13 +99,15 @@ export class GaugesDecorator {
     userAddress: string
   ) {
     subgraphGauges.forEach(gauge => {
-      this.multicaller.call({
-        key: `${gauge.id}.claimableTokens`,
-        address: gauge.id,
-        function: 'claimable_tokens',
-        abi: ['function claimable_tokens(address) view returns (uint256)'],
-        params: [userAddress],
-      });
+      if (gauge.isPreferentialGauge) {
+        this.multicaller.call({
+          key: `${gauge.id}.claimableTokens`,
+          address: gauge.id,
+          function: 'claimable_tokens',
+          abi: ['function claimable_tokens(address) view returns (uint256)'],
+          params: [userAddress],
+        });
+      }
     });
   }
 
