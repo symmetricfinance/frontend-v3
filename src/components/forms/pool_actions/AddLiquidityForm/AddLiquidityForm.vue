@@ -86,11 +86,15 @@ const excludedTokens = computed((): string[] => {
 });
 
 const joinTokensWithBalance = computed<string[]>(() =>
-  poolJoinTokens.value.filter(
-    address =>
-      includesAddress(tokensWithBalance.value, address) ||
-      isSameAddress(address, wrappedNativeAsset.value.address)
-  )
+  poolJoinTokens.value.filter(address => {
+    console.log('address', address);
+    console.log('tokensWithBalance.value', tokensWithBalance.value);
+    address
+      ? includesAddress(tokensWithBalance.value, address)
+      : false || wrappedNativeAsset.value.address
+      ? isSameAddress(address, wrappedNativeAsset.value.address)
+      : false;
+  })
 );
 
 const joinTokensWithoutBalance = computed<string[]>(() =>
