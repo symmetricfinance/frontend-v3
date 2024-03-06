@@ -36,7 +36,7 @@ export function testnetVotingPools(
       address: '0xec678e92afe25bc5ba4bc2e1ff386c775270e49e',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
     },
   };
 
@@ -66,7 +66,7 @@ export function testnetVotingPools(
       address: '0xe4c412962fab7f2d406c43a8da95c68f9d60f24e',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
     },
   };
 
@@ -130,7 +130,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
       address: '0xec678e92afe25bc5ba4bc2e1ff386c775270e49e',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
     },
   };
 
@@ -160,7 +160,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
       address: '0xe4c412962fab7f2d406c43a8da95c68f9d60f24e',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
     },
   };
 
@@ -189,7 +189,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     gauge: {
       address: '0xa9d436ab58989354a5c3705f24a5130779055e47',
       isKilled: false,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
       addedTimestamp: 1701860941,
     },
   };
@@ -225,7 +225,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     gauge: {
       address: '0x760dd84074f735bd3836718c0916a828d1dda502',
       isKilled: false,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
       addedTimestamp: 1703095734,
     },
   };
@@ -256,7 +256,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
       address: '0x6e0c092b93b5c075239ee61cae811924028899ea',
       isKilled: false,
       addedTimestamp: 1703095734,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
     },
   };
 
@@ -286,7 +286,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
   //     address: '0x08247c710d340d23adfd88ea80893519eaae9b4d',
   //     isKilled: false,
   //     addedTimestamp: 1701860941,
-  //     relativeWeightCap: '0.2',
+  //     relativeWeightCap: '0.1',
   //   },
   // };
 
@@ -316,7 +316,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
       address: '0x5967e7572f925b5e133963ce792001148f57dc08',
       isKilled: false,
       addedTimestamp: 1705464286,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
     },
   };
 
@@ -345,7 +345,126 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     gauge: {
       address: '0x9614933e16d6753ee9be1736b2850862984fdc3a',
       isKilled: false,
-      relativeWeightCap: '0.2',
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const BTCb_STLOS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x0e4907910a6bd1a5e95500f7149dd57d328f65cb000200000000000000000012',
+    address: '0x0e4907910A6bd1A5E95500f7149dd57D328f65Cb',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50BTCb-50STLOS',
+    tokens: [
+      {
+        address: '0x7627b27594bc71e6Ab0fCE755aE8931EB1E12DAC',
+        weight: '0.5',
+        symbol: 'BTCb',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/BTC.b.png',
+      },
+      {
+        address: '0xB4B01216a5Bc8F1C8A33CD990A1239030E60C905',
+        weight: '0.5',
+        symbol: 'STLOS',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/stlos.png',
+      },
+    ],
+    gauge: {
+      address: '0xdf0bd977f7665a4d1d231d5cb68eb296c1ac9bbe',
+      isKilled: false,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const ETH_STLOS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x0485ecd8aa4e0624dd0f5da84139409ab7cee03c000200000000000000000013',
+    address: '0x0485ecd8aa4e0624dd0f5da84139409ab7cee03c',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50ETH-50STLOS',
+    tokens: [
+      {
+        address: '0xA0fB8cd450c8Fd3a11901876cD5f17eB47C6bc50',
+        weight: '0.5',
+        symbol: 'ETH',
+        logoURI: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+      },
+      {
+        address: '0xB4B01216a5Bc8F1C8A33CD990A1239030E60C905',
+        weight: '0.5',
+        symbol: 'STLOS',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/stlos.png',
+      },
+    ],
+    gauge: {
+      address: '0x99318500f2378d9ae4d69da4e4b006c79d828e69',
+      isKilled: false,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const TSOUL_TSYMM: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xbb8a33dbbf10882d3d8d9180c56ff13ad6fd917d000200000000000000000011',
+    address: '0xbb8a33dbbf10882d3d8d9180c56ff13ad6fd917d',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '70TSOUL-30tSYMM',
+    tokens: [
+      {
+        address: '0x78e05bc07e498f3191288c72a96fe1c4f7f6bdef',
+        weight: '0.7',
+        symbol: 'TSOUL',
+        logoURI:
+          'https://raw.githubusercontent.com/swapsicledex/swapsicle-token-list/master/logos/telos/0x78E05bC07e498f3191288c72a96Fe1c4f7f6Bdef/logo.png',
+      },
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.3',
+        symbol: 'tSYMM',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/TSYMM.png',
+      },
+    ],
+    gauge: {
+      address: '0x2a1cdad447828d412c56a2cfda831d4bfc367f66',
+      isKilled: false,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const TKIND_TSOUL: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x09ef3684052c0566caa6fc61008922030ff455b1000200000000000000000010',
+    address: '0x09ef3684052c0566caa6fc61008922030ff455b1',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50TKIND-50TSOUL',
+    tokens: [
+      {
+        address: '0x5fb2e2e655d03636b30c4e1ac1c96dd16330bde9',
+        weight: '0.5',
+        symbol: 'TKIND',
+        logoURI:
+          'https://raw.githubusercontent.com/swapsicledex/swapsicle-token-list/master/logos/telos/0x5FB2E2e655d03636B30c4e1AC1C96dD16330bdE9/logo.png',
+      },
+      {
+        address: '0x78e05bc07e498f3191288c72a96fe1c4f7f6bdef',
+        weight: '0.5',
+        symbol: 'TSOUL',
+        logoURI:
+          'https://raw.githubusercontent.com/swapsicledex/swapsicle-token-list/master/logos/telos/0x78E05bC07e498f3191288c72a96Fe1c4f7f6Bdef/logo.png',
+      },
+    ],
+    gauge: {
+      address: '0x9aad8c23a5d1a99bd38172dc0a085392fe1eeef5',
+      isKilled: false,
+      relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
     },
   };
@@ -411,6 +530,10 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     BTCb_ETH_USDC,
     USDM_USDC_USDT,
     rfTLOS_STLOS,
+    BTCb_STLOS,
+    ETH_STLOS,
+    TSOUL_TSYMM,
+    TKIND_TSOUL,
     WTLOS_USDC,
     Team_Allocation,
   ];

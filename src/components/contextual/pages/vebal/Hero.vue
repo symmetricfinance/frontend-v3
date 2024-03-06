@@ -60,7 +60,7 @@ function navigateToGetVeBAL() {
           </BalBtn>
           <BalBtn
             tag="a"
-            href="https://app.gitbook.com/o/NKTnzcgjVQfCtEzzgtha/s/wkytfAGEDQIWmdtqgcJz/tsymm-and-vtsymm"
+            href="https://finance-symmetric.gitbook.io/symmetric-v3/tsymm-and-vtsymm"
             target="_blank"
             rel="noreferrer"
             color="white"
