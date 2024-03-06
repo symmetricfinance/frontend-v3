@@ -10,7 +10,7 @@ import {
 import { getMulticaller } from '@/dependencies/Multicaller';
 import { Multicaller } from '@/services/multicalls/multicaller';
 
-const MAX_REWARD_TOKENS = 8;
+const MAX_REWARD_TOKENS = 2;
 
 export class GaugesDecorator {
   multicaller: Multicaller;
@@ -35,13 +35,11 @@ export class GaugesDecorator {
     const nativeGauges = subgraphGauges.filter(gauge => !gauge.streamer);
     this.callClaimableRewards(nativeGauges, userAddress, gaugesDataMap, false);
     // const oldL2Gauges = subgraphGauges.filter(gauge => !!gauge.streamer);
-    // this.callClaimableRewards(oldL2Gauges, userAddress, gaugesDataMap, true);
+    //this.callClaimableRewards(oldL2Gauges, userAddress, gaugesDataMap, true);
 
     gaugesDataMap = await this.multicaller.execute<OnchainGaugeDataMap>(
       gaugesDataMap
     );
-
-    console.log(gaugesDataMap);
 
     return subgraphGauges.map(subgraphGauge => ({
       ...subgraphGauge,
@@ -67,14 +65,16 @@ export class GaugesDecorator {
    */
   private callRewardTokens(subgraphGauges: SubgraphGauge[]) {
     subgraphGauges.forEach(gauge => {
-      for (let i = 0; i < MAX_REWARD_TOKENS; i++) {
-        this.multicaller.call({
-          key: `${gauge.id}.rewardTokens[${i}]`,
-          address: gauge.id,
-          abi: ['function reward_tokens(uint256) view returns (address)'],
-          function: 'reward_tokens',
-          params: [i],
-        });
+      if (gauge.isPreferentialGauge) {
+        for (let i = 0; i < MAX_REWARD_TOKENS; i++) {
+          this.multicaller.call({
+            key: `${gauge.id}.rewardTokens[${i}]`,
+            address: gauge.id,
+            abi: ['function reward_tokens(uint256) view returns (address)'],
+            function: 'reward_tokens',
+            params: [i],
+          });
+        }
       }
     });
   }
@@ -100,13 +100,14 @@ export class GaugesDecorator {
   ) {
     subgraphGauges.forEach(gauge => {
       if (gauge.isPreferentialGauge) {
-        this.multicaller.call({
+        const call = this.multicaller.call({
           key: `${gauge.id}.claimableTokens`,
           address: gauge.id,
           function: 'claimable_tokens',
           abi: ['function claimable_tokens(address) view returns (uint256)'],
           params: [userAddress],
         });
+        return call;
       }
     });
   }
@@ -146,7 +147,6 @@ export class GaugesDecorator {
           : [
               'function claimable_reward(address,address) view returns (uint256)',
             ];
-
         this.multicaller.call({
           key: `${gauge.id}.claimableRewards.${rewardToken}`,
           address: contractAddress,

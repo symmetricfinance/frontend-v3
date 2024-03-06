@@ -25,7 +25,8 @@ export default function useGaugesQuery(options: QueryOptions = {}) {
    */
   const queryFn = async () => {
     try {
-      return await gaugesSubgraphService.gauges.get();
+      const gauges = await gaugesSubgraphService.gauges.get();
+      return gauges.filter(g => g.isPreferentialGauge);
     } catch (error) {
       console.error('Failed to fetch gauges', error);
       return [];
