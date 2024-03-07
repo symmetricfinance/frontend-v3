@@ -29,7 +29,6 @@ export class GaugesDecorator {
   ): Promise<Gauge[]> {
     this.callRewardTokens(subgraphGauges);
     this.callClaimableTokens(subgraphGauges, userAddress);
-
     let gaugesDataMap = await this.multicaller.execute<OnchainGaugeDataMap>();
 
     const nativeGauges = subgraphGauges.filter(gauge => !gauge.streamer);
@@ -100,6 +99,11 @@ export class GaugesDecorator {
   ) {
     subgraphGauges.forEach(gauge => {
       if (gauge.isPreferentialGauge) {
+        if (
+          gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
+          gauge.symbol == '50TKIND-50TSOUL-gauge'
+        )
+          return;
         const call = this.multicaller.call({
           key: `${gauge.id}.claimableTokens`,
           address: gauge.id,
