@@ -145,7 +145,6 @@ export function isSameAddress(address1: string, address2: string): boolean {
 
 export function includesAddress(addresses: string[], address: string): boolean {
   if (!address || !addresses) return false;
-  console.log('addresses', addresses, 'address', address);
   addresses = addresses.map(a => (a ? getAddress(a) : ''));
   return addresses.includes(getAddress(address));
 }

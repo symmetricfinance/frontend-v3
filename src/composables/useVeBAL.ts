@@ -18,8 +18,10 @@ const showRedirectModal = ref(false);
 /**
  * COMPUTED
  */
-export const isVeBalSupported = computed<boolean>(
-  () => configService.network.addresses.veBAL !== ''
+export const isVeBalSupported = computed<boolean>(() =>
+  configService.network.addresses.veBAL
+    ? configService.network.addresses.veBAL !== ''
+    : false
 );
 
 export const isGaugesSupported = computed<boolean>(

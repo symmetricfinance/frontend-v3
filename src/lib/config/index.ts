@@ -10,12 +10,12 @@ import gnosisChain from './gnosis-chain';
 // import polygon from './polygon';
 // import sepolia from './sepolia';
 // import zkevm from './zkevm';
-// import telos from './telos';
+import telos from './telos';
 // import telosTestnet from './telos-testnet';
 import celo from './celo';
 
 const config: Record<Network | number, Config> = {
-  // [Network.TELOS]: telos,
+  [Network.TELOS]: telos,
   // [Network.TELOSTESTNET]: telosTestnet,
   [Network.CELO]: celo,
   // [Network.MAINNET]: mainnet,
