@@ -61,3 +61,33 @@ export function useVotingWarnings(pool: VotingPool) {
     timeLockedVoteWarning,
   };
 }
+
+export function useVoteOverCap(
+  pool: VotingPool,
+  userVote: number,
+  previousUserVote: number
+): boolean {
+  // If pool.gauge.relativeWeightCap is undefined, return false
+  if (!pool.gauge.relativeWeightCap) {
+    return false;
+  }
+
+  // Convert votesNextPeriod, userVote, previousUserVote, and cap to BigNumbers
+  const votesNextPeriod = bnum(pool.votesNextPeriod);
+  const userVoteBig = bnum(userVote);
+  const previousUserVoteBig = bnum(previousUserVote);
+  const capBig = bnum(pool.gauge.relativeWeightCap);
+
+  // Calculate the gaugeVoteWeightNormalized by subtracting the previous user vote from the votesNextPeriod of the pool and adding the new user vote
+  const gaugeVoteWeightNormalized = votesNextPeriod
+    .minus(previousUserVoteBig)
+    .plus(userVoteBig);
+
+  // If the gaugeVoteWeightNormalized is greater than or equal to the cap, return true
+  if (gaugeVoteWeightNormalized.gte(capBig)) {
+    return true;
+  }
+
+  // Otherwise, return false
+  return false;
+}
