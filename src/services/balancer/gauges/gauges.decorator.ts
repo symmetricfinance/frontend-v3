@@ -72,11 +72,11 @@ export class GaugesDecorator {
   private callRewardTokens(subgraphGauges: SubgraphGauge[]) {
     subgraphGauges.forEach(gauge => {
       if (gauge.isPreferentialGauge) {
-        // if (
-        //   gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
-        //   gauge.symbol == '50TKIND-50TSOUL-gauge'
-        // )
-        //   return;
+        if (
+          gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
+          gauge.symbol == '50TKIND-50TSOUL-gauge'
+        )
+          return;
         for (let i = 0; i < MAX_REWARD_TOKENS; i++) {
           this.multicaller.call({
             key: `${gauge.id}.rewardTokens[${i}]`,
@@ -111,11 +111,11 @@ export class GaugesDecorator {
   ) {
     subgraphGauges.forEach(gauge => {
       if (gauge.isPreferentialGauge) {
-        // if (
-        //   gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
-        //   gauge.symbol == '50TKIND-50TSOUL-gauge'
-        // )
-        //   return;
+        if (
+          gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
+          gauge.symbol == '50TKIND-50TSOUL-gauge'
+        )
+          return;
         const call = this.multicaller.call({
           key: `${gauge.id}.claimableTokens`,
           address: gauge.id,
