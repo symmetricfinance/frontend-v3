@@ -143,6 +143,7 @@ export class GaugesDecorator {
       : 'claimable_reward';
 
     subgraphGauges.forEach(gauge => {
+      if (!gaugesDataMap[gauge.id]) return;
       gaugesDataMap[gauge.id].rewardTokens.forEach(rewardToken => {
         if (rewardToken === AddressZero) return;
 
