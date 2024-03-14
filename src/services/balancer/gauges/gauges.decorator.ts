@@ -50,7 +50,6 @@ export class GaugesDecorator {
    * @summary Format raw onchain data fetched from multicalls.
    */
   private format(gaugeData: OnchainGaugeData): OnchainGaugeData {
-    console.log(gaugeData);
     if (!gaugeData) {
       return {
         rewardTokens: [],
@@ -112,11 +111,11 @@ export class GaugesDecorator {
   ) {
     subgraphGauges.forEach(gauge => {
       if (gauge.isPreferentialGauge) {
-        if (
-          gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
-          gauge.symbol == '50TKIND-50TSOUL-gauge'
-        )
-          return;
+        // if (
+        //   gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
+        //   gauge.symbol == '50TKIND-50TSOUL-gauge'
+        // )
+        //   return;
         const call = this.multicaller.call({
           key: `${gauge.id}.claimableTokens`,
           address: gauge.id,
