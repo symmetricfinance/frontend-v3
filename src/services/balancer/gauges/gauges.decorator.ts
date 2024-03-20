@@ -10,7 +10,7 @@ import {
 import { getMulticaller } from '@/dependencies/Multicaller';
 import { Multicaller } from '@/services/multicalls/multicaller';
 
-const MAX_REWARD_TOKENS = 2;
+const MAX_REWARD_TOKENS = 3;
 
 export class GaugesDecorator {
   multicaller: Multicaller;
@@ -39,7 +39,6 @@ export class GaugesDecorator {
     gaugesDataMap = await this.multicaller.execute<OnchainGaugeDataMap>(
       gaugesDataMap
     );
-
     return subgraphGauges.map(subgraphGauge => ({
       ...subgraphGauge,
       ...this.format(gaugesDataMap[subgraphGauge.id]),
@@ -146,9 +145,11 @@ export class GaugesDecorator {
       : 'claimable_reward';
 
     subgraphGauges.forEach(gauge => {
-      if (!gaugesDataMap[gauge.id] || !gaugesDataMap[gauge.id].claimableRewards)
+      if (!gaugesDataMap[gauge.id] || !gaugesDataMap[gauge.id].rewardTokens)
         return;
+
       gaugesDataMap[gauge.id].rewardTokens.forEach(rewardToken => {
+        console.log('called');
         if (rewardToken === AddressZero) return;
 
         const params = shouldUseRewardHelper
