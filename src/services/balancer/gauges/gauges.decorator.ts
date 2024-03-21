@@ -10,7 +10,7 @@ import {
 import { getMulticaller } from '@/dependencies/Multicaller';
 import { Multicaller } from '@/services/multicalls/multicaller';
 
-const MAX_REWARD_TOKENS = 3;
+const MAX_REWARD_TOKENS = 2;
 
 export class GaugesDecorator {
   multicaller: Multicaller;
@@ -28,8 +28,8 @@ export class GaugesDecorator {
     userAddress: string
   ): Promise<Gauge[]> {
     this.callRewardTokens(subgraphGauges);
-    this.callClaimableTokens(subgraphGauges, userAddress);
     let gaugesDataMap = await this.multicaller.execute<OnchainGaugeDataMap>();
+    this.callClaimableTokens(subgraphGauges, userAddress);
 
     const nativeGauges = subgraphGauges.filter(gauge => !gauge.streamer);
     this.callClaimableRewards(nativeGauges, userAddress, gaugesDataMap, false);
@@ -71,11 +71,15 @@ export class GaugesDecorator {
   private callRewardTokens(subgraphGauges: SubgraphGauge[]) {
     subgraphGauges.forEach(gauge => {
       if (gauge.isPreferentialGauge) {
-        if (
-          // gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
-          gauge.symbol == '50TKIND-50TSOUL-gauge'
-        )
-          return;
+        // if (
+        //   gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
+        //   gauge.symbol == '50TKIND-50TSOUL-gauge' ||
+        //   gauge.symbol == '69Trump-31WTLOS-gauge' ||
+        //   gauge.symbol == '69CMDR-31WTLOS-gauge' ||
+        //   gauge.symbol == '80MST-20USDM-gauge'
+        // ) {
+        //   return;
+        // }
         for (let i = 0; i < MAX_REWARD_TOKENS; i++) {
           this.multicaller.call({
             key: `${gauge.id}.rewardTokens[${i}]`,
@@ -109,17 +113,35 @@ export class GaugesDecorator {
     subgraphGauges: SubgraphGauge[],
     userAddress: string
   ) {
-    subgraphGauges.forEach(gauge => {
+    subgraphGauges.forEach(async gauge => {
       if (gauge.isPreferentialGauge) {
         if (
-          // gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
+          gauge.symbol == '70TSOUL-30tSYMM-gauge' ||
           gauge.symbol == '50TKIND-50TSOUL-gauge' ||
           gauge.symbol == '69Trump-31WTLOS-gauge' ||
           gauge.symbol == '69CMDR-31WTLOS-gauge' ||
-          gauge.symbol == '80MST-20USDM-gauge'
+          gauge.symbol == '80MST-20USDM-gauge' ||
+          gauge.symbol == '50ETH-50STLOS-gauge' ||
+          gauge.symbol == '50BTCb-50WTLOS-gauge' ||
+          gauge.id == '0x08247c710d340d23adfd88ea80893519eaae9b4d'
         ) {
           return;
         }
+        console.log(gauge.symbol);
+        // try {
+        //   const execute = await this.multicaller.execute({
+        //     key: `${gauge.id}.claimableTokens`,
+        //     address: gauge.id,
+        //     function: 'claimable_tokens',
+        //     abi: ['function claimable_tokens(address) view returns (uint256)'],
+        //     params: [userAddress],
+        //   });
+        //   console.log(execute);
+        // } catch (e) {
+        //   console.log(e);
+        //   console.log(gauge.symbol);
+        //   return;
+        // }
 
         const call = this.multicaller.call({
           key: `${gauge.id}.claimableTokens`,
@@ -128,6 +150,7 @@ export class GaugesDecorator {
           abi: ['function claimable_tokens(address) view returns (uint256)'],
           params: [userAddress],
         });
+
         return call;
       }
     });
