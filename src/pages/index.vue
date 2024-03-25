@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
-import HomePageHero from '@/components/heros/HomePageHero.vue';
+//import HomePageHero from '@/components/heros/HomePageHero.vue';
 import TokenSearchInput from '@/components/inputs/TokenSearchInput.vue';
 import FeaturedProtocols from '@/components/sections/FeaturedProtocols.vue';
 import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
@@ -201,7 +201,7 @@ onBeforeMount(async () => {
 
 <template>
   <div>
-    <HomePageHero />
+    <!-- <HomePageHero /> -->
     <div class="xl:container xl:px-4 pt-10 md:pt-8 xl:mx-auto">
       <UserInvestedInAffectedPoolAlert />
       <BalStack vertical>
