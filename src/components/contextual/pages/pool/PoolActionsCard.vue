@@ -58,7 +58,7 @@ const joinDisabled = computed(
     isMigratablePool(props.pool) ||
     shouldDisableJoins.value ||
     (props.pool.id ===
-      '0x429d4ec4707734b7d9b82d1860202fcba2315481000200000000000000000017' &&
+      '0xcacc06ea569e239d0e4b718e4da1b456d49e06f6000200000000000000000019' &&
       account.value !== '0x510b92c476fc53b5514033c3d73805deb1824337') ||
     (props.pool.id ===
       '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018' &&
