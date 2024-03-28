@@ -433,6 +433,66 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x2a1cdad447828d412c56a2cfda831d4bfc367f66',
+      isKilled: true,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const SOULS_TSYMM: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018',
+    address: '0xcf29825Dfe41E62E218Baa10B791A3D087fA7a83',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '70SOULS-30tSYMM',
+    tokens: [
+      {
+        address: '0xa3b4aee7b43b2fb390420c411ec180b0ae87e9da',
+        weight: '0.7',
+        symbol: 'SOULS',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SOULS.png',
+      },
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.3',
+        symbol: 'tSYMM',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/TSYMM.png',
+      },
+    ],
+    gauge: {
+      address: '0x96b9b9c80b76787e7274b4fadc0d887a6064685c',
+      isKilled: false,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const SOULS_KINDS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018',
+    address: '0xcf29825Dfe41E62E218Baa10B791A3D087fA7a83',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50KINDs-50SOULS',
+    tokens: [
+      {
+        address: '0x143aa2070e3b5414c68a93ba0a99bac8847cbe99',
+        weight: '0.3',
+        symbol: 'KINDs',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/KINDS.png',
+      },
+      {
+        address: '0xa3b4aee7b43b2fb390420c411ec180b0ae87e9da',
+        weight: '0.5',
+        symbol: 'SOULS',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SOULS.png',
+      },
+    ],
+    gauge: {
+      address: '0x89f6ad1eef23c0c272885dde34b2af9be8033c36',
       isKilled: false,
       relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
@@ -463,7 +523,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x9aad8c23a5d1a99bd38172dc0a085392fe1eeef5',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
     },
@@ -628,6 +688,8 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     MST_USDM,
     Trump_WTLOS,
     CMDR_WTLOS,
+    SOULS_TSYMM,
+    SOULS_KINDS,
     Team_Allocation,
   ];
 }
