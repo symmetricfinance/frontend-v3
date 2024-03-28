@@ -46,10 +46,22 @@ type ContractMap = Record<string, string>;
 //   }
 // })();
 
+interface Contract {
+  name: string;
+  address: string;
+}
+
+interface AddressValue {
+  contracts: Contract[];
+}
+
+type Addresses = Record<string, AddressValue>;
+
 async function generate() {
-  const network = 'telos';
+  const network = 'meter';
+
   console.log(`Generating contract addresses for network ${network}...`);
-  const addresses: any = require(`./addresses-temp.json`);
+  const addresses: Addresses = require(`./addresses-${network}.json`);
 
   const contracts: ContractMap = {};
   for (const [, value] of Object.entries(addresses)) {

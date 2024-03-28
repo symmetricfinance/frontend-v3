@@ -1,0 +1,69 @@
+import { Config } from '../types';
+import contracts from './contracts';
+import keys from './keys';
+import pools from './pools';
+import tokenlists from './tokenlists';
+import tokens from './tokens';
+import rateProviders from './rateProviders';
+
+const config: Config = {
+  key: '82',
+  chainId: 82,
+  chainName: 'Meter',
+  name: 'Meter',
+  shortName: 'meter',
+  monorepoName: 'meter',
+  slug: 'meter',
+  network: 'meter',
+  trustWalletNetwork: 'meter',
+  unknown: false,
+  visibleInUI: true,
+  testNetwork: false,
+  rpc: 'https://rpc.meter.io',
+  ws: ``,
+  explorer: 'https://explorer.meter.io/',
+  explorerName: 'Meter Explorer',
+  subgraph: 'http://graph.meter.io:8000/subgraphs/name/symmetric-meter',
+  balancerApi: '',
+  poolsUrlV2:
+    'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
+  subgraphs: {
+    main: ['http://graph.meter.io:8000/subgraphs/name/symmetric-meter'],
+    aave: '',
+    gauge: '',
+    blocks: '',
+  },
+  bridgeUrl: 'https://passport.meter.io/',
+  supportsEIP1559: false,
+  supportsElementPools: false,
+  blockTime: 1.5,
+  nativeAsset: {
+    name: 'MTR',
+    address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+    symbol: 'MTR',
+    decimals: 18,
+    deeplinkId: 'meter',
+    logoURI: 'tokens/mtr.png',
+    minTransactionBuffer: '0.1',
+  },
+  thirdParty: {
+    coingecko: {
+      nativeAssetId: 'meter',
+      platformId: 'ethereum',
+    },
+  },
+  addresses: {
+    ...contracts,
+  },
+  pools,
+  tokens,
+  keys,
+  gauges: {
+    type: 2,
+    weight: 100,
+  },
+  tokenlists,
+  rateProviders,
+};
+
+export default config;

@@ -11,11 +11,13 @@ import { Config, Network } from './types';
 // import sepolia from './sepolia';
 // import zkevm from './zkevm';
 import telos from './telos';
+import meter from './meter';
 import telosTestnet from './telos-testnet';
 // import celo from './celo';
 
 const config: Record<Network | number, Config> = {
   [Network.TELOS]: telos,
+  [Network.METER]: meter,
   [Network.TELOSTESTNET]: telosTestnet,
   // [Network.CELO]: celo,
   // [Network.MAINNET]: mainnet,
