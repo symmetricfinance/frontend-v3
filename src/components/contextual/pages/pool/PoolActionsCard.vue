@@ -38,8 +38,7 @@ const emit = defineEmits<{
 const { isMigratablePool, hasNonApprovedRateProviders } = usePoolHelpers(
   toRef(props, 'pool')
 );
-// const { isWalletReady, startConnectWithInjectedProvider, account } = useWeb3();
-const { isWalletReady, startConnectWithInjectedProvider } = useWeb3();
+const { isWalletReady, startConnectWithInjectedProvider, account } = useWeb3();
 const { networkSlug } = useNetwork();
 const { shouldDisableJoins } = useDisabledJoinPool(props.pool);
 const { balanceFor } = useTokens();
@@ -57,11 +56,11 @@ const joinDisabled = computed(
     isJoinsDisabled(props.pool.id) ||
     hasNonApprovedRateProviders.value ||
     isMigratablePool(props.pool) ||
-    shouldDisableJoins.value
-  // (props.pool.id ===
-  //   '0xcacc06ea569e239d0e4b718e4da1b456d49e06f6000200000000000000000019' &&
-  //   account.value.toLowerCase() !==
-  //     '0x510b92c476fc53b5514033c3d73805deb1824337')
+    shouldDisableJoins.value ||
+    (props.pool.id ===
+      '0xcacc06ea569e239d0e4b718e4da1b456d49e06f6000200000000000000000019' &&
+      account.value.toLowerCase() !==
+        '0x510b92c476fc53b5514033c3d73805deb1824337')
   // (props.pool.id ===
   //   '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018' &&
   //   account.value !== '0x510b92c476fc53b5514033c3d73805deb1824337')
