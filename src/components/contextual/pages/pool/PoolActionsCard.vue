@@ -60,7 +60,7 @@ const joinDisabled = computed(
     (props.pool.id ===
       '0xcacc06ea569e239d0e4b718e4da1b456d49e06f6000200000000000000000019' &&
       account.value.toLowerCase() !==
-        '0x510b92c476fc53b5514033c3d73805deb1824337')
+        '0x510b92c476fc53b5514033c3d73805deb1824337'.toLowerCase())
   // (props.pool.id ===
   //   '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018' &&
   //   account.value !== '0x510b92c476fc53b5514033c3d73805deb1824337')
