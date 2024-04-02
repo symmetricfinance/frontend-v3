@@ -87,6 +87,7 @@ const themeMap = {
   celo: 'celo',
   sepolia: 'celo',
   'gnosis-chain': 'gnosis-chain',
+  meter: 'meter',
 };
 // Function to update theme based on the route slug
 const updateTheme = () => {

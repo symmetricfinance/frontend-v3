@@ -2,7 +2,7 @@ import { Pools } from '@/types/pools';
 
 const pools: Pools = {
   IdsMap: {
-    veBAL: '0xbf0fa44e5611c31429188b7dcc59ffe794d1980e000200000000000000000009',
+    veBAL: '0x0000000000000000000000000000000000000000',
   },
   Pagination: {
     PerPage: 15,
@@ -10,12 +10,12 @@ const pools: Pools = {
     PerPoolInitial: 5,
   },
   BoostsEnabled: true,
-  DelegateOwner: '0xa29F1CA1957c164877F6A277C9791ACA3Ad4BD6D',
+  DelegateOwner: '0x51db3Cc6431fe6297270360dE47345B0149E1F51',
   ZeroAddress: '0x0000000000000000000000000000000000000000',
   DynamicFees: {
     Gauntlet: [],
   },
-  BlockList: [],
+  BlockList: [''],
   IncludedPoolTypes: [
     'Weighted',
     'Stable',
@@ -27,7 +27,9 @@ const pools: Pools = {
     'Managed',
   ],
   Stable: {
-    AllowList: [],
+    AllowList: [
+      '0x1ff97abe4c5a4b7ff90949b637e71626bef0dcee000000000000000000000002', //USDT-USDC-suUSD
+    ],
   },
   Investment: {
     AllowList: [],
@@ -38,21 +40,14 @@ const pools: Pools = {
     AllowList: [],
   },
   Factories: {
-    '0xdd58d43a829067129b8c37f1924d31b1896ac0c6': 'weightedPool', // Weighted V5
-    '0x98add7dc34a382e188be709a72ca8fcdf7e548db': 'composableStablePool', // ComposableStable V5
-    '0x4ed870363d69f0f2c565332342efc68ca82b544b': 'managedPool',
-    '0x266b53bb135f2dbc324b5c5aa281e84f1c105b26': 'liquidityBootstrappingPool',
+    '0xbd5A48ED2c877033EF379e342eC9c6fe16dC5710': 'weightedPool', // Weighted V5
+    '0x7aa0DBFaCa97734F4E4Ae5DF0E3f2f957D76018F': 'composableStablePool', // ComposableStable V5
   },
   Stakable: {
     VotingGaugePools: [],
     AllowList: [],
   },
-  Metadata: {
-    '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000c': {
-      name: 'Symmetric Team Allocation',
-      hasIcon: false,
-    },
-  },
+  Metadata: {},
   Deep: [],
   Deprecated: {},
   GaugeMigration: {},

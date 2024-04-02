@@ -19,7 +19,7 @@ const config: Config = {
   unknown: false,
   visibleInUI: true,
   testNetwork: false,
-  rpc: 'https://rpc.meter.io',
+  rpc: 'https://meter.blockpi.network/v1/rpc/216bb10a3653b0a8131afee4f6cf1982945022b4',
   ws: ``,
   explorer: 'https://explorer.meter.io/',
   explorerName: 'Meter Explorer',
