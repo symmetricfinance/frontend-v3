@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //import HomePageHero from '@/components/heros/HomePageHero.vue';
 import TokenSearchInput from '@/components/inputs/TokenSearchInput.vue';
-import FeaturedProtocols from '@/components/sections/FeaturedProtocols.vue';
+// import FeaturedProtocols from '@/components/sections/FeaturedProtocols.vue';
 import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
 import usePoolFilters from '@/composables/pools/usePoolFilters';
 import useBreakpoints from '@/composables/useBreakpoints';
@@ -47,8 +47,8 @@ const filterPoolAttributes = ref<PoolAttributeFilter[]>([]);
  */
 const router = useRouter();
 const { injectPrices, getToken, tokens } = useTokens();
-const { appNetworkConfig } = useNetwork();
-const isElementSupported = appNetworkConfig.supportsElementPools;
+// const { appNetworkConfig } = useNetwork();
+// const isElementSupported = appNetworkConfig.supportsElementPools;
 const { selectedTokens, addSelectedToken, removeSelectedToken } =
   usePoolFilters();
 
@@ -334,13 +334,13 @@ onBeforeMount(async () => {
           @on-column-sort="onColumnSort"
           @load-more="loadMorePools"
         />
-        <div ref="featuredProtocolsSentinel" />
+        <!-- <div ref="featuredProtocolsSentinel" />
         <div
           v-if="isElementSupported && isFeaturedProtocolsVisible"
-          class="p-4 xl:p-0 mt-12"
+          class="p-4 mt-12 xl:p-0"
         >
           <FeaturedProtocols />
-        </div>
+        </div> -->
       </BalStack>
     </div>
   </div>
