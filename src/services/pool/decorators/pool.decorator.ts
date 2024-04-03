@@ -6,6 +6,7 @@ import { TokenInfoMap } from '@/types/TokenList';
 import PoolService from '../pool.service';
 import { PoolMulticaller } from './pool.multicaller';
 import axios from 'axios';
+import { configService } from '@/services/config/config.service';
 
 /**
  * @summary Decorates a set of pools with additonal data.
@@ -21,26 +22,28 @@ export class PoolDecorator {
     tokens: TokenInfoMap,
     fullDecoration = true
   ): Promise<Pool[]> {
-    const rewardData: any = localStorage.getItem('REWARD_PRICE');
-    if (rewardData) {
-      const { timestamp } = JSON.parse(rewardData);
-      if (isPriceOutdated(timestamp)) {
+    if (configService.network.chainId === 40) {
+      const rewardData: any = localStorage.getItem('REWARD_PRICE');
+      if (rewardData) {
+        const { timestamp } = JSON.parse(rewardData);
+        if (isPriceOutdated(timestamp)) {
+          setRewardPriceInLocalStorage()
+            .then(() => {
+              console.log('REWARD_PRICE has been updated in local storage');
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        }
+      } else {
         setRewardPriceInLocalStorage()
           .then(() => {
-            console.log('REWARD_PRICE has been updated in local storage');
+            console.log('REWARD_PRICE has been set in local storage');
           })
           .catch(error => {
             console.error('Error:', error);
           });
       }
-    } else {
-      setRewardPriceInLocalStorage()
-        .then(() => {
-          console.log('REWARD_PRICE has been set in local storage');
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
     }
     const processedPools = this.pools.map(pool => {
       const poolService = new this.poolServiceClass(pool);
@@ -63,7 +66,6 @@ export class PoolDecorator {
       // decoration of them if the pool came from the API.
       if (fullDecoration) {
         const poolSnapshot = poolSnapshots.find(p => p.id === pool.id);
-        console.log(poolSnapshot);
         poolService.setFeesSnapshot(poolSnapshot);
         poolService.setVolumeSnapshot(poolSnapshot);
         await poolService.setTotalLiquidity();
