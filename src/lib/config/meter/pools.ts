@@ -37,7 +37,9 @@ const pools: Pools = {
   Weighted: {
     // Only effective after given timestamp here: usePool.ts#createdAfterTimestamp
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
-    AllowList: [],
+    AllowList: [
+      '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003', //MTRG/USDT-USDC-suUSD
+    ],
   },
   Factories: {
     '0xbd5A48ED2c877033EF379e342eC9c6fe16dC5710': 'weightedPool', // Weighted V5
@@ -48,7 +50,9 @@ const pools: Pools = {
     AllowList: [],
   },
   Metadata: {},
-  Deep: [],
+  Deep: [
+    '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003', //MTRG/USDT-USDC-suUSD
+  ],
   Deprecated: {},
   GaugeMigration: {},
   BoostedApr: [],
