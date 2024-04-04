@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { useFavicon } from '@vueuse/core';
 import {
   // getRedirectUrlFor,
   handleNetworkSlug,
@@ -92,7 +93,7 @@ function applyNetworkPathRedirects(router: Router): Router {
         const networkChangeCallback = () => {
           hardRedirectTo(`/#${to.fullPath}`);
         };
-
+        useFavicon(`/${networkSlugFromUrl}-favicon.png`);
         handleNetworkSlug(
           networkSlugFromUrl,
           noNetworkChangeCallback,

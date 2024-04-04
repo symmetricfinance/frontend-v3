@@ -195,7 +195,9 @@ watch(poolTypeFilter, newPoolTypeFilter => {
 });
 
 onBeforeMount(async () => {
-  await getTokenPrices();
+  if (networkSlug === 'telos') {
+    await getTokenPrices();
+  }
 });
 </script>
 

@@ -2,7 +2,7 @@ import { TokenConstants } from '../types';
 
 const tokens: TokenConstants = {
   Popular: {
-    Symbols: ['TSYMM', 'WTLOS', 'USDC', 'USDT', 'STLOS'],
+    Symbols: ['WMTR', 'MTRG', 'USDC.eth', 'USDT.eth', 'mSYMM'],
   },
   InitialSwapTokens: {
     input: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
@@ -14,7 +14,8 @@ const tokens: TokenConstants = {
     WETH: '0x160361ce13ec33c993b5cca8f62b6864943eb083',
     BAL: '0x6ab5792b887Eb3F63A8915240F926e829982d3F5',
     rETH: '',
-    // wstETH: '0xB4B01216a5Bc8F1C8A33CD990A1239030E60C905',
+    stETH: '0x215d603293357ca222be92a1bf75eec38def0aad',
+    wstETH: '0xe2de616fbd8cb9180b26fcfb1b761a232fe56717',
   },
   PriceChainMap: {
     /**

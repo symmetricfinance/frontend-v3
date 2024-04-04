@@ -37,7 +37,8 @@ export const networkId = ref<Network>(NETWORK_ID);
 
 export const isMainnet = computed(
   () =>
-    networkId.value === Network.CELO || networkId.value === Network.TELOSTESTNET
+    networkId.value === Network.TELOS ||
+    networkId.value === Network.TELOSTESTNET
 );
 export const isPolygon = computed(() => networkId.value === Network.POLYGON);
 export const isZkevm = computed(() => networkId.value === Network.ZKEVM);
