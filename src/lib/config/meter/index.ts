@@ -23,12 +23,15 @@ const config: Config = {
   ws: ``,
   explorer: 'https://explorer.meter.io/',
   explorerName: 'Meter Explorer',
-  subgraph: 'http://graph.meter.io:8000/subgraphs/name/symmetric-meter',
+  subgraph:
+    'https://graph-meter.voltswap.finance/subgraphs/name/symmetric-meter',
   balancerApi: '',
   poolsUrlV2:
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
   subgraphs: {
-    main: ['http://graph.meter.io:8000/subgraphs/name/symmetric-meter'],
+    main: [
+      'https://graph-meter.voltswap.finance/subgraphs/name/symmetric-meter',
+    ],
     aave: '',
     gauge: '',
     blocks: '',
