@@ -32,7 +32,7 @@ import { cloneDeep, uniq, uniqWith } from 'lodash';
 import {
   appUrl,
   getNetworkSlug,
-  isMainnet,
+  // isMainnet,
   isPoolBoostsEnabled,
 } from './useNetwork';
 import useNumbers, { FNumFormats, numF } from './useNumbers';
@@ -792,8 +792,7 @@ export function usePoolHelpers(pool: Ref<AnyPool> | Ref<undefined>) {
     (): boolean => !!pool.value && isWrappedNativeAsset(pool.value)
   );
   const isMainnetWstETHPool = computed(
-    (): boolean =>
-      !!pool.value && includesWstEth(pool.value.tokensList) && isMainnet.value
+    (): boolean => !!pool.value && includesWstEth(pool.value.tokensList) // && isMainnet.value
   );
 
   const poolJoinTokens = computed((): string[] =>

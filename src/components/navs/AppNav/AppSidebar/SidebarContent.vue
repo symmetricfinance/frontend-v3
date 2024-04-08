@@ -38,14 +38,15 @@ const router = useRouter();
  */
 const blockIcon = ref<HTMLDivElement>();
 
+console.log('isVeBalSupported', isVeBalSupported);
 const navLinks = [
-  { label: t('pool'), path: '/', goal: Goals.ClickNavPools },
+  { label: t('pool'), path: `/${networkSlug}`, goal: Goals.ClickNavPools },
   { label: t('swap'), path: `/${networkSlug}/swap`, goal: Goals.ClickNavSwap },
   {
     label: t('claim'),
     path: `/${networkSlug}/claim`,
     goal: Goals.ClickNavClaim,
-    hide: !isVeBalSupported,
+    hide: !isVeBalSupported.value,
   },
   {
     label: t('portfolio'),
@@ -56,7 +57,7 @@ const navLinks = [
     label: 'vTSYMM',
     path: `/${networkSlug}/vtsymm`,
     goal: Goals.ClickNavVebal,
-    hide: !isVeBalSupported,
+    hide: !isVeBalSupported.value,
   },
   // {
   //   label: 'Airdrop',

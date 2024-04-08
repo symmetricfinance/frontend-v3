@@ -20,6 +20,7 @@ const props = defineProps<Props>();
 
 const pool = toRef(props, 'pool');
 
+console.log(pool);
 /**
  * PROVIDERS
  */

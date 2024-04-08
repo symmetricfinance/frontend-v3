@@ -1,30 +1,27 @@
 import { Contracts } from '../types';
-import * as gnosis from '@/assets/data/contracts/gnosis.json';
 
 const contracts: Contracts = {
   merkleRedeem: '',
-  merkleOrchard: '0x35b50C7955e7D0E8298e043C9F4dCDef737b9f5a',
-  multicall: '0xbb6fab6b627947dae0a75808250d8b2652952cb5',
-  authorizer: gnosis.Authorizer,
-  vault: gnosis.Vault,
-  weightedPoolFactory: gnosis.WeightedPoolFactory,
-  stablePoolFactory: gnosis.StablePoolFactory,
+  merkleOrchard: '',
+  multicall: '0xFAa296891cA6CECAF2D86eF5F7590316d0A17dA0',
+  authorizer: '0xAb758532D05d2A2fc7b2853ebe54Ac17fE17Ea7f',
+  vault: '0x24F87b37F4F249Da61D89c3FF776a55c321B2773',
+  weightedPoolFactory: '0xb13A501fA658389e437E3047d56F2Bf945207a5A',
+  stablePoolFactory: '0xF9e6BE5A015Da5dc29B42ff345bB7Dd1b6C60aC7',
   lidoRelayer: '',
-  balancerHelpers: gnosis.BalancerHelpers,
-  batchRelayer: gnosis.BalancerRelayer,
-  gaugeFactory: gnosis.ChildChainLiquidityGaugeFactory,
-  balancerMinter: gnosis.L2BalancerPseudoMinter,
+  balancerHelpers: '0xe007Ba1c5665567175B4d462f8dba14506e7f592',
+  batchRelayer: '0xDCE2ea355530c098f5B9410b6B2663E0FFf246Bf',
+  gaugeFactory: '',
+  balancerMinter: '',
   gaugeController: '',
   tokenAdmin: '',
   veBAL: '',
-  veDelegationProxy: '0x7A2535f5fB47b8e44c02Ef5D9990588313fe8F05',
+  veDelegationProxy: '',
   veBALHelpers: '',
   feeDistributor: '',
   feeDistributorDeprecated: '',
   faucet: '',
-  gaugeRewardsHelper: gnosis.ChildChainGaugeRewardHelper,
-  gaugeWorkingBalanceHelper: gnosis.ChildChainGaugeWorkingBalanceHelper,
-  gaugeCheckpointer: gnosis.ChildChainGaugeCheckpointer,
+  gaugeRewardsHelper: '',
 };
 
 export default contracts;

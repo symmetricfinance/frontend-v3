@@ -9,7 +9,7 @@ const config: Config = {
   key: '100',
   chainId: 100,
   layerZeroChainId: 145,
-  supportsVeBalSync: true,
+  supportsVeBalSync: false,
   chainName: 'Gnosis Chain',
   name: 'Gnosis Chain',
   shortName: 'Gnosis',
@@ -25,17 +25,16 @@ const config: Config = {
   publicRpc: 'https://rpc.gnosis.gateway.fm',
   explorer: 'https://gnosisscan.io',
   explorerName: 'Gnosisscan',
-  balancerApi: 'https://api.balancer.fi',
+  balancerApi: '',
   subgraph:
-    'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-gnosis-chain-v2',
+    'https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-gnosis',
   poolsUrlV2: '',
   subgraphs: {
     main: [
-      'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-gnosis-chain-v2',
+      'https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-gnosis',
     ],
     aave: '',
-    gauge:
-      'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-gauges-gnosis-chain',
+    gauge: '',
     blocks: '',
   },
   bridgeUrl: 'https://bridge.gnosischain.com/',

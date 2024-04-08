@@ -85,6 +85,7 @@ export enum Network {
   AVALANCHE = 43114,
   SEPOLIA = 11155111,
   TELOS = 40,
+  METER = 82,
   TELOSTESTNET = 41,
   CELO = 42220,
 }

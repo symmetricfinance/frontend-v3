@@ -43,6 +43,7 @@ import useWeb3 from '@/services/web3/useWeb3';
 import { tokenListService } from '@/services/token-list/token-list.service';
 import { AmountToApprove } from '@/composables/approvals/useTokenApprovalActions';
 import BigNumber from 'bignumber.js';
+// import { Token } from '@symmetric-v3/sdk';
 
 const { uris: tokenListUris } = tokenListService;
 
@@ -454,6 +455,7 @@ export const tokensProvider = (
    * Get single token from state
    */
   function getToken(address: string): TokenInfo {
+    if (!address) return { address: '' } as TokenInfo;
     address = getAddressFromPoolId(address); // In case pool ID has been passed
     return selectByAddressFast(tokens.value, getAddress(address)) as TokenInfo;
   }
@@ -498,6 +500,9 @@ export const tokensProvider = (
    * Returns true if the token is the native asset or wrapped native asset
    */
   function isWethOrEth(tokenAddress: string): boolean {
+    console.log(wrappedNativeAsset.value);
+    if (!nativeAsset || !nativeAsset.address || !wrappedNativeAsset.value)
+      return false;
     return (
       isSameAddress(tokenAddress, nativeAsset.address) ||
       isSameAddress(tokenAddress, wrappedNativeAsset.value.address)

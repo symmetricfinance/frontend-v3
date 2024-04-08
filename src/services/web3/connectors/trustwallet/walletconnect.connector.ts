@@ -16,6 +16,7 @@ const {
   // ZKEVM,
   TELOS,
   TELOSTESTNET,
+  CELO,
 } = Network;
 
 export class WalletConnectConnector extends Connector {
@@ -23,7 +24,7 @@ export class WalletConnectConnector extends Connector {
   async connect() {
     const provider = await EthereumProvider.init({
       projectId: '90da6e11e9ce2448f2872dae5e52b189',
-      chains: [TELOS],
+      chains: [TELOS, CELO],
       optionalChains: [
         // AVALANCHE,
         // ARBITRUM,
@@ -32,6 +33,7 @@ export class WalletConnectConnector extends Connector {
         // POLYGON,
         // ZKEVM,
         TELOSTESTNET,
+        CELO,
       ],
       rpcMap: {
         // [MAINNET]: configService.getNetworkRpc(MAINNET),
@@ -43,6 +45,7 @@ export class WalletConnectConnector extends Connector {
         // [ZKEVM]: configService.getNetworkRpc(ZKEVM),
         [TELOS]: configService.getNetworkRpc(TELOS),
         [TELOSTESTNET]: configService.getNetworkRpc(TELOSTESTNET),
+        [CELO]: configService.getNetworkRpc(CELO),
       },
       showQrModal: true,
       qrModalOptions: { themeMode: useDarkMode().darkMode ? 'dark' : 'light' },
