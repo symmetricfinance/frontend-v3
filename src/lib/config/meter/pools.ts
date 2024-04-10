@@ -41,6 +41,7 @@ const pools: Pools = {
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
     AllowList: [
       '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003', //MTRG/USDT-USDC-suUSD
+      '0xc4187382305ea2c953f0a164f02b4d27c9957db5000200000000000000000005', //MST-MTRG
     ],
   },
   Factories: {
