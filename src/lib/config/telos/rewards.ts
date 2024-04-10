@@ -871,4 +871,33 @@ export const rewards = {
       decimals: 18,
     },
   },
+  1712793600: {
+    '0x2d714951f7165a51e8bd61f92d8a979ab0ed4b59000200000000000000000006': {
+      symbol: 'WTLOS-USDT',
+      token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+      tokenSymbol: 'WTLOS',
+      gauge: '0xa9d436ab58989354a5c3705f24a5130779055e47',
+      rate: BigInt('500000000000000000000') / BigInt('604800'),
+      period_finish: 0,
+      decimals: 18,
+    },
+    '0x058d4893efa235d86cceed5a7eef0809b76c8c66000000000000000000000004': {
+      symbol: 'USDC-USDT',
+      token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+      tokenSymbol: 'WTLOS',
+      gauge: '0xe4c412962fab7f2d406c43a8da95c68f9d60f24e',
+      rate: BigInt('500000000000000000000') / BigInt('604800'),
+      period_finish: 0,
+      decimals: 18,
+    },
+    '0x9a77bd2edbbb68173275cda967b76e9213949ace000000000000000000000008': {
+      symbol: 'STLOS-WTLOS',
+      token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+      tokenSymbol: 'WTLOS',
+      gauge: '0xec678e92afe25bc5ba4bc2e1ff386c775270e49e',
+      rate: BigInt('3000000000000000000000') / BigInt('604800'),
+      period_finish: 0,
+      decimals: 18,
+    },
+  },
 };
