@@ -9,7 +9,7 @@ import { bnum } from '@/lib/utils';
 import { Pool } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
 import UnlockPreviewModal from '@/components/forms/lock_actions/UnlockForm/components/UnlockPreviewModal/UnlockPreviewModal.vue';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { symmSymbol, veSymbol } from '@/composables/useNetwork';
 
 type Props = {
   pool: Pool;
@@ -26,7 +26,7 @@ const { balanceFor } = useTokens();
 const { totalLockedValue, lock, isLoadingLockInfo, lockPool, lockPoolToken } =
   useLock();
 const { isWalletReady } = useWeb3();
-const { networkSlug } = useNetwork();
+const { networkSlug, networkConfig } = useNetwork();
 
 /**
  * COMPUTED
@@ -118,9 +118,18 @@ const fiatTotalExpiredLpTokens = computed(() =>
                     </AnimatePresence>
                     <BalTooltip
                       v-if="!lock?.isExpired"
-                      :text="$t('locking.lockedLpTokensTooltip')"
+                      :text="
+                        $t('locking.lockedLpTokensTooltip', {
+                          veSymbol,
+                          symmSymbol,
+                          nativeAsset: networkConfig.nativeAsset,
+                        })
+                      "
                     />
-                    <BalTooltip v-else :text="$t('locking.expiredLockTooltip')">
+                    <BalTooltip
+                      v-else
+                      :text="$t('locking.expiredLockTooltip', { veSymbol })"
+                    >
                       <template #activator>
                         <BalIcon
                           class="text-red-500"
@@ -142,7 +151,14 @@ const fiatTotalExpiredLpTokens = computed(() =>
                         {{ fNum(fiatTotal, FNumFormats.fiat) }}
                       </span>
                     </AnimatePresence>
-                    <BalTooltip :text="$t('locking.unlockedLpTokensTooltip')" />
+                    <BalTooltip
+                      :text="
+                        $t('locking.unlockedLpTokensTooltip', {
+                          symmSymbol,
+                          nativeAsset: networkConfig.nativeAsset,
+                        })
+                      "
+                    />
                   </BalStack>
                 </BalStack>
                 <BalStack horizontal spacing="sm" class="mt-2">

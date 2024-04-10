@@ -5,6 +5,7 @@ import VotingSubmission from './VotingSubmission.vue';
 import { useVotingTransactionState } from './composables/useVotingTransactionState';
 import { voteLockedUntilText } from '../voting-utils';
 import { useVoting } from '../providers/voting.provider';
+import { veSymbol } from '@/composables/useNetwork';
 
 const { isSubmissionStep } = useVoting();
 const { txState, resetTxState } = useVotingTransactionState();
@@ -28,9 +29,10 @@ onUnmounted(() => resetTxState());
           <div class="p-3 -mt-2">
             Your vote directs liquidity mining emissions for the future periods
             starting next Thursday at 0:00 UTC. Voting power is set at the time
-            of a vote. If you get more vtSYMM later, resubmit your vote to use
-            your increased power. Votes are timelocked for 10 days. If you vote
-            now, no edits can be made until {{ voteLockedUntilText() }}.
+            of a vote. If you get more {{ veSymbol }} later, resubmit your vote
+            to use your increased power. Votes are timelocked for 10 days. If
+            you vote now, no edits can be made until
+            {{ voteLockedUntilText() }}.
           </div>
         </BalCard>
       </template>

@@ -8,7 +8,7 @@ import IconTwitter from '@/components/icons/IconTwitter.vue';
 // import IconYoutube from '@/components/icons/IconYoutube.vue';
 import { EXTERNAL_LINKS } from '@/constants/links';
 
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { veSymbol } from '@/composables/useNetwork';
 
 import AppLogo from '../images/AppLogo.vue';
 import { useThirdPartyServices } from '@/composables/useThirdPartyServices';
@@ -71,7 +71,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                 class="text-lg font-medium link"
                 :to="{ name: 'vtsymm', params: { networkSlug } }"
               >
-                {{ $t('vebal') }}
+                {{ $t('vebal', { veSymbol }) }}
               </router-link>
             </p>
           </div>

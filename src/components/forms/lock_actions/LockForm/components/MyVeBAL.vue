@@ -7,6 +7,7 @@ import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import useVeBal from '@/composables/useVeBAL';
 import { bnum } from '@/lib/utils';
 import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -46,7 +47,7 @@ const percentVeBAL = computed(() => {
   <BalCard noPad shadow="none">
     <div class="p-4 w-full border-b dark:border-gray-900">
       <h6>
-        {{ $t('getVeBAL.myVeBAL.title') }}
+        {{ $t('getVeBAL.myVeBAL.title', { veSymbol }) }}
       </h6>
     </div>
     <div class="flex justify-center items-center p-10 -mt-2">

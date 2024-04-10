@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import useNetwork from '@/composables/useNetwork';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
-
-// import coin1 from '@/assets/images/coins/coins-1.png';
-// import coin2 from '@/assets/images/coins/coins-2.png';
-// import coin3 from '@/assets/images/coins/coins-3.png';
 
 /**
  * COMPOSABLES
@@ -13,6 +10,7 @@ import { useRouter } from 'vue-router';
 const { t } = useI18n();
 const router = useRouter();
 
+const { veSymbol } = useNetwork();
 /**
  * COMPUTED
  */
@@ -41,7 +39,7 @@ function navigateToGetVeBAL() {
       <div
         class="py-8 lg:py-4 px-4 lg:px-8 2xl:px-0 xl:pt-0 max-w-md hero-text"
       >
-        <p class="font-medium eyebrow">vTSYMM</p>
+        <p class="font-medium eyebrow">{{ veSymbol }}</p>
         <h1 class="mb-5 text-white title">
           {{ $t('veBAL.hero.title') }}
         </h1>
@@ -56,7 +54,7 @@ function navigateToGetVeBAL() {
         </ul>
         <div class="flex mt-6">
           <BalBtn class="mr-3 hero-btn btn-gold" @click="navigateToGetVeBAL">
-            {{ $t('veBAL.hero.buttons.getVeBAL') }}
+            {{ $t('veBAL.hero.buttons.getVeBAL', { veSymbol }) }}
           </BalBtn>
           <BalBtn
             tag="a"

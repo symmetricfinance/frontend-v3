@@ -45,7 +45,7 @@ const { fNum } = useNumbers();
 const { veBalBalance, lockablePoolId } = useVeBal();
 const { t } = useI18n();
 const { isWalletReady } = useWeb3();
-const { networkSlug } = useNetwork();
+const { networkSlug, veSymbol, lpToken } = useNetwork();
 
 /**
  * COMPUTED
@@ -86,7 +86,9 @@ const cards = computed(() => {
   return [
     {
       id: 'myLpToken',
-      label: t('veBAL.myVeBAL.cards.myLpToken.label'),
+      label: t('veBAL.myVeBAL.cards.myLpToken.label', {
+        lpToken: lpToken.value,
+      }),
       value: isWalletReady.value
         ? fNum(fiatTotal.value, FNumFormats.fiat)
         : '—',
@@ -102,7 +104,9 @@ const cards = computed(() => {
     },
     {
       id: 'myLockedLpToken',
-      label: t('veBAL.myVeBAL.cards.myLockedLpToken.label'),
+      label: t('veBAL.myVeBAL.cards.myLockedLpToken.label', {
+        lpToken: lpToken.value,
+      }),
       value: isWalletReady.value
         ? fNum(props.totalLockedValue, FNumFormats.fiat)
         : '—',
@@ -128,20 +132,25 @@ const cards = computed(() => {
     },
     {
       id: 'myVeBAL',
-      label: t('veBAL.myVeBAL.cards.myVeBAL.label'),
+      label: t('veBAL.myVeBAL.cards.myVeBAL.label', {
+        veSymbol: veSymbol.value,
+      }),
       secondaryText:
         props.veBalLockInfo && hasExistingLock && !isExpired
-          ? t('veBAL.myVeBAL.cards.myVeBAL.secondaryText', [
-              fNum(
-                bnum(veBalBalance.value)
-                  .div(props.veBalLockInfo.totalSupply)
-                  .toString(),
-                {
-                  style: 'percent',
-                  maximumFractionDigits: 4,
-                }
-              ),
-            ])
+          ? t('veBAL.myVeBAL.cards.myVeBAL.secondaryText', {
+              0: [
+                fNum(
+                  bnum(veBalBalance.value)
+                    .div(props.veBalLockInfo.totalSupply)
+                    .toString(),
+                  {
+                    style: 'percent',
+                    maximumFractionDigits: 4,
+                  }
+                ),
+              ],
+              veSymbol: veSymbol.value,
+            })
           : '-',
       showPlusIcon: false,
       value: hasExistingLock
@@ -166,7 +175,13 @@ const cards = computed(() => {
         >
         <BalTooltip
           v-if="bnum(totalExpiredLpTokens).gt(0)"
-          :text="$t('veBAL.myVeBAL.cards.myExpiredLockTooltip')"
+          :text="
+            $t('veBAL.myVeBAL.cards.myExpiredLockTooltip', {
+              veSymbol,
+              network: networkSlug,
+              lpToken,
+            })
+          "
           iconSize="sm"
           :iconName="'alert-triangle'"
           :iconClass="'text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors'"

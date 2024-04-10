@@ -33,7 +33,7 @@ function navigateToGetVeBAL() {
           </p>
           <div class="flex mt-6">
             <BalBtn class="mr-3 hero-btn btn-gold" @click="navigateToGetVeBAL">
-              {{ $t('veBAL.hero.buttons.getVeBAL') }}
+              {{ $t('veBAL.hero.buttons.getVeBAL', { veSymbol: 'vTSYMM' }) }}
             </BalBtn>
             <BalBtn
               tag="a"

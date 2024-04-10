@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import useVeBal from '@/composables/useVeBAL';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -79,7 +80,8 @@ const conversationTableRows = computed(() => [
                 <th class="table-header-cell">
                   {{
                     $t(
-                      'getVeBAL.previewModal.summary.totalVotingEscrowTooltip.table.totalVeBAL'
+                      'getVeBAL.previewModal.summary.totalVotingEscrowTooltip.table.totalVeBAL',
+                      { veSymbol }
                     )
                   }}
                 </th>

@@ -12,6 +12,7 @@ import {
   isVeBalPoolAddress,
 } from '@/composables/usePoolHelpers';
 import { useTokens } from '@/providers/tokens.provider';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -57,7 +58,7 @@ const yieldAPRLabel = computed(() => {
     if (hasBoostedAPR(yieldTokensList[0]))
       return t('yieldAprRewards.apr.boosted');
     if (isVeBalPoolAddress(yieldTokensList[0]))
-      return t('yieldAprRewards.apr.veBAL');
+      return t('yieldAprRewards.apr.veBAL', { veSymbol });
 
     const tokenAddress = getAddress(yieldTokensList[0]);
     const token = getToken(tokenAddress);

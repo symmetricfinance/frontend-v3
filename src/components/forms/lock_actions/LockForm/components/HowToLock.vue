@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n';
 import { Pool } from '@/services/pool/types';
 import { TokenInfo } from '@/types/TokenList';
 
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -30,8 +30,11 @@ const { networkSlug } = useNetwork();
  * COMPUTED
  */
 const steps = computed(() => [
-  t('getVeBAL.howToLock.steps.lock', [props.lockablePoolTokenInfo.symbol]),
-  t('getVeBAL.howToLock.earn.boost'),
+  t('getVeBAL.howToLock.steps.lock', [
+    props.lockablePoolTokenInfo.symbol,
+    veSymbol.value,
+  ]),
+  t('getVeBAL.howToLock.earn.boost', { veSymbol: veSymbol.value }),
   t('getVeBAL.howToLock.earn.voting'),
 ]);
 </script>

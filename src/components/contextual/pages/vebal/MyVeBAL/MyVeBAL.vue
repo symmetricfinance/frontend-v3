@@ -5,6 +5,7 @@ import { useLock } from '@/composables/useLock';
 import useWeb3 from '@/services/web3/useWeb3';
 
 import MyVeBalCards from './components/MyVeBalCards.vue';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * COMPOSABLES
@@ -32,7 +33,7 @@ const isLoading = computed(() =>
 
 <template>
   <h3 class="mb-3">
-    {{ $t('veBAL.myVeBAL.title') }}
+    {{ $t('veBAL.myVeBAL.title', { veSymbol }) }}
   </h3>
   <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
     <template v-if="isLoading">

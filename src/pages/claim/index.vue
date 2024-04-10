@@ -27,6 +27,7 @@ import { TOKENS } from '@/constants/tokens';
 // import { buildNetworkIconURL } from '@/lib/utils/urls';
 // import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
+import { symmSymbol, veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -290,7 +291,7 @@ onBeforeMount(async () => {
             <div class="px-4 xl:px-0">
               <div class="flex items-center mt-6 mb-2">
                 <h3 class="inline-block mr-1.5 text-xl">
-                  tSYMM {{ $t('incentives') }}
+                  {{ symmSymbol }} {{ $t('incentives') }}
                 </h3>
                 <BalTooltip
                   iconSize="xs"
@@ -312,7 +313,7 @@ onBeforeMount(async () => {
         <template v-if="networkHasProtocolRewards">
           <div class="mb-16">
             <h3 class="inline-block xl:px-0 pl-4 mt-8 mr-1.5 mb-3 text-xl">
-              {{ $t('protocolIncentives') }}
+              {{ $t('protocolIncentives', { veSymbol }) }}
             </h3>
             <BalTooltip
               iconSize="xs"
