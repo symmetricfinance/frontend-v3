@@ -2,7 +2,7 @@ import { Pools } from '@/types/pools';
 
 const pools: Pools = {
   IdsMap: {
-    veBAL: '0x0000000000000000000000000000000000000000',
+    veBAL: '0xabbcd1249510a6afb5d1e6d055bf86637e7dad63000200000000000000000009',
   },
   Pagination: {
     PerPage: 15,
@@ -32,6 +32,7 @@ const pools: Pools = {
   Stable: {
     AllowList: [
       '0x1ff97abe4c5a4b7ff90949b637e71626bef0dcee000000000000000000000002', //USDT-USDC-suUSD
+      '0x2077a828fd58025655335a8756dbcfeb7e5bec46000000000000000000000008', //mtrg-wstMTRG
     ],
   },
   Investment: {
@@ -43,6 +44,8 @@ const pools: Pools = {
     AllowList: [
       '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003', //MTRG/USDT-USDC-suUSD
       '0xc4187382305ea2c953f0a164f02b4d27c9957db5000200000000000000000005', //MST-MTRG
+      '0x6e1be32644975613212db00bb9762fb6755ab921000200000000000000000007', //ETH-wstMTRG
+      '0xabbcd1249510a6afb5d1e6d055bf86637e7dad63000200000000000000000009', //MSYMM-wstMTRG
     ],
   },
   Factories: {
