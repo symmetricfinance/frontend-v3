@@ -22,9 +22,10 @@ const {
 export class WalletConnectConnector extends Connector {
   id = ConnectorId.WalletConnect;
   async connect() {
+    console.log('hello');
     const provider = await EthereumProvider.init({
       projectId: '90da6e11e9ce2448f2872dae5e52b189',
-      chains: [TELOS, CELO, GNOSIS, METER],
+      chains: [TELOS],
       optionalChains: [
         // AVALANCHE,
         // ARBITRUM,
@@ -52,11 +53,14 @@ export class WalletConnectConnector extends Connector {
       showQrModal: true,
       qrModalOptions: { themeMode: useDarkMode().darkMode ? 'dark' : 'light' },
     });
+    console.log('hello again');
     this.provider = provider;
 
     try {
       const accounts = await provider.enable();
+      console.log(accounts);
       const chainId = await provider.request({ method: 'eth_chainId' });
+      console.log(chainId);
       this.handleChainChanged(chainId);
       this.handleAccountsChanged(accounts);
     } catch (err) {
