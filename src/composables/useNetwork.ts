@@ -92,6 +92,71 @@ export function networkFromSlug(networkSlug: string): Network | null {
   return networkConf ? (networkConf.chainId as Network) : null;
 }
 
+export const veSymbol = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'vCSYMM';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'vTSYMM';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'vGSYMM';
+  }
+  return 'vMSYMM';
+});
+
+export const symmSymbol = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'cSYMM';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'tSYMM';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'gSYMM';
+  }
+  return 'mSYMM';
+});
+
+export const lpToken = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return '80CSYMM-20STCELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'S-80TSYMM-20TLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return '80GSYMM-20SDAI';
+  }
+  return '80MSYMM-20wstMTRG';
+});
+
+export const nativeSymbol = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'stCELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'WTLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'SDAI';
+  }
+  return 'wstMTRG';
+});
+
+export const rewardSymbol = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'stCELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'WTLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'SDAI';
+  }
+  return 'MTRG-wstMTRG';
+});
+
 export function appUrl(): string {
   return `https://${configService.env.APP_DOMAIN}/#`;
 }
@@ -180,5 +245,10 @@ export default function useNetwork() {
     getSubdomain,
     handleNetworkSlug,
     appNetworkConfig,
+    symmSymbol,
+    veSymbol,
+    lpToken,
+    nativeSymbol,
+    rewardSymbol,
   };
 }

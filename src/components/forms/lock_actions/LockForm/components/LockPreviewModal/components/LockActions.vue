@@ -14,7 +14,7 @@ import useEthers from '@/composables/useEthers';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { dateTimeLabelFor } from '@/composables/useTime';
 import useTransactions from '@/composables/useTransactions';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { veSymbol } from '@/composables/useNetwork';
 import { balancerContractsService } from '@/services/balancer/contracts/balancer-contracts.service';
 import useWeb3 from '@/services/web3/useWeb3';
 import { TokenInfo } from '@/types/TokenList';
@@ -278,13 +278,13 @@ onBeforeMount(async () => {
       </BalAlert>
       <BalBtn
         tag="router-link"
-        :to="{ name: 'vtsymm', params: { networkSlug } }"
+        :to="{ name: 'vesymm', params: { networkSlug } }"
         color="gray"
         outline
         block
         class="mt-4"
       >
-        {{ $t('getVeBAL.previewModal.returnToVeBalPage') }}
+        {{ $t('getVeBAL.previewModal.returnToVeBalPage', { veSymbol }) }}
       </BalBtn>
     </template>
   </div>

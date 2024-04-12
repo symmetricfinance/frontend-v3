@@ -1,3 +1,5 @@
+import { lpToken, veSymbol } from '@/composables/useNetwork';
+
 export const ROUTE_META_DATA = {
   home: {
     metaTitle: 'Symmetric DeFi Liquidity Pools on [network_name]',
@@ -16,8 +18,7 @@ export const ROUTE_META_DATA = {
   },
   claim: {
     metaTitle: 'Claim liquidity mining incentives from staking',
-    metaDescription:
-      'LPs who stake can claim liquidity mining incentives. vTSYMM holders can boost incentives and claim their share of protocol revenue',
+    metaDescription: `LPs who stake can claim liquidity mining incentives. ${veSymbol.value} holders can boost incentives and claim their share of protocol revenue`,
   },
   portfolio: {
     metaTitle: 'Symmetric portfolio',
@@ -25,9 +26,8 @@ export const ROUTE_META_DATA = {
       'Track your Symmetric Portfolio, including your unstaked and stake LP positions',
   },
   vebal: {
-    metaTitle: 'vTSYMM tokenomics',
-    metaDescription:
-      'Get vTSYMM (voter escrowed B-80BAL-20WETH) for extra liquidity mining incentives, governance voting power and a share of protocol revenue',
+    metaTitle: `${veSymbol.value} tokenomics`,
+    metaDescription: `Get ${veSymbol.value} (voter escrowed ${lpToken}) for extra liquidity mining incentives, governance voting power and a share of protocol revenue`,
   },
   'terms-of-use': {
     metaTitle: 'Symmetric Terms of Use',

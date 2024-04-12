@@ -17,7 +17,7 @@ import { useJoinPool } from '@/providers/local/join-pool.provider';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { usePoolStaking } from '@/providers/local/pool-staking.provider';
 import useWeb3 from '@/services/web3/useWeb3';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -146,7 +146,7 @@ onUnmounted(() => {
         v-if="lockablePoolId === pool.id"
         tag="router-link"
         :to="{
-          name: 'get-vtsymm',
+          name: 'get-vesymm',
           query: {
             returnRoute: $route.name,
             returnParams: JSON.stringify({
@@ -159,7 +159,9 @@ onUnmounted(() => {
         block
         class="flex mt-2"
       >
-        <StarsIcon class="mr-2 h-5 text-orange-300" />{{ $t('lockToGetVeBAL') }}
+        <StarsIcon class="mr-2 h-5 text-orange-300" />{{
+          $t('lockToGetVeBAL', { veSymbol })
+        }}
       </BalBtn>
       <BalBtn
         v-else-if="isStakablePool"

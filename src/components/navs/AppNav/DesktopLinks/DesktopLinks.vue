@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
 import DesktopLinkItem from './DesktopLinkItem.vue';
-import useNetwork, { isTestnet } from '@/composables/useNetwork';
+import useNetwork, { isTestnet, veSymbol } from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import { isVeBalSupported, isGaugesSupported } from '@/composables/useVeBAL';
 
@@ -66,12 +66,12 @@ function isActive(page: string): boolean {
     </DesktopLinkItem>
     <DesktopLinkItem
       v-if="isVeBalSupported"
-      :to="{ name: 'vtsymm', params: { networkSlug } }"
-      :active="isActive('vtsymm')"
+      :to="{ name: 'vesymm', params: { networkSlug } }"
+      :active="isActive('vesymm')"
       prefetch
       @click="trackGoal(Goals.ClickNavVebal)"
     >
-      vTSYMM
+      {{ veSymbol }}
     </DesktopLinkItem>
     <!-- <DesktopLinkItem
       v-if="isVeBalSupported"

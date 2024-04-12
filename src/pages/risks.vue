@@ -390,8 +390,8 @@ import { RiskKey } from '@/types/pools';
       <h4>DAO Governance risk</h4>
       <p>
         Symmetric currently uses off-chain voting mechanisms to signal the will
-        of vtSYMM token holders (vote-escrow SYMM). This off-chain voting is
-        done via
+        of ve token holders (vote-escrow SYMM). This off-chain voting is done
+        via
         <a class="link" href="https://snapshot.org/">Snapshot</a>—originally
         developed in-house by Symmetric Labs.
       </p>
@@ -429,14 +429,14 @@ import { RiskKey } from '@/types/pools';
               Gauntlet) that may change the swap fee for pools created by the
               dynamic-fee pool factory that will be deployed by Symmetric Labs
             </li>
-            <li>Add and remove vtSYMM gauges</li>
+            <li>Add and remove ve gauges</li>
           </ul>
         </li>
       </ul>
       <p>
         Note: The system of Symmetric Governance may change in the future. For
         example, Symmetric community members have expressed interest in moving
-        from the Multisig towards on-chain governance execution by vtSYMM token
+        from the Multisig towards on-chain governance execution by ve token
         holders.
       </p>
       <p>
@@ -451,8 +451,8 @@ import { RiskKey } from '@/types/pools';
             href="https://docs.balancer.fi/concepts/governance/multisig.html#dao-multisig-signer-set"
             >Multisig signer set</a
           >
-          could go rogue and disregard the decision made by vtSYMM holders in
-          the off-chain voting.
+          could go rogue and disregard the decision made by ve holders in the
+          off-chain voting.
         </li>
         <li>
           The

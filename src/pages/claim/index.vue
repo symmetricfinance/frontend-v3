@@ -27,6 +27,7 @@ import { TOKENS } from '@/constants/tokens';
 // import { buildNetworkIconURL } from '@/lib/utils/urls';
 // import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
+import { lpToken, symmSymbol, veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -278,7 +279,7 @@ onBeforeMount(async () => {
   <div>
     <HeroClaim
       :title="$t('claimHero.title')"
-      :description="$t('claimHero.description')"
+      :description="$t('claimHero.description', { veSymbol })"
     />
     <div>
       <div class="xl:container py-12 xl:px-4 xl:mx-auto">
@@ -290,7 +291,7 @@ onBeforeMount(async () => {
             <div class="px-4 xl:px-0">
               <div class="flex items-center mt-6 mb-2">
                 <h3 class="inline-block mr-1.5 text-xl">
-                  tSYMM {{ $t('incentives') }}
+                  {{ symmSymbol }} {{ $t('incentives') }}
                 </h3>
                 <BalTooltip
                   iconSize="xs"
@@ -312,7 +313,7 @@ onBeforeMount(async () => {
         <template v-if="networkHasProtocolRewards">
           <div class="mb-16">
             <h3 class="inline-block xl:px-0 pl-4 mt-8 mr-1.5 mb-3 text-xl">
-              {{ $t('protocolIncentives') }}
+              {{ $t('protocolIncentives', { veSymbol }) }}
             </h3>
             <BalTooltip
               iconSize="xs"
@@ -321,7 +322,7 @@ onBeforeMount(async () => {
               iconClass="text-secondary"
               width="60"
             >
-              {{ $t('claimPage.tips.ProtocolAndVebal') }}
+              {{ $t('claimPage.tips.ProtocolAndVebal', { veSymbol, lpToken }) }}
             </BalTooltip>
             <ProtocolRewardsTable
               :rewardsData="protocolRewardsData"
@@ -346,7 +347,7 @@ onBeforeMount(async () => {
             iconClass="text-secondary"
             width="60"
           >
-            {{ $t('claimPage.tips.OtherIncentives') }}
+            {{ $t('claimPage.tips.OtherIncentives', { symmSymbol }) }}
           </BalTooltip>
         </div>
         <BalLoadingBlock v-if="loading" class="mt-6 mb-2 h-56" />

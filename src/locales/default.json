@@ -139,8 +139,8 @@
   "claimHero": {
     "title": "Claim liquidity incentives",
     "legacyTitle": "Initial Liquidity Airdrop",
-    "description": "Symmetric Protocol liquidity incentives are directed to pools by vTSYMM voters. Stake in these pools to earn incentives. Boost with vTSYMM for up to 2.5x extra.",
-    "legacyDescription": "From November 27th to December 1st, Symmetric is conducting an exciting Airdrop event, offering a chance to share in a pool of $3,000 in tSYMM tokens and $3,000 in TLOS. This opportunity is open to users who lock their tSYMM/WTLOS 80/20 LP tokens in exchange for vtSYMM. The total amount available for distribution will be determined by the overall liquidity locked, ensuring a fair and proportional reward for vtSYMM holders. This distribution will be calculated based on the amount and duration of LP tokens locked, with the final snapshot scheduled for December 1, 2024, at 4:00 PM UTC. It's a fantastic opportunity to increase your holdings with minimal effort. Join in and make the most of this offer!",
+    "description": "Symmetric Protocol liquidity incentives are directed to pools by {veSymbol} voters. Stake in these pools to earn incentives. Boost with {veSymbol} for up to 2.5x extra.",
+    "legacyDescription": "From November 27th to December 1st, Symmetric is conducting an exciting Airdrop event, offering a chance to share in a pool of $3,000 in tSYMM tokens and $3,000 in TLOS. This opportunity is open to users who lock their tSYMM/WTLOS 80/20 LP tokens in exchange for {veSymbol}. The total amount available for distribution will be determined by the overall liquidity locked, ensuring a fair and proportional reward for {veSymbol} holders. This distribution will be calculated based on the amount and duration of LP tokens locked, with the final snapshot scheduled for December 1, 2024, at 4:00 PM UTC. It's a fantastic opportunity to increase your holdings with minimal effort. Join in and make the most of this offer!",
     "tipLabel": {
       "addLiquidity": "Add liquidity",
       "stake": "Stake your LP",
@@ -148,29 +148,29 @@
       "claim": "Claim anytime"
     },
     "airdropTipLabel": {
-      "addLiquidity": "Add liquidity to the tSYMM/WTLOS pool",
-      "stake": "Lock your LP tokens to get vtSYMM",
+      "addLiquidity": "Add liquidity to the {lpToken} pool",
+      "stake": "Lock your LP tokens to get {veSymbol}",
       "boost": "Get a boost",
-      "claim": "Receive tSYMM and TLOS rewards"
+      "claim": "Receive {symmSymbol} and {rewardSymbol} rewards"
     },
     "tips": {
       "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Telos. Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
       "stake": "If you've provided liquidity in an eligible pool, you'll have an option to stake your Liquidity Provider (LP) tokens from that pool. Stake them to receive liquidity mining incentives in addition to any swap fees.",
-      "boost": "Get vTSYMM to boost your liquidity mining incentives by up to 2.5x. The more vTSYMM you hold, the larger your boost. vTSYMM holders also earn protocol fees and can vote to direct future pool emissions.",
-      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just tSYMM). Additionally, vTSYMM holders also get a share of protocol revenue, in both USDC and tSYMM."
+      "boost": "Get {veSymbol} to boost your liquidity mining incentives by up to 2.5x. The more {veSymbol} you hold, the larger your boost. {veSymbol} holders also earn protocol fees and can vote to direct future pool emissions.",
+      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just {symmSymbol} ). Additionally, {veSymbol} holders also get a share of protocol revenue, in both USDC and {rewardSymbol}."
     }
   },
   "claimPage": {
     "tips": {
       "BalIncentives": "Incentives for LPs who stake in eligible pools (based on the previous week's voting). This doesn't include swap fees or intrinsic yield from certain yield bearing tokens which accumulate into LP positions automatically.",
-      "ProtocolAndVebal": "Additional incentives for vTSYMM holders: For locking in the S-80TSYMM-20WTLOS pool (based on the previous week's voting), and their share of protocol revenue.",
-      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any tSYMM liquidity incentives."
+      "ProtocolAndVebal": "Additional incentives for {veSymbol} holders: For locking in the {lpToken} pool (based on the previous week's voting), and their share of protocol revenue.",
+      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any {symmSymbol} liquidity incentives."
     }
   },
   "claimAll": "Claim all",
-  "claimBAL": "Claim $tSYMM for",
+  "claimBAL": "Claim {symmSymbol} for",
   "claiming": "Claiming...",
-  "claimSuccess": "You successfully claimed $tSYMM!",
+  "claimSuccess": "You successfully claimed ${symmSymbol}!",
   "classic": "Classic",
   "clearForms": "Clear forms",
   "clearTransactions": "Clear transactions",
@@ -244,21 +244,21 @@
     "zeroWeightInfo": "All tokens in a pool must have a weighting greater than zero. Either remove or replace {0} or set it above 0.01%."
   },
   "crossChainBoost": {
-    "title": "Cross chain vTSYMM boosts",
-    "infoDescription": "Sidechains & Layer 2 networks like Polygon and Arbitrum don’t know your vTSYMM balance on Ethereum Mainnet, unless you sync it. On any network where you stake, you should sync your vTSYMM balance to get your max possible boost. Resync after acquiring more vTSYMM to continue boosting to your max.",
+    "title": "Cross chain {veSymbol} boosts",
+    "infoDescription": "Sidechains & Layer 2 networks like Polygon and Arbitrum don’t know your {veSymbol} balance on Ethereum Mainnet, unless you sync it. On any network where you stake, you should sync your {veSymbol} balance to get your max possible boost. Resync after acquiring more {veSymbol} to continue boosting to your max.",
     "sync": "Sync",
     "currentBalance": "Current balance",
     "postSyncBalance": "Post-sync balance",
     "syncedNetworks": "Synced networks",
-    "syncToNetwork": "Sync vTSYMM to {network}",
-    "syncingToNetwork": "Syncing vTSYMM to {network}",
+    "syncToNetwork": "Sync {veSymbol} to {network}",
+    "syncingToNetwork": "Syncing {veSymbol} to {network}",
     "unsyncedNetworks": "Unsynced networks",
-    "unsyncedAllDescription": "Sync vTSYMM across networks for a boosted APR on your staked positions.",
+    "unsyncedAllDescription": "Sync {veSymbol} across networks for a boosted APR on your staked positions.",
     "syncedAllDescription": "All networks are synced",
-    "emptyState": "Once you have some vTSYMM, sync your balance here to other networks.",
+    "emptyState": "Once you have some {veSymbol}, sync your balance here to other networks.",
     "syncProcessWarning": {
       "title": "Wait until sync finalizes before restaking / triggering a gauge update on L2",
-      "description": "Your sync has been initiated but it may take up to 30 mins to update across L2s. Once your vTSYMM is synced, you will need to interact with each gauge to register your new max boost. You can either claim, restake, or click the Update button, which will appear on each individual pool page staking section."
+      "description": "Your sync has been initiated but it may take up to 30 mins to update across L2s. Once your {veSymbol} is synced, you will need to interact with each gauge to register your new max boost. You can either claim, restake, or click the Update button, which will appear on each individual pool page staking section."
     },
     "syncComplete": {
       "title": "Remember to restake to the new boost-aware L2 pool gauges",
@@ -266,27 +266,27 @@
     },
     "updateGauge": {
       "title": "Trigger pool gauge updates to get your boosts sooner",
-      "description": "Pool gauges don’t automatically recognize changes in vTSYMM until triggered. Updates are triggered when any user interacts with a gauge, such as by claiming tSYMM, staking or unstaking. Trigger individual gauges yourself for your boosts to apply immediately."
+      "description": "Pool gauges don’t automatically recognize changes in {veSymbol} until triggered. Updates are triggered when any user interacts with a gauge, such as by claiming tSYMM, staking or unstaking. Trigger individual gauges yourself for your boosts to apply immediately."
     },
     "selectNetworkModal": {
-      "title": "Sync vTSYMM: Select networks",
-      "description": "Layer 2 networks don’t know your vTSYMM balance from Ethereum, unless you sync it. Each network costs additional gas to sync, so it’s best to only sync networks where you plan to stake."
+      "title": "Sync {veSymbol}: Select networks",
+      "description": "Layer 2 networks don’t know your {veSymbol} balance from Ethereum, unless you sync it. Each network costs additional gas to sync, so it’s best to only sync networks where you plan to stake."
     },
     "syncNetworkModal": {
-      "title": "Sync vTSYMM",
-      "singleNetworkTitle": "Sync vTSYMM to {0}",
-      "description": "This will sync your vTSYMM balance and give you a staking boost on {0}."
+      "title": "Sync {veSymbol}",
+      "singleNetworkTitle": "Sync {veSymbol} to {0}",
+      "description": "This will sync your {veSymbol} balance and give you a staking boost on {0}."
     },
     "syncInitiatedModal": {
-      "title": "vTSYMM sync initiated",
-      "description": "Your vTSYMM balance is now being synced to the following networks:",
-      "warningTitle": "Your L2 vTSYMM sync is in progress",
+      "title": "{veSymbol} sync initiated",
+      "description": "Your {veSymbol} balance is now being synced to the following networks:",
+      "warningTitle": "Your L2 {veSymbol} sync is in progress",
       "warningDescription": "Your sync has been initiated but it may take up to 30 mins to update across L2s. Please check the your portfolio on the destination chain/s after this time, there will be actions available to update boost on your positions. You can also update all your positions by claiming rewards on the synced chain."
     },
     "syncNetworkAction": {
-      "title": "This will sync your vTSYMM balance and give you a staking boost across the networks listed below."
+      "title": "This will sync your {veSymbol} balance and give you a staking boost across the networks listed below."
     },
-    "syncInProgress": "A sync operation is currently in progress. Wait until it completes before restaking any of your positions on {network} to get your maximum vTSYMM boost."
+    "syncInProgress": "A sync operation is currently in progress. Wait until it completes before restaking any of your positions on {network} to get your maximum {veSymbol} boost."
   },
   "migratePool": {
     "aaveBoostedPool": {
@@ -540,7 +540,7 @@
   "incentives": "incentives",
   "incentiveToken": "Incentive token",
   "incentivizedPool": "incentivized pool",
-  "inclXInVeBal": "{0} in vTSYMM",
+  "inclXInVeBal": "{0} in {veSymbol}",
   "initialBPT": "Initial BPT",
   "initialWeight": "Initial weight",
   "insufficientBalance": "Not enough funds",
@@ -617,14 +617,14 @@
   "joinPool": "Join pool",
   "language": "Language",
   "learnMore": "Learn more",
-  "lockToGetVeBAL": "Lock this to get vTSYMM",
+  "lockToGetVeBAL": "Lock this to get {veSymbol}",
   "light": "Light",
   "liquidityBootstrappingPool": "Liquidity Bootstrapping Pool",
   "liquidityIncentives": "liquidity incentives",
   "liquidityMining": "Liquidity mining",
   "liquidityMiningAPR": "Liquidity Mining APR",
   "liquidityMiningIncentives": "Liquidity mining incentives",
-  "liquidityMiningIncentivesCopy": "Liquidity incentives on {0} are paused for 1 week during its upgrade to the vTSYMM system. Incentives will resume on April 28.",
+  "liquidityMiningIncentivesCopy": "Liquidity incentives on {0} are paused for 1 week during its upgrade to the {veSymbol} system. Incentives will resume on April 28.",
   "liquidityMiningPopover": {
     "airdropEligibility": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $tSYMM distributions as incentives. $tSYMM token holders own the Symmetric Protocol and can help shape its future by voting on governance proposals.",
     "airdropExplainer": "Weekly distributions from liquidity mining on {0} are airdropped on Wednesdays, sent directly to your wallet using disperse.app",
@@ -651,10 +651,10 @@
   "locked": "Locked",
   "locking": {
     "expiredLockLpTokens": "Expired lock LP tokens",
-    "expiredLockTooltip": "Your previous locking period has expired, so you no longer have any vTSYMM or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or vTSYMM incentives. However, you'll still get the minimum 1.0x rate. Redeem your expired locked S-80TSYMM-20WTLOS LP tokens and then create a new lock to get vTSYMM.",
-    "lockBptForVeBal": "Lock LP for vTSYMM",
-    "lockedLpTokensTooltip": "The USD value of your vTSYMM. These are your locked LP tokens in the tSYMM 80% / WETH 20% pool.",
-    "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the tSYMM 80% / WETH 20% pool that has not been locked."
+    "expiredLockTooltip": "Your previous locking period has expired, so you no longer have any {veSymbol} or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or {veSymbol} incentives. However, you'll still get the minimum 1.0x rate. Redeem your expired locked S-80TSYMM-20WTLOS LP tokens and then create a new lock to get {veSymbol}.",
+    "lockBptForVeBal": "Lock LP for {veSymbol}",
+    "lockedLpTokensTooltip": "The USD value of your {veSymbol}. These are your locked LP tokens in the {symmSymbol} 80% / {nativeAsset} 20% pool.",
+    "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the {symmSymbol} 80% / {nativeAsset} 20% pool that has not been locked."
   },
   "logOut": "Log out",
   "lost": "Lost",
@@ -684,7 +684,7 @@
   "modals": {
     "veBalRedirectModal": {
       "title": "Proceed to mainnet",
-      "description": "Getting and using vTSYMM to vest and vote must be performed on the Ethereum mainnet. \n\n You can still earn liquidity mining incentives on Arbitrum, Polygon and Gnosis by adding liquidity to eligible pools. However to vote to direct emissions to your favored pools and to earn the protocol fees, you will need to use vTSYMM on Ethereum Mainnet by locking S-80TSYMM-20WTLOS."
+      "description": "Getting and using {veSymbol} to vest and vote must be performed on the Ethereum mainnet. \n\n You can still earn liquidity mining incentives on Arbitrum, Polygon and Gnosis by adding liquidity to eligible pools. However to vote to direct emissions to your favored pools and to earn the protocol fees, you will need to use {veSymbol} on Ethereum Mainnet by locking S-80TSYMM-20WTLOS."
     }
   },
   "month": "month",
@@ -742,8 +742,8 @@
   "noRecentActivity": "Your recent activity will appear here…",
   "noResults": "No results",
   "noResultsTable": {
-    "noBalIncentives": "No tSYMM incentives to claim from staking",
-    "noProtocolRevenue": "Nothing to claim from holding vTSYMM"
+    "noBalIncentives": "No {symmSymbol} incentives to claim from staking",
+    "noProtocolRevenue": "Nothing to claim from holding {veSymbol}"
   },
   "noSwapsPool": "No swaps in this pool.",
   "noTokensInWallet": "You don't have any tokens in your connected wallet on {0}",
@@ -764,7 +764,7 @@
   "pages": {
     "claim": {
       "title": "Claim your liquidity mining incentives",
-      "description": "Incentives to attract liquidity are set by the Symmetric protocol and partners. Stakers in eligible pools can claim incentives every block. People with vTSYMM get a boosted rate—up to 2.5x extra.",
+      "description": "Incentives to attract liquidity are set by the Symmetric protocol and partners. Stakers in eligible pools can claim incentives every block. People with {veSymbol} get a boosted rate—up to 2.5x extra.",
       "titles": {
         "incentivesOnOtherNetworks": "Incentives on other networks",
         "legacyIncentives": "Claim your Airdrop"
@@ -945,7 +945,7 @@
   "proportionalSuggestion": "Proportional suggestion",
   "proportionalWithdrawal": "Proportional withdrawal",
   "protocolFees": "Protocol fees",
-  "protocolIncentives": "Protocol revenue & vTSYMM incentives",
+  "protocolIncentives": "Protocol revenue & {veSymbol} incentives",
   "rank": "Rank (1{0})",
   "receipt": "Receipt",
   "receive": "Receive",
@@ -1034,52 +1034,52 @@
         "vote": "Vote to direct liquidity mining emissions"
       },
       "tokens": {
-        "balWETH": "TSYMM + TLOS",
-        "lpToken": "S-80TSYMM-20WTLOS",
-        "veBAL": "vTSYMM"
+        "balWETH": "{symmSymbol} + {nativeAsset}",
+        "lpToken": "{lpToken}",
+        "veBAL": "{veSymbol}"
       },
       "tokenInfo": {
-        "balWETH": "Add liquidity to the 80% tSYMM / 20% WETH pool to get the S-80TSYMM-20WTLOS LP token.",
-        "lpToken": "Lock up the LP tokens from the 80% tSYMM / 20% WETH pool for up to a year to get vTSYMM. The longer you lock, the more vTSYMM you get.",
-        "veBAL": "Use vTSYMM to earn extra on your staked pools. Only some pools are eligible for staking. Check any pools that you are in, and stake it to earn liquidity mining incentives. You can also use vTSYMM to vote to direct future liquidity mining emissions"
+        "balWETH": "Add liquidity to the 80% {symmSymbol} / 20% {nativeAsset} pool to get the {lpToken} LP token.",
+        "lpToken": "Lock up the LP tokens from the 80% {symmSymbol} / 20% {nativeAsset} pool for up to a year to get {veSymbol}. The longer you lock, the more {veSymbol} you get.",
+        "veBAL": "Use {veSymbol} to earn extra on your staked pools. Only some pools are eligible for staking. Check any pools that you are in, and stake it to earn liquidity mining incentives. You can also use {veSymbol} to vote to direct future liquidity mining emissions"
       },
       "buttons": {
-        "getVeBAL": "Get vTSYMM",
+        "getVeBAL": "Get {veSymbol}",
         "learnMore": "Learn more"
       }
     },
     "myVeBAL": {
-      "title": "My vTSYMM",
+      "title": "My {veSymbol}",
       "cards": {
         "myLpToken": {
-          "label": "My S-80TSYMM-20WTLOS"
+          "label": "My {lpToken}"
         },
         "myLockedLpToken": {
-          "label": "My locked S-80TSYMM-20WTLOS"
+          "label": "My locked {lpToken}"
         },
         "lockedEndDate": {
           "label": "Locked until",
           "secondaryText": "{0} days"
         },
         "myVeBAL": {
-          "label": "My vTSYMM",
-          "secondaryText": "{0} of all vTSYMM"
+          "label": "My {veSymbol}",
+          "secondaryText": "{0} of all {veSymbol}"
         },
-        "myExpiredLockTooltip": "Your previous lockup period has expired, so you no longer have any vTSYMM or voting power. You will no longer earn protocol fees, boosted yields on staked Ethereum Mainnet pools or vTSYMM incentives. However, you’ll still get the minimum 1.0x rate. Tap the minus icon to redeem your expired locked S-80TSYMM-20WTLOS LP tokens and then create a new lock to get vTSYMM."
+        "myExpiredLockTooltip": "Your previous lockup period has expired, so you no longer have any {veSymbol} or voting power. You will no longer earn protocol fees, boosted yields on staked {network} Mainnet pools or {veSymbol} incentives. However, you’ll still get the minimum 1.0x rate. Tap the minus icon to redeem your expired locked {lpToken} LP tokens and then create a new lock to get {veSymbol}."
       }
     },
     "communityVeBAL": {
-      "title": "Community vTSYMM",
+      "title": "Community {veSymbol}",
       "cards": {
-        "totalVeBAL": "Total vTSYMM",
+        "totalVeBAL": "Total {veSymbol}",
         "avgLockUpPeriod": "Ave. lock-up period",
-        "effectiveBalLocked": "Effective tSYMM locked",
-        "shareOfBalLocked": "Share of tSYMM locked"
+        "effectiveBalLocked": "Effective {symmSymbol} locked",
+        "shareOfBalLocked": "Share of {symmSymbol} locked"
       },
       "stats": {
         "currentWeekVoting": "Current week voting",
         "nextWeekVoting": "Next week voting",
-        "balIncentives": "tSYMM incentives"
+        "balIncentives": "{symmSymbol} incentives"
       },
       "table": {
         "poolGauge": "Pool gauge",
@@ -1089,14 +1089,14 @@
     },
     "liquidityMining": {
       "title": "Pools eligible for liquidity mining",
-      "description": "Liquidity incentives are directed by the community of vTSYMM holders. If you hold vTSYMM, vote below on any pools across Ethereum and Layer 2’s. Your vote will persist until you change it and editing a pool can only be done once in 10 days.",
+      "description": "Liquidity incentives are directed by the community of {veSymbol} holders. If you hold {veSymbol}, vote below on any pools on {network}. Your vote will persist until you change it and editing a pool can only be done once in 10 days.",
       "myUnallocatedVotes": "My unallocated votes:",
-      "myUnallocatedVotesTooltip": "vTSYMM holders can vote for a single pool or multiple pools in whatever weights they choose, up to their max of 100%. Note: If you’ve previously voted for a pool but no longer have any vTSYMM, your votes will not count.",
+      "myUnallocatedVotesTooltip": "{veSymbol} holders can vote for a single pool or multiple pools in whatever weights they choose, up to their max of 100%. Note: If you’ve previously voted for a pool but no longer have any {veSymbol}, your votes will not count.",
       "unallocatedVotes": "My unallocated votes: {0}.",
       "votingPeriod": "Voting period ends: {0}d {1}h {2}m {3}s",
-      "votingPeriodTooltip": "There is a weekly vote for vTSYMM holders which ends at 0:00 UTC on Thursdays. This vote determines the tSYMM incentives allocation for all Stakers in these pools for the next week. Although you don’t have to vote to get a boosted yield, your vote can help you earn more by voting on pools where you are a staker.",
+      "votingPeriodTooltip": "There is a weekly vote for {veSymbol} holders which ends at 0:00 UTC on Thursdays. This vote determines the tSYMM incentives allocation for all Stakers in these pools for the next week. Although you don’t have to vote to get a boosted yield, your vote can help you earn more by voting on pools where you are a staker.",
       "votingPeriodCountdown": "{0}d : {1}h : {2}m : {3}s",
-      "votingPowerExpiredTooltip": "Your previous lock period has expired, so you no longer have any vTSYMM or voting power. Any votes that have been allocated in the past will no longer count. Lock up S-80TSYMM-20WTLOS LP tokens to get vTSYMM for higher yields and voting power.",
+      "votingPowerExpiredTooltip": "Your previous lock period has expired, so you no longer have any {veSymbol} or voting power. Any votes that have been allocated in the past will no longer count. Lock up {lpToken} LP tokens to get {veSymbol} for higher yields and voting power.",
       "table": {
         "chain": "Chain",
         "assets": "Assets",
@@ -1113,7 +1113,7 @@
         "nextPeriod": "Next period: {0}"
       },
       "limitsTooltip": {
-        "distributionsCappedVeBAL": "Distributions to the vTSYMM gauge are capped at 10%",
+        "distributionsCappedVeBAL": "Distributions to the {veSymbol} gauge are capped at 10%",
         "distributionsCappedAt": "Distributions to this gauge are capped at {0}%"
       },
       "popover": {
@@ -1138,7 +1138,7 @@
         "remainingVotes": "Your remaining votes: {0}",
         "remainingVotesEditing": "Your remaining votes: {0} ({1} current allocation in this pool + {2} unallocated votes)",
         "remainingVotesExceeded": "This exceeds your remaining votes of: {0}",
-        "resubmitVote": "Voting power is set at the time of the vote. If you get more vTSYMM later, resubmit your vote to use your increased power.",
+        "resubmitVote": "Voting power is set at the time of the vote. If you get more {veSymbol} later, resubmit your vote to use your increased power.",
         "voteLockInfo": "Votes are timelocked for 10 days. If you vote now, no edits can be made until {0}.",
         "warnings": {
           "votedTooRecently": {
@@ -1146,12 +1146,12 @@
             "description": "You won't be able to make any edits to this vote allocation for {0}"
           },
           "veBalLockTooShort": {
-            "title": "vTSYMM not locked for 7 days",
-            "description": "You must have vTSYMM locked for more than 7 days to vote on gauges."
+            "title": "{veSymbol} not locked for 7 days",
+            "description": "You must have {veSymbol} locked for more than 7 days to vote on gauges."
           },
           "veBalVoteOverLimitWarning": {
-            "title": "You may be wasting your vote: vTSYMM cap hit",
-            "description": "Distributions to vTSYMM holders of weekly emissions are capped at 10%. Any votes exceeding this amount at Thursday 0:00 UTC will not be counted."
+            "title": "You may be wasting your vote: {veSymbol} cap hit",
+            "description": "Distributions to {veSymbol} holders of weekly emissions are capped at 10%. Any votes exceeding this amount at Thursday 0:00 UTC will not be counted."
           },
           "lpVoteOverLimitWarning": {
             "title": "You may be wasting your vote",
@@ -1165,16 +1165,16 @@
       "resubmit": {
         "hint": {
           "title": "Resubmit your votes to utilize your full voting power",
-          "description": "Votes on pools are set at the time of your last vote. Since you’ve added new vTSYMM after your original vote, the additional voting power is not being used."
+          "description": "Votes on pools are set at the time of your last vote. Since you’ve added new {veSymbol} after your original vote, the additional voting power is not being used."
         },
-        "resubmitWarning": "Votes on pools are set at the time of the vote. Since you’ve added new vTSYMM since your original vote, you have additional voting power which is not being used. To use your full voting power, resubmit your votes."
+        "resubmitWarning": "Votes on pools are set at the time of the vote. Since you’ve added new {veSymbol} since your original vote, you have additional voting power which is not being used. To use your full voting power, resubmit your votes."
       }
     },
     "notSupported": {
       "title": "Locking is unavailable on this network",
-      "description": "Get vTSYMM on Ethereum Mainnet"
+      "description": "Get {veSymbol} on Ethereum Mainnet"
     },
-    "votingTransitionDescription": "Liquidity mining emissions as directed by vTSYMM holders start on 7 April 2022 at 0:00 UTC! Voting is now live, so get vTSYMM and vote for pools. Your vote will persist until you edit. Editing can only be done once in 10 days."
+    "votingTransitionDescription": "Liquidity mining emissions as directed by {veSymbol} holders start on 7 April 2022 at 0:00 UTC! Voting is now live, so get {veSymbol} and vote for pools. Your vote will persist until you edit. Editing can only be done once in 10 days."
   },
   "getVeBAL": {
     "lockableTokens": {
@@ -1186,27 +1186,27 @@
       "steps": {
         "investPart1": "Add liquidity to the",
         "investPart2": "pool.",
-        "lock": "Lock-up the resulting LP token ({0}). The longer you lock (1 year max), the more vTSYMM you get."
+        "lock": "Lock-up the resulting LP token ({0}). The longer you lock (1 year max), the more {1} you get."
       },
       "earn": {
-        "boost": "vTSYMM holders get boosted liquidity mining yields (up to 2.5x) and increased voting power.",
+        "boost": "{veSymbol} holders get boosted liquidity mining yields (up to 2.5x) and increased voting power.",
         "voting": "Use this voting power to choose which pool gauges get allocated liquidity mining incentives. Vote on the pools where you have added liquidity to earn more yield."
       }
     },
     "myVeBAL": {
-      "title": "My vTSYMM",
+      "title": "My {veSymbol}",
       "lockedEndDate": "Locked until",
       "expiredOn": "Expired on",
-      "percentVeBAL": "% of total vTSYMM"
+      "percentVeBAL": "% of total {veSymbol}"
     },
     "lockForm": {
-      "title": "Lock to get vTSYMM",
+      "title": "Lock to get {veSymbol}",
       "lockAmount": {
         "title": "How much do you want to lock?"
       },
       "lockEndDate": {
         "title": "Lock until",
-        "tooltip": "The longer you lock your stake, the more vTSYMM voting power you get (up to 4 years). You can extend the lock later. Be careful, locking is not reversible."
+        "tooltip": "The longer you lock your stake, the more {veSymbol} voting power you get (up to 4 years). You can extend the lock later. Be careful, locking is not reversible."
       },
       "summary": {
         "receive": {
@@ -1254,7 +1254,7 @@
           "explainer": "Lock-up end dates can only be on Thursdays at 0:00 UTC. To get as close as possible to a 1 year lock, locking on Thursday is recommended.",
           "table": {
             "lockPeriod": "Lock period",
-            "totalVeBAL": "Total vTSYMM"
+            "totalVeBAL": "Total {veSymbol}"
           }
         },
         "increasedLockAmount": "Increased lock amount",
@@ -1285,18 +1285,18 @@
           "loadingLabel": "Confirm lock in wallet"
         }
       },
-      "returnToVeBalPage": "Return to vTSYMM page",
+      "returnToVeBalPage": "Return to {veSymbol} page",
       "firstVeBALReceived": {
         "title": "Vote on pools to direct liquidity incentives",
-        "description": "Your voting weight is set at the time of the vote. If you acquire additional vTSYMM, resubmit your votes to utilize your newly acquired voting power. Voting per pool can only be done once every 10 days."
+        "description": "Your voting weight is set at the time of the vote. If you acquire additional {veSymbol}, resubmit your votes to utilize your newly acquired voting power. Voting per pool can only be done once every 10 days."
       }
     },
     "notSupported": {
       "title": "Locking is unavailable on this network",
-      "description": "Get vTSYMM on Ethereum Mainnet"
+      "description": "Get {veSymbol} on Ethereum Mainnet"
     }
   },
-  "getVeBALToVote": "Get vTSYMM to vote",
+  "getVeBALToVote": "Get {veSymbol} to vote",
   "unlockVeBAL": {
     "expiredLockableTokens": {
       "title": "Expired locked tokens"
@@ -1329,7 +1329,7 @@
           "loadingLabel": "Confirm unlock in wallet"
         }
       },
-      "returnToVeBalPage": "Return to vTSYMM page"
+      "returnToVeBalPage": "Return to {veSymbol} page"
     },
     "notSupported": {
       "title": "Unlocking is unavailable on this network",
@@ -1342,7 +1342,7 @@
     "apr": {
       "token": "Token APR",
       "boosted": "Boosted APR",
-      "veBAL": "vTSYMM APR"
+      "veBAL": "{veSymbol} APR"
     },
     "fiat": {
       "token": "Token rewards",
@@ -1379,9 +1379,9 @@
       "total": "The total value in {0} you’ll be withdrawing from this pool."
     },
     "veBalApr": {
-      "title": "Max locking/vTSYMM APR",
-      "breakdown1": "tSYMM",
-      "breakdown2": "WTLOS"
+      "title": "Max locking/{veSymbol} APR",
+      "breakdown1": "{symmSymbol}",
+      "breakdown2": "{rewardSymbol}"
     }
   },
   "total": "Total",
@@ -1496,7 +1496,7 @@
     "increaseLock": "Increase lock",
     "unlock": "Unlock",
     "sync": "Sync",
-    "userGaugeCheckpoint": "Pool gauge vTSYMM update"
+    "userGaugeCheckpoint": "Pool gauge {veSymbol} update"
   },
   "transactionDeadline": "Transaction deadline",
   "transactionDeadlineTooltip": "Your swap will expire and not execute if it is pending for more than the selected duration. Only executed transactions incur fees for swaps between ERC-20 tokens.",
@@ -1581,8 +1581,8 @@
   "v2": "V2",
   "value": "Value",
   "vault": "Vault",
-  "vebal": "vTSYMM",
-  "veBalProtocolLiquidity": "vTSYMM protocol liquidity",
+  "vebal": "{veSymbol}",
+  "veBalProtocolLiquidity": "{veSymbol} protocol liquidity",
   "vestVote": "Vest+Vote",
   "viewAllAssets": "View all assets ({0})",
   "viewAndManangeOnElement": "View and manage all pools on Element.fi",

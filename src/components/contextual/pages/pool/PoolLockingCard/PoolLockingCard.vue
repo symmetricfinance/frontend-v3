@@ -9,7 +9,11 @@ import { bnum } from '@/lib/utils';
 import { Pool } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
 import UnlockPreviewModal from '@/components/forms/lock_actions/UnlockForm/components/UnlockPreviewModal/UnlockPreviewModal.vue';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, {
+  nativeSymbol,
+  symmSymbol,
+  veSymbol,
+} from '@/composables/useNetwork';
 
 type Props = {
   pool: Pool;
@@ -82,7 +86,7 @@ const fiatTotalExpiredLpTokens = computed(() =>
                     <BalIcon size="sm" name="check" />
                   </div>
                   <BalStack spacing="sm" align="center">
-                    <h6>{{ $t('locking.lockBptForVeBal') }}</h6>
+                    <h6>{{ $t('locking.lockBptForVeBal', { veSymbol }) }}</h6>
                   </BalStack>
                 </BalStack>
                 <BalStack horizontal spacing="sm" align="center">
@@ -118,9 +122,18 @@ const fiatTotalExpiredLpTokens = computed(() =>
                     </AnimatePresence>
                     <BalTooltip
                       v-if="!lock?.isExpired"
-                      :text="$t('locking.lockedLpTokensTooltip')"
+                      :text="
+                        $t('locking.lockedLpTokensTooltip', {
+                          veSymbol,
+                          symmSymbol,
+                          nativeAsset: nativeSymbol,
+                        })
+                      "
                     />
-                    <BalTooltip v-else :text="$t('locking.expiredLockTooltip')">
+                    <BalTooltip
+                      v-else
+                      :text="$t('locking.expiredLockTooltip', { veSymbol })"
+                    >
                       <template #activator>
                         <BalIcon
                           class="text-red-500"
@@ -142,7 +155,14 @@ const fiatTotalExpiredLpTokens = computed(() =>
                         {{ fNum(fiatTotal, FNumFormats.fiat) }}
                       </span>
                     </AnimatePresence>
-                    <BalTooltip :text="$t('locking.unlockedLpTokensTooltip')" />
+                    <BalTooltip
+                      :text="
+                        $t('locking.unlockedLpTokensTooltip', {
+                          symmSymbol,
+                          nativeAsset: nativeSymbol,
+                        })
+                      "
+                    />
                   </BalStack>
                 </BalStack>
                 <BalStack horizontal spacing="sm" class="mt-2">
@@ -150,7 +170,7 @@ const fiatTotalExpiredLpTokens = computed(() =>
                     v-if="Number(bptBalance) > 0"
                     tag="router-link"
                     :to="{
-                      name: 'get-vtsymm',
+                      name: 'get-vesymm',
                       query: {
                         returnRoute: $route.name,
                         returnParams: JSON.stringify({

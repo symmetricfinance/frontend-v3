@@ -5,6 +5,7 @@ import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
 import { useLock } from '@/composables/useLock';
 import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
 import { Pool } from '@/services/pool/types';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * PROPS
@@ -79,7 +80,7 @@ const hiddenColumns = ['poolVolume', 'migrate', 'actions', 'myBoost'];
   <div>
     <BalStack vertical spacing="sm">
       <h5 class="px-4 xl:px-0">
-        {{ $t('veBalProtocolLiquidity') }}
+        {{ $t('veBalProtocolLiquidity', { veSymbol }) }}
       </h5>
       <PoolsTable
         :key="poolsToRenderKey"

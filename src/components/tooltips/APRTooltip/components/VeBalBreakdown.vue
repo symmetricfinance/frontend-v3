@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
+import { symmSymbol, veSymbol, rewardSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -28,8 +29,8 @@ const { t } = useI18n();
 const aprLabel = computed((): string => fNum(props.apr, FNumFormats.bp));
 
 const items = computed((): string[] => [
-  t('tooltips.veBalApr.breakdown1'),
-  t('tooltips.veBalApr.breakdown2'),
+  t('tooltips.veBalApr.breakdown1', { symmSymbol: symmSymbol.value }),
+  t('tooltips.veBalApr.breakdown2', { rewardSymbol: rewardSymbol.value }),
 ]);
 </script>
 
@@ -38,7 +39,7 @@ const items = computed((): string[] => [
     <BalBreakdown :items="items">
       {{ aprLabel }}
       <span class="ml-1 text-xs text-secondary">
-        {{ $t('tooltips.veBalApr.title') }}
+        {{ $t('tooltips.veBalApr.title', { veSymbol }) }}
       </span>
       <template #item="{ item }">
         <div class="text-xs text-secondary">

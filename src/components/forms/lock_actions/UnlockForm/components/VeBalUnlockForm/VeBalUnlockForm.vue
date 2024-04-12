@@ -10,6 +10,7 @@ import { TokenInfo } from '@/types/TokenList';
 
 import UnlockPreviewModal from '../UnlockPreviewModal/UnlockPreviewModal.vue';
 import LockedAmount from './components/LockedAmount.vue';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -68,7 +69,7 @@ const submissionDisabled = computed(() => {
         </div>
         <div class="flex justify-between items-center">
           <h4>
-            {{ $t('unlockVeBAL.unlockForm.title') }}
+            {{ $t('unlockVeBAL.unlockForm.title', { veSymbol }) }}
           </h4>
         </div>
       </div>

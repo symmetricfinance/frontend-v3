@@ -18,6 +18,7 @@ import LockPreviewModal from '../LockPreviewModal/LockPreviewModal.vue';
 import LockAmount from './components/LockAmount.vue';
 import LockEndDate from './components/LockEndDate.vue';
 import Summary from './components/Summary.vue';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -125,7 +126,7 @@ function handleShowPreviewModal() {
         </div>
         <div class="flex justify-between items-center">
           <h4>
-            {{ $t('getVeBAL.lockForm.title') }}
+            {{ $t('getVeBAL.lockForm.title', { veSymbol }) }}
           </h4>
         </div>
       </div>

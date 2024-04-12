@@ -18,7 +18,7 @@ import { GaugePool } from '@/composables/useClaimsData';
 
 import { Gauge } from '@/services/balancer/gauges/types';
 import PoolWarningTooltip from '@/components/pool/PoolWarningTooltip.vue';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { symmSymbol } from '@/composables/useNetwork';
 import { poolMetadata } from '@/lib/config/metadata';
 
 /**
@@ -132,7 +132,7 @@ function redirectToPool({ pool }: { pool: GaugePool }) {
     <BalTable
       :columns="columns"
       :data="rewardsData"
-      :noResultsLabel="$t('noResultsTable.noBalIncentives')"
+      :noResultsLabel="$t('noResultsTable.noBalIncentives', { symmSymbol })"
       :isLoading="isLoading"
       :onRowClick="redirectToPool"
       skeletonClass="h-24"

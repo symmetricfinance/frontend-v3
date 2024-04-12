@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import {
+  lpToken,
+  networkSlug,
+  rewardSymbol,
+  symmSymbol,
+  veSymbol,
+} from '@/composables/useNetwork';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -12,9 +19,9 @@ defineProps<Props>();
 
 function navigateToGetVeBAL() {
   router.push({
-    name: 'get-vtsymm',
+    name: 'get-vesymm',
     query: {
-      returnRoute: 'vtsymm',
+      returnRoute: 'vesymm',
     },
   });
 }
@@ -33,7 +40,7 @@ function navigateToGetVeBAL() {
           </p>
           <div class="flex mt-6">
             <BalBtn class="mr-3 hero-btn btn-gold" @click="navigateToGetVeBAL">
-              {{ $t('veBAL.hero.buttons.getVeBAL') }}
+              {{ $t('veBAL.hero.buttons.getVeBAL', { veSymbol }) }}
             </BalBtn>
             <BalBtn
               tag="a"
@@ -63,10 +70,10 @@ function navigateToGetVeBAL() {
               width="144"
               height="144"
               class="tip-icon"
-              src="@/assets/images/icons/claims-header/add-liquidity.svg"
+              :src="`images/icons/claims-header/add-liquidity-${networkSlug}.svg`"
             />
             <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.airdropTipLabel.addLiquidity') }}
+              {{ $t('claimHero.airdropTipLabel.addLiquidity', { lpToken }) }}
               <!-- <BalTooltip
                 iconSize="xs"
                 textAlign="left"
@@ -83,10 +90,10 @@ function navigateToGetVeBAL() {
               width="144"
               height="144"
               class="tip-icon"
-              src="@/assets/images/icons/claims-header/stake.svg"
+              :src="`images/icons/claims-header/stake-${networkSlug}.svg`"
             />
             <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.airdropTipLabel.stake') }}
+              {{ $t('claimHero.airdropTipLabel.stake', { veSymbol }) }}
               <!-- <BalTooltip
                 iconSize="xs"
                 textAlign="left"
@@ -126,7 +133,12 @@ function navigateToGetVeBAL() {
               src="@/assets/images/icons/claims-header/claim.svg"
             />
             <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.airdropTipLabel.claim') }}
+              {{
+                $t('claimHero.airdropTipLabel.claim', {
+                  symmSymbol,
+                  rewardSymbol,
+                })
+              }}
               <!-- <BalTooltip
                 iconSize="xs"
                 textAlign="left"

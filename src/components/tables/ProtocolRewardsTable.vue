@@ -9,6 +9,7 @@ import useBreakpoints from '@/composables/useBreakpoints';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { bnum } from '@/lib/utils';
 import { TokenInfo } from '@/types/TokenList';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -126,7 +127,7 @@ const hasClaimableBalance = computed((): boolean => {
       <BalTable
         :columns="columns"
         :data="rewardsData"
-        :noResultsLabel="$t('noResultsTable.noProtocolRevenue')"
+        :noResultsLabel="$t('noResultsTable.noProtocolRevenue', { veSymbol })"
         :isLoading="isLoading"
         skeletonClass="h-24"
         :square="upToLargeBreakpoint"

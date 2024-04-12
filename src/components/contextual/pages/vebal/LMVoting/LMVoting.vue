@@ -3,7 +3,12 @@ import useDebouncedRef from '@/composables/useDebouncedRed';
 import useVotingEscrowLocks from '@/composables/useVotingEscrowLocks';
 import useVotingPools from '@/composables/useVotingPools';
 
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, {
+  lpToken,
+  symmSymbol,
+  veSymbol,
+  nativeSymbol,
+} from '@/composables/useNetwork';
 import useVeBal from '@/composables/useVeBAL';
 import { useVeBalLockInfo } from '@/composables/useVeBalLockInfo';
 import configs from '@/lib/config';
@@ -178,7 +183,12 @@ watch(isRefetchingVotingPools, async () => {
         <h3 class="mb-2">
           {{ $t('veBAL.liquidityMining.title') }}
           <BalTooltip
-            :text="$t('veBAL.liquidityMining.description')"
+            :text="
+              $t('veBAL.liquidityMining.description', {
+                veSymbol,
+                network: networkSlug,
+              })
+            "
             iconSize="sm"
             iconClass="text-gray-400 dark:text-gray-600"
             width="72"
@@ -188,8 +198,12 @@ watch(isRefetchingVotingPools, async () => {
       </div>
     </div>
 
-    <VotingAlert v-if="veBalLockTooShort" title="vTSYMM not locked for 7 days">
-      You must have vTSYMM locked for more than 7 days to vote on gauges.
+    <VotingAlert
+      v-if="veBalLockTooShort"
+      :title="`${veSymbol} not locked for 7 days`"
+    >
+      You must have {{ veSymbol }} locked for more than 7 days to vote on
+      gauges.
     </VotingAlert>
 
     <VotingAlert
@@ -197,23 +211,26 @@ watch(isRefetchingVotingPools, async () => {
       title="Resubmit your votes to utilize your full voting power"
     >
       Votes on pools are set at the time of the vote. Since you’ve added new
-      vTSYMM since your original vote, you have additional voting power which is
-      not being used. Use the 'Edit votes' button to resubmit your votes.
+      {{ veSymbol }} since your original vote, you have additional voting power
+      which is not being used. Use the 'Edit votes' button to resubmit your
+      votes.
     </VotingAlert>
 
     <VotingAlert
       v-if="noVeBalBalance && !isLoading"
-      title="You need some vTSYMM to vote on gauges"
+      :title="`You need some ${veSymbol} to vote on gauges`"
     >
-      Get vTSYMM by locking up LP tokens from the 80% tSYMM / 20% WTLOS pool.
+      Get {{ veSymbol }} by locking up LP tokens from the 80% {{ symmSymbol }} /
+      20% {{ nativeSymbol }}
+      pool.
     </VotingAlert>
 
     <VotingAlert
       v-if="veBalExpired"
-      title="You can't vote because your vTSYMM has expired"
+      :title="`You can't vote because your ${veSymbol} has expired`"
     >
-      You need some vTSYMM to vote on gauges. Unlock and relock your
-      B-80BAL-20-WETH to get some veBAL.
+      You need some {{ veSymbol }} to vote on gauges. Unlock and relock your
+      {{ lpToken }} to get some veBAL.
     </VotingAlert>
 
     <VotingAlert
@@ -231,7 +248,11 @@ watch(isRefetchingVotingPools, async () => {
               My unallocated votes
             </p>
             <BalTooltip
-              :text="$t('veBAL.liquidityMining.myUnallocatedVotesTooltip')"
+              :text="
+                $t('veBAL.liquidityMining.myUnallocatedVotesTooltip', {
+                  veSymbol,
+                })
+              "
               iconClass="text-gray-400 dark:text-gray-600"
               iconSize="sm"
               width="72"
@@ -249,7 +270,12 @@ watch(isRefetchingVotingPools, async () => {
           </p>
           <BalTooltip
             v-if="hasExpiredLock"
-            :text="$t('veBAL.liquidityMining.votingPowerExpiredTooltip')"
+            :text="
+              $t('veBAL.liquidityMining.votingPowerExpiredTooltip', {
+                veSymbol,
+                lpToken,
+              })
+            "
             iconSize="sm"
             :iconName="'alert-triangle'"
             :iconClass="'text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors'"
@@ -266,7 +292,9 @@ watch(isRefetchingVotingPools, async () => {
               Voting period ends
             </p>
             <BalTooltip
-              :text="$t('veBAL.liquidityMining.votingPeriodTooltip')"
+              :text="
+                $t('veBAL.liquidityMining.votingPeriodTooltip', { veSymbol })
+              "
               iconSize="sm"
               iconClass="text-gray-400 dark:text-gray-600"
               width="72"
@@ -313,7 +341,7 @@ watch(isRefetchingVotingPools, async () => {
         <div v-if="isWalletReady" class="flex-0 ml-5 w-32 h-8">
           <BalBtn
             :tag="votingDisabled ? 'div' : 'router-link'"
-            :to="{ name: 'vtsymm-voting', params: { networkSlug } }"
+            :to="{ name: 'vesymm-voting', params: { networkSlug } }"
             :label="hasSubmittedVotes ? 'Edit votes' : 'Vote'"
             color="gradient"
             :disabled="votingDisabled"

@@ -5,6 +5,7 @@ import {
   VotingActionProps,
   useVotingActions,
 } from './composables/useVotingActions';
+import { veSymbol } from '@/composables/useNetwork';
 
 const props = defineProps<VotingActionProps>();
 
@@ -27,7 +28,7 @@ const { handleFailed, handleSuccess, txState, votingActions } =
       <BalBtn
         tag="router-link"
         :to="{
-          name: 'vtsymm',
+          name: 'vesymm',
           params: { networkSlug: 'ethereum' },
         }"
         color="gray"
@@ -35,7 +36,7 @@ const { handleFailed, handleSuccess, txState, votingActions } =
         block
         class="mt-2"
       >
-        Return to vtSYMM list
+        Return to {{ veSymbol }} list
       </BalBtn>
     </div>
   </transition>

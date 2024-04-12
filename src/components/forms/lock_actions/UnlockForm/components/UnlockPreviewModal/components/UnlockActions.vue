@@ -15,6 +15,7 @@ import { balancerContractsService } from '@/services/balancer/contracts/balancer
 import useWeb3 from '@/services/web3/useWeb3';
 import { TokenInfo } from '@/types/TokenList';
 import { TransactionActionInfo } from '@/types/transactions';
+import { veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -162,7 +163,7 @@ async function submit() {
         </BalLink>
       </div>
       <BalBtn color="gray" outline block class="mt-2" @click="emit('close')">
-        {{ $t('unlockVeBAL.previewModal.returnToVeBalPage') }}
+        {{ $t('unlockVeBAL.previewModal.returnToVeBalPage', { veSymbol }) }}
       </BalBtn>
     </template>
   </div>
