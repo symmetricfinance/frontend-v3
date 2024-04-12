@@ -6,13 +6,13 @@ const tokens: TokenConstants = {
   },
   InitialSwapTokens: {
     input: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-    output: '0x8d97cea50351fb4329d591682b148d43a0c3611b',
+    output: '0x228ebbee999c6a7ad74a6130e81b12f9fe237ba3',
   },
   Addresses: {
     nativeAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
     wNativeAsset: '0x160361ce13ec33c993b5cca8f62b6864943eb083',
     WETH: '0x160361ce13ec33c993b5cca8f62b6864943eb083',
-    BAL: '0x6ab5792b887Eb3F63A8915240F926e829982d3F5',
+    BAL: '0x663345e09F4F4437F3D5df39BA5c2B5690532206',
     rETH: '',
     stETH: '0x215d603293357ca222be92a1bf75eec38def0aad',
     wstETH: '0xe2de616fbd8cb9180b26fcfb1b761a232fe56717',

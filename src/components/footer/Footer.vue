@@ -12,6 +12,7 @@ import useNetwork, { veSymbol } from '@/composables/useNetwork';
 
 import AppLogo from '../images/AppLogo.vue';
 import { useThirdPartyServices } from '@/composables/useThirdPartyServices';
+import { isGaugesSupported, isVeBalSupported } from '@/composables/useVeBAL';
 
 const { networkSlug } = useNetwork();
 const { handleThirdPartyModalToggle } = useThirdPartyServices();
@@ -50,7 +51,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                 {{ $t('swap') }}
               </router-link>
             </p>
-            <p>
+            <p v-if="isGaugesSupported">
               <router-link
                 class="text-lg font-medium link"
                 :to="{ name: 'claim', params: { networkSlug } }"
@@ -66,7 +67,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                 {{ $t('portfolio') }}
               </router-link>
             </p>
-            <p>
+            <p v-if="isVeBalSupported">
               <router-link
                 class="text-lg font-medium link"
                 :to="{ name: 'vtsymm', params: { networkSlug } }"
