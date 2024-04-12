@@ -137,20 +137,18 @@ const cards = computed(() => {
       }),
       secondaryText:
         props.veBalLockInfo && hasExistingLock && !isExpired
-          ? t('veBAL.myVeBAL.cards.myVeBAL.secondaryText', {
-              0: [
-                fNum(
-                  bnum(veBalBalance.value)
-                    .div(props.veBalLockInfo.totalSupply)
-                    .toString(),
-                  {
-                    style: 'percent',
-                    maximumFractionDigits: 4,
-                  }
-                ),
-              ],
-              veSymbol: veSymbol.value,
-            })
+          ? t('veBAL.myVeBAL.cards.myVeBAL.secondaryText', [
+              fNum(
+                bnum(veBalBalance.value)
+                  .div(props.veBalLockInfo.totalSupply)
+                  .toString(),
+                {
+                  style: 'percent',
+                  maximumFractionDigits: 4,
+                }
+              ),
+              veSymbol.value,
+            ])
           : '-',
       showPlusIcon: false,
       value: hasExistingLock
