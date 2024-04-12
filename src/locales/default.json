@@ -1063,7 +1063,7 @@
         },
         "myVeBAL": {
           "label": "My {veSymbol}",
-          "secondaryText": "{0} of all {veSymbol}"
+          "secondaryText": "{0} of all {1}"
         },
         "myExpiredLockTooltip": "Your previous lockup period has expired, so you no longer have any {veSymbol} or voting power. You will no longer earn protocol fees, boosted yields on staked {network} Mainnet pools or {veSymbol} incentives. However, you’ll still get the minimum 1.0x rate. Tap the minus icon to redeem your expired locked {lpToken} LP tokens and then create a new lock to get {veSymbol}."
       }
