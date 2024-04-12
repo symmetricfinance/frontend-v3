@@ -278,7 +278,7 @@ onBeforeMount(async () => {
       </BalAlert>
       <BalBtn
         tag="router-link"
-        :to="{ name: 'vtsymm', params: { networkSlug } }"
+        :to="{ name: 'vesymm', params: { networkSlug } }"
         color="gray"
         outline
         block

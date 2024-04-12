@@ -7,7 +7,7 @@ import { applyNavGuards } from './nav-guards';
 const ClaimPage = () => import('@/pages/claim/index.vue');
 const LegacyClaimPage = () => import('@/pages/claim/legacy.vue');
 const CookiesPolicyPage = () => import('@/pages/cookies-policy.vue');
-const GetVeBalPage = () => import('@/pages/get-vtsymm.vue');
+const GetVeBalPage = () => import('@/pages/get-vesymm.vue');
 const HomePage = () => import('@/pages/index.vue');
 const PoolPage = () =>
   import(/* webpackPrefetch: true */ '@/pages/pool/_id.vue');
@@ -22,9 +22,9 @@ const SwapPage = () => import('@/pages/swap.vue');
 export const SwapPagePrefetchLinks = async () =>
   import('@/pages/swap.vue').toString();
 
-const UnlockVeBalPage = () => import('@/pages/unlock-vtsymm.vue');
-const VeBalPage = () => import('@/pages/vtsymm.vue');
-const VeBalVotingPage = () => import('@/pages/vtsymm-voting.vue');
+const UnlockVeBalPage = () => import('@/pages/unlock-vesymm.vue');
+const VeBalPage = () => import('@/pages/vesymm.vue');
+const VeBalVotingPage = () => import('@/pages/vesymm-voting.vue');
 const FaucetPage = () => import('@/pages/faucet.vue');
 const BalancesPage = () => import('@/pages/balances.vue');
 
@@ -121,19 +121,19 @@ const routes: RouteRecordRaw[] = [
     meta: { layout: 'PoolLayout' },
   },
   {
-    path: '/:networkSlug/vtsymm',
-    name: 'vtsymm',
+    path: '/:networkSlug/vesymm',
+    name: 'vesymm',
     component: VeBalPage,
   },
   {
-    path: '/:networkSlug/vtsymm-voting',
-    name: 'vtsymm-voting',
+    path: '/:networkSlug/vesymm-voting',
+    name: 'vesymm-voting',
     component: VeBalVotingPage,
     meta: { layout: 'FocussedLayout' },
   },
   {
-    path: '/:networkSlug/get-vtsymm',
-    name: 'get-vtsymm',
+    path: '/:networkSlug/get-vesymm',
+    name: 'get-vesymm',
     component: GetVeBalPage,
     meta: { layout: 'FocussedLayout' },
   },

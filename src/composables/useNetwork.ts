@@ -128,7 +128,7 @@ export const lpToken = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return '80GSYMM-20SDAI';
   }
-  return '80MSYMM-20stMTRG';
+  return '80MSYMM-20wstMTRG';
 });
 
 export const nativeSymbol = computed(() => {
@@ -142,6 +142,19 @@ export const nativeSymbol = computed(() => {
     return 'SDAI';
   }
   return 'wstMTRG';
+});
+
+export const rewardSymbol = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'stCELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'WTLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'SDAI';
+  }
+  return 'MTRG-wstMTRG';
 });
 
 export function appUrl(): string {
@@ -236,5 +249,6 @@ export default function useNetwork() {
     veSymbol,
     lpToken,
     nativeSymbol,
+    rewardSymbol,
   };
 }

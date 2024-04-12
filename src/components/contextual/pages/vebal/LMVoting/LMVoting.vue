@@ -218,7 +218,7 @@ watch(isRefetchingVotingPools, async () => {
 
     <VotingAlert
       v-if="noVeBalBalance && !isLoading"
-      title="You need some vTSYMM to vote on gauges"
+      :title="`You need some ${veSymbol} to vote on gauges`"
     >
       Get {{ veSymbol }} by locking up LP tokens from the 80% {{ symmSymbol }} /
       20% {{ nativeSymbol }}
@@ -227,7 +227,7 @@ watch(isRefetchingVotingPools, async () => {
 
     <VotingAlert
       v-if="veBalExpired"
-      title="You can't vote because your vTSYMM has expired"
+      :title="`You can't vote because your ${veSymbol} has expired`"
     >
       You need some {{ veSymbol }} to vote on gauges. Unlock and relock your
       {{ lpToken }} to get some veBAL.
@@ -341,7 +341,7 @@ watch(isRefetchingVotingPools, async () => {
         <div v-if="isWalletReady" class="flex-0 ml-5 w-32 h-8">
           <BalBtn
             :tag="votingDisabled ? 'div' : 'router-link'"
-            :to="{ name: 'vtsymm-voting', params: { networkSlug } }"
+            :to="{ name: 'vesymm-voting', params: { networkSlug } }"
             :label="hasSubmittedVotes ? 'Edit votes' : 'Vote'"
             color="gradient"
             :disabled="votingDisabled"

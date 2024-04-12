@@ -47,15 +47,46 @@
     "contracts": [
       {
         "name": "VotingEscrow",
-        "address": "0xF533A5C6B5d24831E138d66Fb88F28dc72fAFE9a"
+        "address": "0xdAe34CFC2a0eF52aC8417eeFc2A1C5CEaC50bfe7"
       },
       {
         "name": "GaugeController",
-        "address": "0xf6b4173Fd50c7DBdfa50f0D2EEd1207c02C31E02"
+        "address": "0x0563fe58FC886BE22cE1977cADE4bC80D4e01bc3"
       },
       {
         "name": "BalancerMinter",
-        "address": "0x18730De270BBD50C13430fAAF20BD96A491c0de1"
+        "address": "0x67e991b578f794467647cD327810445c92950064"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220325-ve-delegation": {
+    "contracts": [
+      {
+        "name": "VotingEscrowDelegation",
+        "address": "0xCAEebD60A2f33546eEC4dfd15FDD31893c3c20b4"
+      },
+      {
+        "name": "VotingEscrowDelegationProxy",
+        "address": "0x365645DBCb8aC6d4427915D28B7440383565d13d"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220420-smart-wallet-checker": {
+    "contracts": [
+      {
+        "name": "SmartWalletChecker",
+        "address": "0xd0A414a780Fd25098d115beE10928194645C68e4"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220707-distribution-scheduler": {
+    "contracts": [
+      {
+        "name": "DistributionScheduler",
+        "address": "0x88F7034f492CDe049ADCc24153E607ff69235c2A"
       }
     ],
     "status": "ACTIVE"
@@ -78,11 +109,37 @@
     ],
     "status": "ACTIVE"
   },
+  "20220822-mainnet-gauge-factory-v2": {
+    "contracts": [
+      {
+        "name": "LiquidityGaugeV5",
+        "address": "0xe747801F8f692EBB9a64c81E432Fa5573EDB16b4"
+      },
+      {
+        "name": "LiquidityGaugeFactory",
+        "address": "0xf85271dc6838944278E8Ee96981fbE98caa86b12"
+      }
+    ],
+    "status": "ACTIVE"
+  },
   "20221124-authorizer-adaptor-entrypoint": {
     "contracts": [
       {
         "name": "AuthorizerAdaptorEntrypoint",
         "address": "0xbdfBEB1afcB6411d91A8dCCfC0ce293a53a20542"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20230215-single-recipient-gauge-factory-v2": {
+    "contracts": [
+      {
+        "name": "SingleRecipientGaugeFactory",
+        "address": "0xF4D1405df236BB5bD654B40Db4C055cb59522939"
+      },
+      {
+        "name": "SingleRecipientGauge",
+        "address": "0x49946433F0AA8d106a600bEf51eF4ea24Be17047"
       }
     ],
     "status": "ACTIVE"

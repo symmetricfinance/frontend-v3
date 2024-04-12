@@ -174,11 +174,11 @@ function applyMetaData(router: Router): Router {
 function applyVotingRedirects(router: Router): Router {
   router.beforeEach((to, from, next) => {
     if (
-      to.name === 'vtsymm-voting' &&
+      to.name === 'vesymm-voting' &&
       Object.keys(votingRequest.value).length === 0
     ) {
       next({
-        name: 'vtsymm',
+        name: 'vesymm',
         params: { networkSlug: 'telos' },
       });
     } else next();

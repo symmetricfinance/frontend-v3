@@ -146,7 +146,7 @@ onUnmounted(() => {
         v-if="lockablePoolId === pool.id"
         tag="router-link"
         :to="{
-          name: 'get-vtsymm',
+          name: 'get-vesymm',
           query: {
             returnRoute: $route.name,
             returnParams: JSON.stringify({

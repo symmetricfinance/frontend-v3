@@ -9,7 +9,11 @@ import { bnum } from '@/lib/utils';
 import { Pool } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
 import UnlockPreviewModal from '@/components/forms/lock_actions/UnlockForm/components/UnlockPreviewModal/UnlockPreviewModal.vue';
-import useNetwork, { symmSymbol, veSymbol } from '@/composables/useNetwork';
+import useNetwork, {
+  nativeSymbol,
+  symmSymbol,
+  veSymbol,
+} from '@/composables/useNetwork';
 
 type Props = {
   pool: Pool;
@@ -26,7 +30,7 @@ const { balanceFor } = useTokens();
 const { totalLockedValue, lock, isLoadingLockInfo, lockPool, lockPoolToken } =
   useLock();
 const { isWalletReady } = useWeb3();
-const { networkSlug, networkConfig } = useNetwork();
+const { networkSlug } = useNetwork();
 
 /**
  * COMPUTED
@@ -82,7 +86,7 @@ const fiatTotalExpiredLpTokens = computed(() =>
                     <BalIcon size="sm" name="check" />
                   </div>
                   <BalStack spacing="sm" align="center">
-                    <h6>{{ $t('locking.lockBptForVeBal') }}</h6>
+                    <h6>{{ $t('locking.lockBptForVeBal', { veSymbol }) }}</h6>
                   </BalStack>
                 </BalStack>
                 <BalStack horizontal spacing="sm" align="center">
@@ -122,7 +126,7 @@ const fiatTotalExpiredLpTokens = computed(() =>
                         $t('locking.lockedLpTokensTooltip', {
                           veSymbol,
                           symmSymbol,
-                          nativeAsset: networkConfig.nativeAsset,
+                          nativeAsset: nativeSymbol,
                         })
                       "
                     />
@@ -155,7 +159,7 @@ const fiatTotalExpiredLpTokens = computed(() =>
                       :text="
                         $t('locking.unlockedLpTokensTooltip', {
                           symmSymbol,
-                          nativeAsset: networkConfig.nativeAsset,
+                          nativeAsset: nativeSymbol,
                         })
                       "
                     />
@@ -166,7 +170,7 @@ const fiatTotalExpiredLpTokens = computed(() =>
                     v-if="Number(bptBalance) > 0"
                     tag="router-link"
                     :to="{
-                      name: 'get-vtsymm',
+                      name: 'get-vesymm',
                       query: {
                         returnRoute: $route.name,
                         returnParams: JSON.stringify({

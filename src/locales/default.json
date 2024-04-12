@@ -148,29 +148,29 @@
       "claim": "Claim anytime"
     },
     "airdropTipLabel": {
-      "addLiquidity": "Add liquidity to the tSYMM/WTLOS pool",
+      "addLiquidity": "Add liquidity to the {lpToken} pool",
       "stake": "Lock your LP tokens to get {veSymbol}",
       "boost": "Get a boost",
-      "claim": "Receive tSYMM and TLOS rewards"
+      "claim": "Receive {symmSymbol} and {rewardSymbol} rewards"
     },
     "tips": {
       "addLiquidity": "To earn liquidity mining incentives, add liquidity to eligible pools across Telos. Note: You'll earn swap fees with or without staking but you don't need to claim these as they are automatically added to your position.",
       "stake": "If you've provided liquidity in an eligible pool, you'll have an option to stake your Liquidity Provider (LP) tokens from that pool. Stake them to receive liquidity mining incentives in addition to any swap fees.",
       "boost": "Get {veSymbol} to boost your liquidity mining incentives by up to 2.5x. The more {veSymbol} you hold, the larger your boost. {veSymbol} holders also earn protocol fees and can vote to direct future pool emissions.",
-      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just tSYMM). Additionally, {veSymbol} holders also get a share of protocol revenue, in both USDC and tSYMM."
+      "claim": "Token earnings from liquidity mining accumulate every block and can be claimed at any time. Some pools offer multiple token incentives (not just {symmSymbol} ). Additionally, {veSymbol} holders also get a share of protocol revenue, in both USDC and {rewardSymbol}."
     }
   },
   "claimPage": {
     "tips": {
       "BalIncentives": "Incentives for LPs who stake in eligible pools (based on the previous week's voting). This doesn't include swap fees or intrinsic yield from certain yield bearing tokens which accumulate into LP positions automatically.",
-      "ProtocolAndVebal": "Additional incentives for {veSymbol} holders: For locking in the S-80TSYMM-20WTLOS pool (based on the previous week's voting), and their share of protocol revenue.",
-      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any tSYMM liquidity incentives."
+      "ProtocolAndVebal": "Additional incentives for {veSymbol} holders: For locking in the {lpToken} pool (based on the previous week's voting), and their share of protocol revenue.",
+      "OtherIncentives": "Incentives from third parties who want to further incentivize liquidity on top of any {symmSymbol} liquidity incentives."
     }
   },
   "claimAll": "Claim all",
-  "claimBAL": "Claim $tSYMM for",
+  "claimBAL": "Claim {symmSymbol} for",
   "claiming": "Claiming...",
-  "claimSuccess": "You successfully claimed $tSYMM!",
+  "claimSuccess": "You successfully claimed ${symmSymbol}!",
   "classic": "Classic",
   "clearForms": "Clear forms",
   "clearTransactions": "Clear transactions",
@@ -1186,7 +1186,7 @@
       "steps": {
         "investPart1": "Add liquidity to the",
         "investPart2": "pool.",
-        "lock": "Lock-up the resulting LP token ({0}). The longer you lock (1 year max), the more {veSymbol} you get."
+        "lock": "Lock-up the resulting LP token ({0}). The longer you lock (1 year max), the more {1} you get."
       },
       "earn": {
         "boost": "{veSymbol} holders get boosted liquidity mining yields (up to 2.5x) and increased voting power.",
@@ -1380,8 +1380,8 @@
     },
     "veBalApr": {
       "title": "Max locking/{veSymbol} APR",
-      "breakdown1": "tSYMM",
-      "breakdown2": "WTLOS"
+      "breakdown1": "{symmSymbol}",
+      "breakdown2": "{rewardSymbol}"
     }
   },
   "total": "Total",

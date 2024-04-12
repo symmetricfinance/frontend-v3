@@ -70,7 +70,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
             <p v-if="isVeBalSupported">
               <router-link
                 class="text-lg font-medium link"
-                :to="{ name: 'vtsymm', params: { networkSlug } }"
+                :to="{ name: 'vesymm', params: { networkSlug } }"
               >
                 {{ $t('vebal', { veSymbol }) }}
               </router-link>

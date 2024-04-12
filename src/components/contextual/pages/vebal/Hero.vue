@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, {
+  networkSlug,
+  rewardSymbol,
+  symmSymbol,
+} from '@/composables/useNetwork';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
@@ -25,9 +29,9 @@ const benefits = computed(() => [
  */
 function navigateToGetVeBAL() {
   router.push({
-    name: 'get-vtsymm',
+    name: 'get-vesymm',
     query: {
-      returnRoute: 'vtsymm',
+      returnRoute: 'vesymm',
     },
   });
 }
@@ -83,7 +87,7 @@ function navigateToGetVeBAL() {
               width="144"
               height="144"
               class="tip-icon"
-              src="@/assets/images/icons/claims-header/add-liquidity.svg"
+              :src="`images/icons/claims-header/add-liquidity-${networkSlug}.svg`"
             />
             <p class="mt-2 font-semibold tip-label text-shadow">
               {{ $t('claimHero.tipLabel.addLiquidity') }}
@@ -103,7 +107,7 @@ function navigateToGetVeBAL() {
               width="144"
               height="144"
               class="tip-icon"
-              src="@/assets/images/icons/claims-header/stake.svg"
+              :src="`images/icons/claims-header/stake-${networkSlug}.svg`"
             />
             <p class="mt-2 font-semibold tip-label text-shadow">
               {{ $t('claimHero.tipLabel.stake') }}
@@ -123,7 +127,7 @@ function navigateToGetVeBAL() {
               width="144"
               height="144"
               class="tip-icon"
-              src="@/assets/images/icons/claims-header/vebal.svg"
+              :src="`images/icons/claims-header/vebal-${networkSlug}.svg`"
             />
             <p class="mt-2 font-semibold tip-label text-shadow">
               {{ $t('claimHero.tipLabel.boost') }}
@@ -134,7 +138,7 @@ function navigateToGetVeBAL() {
                 iconClass="text-white"
                 width="60"
               >
-                {{ $t('claimHero.tips.boost') }}
+                {{ $t('claimHero.tips.boost', { veSymbol }) }}
               </BalTooltip>
             </p>
           </div>
@@ -154,7 +158,13 @@ function navigateToGetVeBAL() {
                 iconClass="text-white"
                 width="60"
               >
-                {{ $t('claimHero.tips.claim') }}
+                {{
+                  $t('claimHero.tips.claim', {
+                    symmSymbol,
+                    veSymbol,
+                    rewardSymbol,
+                  })
+                }}
               </BalTooltip>
             </p>
           </div>

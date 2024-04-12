@@ -27,7 +27,7 @@ import { TOKENS } from '@/constants/tokens';
 // import { buildNetworkIconURL } from '@/lib/utils/urls';
 // import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
-import { symmSymbol, veSymbol } from '@/composables/useNetwork';
+import { lpToken, symmSymbol, veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -279,7 +279,7 @@ onBeforeMount(async () => {
   <div>
     <HeroClaim
       :title="$t('claimHero.title')"
-      :description="$t('claimHero.description')"
+      :description="$t('claimHero.description', { veSymbol })"
     />
     <div>
       <div class="xl:container py-12 xl:px-4 xl:mx-auto">
@@ -322,7 +322,7 @@ onBeforeMount(async () => {
               iconClass="text-secondary"
               width="60"
             >
-              {{ $t('claimPage.tips.ProtocolAndVebal') }}
+              {{ $t('claimPage.tips.ProtocolAndVebal', { veSymbol, lpToken }) }}
             </BalTooltip>
             <ProtocolRewardsTable
               :rewardsData="protocolRewardsData"
@@ -347,7 +347,7 @@ onBeforeMount(async () => {
             iconClass="text-secondary"
             width="60"
           >
-            {{ $t('claimPage.tips.OtherIncentives') }}
+            {{ $t('claimPage.tips.OtherIncentives', { symmSymbol }) }}
           </BalTooltip>
         </div>
         <BalLoadingBlock v-if="loading" class="mt-6 mb-2 h-56" />

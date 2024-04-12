@@ -49,8 +49,8 @@ function handleInternalClose() {
           color="gradient"
           @click="
             router.push({
-              name: 'vtsymm',
-              params: { networkSlug: getNetworkSlug(Network.MAINNET) },
+              name: 'vesymm',
+              params: { networkSlug: getNetworkSlug(Network.TELOS) },
             })
           "
         />

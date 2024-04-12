@@ -36,7 +36,7 @@ const { networkId, getNetworkSlug } = useNetwork();
         color="gradient"
         @click="
           $router.push({
-            name: 'vtsymm',
+            name: 'vesymm',
             params: { networkSlug: getNetworkSlug(Network.MAINNET) },
           })
         "
