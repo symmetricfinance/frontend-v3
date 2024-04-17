@@ -1,8 +1,7 @@
-import { isMainnet } from '@/composables/useNetwork';
 import { Pools } from '@/types/pools';
 import { configService } from '@/services/config/config.service';
 
-export const MIN_FIAT_VALUE_POOL_MIGRATION = isMainnet.value ? 100_000 : 1; // 100K USD or $1 for other networks
+export const MIN_FIAT_VALUE_POOL_MIGRATION = 1; // 100K USD or $1 for other networks
 
 // Do not display APR values greater than this amount; they are likely to be nonsensical
 // These can arise from pools with extremely low balances (e.g., completed LBPs)

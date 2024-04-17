@@ -7,7 +7,7 @@ import {
   VotingPoolWithVotes,
 } from '@/services/balancer/gauges/gauge-controller.decorator';
 import useWeb3 from '@/services/web3/useWeb3';
-import { isTestnet, isMainnet } from '@/composables/useNetwork';
+import { isTestnet, isMainnet, isMeter } from '@/composables/useNetwork';
 import { VeBalGetVotingListQuery } from '@/services/api/graphql/generated/api-types';
 import { Network } from '@/lib/config/types';
 import { PoolType } from '@/services/pool/types';
@@ -15,6 +15,7 @@ import {
   telosVotingPools,
   testnetVotingPools,
 } from '@/components/contextual/pages/vebal/LMVoting/testnet-voting-pools';
+import { meterVotingPools } from '@/components/contextual/pages/vebal/LMVoting/meter-voting-pools';
 import { mapApiChain, mapApiPoolType } from '@/services/api/graphql/mappers';
 
 /**
@@ -54,10 +55,13 @@ export default function useVotingPoolsQuery(
   const queryFn = async (): Promise<VotingPool[]> => {
     try {
       let apiVotingPools: ApiVotingPools;
+      console.log(isMeter.value);
       if (isTestnet.value) {
         apiVotingPools = testnetVotingPools('GOERLI');
       } else if (isMainnet.value) {
         apiVotingPools = telosVotingPools('telos');
+      } else if (isMeter.value) {
+        apiVotingPools = meterVotingPools('meter');
       } else {
         const api = getApi();
         console.log(api);

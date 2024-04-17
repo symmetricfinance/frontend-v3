@@ -30,10 +30,11 @@ const config: Config = {
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
   subgraphs: {
     main: [
+      'http://graph.meter.io:8000/subgraphs/name/symmetric-meter',
       'https://graph-meter.voltswap.finance/subgraphs/name/symmetric-meter',
     ],
     aave: '',
-    gauge: '',
+    gauge: 'http://graph.meter.io:8000/subgraphs/name/symmetric-meter-gauges',
     blocks: '',
   },
   bridgeUrl: 'https://passport.meter.io/',

@@ -30,6 +30,8 @@ export function mapApiChain(
       return Network.GOERLI;
     case 'telos':
       return Network.TELOS;
+    case 'meter':
+      return Network.METER;
 
     default:
       throw new Error(`Unexpected API chain: ${apiChain}`);
