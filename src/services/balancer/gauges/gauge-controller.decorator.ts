@@ -12,7 +12,7 @@ import { rpcProviderService } from '@/services/rpc-provider/rpc-provider.service
 import { getOldMulticaller } from '@/dependencies/OldMulticaller';
 // eslint-disable-next-line no-restricted-imports
 import { Multicaller } from '@/lib/utils/balancer/contract';
-import { networkId, isTestnet } from '@/composables/useNetwork';
+import { networkId, isTestnet, isMeter } from '@/composables/useNetwork';
 import { Network } from '@/lib/config/types';
 import {
   ApiVotingPools,
@@ -89,6 +89,10 @@ export class GaugeControllerDecorator {
       return {
         ...pool,
         ...this.formatVotes(votesDataMap.gauges[pool.gauge.address]),
+        // votes: '0',
+        // votesNextPeriod: '0',
+        // userVotes: '0',
+        // lastUserVoteTime: 0,
       };
     });
     return decoratedVotingPools;
@@ -110,6 +114,7 @@ export class GaugeControllerDecorator {
    * @summary Fetch total points allocated towards each gauge for this period
    */
   private callGaugeWeightThisPeriod(votingGauges: ApiVotingGauge[]) {
+    console.log(votingGauges);
     let thisWeekTimestamp = toUnixTimestamp(
       Math.floor(Date.now() / oneWeekInMs) * oneWeekInMs
     );
@@ -119,7 +124,18 @@ export class GaugeControllerDecorator {
     if (thisWeekTimestamp == FIRST_WEEK_TIMESTAMP) {
       thisWeekTimestamp = thisWeekTimestamp - oneWeekInSecs;
     }
-    votingGauges.forEach(gauge => {
+    // if (networkId.value === 82) {
+    //   return votingGauges.forEach(gauge => {
+    //     this.multicaller.call(
+    //       `gauges.${gauge.address}.gaugeWeightNextPeriod`,
+    //       gauge.address,
+    //       'getCappedRelativeWeight',
+    //       [thisWeekTimestamp]
+    //     );
+    //   });
+    // }
+    console.log(thisWeekTimestamp);
+    return votingGauges.forEach(gauge => {
       this.multicaller.call(
         `gauges.${gauge.address}.gaugeWeightThisPeriod`,
         this.config.network.addresses.gaugeController,
@@ -136,7 +152,17 @@ export class GaugeControllerDecorator {
     const nextWeekTimestamp = toUnixTimestamp(
       Math.floor((Date.now() + oneWeekInMs) / oneWeekInMs) * oneWeekInMs
     );
-    votingGauges.forEach(gauge => {
+    // if (networkId.value === 82) {
+    //   return votingGauges.forEach(gauge => {
+    //     this.multicaller.call(
+    //       `gauges.${gauge.address}.gaugeWeightNextPeriod`,
+    //       gauge.address,
+    //       'getCappedRelativeWeight',
+    //       [nextWeekTimestamp]
+    //     );
+    //   });
+    // }
+    return votingGauges.forEach(gauge => {
       this.multicaller.call(
         `gauges.${gauge.address}.gaugeWeightNextPeriod`,
         this.config.network.addresses.gaugeController,
@@ -188,6 +214,8 @@ export class GaugeControllerDecorator {
   private getNetwork(): Network {
     if (isTestnet.value) {
       return networkId.value;
+    } else if (isMeter.value) {
+      return Network.METER;
     } else {
       return Network.TELOS;
     }

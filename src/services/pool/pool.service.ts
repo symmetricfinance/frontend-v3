@@ -13,7 +13,7 @@ import { TokenInfoMap } from '@/types/TokenList';
 
 import { OnchainDataFormater } from './decorators/onchain-data.formater';
 import { AprBreakdown } from '@symmetric-v3/sdk';
-import useNetwork, { networkId } from '@/composables/useNetwork';
+import useNetwork, { networkId, rewardSymbol } from '@/composables/useNetwork';
 import { getBalancerSDK } from '@/dependencies/balancer-sdk';
 import { Pool as SDKPool } from '@symmetric-v3/sdk';
 import { captureBalancerException } from '@/lib/utils/errors';
@@ -87,21 +87,23 @@ export default class PoolService {
       const rewardData: any = localStorage.getItem('REWARD_PRICE');
       console.log(rewardData);
       if (rewardData) {
-        const { price } = JSON.parse(rewardData);
-        const rewardPrice = parseFloat(price);
-        const yearlyRewardUsd =
-          parseFloat(formatUnits(yearlyReward.toString(), 18)) * rewardPrice;
-        const totalSupply = await gaugeTotalSupply(this.pool.address);
-        const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
-        const rewardValue =
-          yearlyRewardUsd / parseFloat(totalSupplyUsd.toString());
-        const rewardValueScaled = Math.round(10000 * rewardValue);
-        apr.rewardAprs = {
-          total: rewardValueScaled,
-          breakdown: {
-            [reward.token]: rewardValueScaled,
-          },
-        };
+        const data = JSON.parse(rewardData);
+        if (data[`${rewardSymbol.value}_price`]) {
+          const rewardPrice = parseFloat(data[`${rewardSymbol.value}_price`]);
+          const yearlyRewardUsd =
+            parseFloat(formatUnits(yearlyReward.toString(), 18)) * rewardPrice;
+          const totalSupply = await gaugeTotalSupply(this.pool.address);
+          const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
+          const rewardValue =
+            yearlyRewardUsd / parseFloat(totalSupplyUsd.toString());
+          const rewardValueScaled = Math.round(10000 * rewardValue);
+          apr.rewardAprs = {
+            total: rewardValueScaled,
+            breakdown: {
+              [reward.token]: rewardValueScaled,
+            },
+          };
+        }
       }
     }
 

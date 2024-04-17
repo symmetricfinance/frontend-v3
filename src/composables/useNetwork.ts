@@ -40,6 +40,7 @@ export const isMainnet = computed(
     networkId.value === Network.TELOS ||
     networkId.value === Network.TELOSTESTNET
 );
+export const isMeter = computed(() => networkId.value === Network.METER);
 export const isPolygon = computed(() => networkId.value === Network.POLYGON);
 export const isZkevm = computed(() => networkId.value === Network.ZKEVM);
 export const isOptimism = computed(() => networkId.value === Network.OPTIMISM);

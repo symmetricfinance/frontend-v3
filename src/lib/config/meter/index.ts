@@ -33,7 +33,8 @@ const config: Config = {
       'https://graph-meter.voltswap.finance/subgraphs/name/symmetric-meter',
     ],
     aave: '',
-    gauge: '',
+    gauge:
+      'https://graph-meter.voltswap.finance/subgraphs/name/symmetric-meter-gauges',
     blocks: '',
   },
   bridgeUrl: 'https://passport.meter.io/',

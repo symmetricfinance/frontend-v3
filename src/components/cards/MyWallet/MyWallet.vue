@@ -2,7 +2,6 @@
 import { useI18n } from 'vue-i18n';
 
 import useBreakpoints from '@/composables/useBreakpoints';
-import { isMainnet } from '@/composables/useNetwork';
 import { configService } from '@/services/config/config.service';
 import useWeb3 from '@/services/web3/useWeb3';
 import { AnyPool } from '@/services/pool/types';
@@ -59,10 +58,6 @@ const noNativeCurrencyMessage = computed(() => {
   return t('noNativeCurrency', [nativeCurrency, networkName]);
 });
 
-const noNativeCurrencyMessageEthereum = computed(() => {
-  return t('noNativeCurrencyEthereum', [nativeCurrency, networkName]);
-});
-
 const noTokensMessage = computed(() => {
   return t('noTokensInWallet', [networkName]);
 });
@@ -108,11 +103,7 @@ const emit = defineEmits<{
             {{ nativeBalance }} {{ nativeCurrency }}
             <BalTooltip
               v-if="isWalletReady"
-              :text="
-                isMainnet
-                  ? noNativeCurrencyMessageEthereum
-                  : noNativeCurrencyMessage
-              "
+              :text="noNativeCurrencyMessage"
               iconSize="sm"
               :iconName="'alert-triangle'"
               :iconClass="'text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors'"

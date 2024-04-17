@@ -46,10 +46,14 @@ export class StakingRewardsService {
     );
 
     let veBALTotalSupply = '0';
-    if (networkId.value === Network.TELOS) {
+    if (
+      networkId.value === Network.TELOS ||
+      networkId.value === Network.METER
+    ) {
       const lockInfo = await new BalancerContractsService().veBAL.getLockInfo(
         userAddress
       );
+      console.log('lockInfo', lockInfo);
       veBALTotalSupply = lockInfo.totalSupply;
     } else {
       // get l2 veBAL total supply from delegation proxy
@@ -58,7 +62,9 @@ export class StakingRewardsService {
 
     // need to use veBAL balance from the proxy as the balance from the proxy takes
     // into account the amount of delegated veBAL as well
+    console.log('userAddress', userAddress);
     const userVeBALBalance = await veBalProxy.getAdjustedBalance(userAddress);
+    console.log('userVeBALBalance', userVeBALBalance);
 
     return {
       veBALTotalSupply,

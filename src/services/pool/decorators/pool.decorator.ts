@@ -7,6 +7,7 @@ import PoolService from '../pool.service';
 import { PoolMulticaller } from './pool.multicaller';
 import axios from 'axios';
 import { configService } from '@/services/config/config.service';
+import { rewardSymbol } from '@/composables/useNetwork';
 
 /**
  * @summary Decorates a set of pools with additonal data.
@@ -22,11 +23,14 @@ export class PoolDecorator {
     tokens: TokenInfoMap,
     fullDecoration = true
   ): Promise<Pool[]> {
-    if (configService.network.chainId === 40) {
+    if (
+      configService.network.chainId === 40
+      // configService.network.chainId === 82
+    ) {
       const rewardData: any = localStorage.getItem('REWARD_PRICE');
       if (rewardData) {
-        const { timestamp } = JSON.parse(rewardData);
-        if (isPriceOutdated(timestamp)) {
+        const data = JSON.parse(rewardData);
+        if (isPriceOutdated(data.timestamp) || !data[`${rewardSymbol}_price`]) {
           setRewardPriceInLocalStorage()
             .then(() => {
               console.log('REWARD_PRICE has been updated in local storage');
@@ -128,11 +132,43 @@ const getWTLOSPrice = async (): Promise<number> => {
   }
 };
 
+// const getMTRG_wstMTRGPrice = async (): Promise<number> => {
+//   try {
+//     const priceQuery = await useGraphQuery(
+//       config[Network.METER].subgraph,
+//       QUERY_KEYS.Tokens.Prices(
+//         ref(82),
+//         ref({
+//           '0x2077a828fd58025655335a8756dbcfeb7e5bec46': 0,
+//         })
+//       ),
+//       () => ({
+//         token: {
+//           id: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
+//           latestUSDPrice: true,
+//         },
+//       }),
+//       reactive({ enabled: isEnabled })
+//     );
+//     console.log(priceQuery);
+//     const response = await axios.get(
+//       'https://api.coingecko.com/api/v3/simple/token_price/telos?contract_addresses=0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E&vs_currencies=usd'
+//     );
+//     const price =
+//       response.data['0xd102ce6a4db07d247fcc28f366a623df0938ca9e'].usd;
+//     return price;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
+
 const setRewardPriceInLocalStorage = async (): Promise<void> => {
   try {
-    const price = await getWTLOSPrice();
+    const WTLOS_price = await getWTLOSPrice();
+    // const MTRG_wstMTRG_price = await getMTRG_wstMTRGPrice();
     const timestamp = Date.now();
-    const data = { price, timestamp };
+    const data = { WTLOS_price, timestamp };
     localStorage.setItem('REWARD_PRICE', JSON.stringify(data));
   } catch (error) {
     console.error(error);

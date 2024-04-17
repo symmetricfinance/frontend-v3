@@ -54,7 +54,13 @@ const pools: Pools = {
   },
   Stakable: {
     VotingGaugePools: [],
-    AllowList: [],
+    AllowList: [
+      '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003', //MTRG/USDT-USDC-suUSD
+      '0xc4187382305ea2c953f0a164f02b4d27c9957db5000200000000000000000005', //MST-MTRG
+      '0x6e1be32644975613212db00bb9762fb6755ab921000200000000000000000007', //ETH-wstMTRG
+      '0x1ff97abe4c5a4b7ff90949b637e71626bef0dcee000000000000000000000002', //USDT-USDC-suUSD
+      '0x2077a828fd58025655335a8756dbcfeb7e5bec46000000000000000000000008', //mtrg-wstMTRG
+    ],
   },
   Metadata: {},
   Deep: [
