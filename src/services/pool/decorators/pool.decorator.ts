@@ -24,8 +24,8 @@ export class PoolDecorator {
     fullDecoration = true
   ): Promise<Pool[]> {
     if (
-      configService.network.chainId === 40
-      // configService.network.chainId === 82
+      configService.network.chainId === 40 ||
+      configService.network.chainId === 82
     ) {
       const rewardData: any = localStorage.getItem('REWARD_PRICE');
       if (rewardData) {
@@ -131,44 +131,25 @@ const getWTLOSPrice = async (): Promise<number> => {
     throw error;
   }
 };
-
-// const getMTRG_wstMTRGPrice = async (): Promise<number> => {
-//   try {
-//     const priceQuery = await useGraphQuery(
-//       config[Network.METER].subgraph,
-//       QUERY_KEYS.Tokens.Prices(
-//         ref(82),
-//         ref({
-//           '0x2077a828fd58025655335a8756dbcfeb7e5bec46': 0,
-//         })
-//       ),
-//       () => ({
-//         token: {
-//           id: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
-//           latestUSDPrice: true,
-//         },
-//       }),
-//       reactive({ enabled: isEnabled })
-//     );
-//     console.log(priceQuery);
-//     const response = await axios.get(
-//       'https://api.coingecko.com/api/v3/simple/token_price/telos?contract_addresses=0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E&vs_currencies=usd'
-//     );
-//     const price =
-//       response.data['0xd102ce6a4db07d247fcc28f366a623df0938ca9e'].usd;
-//     return price;
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// };
+const getMTRG_wstMTRGPrice = async (): Promise<number> => {
+  try {
+    const response = await axios.get(
+      'https://symm-prices.symmetric.workers.dev/prices/0x2077a828fd58025655335a8756dbcfeb7e5bec46'
+    );
+    const price = response.data[0].price;
+    return price;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 const setRewardPriceInLocalStorage = async (): Promise<void> => {
   try {
     const WTLOS_price = await getWTLOSPrice();
-    // const MTRG_wstMTRG_price = await getMTRG_wstMTRGPrice();
+    const MTRG_wstMTRG_price = await getMTRG_wstMTRGPrice();
     const timestamp = Date.now();
-    const data = { WTLOS_price, timestamp };
+    const data = { WTLOS_price, MTRG_wstMTRG_price, timestamp };
     localStorage.setItem('REWARD_PRICE', JSON.stringify(data));
   } catch (error) {
     console.error(error);

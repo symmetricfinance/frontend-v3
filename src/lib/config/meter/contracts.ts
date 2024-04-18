@@ -21,7 +21,7 @@ const contracts: Contracts = {
   tokenAdmin: meter.MSYMMTokenAdmin,
   veDelegationProxy: meter.VotingEscrowDelegationProxy,
   veBALHelpers: '',
-  feeDistributor: '',
+  feeDistributor: meter.FeeDistributor,
   feeDistributorDeprecated: '',
   faucet: '',
   omniVotingEscrow: '',

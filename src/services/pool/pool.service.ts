@@ -85,11 +85,11 @@ export default class PoolService {
       const yearlyReward = BigInt(reward.rate) * BigInt(86400) * BigInt(365);
 
       const rewardData: any = localStorage.getItem('REWARD_PRICE');
-      console.log(rewardData);
       if (rewardData) {
         const data = JSON.parse(rewardData);
-        if (data[`${rewardSymbol.value}_price`]) {
-          const rewardPrice = parseFloat(data[`${rewardSymbol.value}_price`]);
+        const priceSymbol = rewardSymbol.value.replace(/-/g, '_');
+        if (data[`${priceSymbol}_price`]) {
+          const rewardPrice = parseFloat(data[`${priceSymbol}_price`]);
           const yearlyRewardUsd =
             parseFloat(formatUnits(yearlyReward.toString(), 18)) * rewardPrice;
           const totalSupply = await gaugeTotalSupply(this.pool.address);

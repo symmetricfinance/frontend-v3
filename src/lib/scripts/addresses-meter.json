@@ -91,6 +91,15 @@
     ],
     "status": "ACTIVE"
   },
+  "20220714-fee-distributor-v2": {
+    "contracts": [
+      {
+        "name": "FeeDistributor",
+        "address": "0xeB5d7f41d853069Ea57250d8c03c16734101A3e6"
+      }
+    ],
+    "status": "ACTIVE"
+  },
   "20220721-balancer-queries": {
     "contracts": [
       {

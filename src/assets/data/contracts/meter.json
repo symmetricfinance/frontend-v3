@@ -11,6 +11,7 @@
   "BatchRelayerQueryLibrary": "0x65b457d134EE5Ba6a5De9202835E0523d2424E3E",
   "ComposableStablePoolFactory": "0x7aa0DBFaCa97734F4E4Ae5DF0E3f2f957D76018F",
   "DistributionScheduler": "0x88F7034f492CDe049ADCc24153E607ff69235c2A",
+  "FeeDistributor": "0xeB5d7f41d853069Ea57250d8c03c16734101A3e6",
   "GaugeController": "0x0563fe58FC886BE22cE1977cADE4bC80D4e01bc3",
   "LiquidityGaugeFactory": "0xf85271dc6838944278E8Ee96981fbE98caa86b12",
   "LiquidityGaugeV5": "0xe747801F8f692EBB9a64c81E432Fa5573EDB16b4",
