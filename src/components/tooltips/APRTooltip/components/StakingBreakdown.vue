@@ -7,6 +7,7 @@ import { Pool } from '@/services/pool/types';
 import { AprBreakdown } from '@symmetric-v3/sdk';
 import { useTokens } from '@/providers/tokens.provider';
 import { hasBalEmissions, hasStakingRewards } from '@/composables/useAPR';
+import { symmSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -80,12 +81,15 @@ const breakdownItems = computed((): Array<any> => {
   const items: Array<any> = [];
 
   if (!isMinMaxSame.value) {
-    items.push(['Min tSYMM', minBalAPR.value], ['Max tSYMM', maxBalAPR.value]);
+    items.push(
+      [`Min ${symmSymbol.value}`, minBalAPR.value],
+      [`Max ${symmSymbol.value}`, maxBalAPR.value]
+    );
   }
 
   if (hasRewardTokens.value) {
     if (isMinMaxSame.value && minBalAPR.value > 0) {
-      items.push(['tSYMM', minBalAPR.value]);
+      items.push([symmSymbol.value, minBalAPR.value]);
     }
 
     const rewardAprTokens = apr.value?.rewardAprs.breakdown;
