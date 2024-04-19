@@ -27,7 +27,6 @@ defineEmits<{
   (e: 'click:add', value: Pool): void;
   (e: 'click:remove', value: Pool): void;
   (e: 'click:unstake', value: Pool): void;
-  (e: 'click:vote', value: Pool): void;
   (e: 'click:poke', value: Pool): void;
   (e: 'click:migrateGauge', value: Pool): void;
 }>();

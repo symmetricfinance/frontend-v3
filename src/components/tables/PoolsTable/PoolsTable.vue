@@ -87,7 +87,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   (e: 'loadMore'): void;
-  (e: 'triggerVote'): void;
   (e: 'triggerStake', value: Pool): void;
   (e: 'triggerUnstake', value: Pool): void;
   (e: 'triggerCheckpoint', value: Pool): void;
@@ -461,7 +460,6 @@ function goToPoolPage(id: string) {
           @click:remove="removeLiquidity(pool.id)"
           @click:unstake="pool => emit('triggerUnstake', pool)"
           @click:stake="pool => emit('triggerStake', pool)"
-          @click:vote="emit('triggerVote')"
           @click:migrate-gauge="goToPoolPage(pool.id)"
           @click:poke="pool => emit('triggerCheckpoint', pool)"
         />
