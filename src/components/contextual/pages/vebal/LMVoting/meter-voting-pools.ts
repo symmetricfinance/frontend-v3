@@ -41,7 +41,7 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
       address: '0x59f5a4c2d848c172c88118010019cf9297aacee6',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.1',
+      relativeWeightCap: '0.2',
     },
   };
 
@@ -71,7 +71,7 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
       address: '0x63f9d4a03a58d1a329a3a1393a9a1e5525eb65a1',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.1',
+      relativeWeightCap: '0.2',
     },
   };
 
@@ -101,7 +101,7 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
       address: '0xedf47a2de3adf4a0d91864e1b9d377b46c8172dc',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.1',
+      relativeWeightCap: '0.2',
     },
   };
 
@@ -131,7 +131,7 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
       address: '0x8be2035d45f31b9827af789f6d4f8ce460372b2c',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.1',
+      relativeWeightCap: '0.2',
     },
   };
 
@@ -161,7 +161,7 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
       address: '0x0e533ff0486f8372096e889efdf71b323ed4f545',
       isKilled: false,
       addedTimestamp: 1701860941,
-      relativeWeightCap: '0.1',
+      relativeWeightCap: '0.2',
     },
   };
 
