@@ -1,20 +1,20 @@
 export const rewards = {
-  1713398400: {
+  1714003200: {
     '0x1ff97abe4c5a4b7ff90949b637e71626bef0dcee000000000000000000000002': {
       symbol: 'USDT-USDC-suUSD',
       token: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
       tokenSymbol: 'MTRG-wstMTRG',
       gauge: '0x59f5a4c2d848c172c88118010019cf9297aacee6',
-      rate: BigInt('186000000000000000000') / BigInt('604800'),
+      rate: BigInt('124680000000000000000') / BigInt('604800'),
       period_finish: 0,
       decimals: 18,
     },
     '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003': {
-      symbol: '50ETH-50wstMTRG',
+      symbol: '50MTRG-USDT-suUSD-USDC',
       token: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
       tokenSymbol: 'MTRG-wstMTRG',
       gauge: '0x63f9d4a03a58d1a329a3a1393a9a1e5525eb65a1',
-      rate: BigInt('186000000000000000000') / BigInt('604800'),
+      rate: BigInt('124680000000000000000') / BigInt('604800'),
       period_finish: 0,
       decimals: 18,
     },
@@ -23,7 +23,7 @@ export const rewards = {
       token: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
       tokenSymbol: 'MTRG-wstMTRG',
       gauge: '0x8be2035d45f31b9827af789f6d4f8ce460372b2c',
-      rate: BigInt('124000000000000000000') / BigInt('604800'),
+      rate: BigInt('62340000000000000000') / BigInt('604800'),
       period_finish: 0,
       decimals: 18,
     },
@@ -32,7 +32,7 @@ export const rewards = {
       token: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
       tokenSymbol: 'MTRG-wstMTRG',
       gauge: '0x0e533ff0486f8372096e889efdf71b323ed4f545',
-      rate: BigInt('311000000000000000000') / BigInt('604800'),
+      rate: BigInt('374040000000000000000') / BigInt('604800'),
       period_finish: 0,
       decimals: 18,
     },

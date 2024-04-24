@@ -900,7 +900,7 @@ export const rewards = {
       decimals: 18,
     },
   },
-  1713398400: {
+  1714003200: {
     '0x2d714951f7165a51e8bd61f92d8a979ab0ed4b59000200000000000000000006': {
       symbol: 'WTLOS-USDT',
       token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
