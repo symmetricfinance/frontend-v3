@@ -19,6 +19,7 @@ import { useTokens } from '@/providers/tokens.provider';
 import { PoolAttributeFilter, PoolTypeFilter } from '@/types/pools';
 import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedInAffectedPoolAlert.vue';
 import useNumbers from '@/composables/useNumbers';
+import { getAddress } from '@ethersproject/address';
 
 const { fNum } = useNumbers();
 const featuredProtocolsSentinel = ref<HTMLDivElement | null>(null);
@@ -138,51 +139,17 @@ function removeAttributeFilter(attribute: PoolAttributeFilter) {
 
 async function getTokenPrices() {
   try {
-    const tokenAddresses = Object.keys(tokens.value);
-    const tokenAddressesString = tokenAddresses.join(',');
-
-    const response = await axios.get(
-      `https://api.geckoterminal.com/api/v2/simple/networks/tlos/token_price/${tokenAddressesString}`
+    const tokenAddresses = Object.keys(tokens.value).map(address =>
+      address.toLowerCase()
     );
-
-    const tokenPrices = response.data.data.attributes.token_prices;
-    injectPrices({
-      ['0x8d97cea50351fb4329d591682b148d43a0c3611b']: Number(
-        tokenPrices['0x8d97cea50351fb4329d591682b148d43a0c3611b']
-      ),
-      ['0x8f7d64ea96d729ef24a0f30b4526d47b80d877b9']: Number(
-        tokenPrices['0x8f7d64ea96d729ef24a0f30b4526d47b80d877b9']
-      ),
-      ['0x26ed0f16e777c94a6fe798f9e20298034930bae8']: Number(
-        tokenPrices['0x26ed0f16e777c94a6fe798f9e20298034930bae8']
-      ),
-      ['0x058d4893efa235d86cceed5a7eef0809b76c8c66']: Number(
-        tokenPrices['0x058d4893efa235d86cceed5a7eef0809b76c8c66']
-      ),
-      ['0x975ed13fa16857e83e7c493c7741d556eaad4a3f']: Number(
-        tokenPrices['0x975ed13fa16857e83e7c493c7741d556eaad4a3f']
-      ),
-      ['0x7627b27594bc71e6ab0fce755ae8931eb1e12dac']: Number(
-        tokenPrices['0x7627b27594bc71e6ab0fce755ae8931eb1e12dac']
-      ),
-      ['0x568524da340579887db50ecf602cd1ba8451b243']: Number(
-        tokenPrices['0x568524da340579887db50ecf602cd1ba8451b243']
-      ),
-      ['0xa0fb8cd450c8fd3a11901876cd5f17eb47c6bc50']: Number(
-        tokenPrices['0xa0fb8cd450c8fd3a11901876cd5f17eb47c6bc50']
-      ),
-      ['0xb4b01216a5bc8f1c8a33cd990a1239030e60c905']: Number(
-        tokenPrices['0xb4b01216a5bc8f1c8a33cd990a1239030e60c905']
-      ),
-      ['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']: Number(
-        tokenPrices['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']
-      ),
-      ['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']: Number(
-        tokenPrices['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']
-      ),
-      ['0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee']: Number(
-        tokenPrices['0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee']
-      ),
+    const tokenAddressesString = tokenAddresses.join(',');
+    const response = await axios.get(
+      `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${tokenAddressesString}`
+    );
+    response.data.forEach(price => {
+      injectPrices({
+        [getAddress(price.id) as string]: price.price,
+      });
     });
   } catch (error) {
     console.error(error);
@@ -195,7 +162,7 @@ watch(poolTypeFilter, newPoolTypeFilter => {
 });
 
 onBeforeMount(async () => {
-  if (networkSlug === 'telos') {
+  if (networkSlug === 'telos' || networkSlug === 'meter') {
     await getTokenPrices();
   }
 });

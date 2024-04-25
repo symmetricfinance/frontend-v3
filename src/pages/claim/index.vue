@@ -18,7 +18,6 @@ import { isStableLike } from '@/composables/usePoolHelpers';
 import { useTokenHelpers } from '@/composables/useTokenHelpers';
 import { useTokens } from '@/providers/tokens.provider';
 import { bnum } from '@/lib/utils';
-import { bbAUSDToken } from '@/services/balancer/contracts/contracts/bb-a-usd-token';
 import { Gauge } from '@/services/balancer/gauges/types';
 import { configService } from '@/services/config/config.service';
 import { BalanceMap } from '@/services/token/concerns/balances.concern';
@@ -27,7 +26,12 @@ import { TOKENS } from '@/constants/tokens';
 // import { buildNetworkIconURL } from '@/lib/utils/urls';
 // import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
-import { lpToken, symmSymbol, veSymbol } from '@/composables/useNetwork';
+import {
+  lpToken,
+  networkSlug,
+  symmSymbol,
+  veSymbol,
+} from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -224,36 +228,49 @@ function formatRewardsData(data?: BalanceMap): ProtocolRewardRow[] {
 }
 
 async function getTokenPrices() {
+  // try {
+  //   const response = await axios.get(
+  //     `https://api.geckoterminal.com/api/v2/simple/networks/tlos/token_price/${TOKENS.Addresses.BAL}%2C${TOKENS.Addresses.WETH}`
+  //   );
+  //   const tokenPrices = response.data.data.attributes.token_prices;
+  //   injectPrices({
+  //     [TOKENS.Addresses.BAL as string]: Number(
+  //       tokenPrices['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']
+  //     ),
+  //     [TOKENS.Addresses.WETH as string]: Number(
+  //       tokenPrices['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']
+  //     ),
+  //   });
+  // } catch (error) {
+  //   console.error(error);
+  //   throw error;
+  // }
   try {
     const response = await axios.get(
-      `https://api.geckoterminal.com/api/v2/simple/networks/tlos/token_price/${TOKENS.Addresses.BAL}%2C${TOKENS.Addresses.WETH}`
+      `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${TOKENS.Addresses.BAL},${TOKENS.Addresses.reward}`
     );
-    const tokenPrices = response.data.data.attributes.token_prices;
-    injectPrices({
-      [TOKENS.Addresses.BAL as string]: Number(
-        tokenPrices['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']
-      ),
-      [TOKENS.Addresses.WETH as string]: Number(
-        tokenPrices['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']
-      ),
+    response.data.forEach(price => {
+      injectPrices({
+        [getAddress(price.id) as string]: price.price,
+      });
     });
   } catch (error) {
     console.error(error);
     throw error;
   }
 }
-/**
- * @summary Fetches bb-a-USD rate as an appoximation of USD price.
- */
-async function getBBaUSDPrice() {
-  if (TOKENS.Addresses.bbaUSDv2) {
-    const approxPrice = bnum(await bbAUSDToken.getRate()).toNumber();
-    injectPrices({
-      [TOKENS.Addresses.bbaUSD as string]: approxPrice,
-      [TOKENS.Addresses.bbaUSDv2 as string]: approxPrice,
-    });
-  }
-}
+// /**
+//  * @summary Fetches bb-a-USD rate as an appoximation of USD price.
+//  */
+// async function getBBaUSDPrice() {
+//   if (TOKENS.Addresses.bbaUSDv2) {
+//     const approxPrice = bnum(await bbAUSDToken.getRate()).toNumber();
+//     injectPrices({
+//       [TOKENS.Addresses.bbaUSD as string]: approxPrice,
+//       [TOKENS.Addresses.bbaUSDv2 as string]: approxPrice,
+//     });
+//   }
+// }
 
 /**
  * WATCHERS
@@ -271,7 +288,7 @@ watch(gaugePools, async newPools => {
  */
 onBeforeMount(async () => {
   await getTokenPrices();
-  await getBBaUSDPrice();
+  // await getBBaUSDPrice();
 });
 </script>
 

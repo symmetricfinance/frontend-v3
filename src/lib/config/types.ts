@@ -12,6 +12,7 @@ export type CommonTokens = {
   stETH?: string;
   wstETH?: string;
   stMATIC?: string;
+  reward?: string;
 };
 
 export type TokenConstants = {

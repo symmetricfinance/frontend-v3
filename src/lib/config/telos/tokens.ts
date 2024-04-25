@@ -14,6 +14,7 @@ const tokens: TokenConstants = {
     WETH: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
     BAL: '0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca',
     rETH: '',
+    reward: '0xd102ce6a4db07d247fcc28f366a623df0938ca9e',
     // wstETH: '0xB4B01216a5Bc8F1C8A33CD990A1239030E60C905',
   },
   PriceChainMap: {

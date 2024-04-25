@@ -12,10 +12,11 @@ const tokens: TokenConstants = {
     nativeAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
     wNativeAsset: '0x160361ce13ec33c993b5cca8f62b6864943eb083',
     WETH: '0x160361ce13ec33c993b5cca8f62b6864943eb083',
-    BAL: '0x663345e09F4F4437F3D5df39BA5c2B5690532206',
+    BAL: '0x663345e09f4f4437f3d5df39ba5c2b5690532206',
     rETH: '',
     stETH: '0x215d603293357ca222be92a1bf75eec38def0aad',
     wstETH: '0xe2de616fbd8cb9180b26fcfb1b761a232fe56717',
+    reward: '0x2077a828fd58025655335a8756dbcfeb7e5bec46',
   },
   PriceChainMap: {
     /**
