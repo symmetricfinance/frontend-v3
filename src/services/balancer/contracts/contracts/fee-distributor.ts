@@ -10,13 +10,31 @@ import { rpcProviderService } from '@/services/rpc-provider/rpc-provider.service
 import { BalanceMap } from '@/services/token/concerns/balances.concern';
 import { walletService as walletServiceInstance } from '@/services/web3/wallet.service';
 import { getOldMulticaller } from '@/dependencies/OldMulticaller';
+import { networkSlug } from '@/composables/useNetwork';
 
 export class FeeDistributor {
-  public claimableTokens: string[] = [
-    '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E', // WTLOS
-    '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca', // tSYMM
-    '0x8d97cea50351fb4329d591682b148d43a0c3611b', // USDC
-  ];
+  // public claimableTokens: any = {
+  //   telos: [
+  //     '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E', // WTLOS
+  //     '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca', // tSYMM
+  //     '0x8d97cea50351fb4329d591682b148d43a0c3611b', // USDC
+  //   ],
+  //   meter: [
+  //     '0x2077a828fd58025655335a8756dbcfeb7e5bec46', //MTRG-wstMTRG
+  //     '0x663345e09F4F4437F3D5df39BA5c2B5690532206', //mSYMM
+  //   ],
+  // };
+  public claimableTokens =
+    networkSlug === 'telos'
+      ? [
+          '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E', // WTLOS
+          '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca', // tSYMM
+          '0x8d97cea50351fb4329d591682b148d43a0c3611b', // USDC
+        ]
+      : [
+          '0x2077a828fd58025655335a8756dbcfeb7e5bec46', //MTRG-wstMTRG
+          '0x663345e09F4F4437F3D5df39BA5c2B5690532206', //mSYMM
+        ];
 
   constructor(
     public readonly address: string,
