@@ -8,7 +8,7 @@ import TokenSearchInput from '@/components/inputs/TokenSearchInput.vue';
 import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
 import usePoolFilters from '@/composables/pools/usePoolFilters';
 import useBreakpoints from '@/composables/useBreakpoints';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, { rewardSymbol, symmSymbol } from '@/composables/useNetwork';
 import usePools from '@/composables/pools/usePools';
 import { lsGet, lsSet } from '@/lib/utils';
 import LS_KEYS from '@/constants/local-storage.keys';
@@ -20,6 +20,7 @@ import { PoolAttributeFilter, PoolTypeFilter } from '@/types/pools';
 import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedInAffectedPoolAlert.vue';
 import useNumbers from '@/composables/useNumbers';
 import { getAddress } from '@ethersproject/address';
+import { TOKENS } from '@/constants/tokens';
 
 const { fNum } = useNumbers();
 const featuredProtocolsSentinel = ref<HTMLDivElement | null>(null);
@@ -91,6 +92,9 @@ const feesSnapshot = computed(() => {
   }, 0);
 });
 
+const symmPrice = ref(0);
+const rewardPrice = ref(0);
+
 /**
  * METHODS
  */
@@ -146,11 +150,20 @@ async function getTokenPrices() {
     const response = await axios.get(
       `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${tokenAddressesString}`
     );
+    let symmPrice = 0;
+    let rewardPrice = 0;
     response.data.forEach(price => {
+      if (price.id === TOKENS.Addresses.BAL.toLowerCase()) {
+        symmPrice = price.price;
+      }
+      if (price.id === TOKENS.Addresses.reward?.toLowerCase()) {
+        rewardPrice = price.price;
+      }
       injectPrices({
         [getAddress(price.id) as string]: price.price,
       });
     });
+    return [symmPrice, rewardPrice];
   } catch (error) {
     console.error(error);
     throw error;
@@ -163,7 +176,9 @@ watch(poolTypeFilter, newPoolTypeFilter => {
 
 onBeforeMount(async () => {
   if (networkSlug === 'telos' || networkSlug === 'meter') {
-    await getTokenPrices();
+    const prices = await getTokenPrices();
+    symmPrice.value = prices[0];
+    rewardPrice.value = prices[1];
   }
 });
 </script>
@@ -189,40 +204,58 @@ onBeforeMount(async () => {
           />
           <div
             v-else
-            class="flex justify-start items-center p-4 mt-4 mb-4 space-x-4 text-sm dark:bg-gray-850 rounded-lg border dark:border-0"
+            class="flex justify-between p-4 mt-4 mb-4 space-x-4 text-sm dark:bg-gray-850 rounded-lg border dark:border-0"
           >
-            <div>
-              TVL: <span class="font-bold">{{ tvl }}</span>
+            <div class="flex flex-row items-center space-x-4">
+              <div>
+                TVL: <span class="font-bold">{{ tvl }}</span>
+              </div>
+              <div>
+                Volume 24h:
+                <span class="font-bold">{{
+                  fNum(volumeSnapshot, { style: 'currency' })
+                }}</span>
+              </div>
+              <div>
+                Fees 24h:
+                <span class="font-bold">{{
+                  fNum(feesSnapshot, { style: 'currency' })
+                }}</span>
+              </div>
             </div>
-            <div>
-              Volume 24h:
-              <span class="font-bold">{{
-                fNum(volumeSnapshot, { style: 'currency' })
-              }}</span>
-            </div>
-            <div>
-              Fees 24h:
-              <span class="font-bold">{{
-                fNum(feesSnapshot, { style: 'currency' })
-              }}</span>
-            </div>
-          </div>
-          <div class="flex justify-between items-end mb-2">
-            <BalBtn
-              v-if="upToSmallBreakpoint"
-              color="blue"
-              size="sm"
-              outline
-              :class="{ 'mt-4': upToSmallBreakpoint }"
-              @click="navigateToCreatePool"
+            <div
+              v-if="networkSlug === 'telos' || networkSlug === 'meter'"
+              class="flex flex-row items-center space-x-4"
             >
-              {{ $t('createAPool.title') }}
-            </BalBtn>
+              <div>
+                {{ symmSymbol }}:
+                <span class="font-bold">{{
+                  fNum(symmPrice, { style: 'currency' })
+                }}</span>
+              </div>
+              <div>
+                {{ rewardSymbol }}:
+                <span class="font-bold">{{
+                  fNum(rewardPrice, { style: 'currency' })
+                }}</span>
+              </div>
+            </div>
           </div>
-
           <div
             class="flex flex-col md:flex-row justify-between items-end lg:items-center w-full"
           >
+            <div class="flex justify-between items-end mb-2">
+              <BalBtn
+                v-if="upToSmallBreakpoint"
+                color="blue"
+                size="sm"
+                outline
+                :class="{ 'mt-4': upToSmallBreakpoint }"
+                @click="navigateToCreatePool"
+              >
+                {{ $t('createAPool.title') }}
+              </BalBtn>
+            </div>
             <BalVStack width="full">
               <BalHStack justify="between" width="full">
                 <BalHStack spacing="md">
