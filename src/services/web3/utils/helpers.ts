@@ -29,6 +29,38 @@ export async function switchToAppNetwork(provider: ExternalProvider) {
   return false;
 }
 
+export async function addTokenToWallet(
+  provider: ExternalProvider,
+  tokenAddress: string
+) {
+  try {
+    if (provider.request) {
+      await provider.request({
+        method: 'wallet_watchAsset',
+        params: [
+          {
+            type: 'ERC20',
+            options: {
+              address: tokenAddress,
+              symbol: 'TBD',
+              decimals: 18,
+              image: 'TBD',
+            },
+          },
+        ],
+      });
+      return true;
+    }
+  } catch (err) {
+    console.error(
+      `An error occurred while attempting to add token to wallet. ${
+        (err as Error).message
+      }`
+    );
+    return false;
+  }
+}
+
 export async function importNetworkDetailsToWallet(provider: ExternalProvider) {
   const appNetworkConfig = configService.network;
   const hexChainId = `0x${appNetworkConfig.chainId.toString(16)}`;

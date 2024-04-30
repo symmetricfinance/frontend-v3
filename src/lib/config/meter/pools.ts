@@ -18,6 +18,7 @@ const pools: Pools = {
   BlockList: [
     '0x79c308ceab33cfb8aa95f7ab795a0db3d282ee66000200000000000000000004', //temp msymm pool
     '0xb4441a1f946cb3e87de2a09293b6f883e4861aeb000200000000000000000006', //ETH-wstMTRG(missing rate provider)
+    '0xbbd5f7d0e01ee8859ba97174521a591abdd00b8e00020000000000000000000a', //MST-wstMTRG
   ],
   IncludedPoolTypes: [
     'Weighted',
@@ -46,6 +47,7 @@ const pools: Pools = {
       '0xc4187382305ea2c953f0a164f02b4d27c9957db5000200000000000000000005', //MST-MTRG
       '0x6e1be32644975613212db00bb9762fb6755ab921000200000000000000000007', //ETH-wstMTRG
       '0xabbcd1249510a6afb5d1e6d055bf86637e7dad63000200000000000000000009', //MSYMM-wstMTRG
+      '0xbfd3c6457069bf173714f344447be468a83e7bd500020000000000000000000b', //MST-wstMTRG
     ],
   },
   Factories: {
