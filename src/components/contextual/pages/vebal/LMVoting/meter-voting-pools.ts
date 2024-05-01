@@ -99,6 +99,36 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0xedf47a2de3adf4a0d91864e1b9d377b46c8172dc',
+      isKilled: true,
+      addedTimestamp: 1701860941,
+      relativeWeightCap: '0.2',
+    },
+  };
+
+  const MST_wstMTRG: ApiVotingPool = {
+    chain: network as GqlChain,
+    id: '0xbfd3c6457069bf173714f344447be468a83e7bd500020000000000000000000b',
+    address: '0xbfd3c6457069bf173714f344447be468a83e7bd5',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50MST-50wstMTRG',
+    tokens: [
+      {
+        address: '0x5647f6cc997e45b81d786baa9ecd8a1ad40ef25f',
+        weight: '0.5',
+        symbol: 'MST',
+        logoURI:
+          'https://raw.githubusercontent.com/swapsicledex/swapsicle-token-list/master/logos/telos/0x568524DA340579887db50Ecf602Cd1BA8451b243/logo.png',
+      },
+      {
+        address: '0xe2de616fbd8cb9180b26fcfb1b761a232fe56717',
+        weight: '0.5',
+        symbol: 'wstMTRG',
+        logoURI:
+          'https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/meter/0x228ebbee999c6a7ad74a6130e81b12f9fe237ba3.png',
+      },
+    ],
+    gauge: {
+      address: '0xd24A6b56e7aca38FeF74998E1E99b9586007eA55',
       isKilled: false,
       addedTimestamp: 1701860941,
       relativeWeightCap: '0.2',
@@ -199,6 +229,7 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
     USDT_suUSD_USDC,
     USDT_suUSD_USDC_MTRG,
     MST_MTRG,
+    MST_wstMTRG,
     ETH_wstMTRG,
     MTRG_wstMTRG,
     MSYMM_wstMTRG,
