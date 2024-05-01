@@ -957,5 +957,23 @@ export const rewards = {
       period_finish: 0,
       decimals: 18,
     },
+    '0x412b37b8074e25683fdd4f5b2ac0218647dcc50e00000000000000000000001a': {
+      symbol: 'wUSK-USDC',
+      token: '0x71a25e8494e6e2f986d7642ce4c06327056ce0a6',
+      tokenSymbol: 'WTLOS',
+      gauge: '0xe4c412962fab7f2d406c43a8da95c68f9d60f24e',
+      rate: BigInt('6125000000000000000000') / BigInt('604800'),
+      period_finish: 0,
+      decimals: 18,
+    },
+    '0x03b038d9ad0a69339c9af310ac0f205e2670f9b200020000000000000000001b': {
+      symbol: 'STLOS-WTLOS',
+      token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+      tokenSymbol: 'WTLOS',
+      gauge: '0x30d9158f413937afa5693cb444174ca55f9e6b6c',
+      rate: BigInt('2625000000000000000000') / BigInt('604800'),
+      period_finish: 0,
+      decimals: 18,
+    },
   },
 };
