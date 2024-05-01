@@ -164,6 +164,66 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     },
   };
 
+  const wUSK_USDC: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x058d4893efa235d86cceed5a7eef0809b76c8c66000000000000000000000004',
+    address: '0x058d4893efa235d86cceed5a7eef0809b76c8c66',
+    type: GqlPoolMinimalType.Stable,
+    symbol: 'wUSK-USDC',
+    tokens: [
+      {
+        address: '0xfdff55a36f3dd3942a4ac5aebe68972d57296925',
+        weight: null,
+        symbol: 'wUSK',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/WUSK.png',
+      },
+      {
+        address: '0x8D97Cea50351Fb4329d591682b148D43a0C3611b',
+        weight: null,
+        symbol: 'USDC',
+        logoURI:
+          'https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png',
+      },
+    ],
+    gauge: {
+      address: '0x71a25e8494e6e2f986d7642ce4c06327056ce0a6',
+      isKilled: false,
+      addedTimestamp: 1701860941,
+      relativeWeightCap: '0.1',
+    },
+  };
+
+  const wUSK_STLOS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x058d4893efa235d86cceed5a7eef0809b76c8c66000000000000000000000004',
+    address: '0x058d4893efa235d86cceed5a7eef0809b76c8c66',
+    type: GqlPoolMinimalType.Stable,
+    symbol: '80STLOS-20wUSK',
+    tokens: [
+      {
+        address: '0xB4B01216a5Bc8F1C8A33CD990A1239030E60C905',
+        weight: '0.8',
+        symbol: 'STLOS',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/stlos.png',
+      },
+      {
+        address: '0xfdff55a36f3dd3942a4ac5aebe68972d57296925',
+        weight: '0.2',
+        symbol: 'wUSK',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/WUSK.png',
+      },
+    ],
+    gauge: {
+      address: '0x30d9158f413937afa5693cb444174ca55f9e6b6c',
+      isKilled: false,
+      addedTimestamp: 1701860941,
+      relativeWeightCap: '0.1',
+    },
+  };
+
   const WTLOS_USDT: ApiVotingPool = {
     chain: testnet as GqlChain,
     id: '0x2d714951f7165a51e8bd61f92d8a979ab0ed4b59000200000000000000000006',
@@ -690,6 +750,8 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     CMDR_WTLOS,
     SOULS_TSYMM,
     SOULS_KINDS,
+    wUSK_USDC,
+    wUSK_STLOS,
     Team_Allocation,
   ];
 }
