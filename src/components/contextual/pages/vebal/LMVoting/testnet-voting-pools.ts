@@ -198,7 +198,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     chain: testnet as GqlChain,
     id: '0x058d4893efa235d86cceed5a7eef0809b76c8c66000000000000000000000004',
     address: '0x058d4893efa235d86cceed5a7eef0809b76c8c66',
-    type: GqlPoolMinimalType.Stable,
+    type: GqlPoolMinimalType.Weighted,
     symbol: '80STLOS-20wUSK',
     tokens: [
       {
