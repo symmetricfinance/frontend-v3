@@ -8,6 +8,7 @@ import { PoolMulticaller } from './pool.multicaller';
 import axios from 'axios';
 import { configService } from '@/services/config/config.service';
 import { rewardSymbol } from '@/composables/useNetwork';
+import { subgraphFallbackService } from '@/services/balancer/subgraph/subgraph-fallback.service';
 
 /**
  * @summary Decorates a set of pools with additonal data.
@@ -112,6 +113,18 @@ export class PoolDecorator {
         block,
       });
     } catch (error) {
+      try {
+        const subgraphBlock = await subgraphFallbackService.get({
+          query: '{ _meta { block { number } } }',
+        });
+        return await this.poolSubgraph.pools.get({
+          where: isInPoolIds,
+          block: { number: subgraphBlock.data.data._meta.block.number },
+        });
+      } catch (error) {
+        console.error('Failed to fetch pool snapshots', error);
+        return [];
+      }
       console.error('Failed to fetch pool snapshots', error);
       return [];
     }

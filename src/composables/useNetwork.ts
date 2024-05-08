@@ -224,7 +224,7 @@ export function getRedirectUrlFor(
 
   if (subdomainNetwork) {
     // Legacy network subdomain, we need to redirect to app.balancer.fi.
-    const newDomain = appUrl().replace(subdomain, 'telos');
+    const newDomain = appUrl().replace(subdomain, 'app');
     // If networkSlug provided it will be in the fullPath, so pass empty string instead.
     const newNetwork = params?.networkSlug
       ? ''

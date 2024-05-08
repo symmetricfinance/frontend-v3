@@ -1012,6 +1012,7 @@
   },
   "stakeToGetExtra": "Stake this to earn extra",
   "strategy": "Strategy",
+  "subgraphUnsynced": "Subgraph unsynced",
   "submit": "Submit",
   "summary": "Summary",
   "swap": "Swap",

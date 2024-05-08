@@ -75,6 +75,22 @@ export default class PoolService {
     } catch (error) {
       captureBalancerException({ error });
       console.error(`Failed to calc APR for: ${this.pool.id}`, error);
+      apr = {
+        swapFees: 0,
+        tokenAprs: {
+          total: 0,
+        },
+        stakingApr: {
+          min: 0,
+          max: 0,
+        },
+        rewardAprs: {
+          total: 0,
+        },
+        protocolApr: 0,
+        min: 0,
+        max: 0,
+      };
     }
     // has local rewards
     const timestamp = roundDownTimestamp(Date.now() / 1000);

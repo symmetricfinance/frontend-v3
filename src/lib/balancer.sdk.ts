@@ -3,6 +3,7 @@ import { Network } from '@/lib/config/types';
 import { configService } from '@/services/config/config.service';
 import { ref } from 'vue';
 import { isTestMode } from '@/plugins/modes';
+import { subgraphFallbackService } from '@/services/balancer/subgraph/subgraph-fallback.service';
 
 // const customNetwork = {
 //   chainId: configService.network.chainId,
@@ -54,7 +55,17 @@ export async function fetchPoolsForSor() {
   if (hasFetchedPoolsForSor.value) return;
 
   console.time('fetchPoolsForSor');
-  await balancer.swaps.fetchPools();
+  try {
+    await balancer.swaps.fetchPools();
+  } catch (e) {
+    const subgraphBlock = await subgraphFallbackService.get({
+      query: '{ _meta { block { number } } }',
+    });
+    await balancer.swaps.fetchPools({
+      block: { number: subgraphBlock.data.data._meta.block.number },
+    });
+    console.error('Error fetching pools for SOR', e);
+  }
   hasFetchedPoolsForSor.value = true;
   console.timeEnd('fetchPoolsForSor');
 }
