@@ -58,9 +58,9 @@ export async function fetchPoolsForSor() {
   try {
     await balancer.swaps.fetchPools();
   } catch (e) {
-    const subgraphBlock = await subgraphFallbackService.get({
+    const subgraphBlock = (await subgraphFallbackService.get({
       query: '{ _meta { block { number } } }',
-    });
+    })) as any;
     await balancer.swaps.fetchPools({
       block: { number: subgraphBlock.data.data._meta.block.number },
     });

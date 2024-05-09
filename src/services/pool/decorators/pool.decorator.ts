@@ -114,9 +114,9 @@ export class PoolDecorator {
       });
     } catch (error) {
       try {
-        const subgraphBlock = await subgraphFallbackService.get({
+        const subgraphBlock = (await subgraphFallbackService.get({
           query: '{ _meta { block { number } } }',
-        });
+        })) as any;
         return await this.poolSubgraph.pools.get({
           where: isInPoolIds,
           block: { number: subgraphBlock.data.data._meta.block.number },
@@ -125,8 +125,6 @@ export class PoolDecorator {
         console.error('Failed to fetch pool snapshots', error);
         return [];
       }
-      console.error('Failed to fetch pool snapshots', error);
-      return [];
     }
   }
 }
