@@ -88,6 +88,7 @@ const themeMap = {
   sepolia: 'celo',
   'gnosis-chain': 'gnosis-chain',
   meter: 'meter',
+  'artela-betanet': 'artela-betanet',
 };
 // Function to update theme based on the route slug
 const updateTheme = () => {

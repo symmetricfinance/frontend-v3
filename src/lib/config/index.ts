@@ -4,22 +4,24 @@ import { Config, Network } from './types';
 // import avalanche from './avalanche';
 // import base from './base';
 // import goerli from './goerli';
-import gnosisChain from './gnosis-chain';
+// import gnosisChain from './gnosis-chain';
 // import mainnet from './mainnet';
 // import optimism from './optimism';
 // import polygon from './polygon';
 // import sepolia from './sepolia';
 // import zkevm from './zkevm';
-import telos from './telos';
+//import telos from './telos';
 // import telosTestnet from './telos-testnet';
-import celo from './celo';
-import meter from './meter';
+// import celo from './celo';
+// import meter from './meter';
+import artelaBetanet from './artela-betanet';
 
 const config: Record<Network | number, Config> = {
-  [Network.TELOS]: telos,
-  [Network.CELO]: celo,
-  [Network.GNOSIS]: gnosisChain,
-  [Network.METER]: meter,
+  // [Network.TELOS]: telos,
+  // [Network.CELO]: celo,
+  // [Network.GNOSIS]: gnosisChain,
+  // [Network.METER]: meter,
+  [Network.ARTELABETANET]: artelaBetanet,
 };
 
 export default config;

@@ -89,6 +89,7 @@ export enum Network {
   METER = 82,
   TELOSTESTNET = 41,
   CELO = 42220,
+  ARTELABETANET = 11822,
 }
 
 type Reward = {

@@ -142,7 +142,26 @@ export const nativeSymbol = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return 'SDAI';
   }
+  if (networkId.value === Network.ARTELABETANET) {
+    return 'WART';
+  }
   return 'wstMTRG';
+});
+
+export const native = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'CELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'TLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'XDAI';
+  }
+  if (networkId.value === Network.ARTELABETANET) {
+    return 'ART';
+  }
+  return 'MTR';
 });
 
 export const rewardSymbol = computed(() => {
@@ -156,6 +175,22 @@ export const rewardSymbol = computed(() => {
     return 'SDAI';
   }
   return 'MTRG-wstMTRG';
+});
+
+export const native_wrapped = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'CELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'TLOS/WTLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'xDAI/WXDAI';
+  }
+  if (networkId.value === Network.ARTELABETANET) {
+    return 'ART/WART';
+  }
+  return 'MTR/wMTR';
 });
 
 export function appUrl(): string {
@@ -191,7 +226,7 @@ export function handleNetworkSlug(
 ) {
   const networkFromUrl = networkFromSlug(networkSlug);
   const localStorageNetwork = networkFor(
-    localStorage.getItem('networkId') ?? '42220'
+    localStorage.getItem('networkId') ?? '11822'
   );
   if (!networkFromUrl) {
     // missing or incorrect network name -> next() withtout network change
@@ -251,5 +286,7 @@ export default function useNetwork() {
     lpToken,
     nativeSymbol,
     rewardSymbol,
+    native_wrapped,
+    native,
   };
 }

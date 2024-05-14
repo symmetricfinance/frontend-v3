@@ -9,7 +9,11 @@ import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { useTokens } from '@/providers/tokens.provider';
 import { bnum, isSameAddress, shortenLabel } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
-import useNetwork from '@/composables/useNetwork';
+import useNetwork, {
+  native,
+  nativeSymbol,
+  native_wrapped,
+} from '@/composables/useNetwork';
 
 /**
  * PROPS & EMITS
@@ -344,7 +348,13 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
             :title="$t('createAPool.invalidInitialWeightsTitle')"
             type="warning"
           >
-            {{ $t('createAPool.nativeAssetWarning') }}
+            {{
+              $t('createAPool.nativeAssetWarning', {
+                nativeWrapped: native_wrapped,
+                native: native,
+                wrapped: nativeSymbol,
+              })
+            }}
           </BalAlert>
         </AnimatePresence>
 

@@ -20,6 +20,7 @@ const config: Config = {
   visibleInUI: true,
   testNetwork: false,
   rpc: 'https://betanet-rpc1.artela.network',
+  ws: '',
   explorer: 'https://betanet-scan.artela.network/',
   explorerName: 'Artela Betanet Explorer',
   subgraph:
