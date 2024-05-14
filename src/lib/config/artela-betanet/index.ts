@@ -9,9 +9,9 @@ import rateProviders from './rateProviders';
 const config: Config = {
   key: '11822',
   chainId: 11822,
-  chainName: 'Artela Betanet',
-  name: 'Artela Betanet',
-  shortName: 'Artela Betanet',
+  chainName: 'Artela Testnet',
+  name: 'Artela Testnet',
+  shortName: 'Artela Testnet',
   monorepoName: 'artela-betanet',
   slug: 'artela-betanet',
   network: 'artela-betanet',
@@ -22,7 +22,7 @@ const config: Config = {
   rpc: 'https://betanet-rpc1.artela.network',
   ws: '',
   explorer: 'https://betanet-scan.artela.network/',
-  explorerName: 'Artela Betanet Explorer',
+  explorerName: 'Artela Testnet Explorer',
   subgraph:
     'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-artela-testnet/prod/gn',
   poolsUrlV2: '',
