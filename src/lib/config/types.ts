@@ -13,6 +13,7 @@ export type CommonTokens = {
   wstETH?: string;
   stMATIC?: string;
   reward?: string;
+  rewards?: string;
 };
 
 export type TokenConstants = {
@@ -93,6 +94,7 @@ export enum Network {
 
 type Reward = {
   token: string;
+  tokenSymbol: string;
   gauge: string;
   rate: bigint;
   period_finish: number;
@@ -100,7 +102,7 @@ type Reward = {
 
 type Rewards = {
   [key: string]: {
-    [key: string]: Reward;
+    [key: string]: Reward[];
   };
 };
 

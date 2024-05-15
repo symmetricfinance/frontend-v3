@@ -13,7 +13,7 @@ import { TokenInfoMap } from '@/types/TokenList';
 
 import { OnchainDataFormater } from './decorators/onchain-data.formater';
 import { AprBreakdown } from '@symmetric-v3/sdk';
-import useNetwork, { networkId, rewardSymbol } from '@/composables/useNetwork';
+import useNetwork, { networkId } from '@/composables/useNetwork';
 import { getBalancerSDK } from '@/dependencies/balancer-sdk';
 import { Pool as SDKPool } from '@symmetric-v3/sdk';
 import { captureBalancerException } from '@/lib/utils/errors';
@@ -68,7 +68,7 @@ export default class PoolService {
    */
   public async setAPR(): Promise<AprBreakdown> {
     let apr: any = this.pool.apr;
-
+    const breakdown = {} as AprBreakdown;
     try {
       const sdkApr = await getBalancerSDK().pools.apr(this.pool);
       if (sdkApr) apr = sdkApr;
@@ -97,30 +97,34 @@ export default class PoolService {
     const rewards = useNetwork().networkConfig.rewards;
     if (rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]) {
       // Get gauge
-      const reward = rewards[timestamp][this.pool.id];
-      const yearlyReward = BigInt(reward.rate) * BigInt(86400) * BigInt(365);
+      const totalSupply = await gaugeTotalSupply(this.pool.address);
+      const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
+      const poolRewards = rewards[timestamp][this.pool.id];
 
-      const rewardData: any = localStorage.getItem('REWARD_PRICE');
-      if (rewardData) {
-        const data = JSON.parse(rewardData);
-        const priceSymbol = rewardSymbol.value.replace(/-/g, '_');
-        if (data[`${priceSymbol}_price`]) {
-          const rewardPrice = parseFloat(data[`${priceSymbol}_price`]);
-          const yearlyRewardUsd =
-            parseFloat(formatUnits(yearlyReward.toString(), 18)) * rewardPrice;
-          const totalSupply = await gaugeTotalSupply(this.pool.address);
-          const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
-          const rewardValue =
-            yearlyRewardUsd / parseFloat(totalSupplyUsd.toString());
-          const rewardValueScaled = Math.round(10000 * rewardValue);
-          apr.rewardAprs = {
-            total: rewardValueScaled,
-            breakdown: {
-              [reward.token]: rewardValueScaled,
-            },
-          };
+      poolRewards.forEach(reward => {
+        console.log(reward);
+        const yearlyReward = BigInt(reward.rate) * BigInt(86400) * BigInt(365);
+
+        const rewardData: any = localStorage.getItem('REWARD_PRICE');
+        if (rewardData) {
+          const data = JSON.parse(rewardData);
+          const priceSymbol = reward.tokenSymbol.replace(/-/g, '_');
+          if (data[`${priceSymbol}_price`]) {
+            const rewardPrice = parseFloat(data[`${priceSymbol}_price`]);
+            const yearlyRewardUsd =
+              parseFloat(formatUnits(yearlyReward.toString(), 18)) *
+              rewardPrice;
+            const rewardValue =
+              yearlyRewardUsd / parseFloat(totalSupplyUsd.toString());
+            const rewardValueScaled = Math.round(10000 * rewardValue);
+            apr.rewardAprs = {
+              total: apr.rewardAprs.total + rewardValueScaled,
+            };
+            breakdown[reward.token] = rewardValueScaled;
+          }
         }
-      }
+      });
+      apr.rewardAprs.breakdown = breakdown;
     }
 
     return (this.pool.apr = apr as AprBreakdown);
