@@ -130,7 +130,7 @@ export default function useWeb3() {
         query: '{ _meta { block { number } } }',
       })) as any;
       console.log(subgraphBlock.data.data._meta.block.number);
-      return block - subgraphBlock.data.data._meta.block.number > 40;
+      return block - subgraphBlock.data.data._meta.block.number > 4000;
     } catch (error) {
       return true;
     }
