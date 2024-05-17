@@ -25,7 +25,7 @@ export default function useWeb3Watchers() {
     connectToAppNetwork,
     isWalletReady,
     disconnectWallet,
-    isSubgraphUnsynced,
+    // isSubgraphUnsynced,
   } = useWeb3();
   const { addAlert, removeAlert } = useAlerts();
   // const { refetchBalances, refetchAllowances } = useTokens();
@@ -46,22 +46,22 @@ export default function useWeb3Watchers() {
   //   }
   // }
 
-  async function checkIfSubgraphIsUnsynced() {
-    const isUnsynced = await isSubgraphUnsynced();
-    if (isUnsynced) {
-      addAlert({
-        id: 'subgraph-unsynced',
-        label: t('subgraphUnsynced'),
-        type: AlertType.ERROR,
-        persistent: true,
-        action: undefined,
-        actionLabel: undefined,
-        priority: AlertPriority.HIGH,
-      });
-    } else {
-      removeAlert('subgraph-unsynced');
-    }
-  }
+  // async function checkIfSubgraphIsUnsynced() {
+  //   const isUnsynced = await isSubgraphUnsynced();
+  //   if (isUnsynced) {
+  //     addAlert({
+  //       id: 'subgraph-unsynced',
+  //       label: t('subgraphUnsynced'),
+  //       type: AlertType.ERROR,
+  //       persistent: true,
+  //       action: undefined,
+  //       actionLabel: undefined,
+  //       priority: AlertPriority.HIGH,
+  //     });
+  //   } else {
+  //     removeAlert('subgraph-unsynced');
+  //   }
+  // }
 
   function checkIsUnsupportedNetwork() {
     if (
@@ -123,7 +123,7 @@ export default function useWeb3Watchers() {
 
   watch(isWalletReady, () => {
     checkIsUnsupportedNetwork();
-    checkIfSubgraphIsUnsynced();
+    // checkIfSubgraphIsUnsynced();
   });
 
   watch(blockNumber, async () => {
