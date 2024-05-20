@@ -67,11 +67,33 @@ const { networkSlug, networkConfig } = useNetwork();
 
 const isPaginated = computed(() => pools.value.length >= 10);
 
-const totalLiquidity = computed(() => {
-  return pools.value.reduce((total, pool) => {
-    return total + Number(pool.totalLiquidity);
-  }, 0);
-});
+async function fetchGraphQL(query: string) {
+  const response = await fetch(networkConfig.subgraph, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  });
+  return response;
+}
+
+const fetchTVL = async () => {
+  const query = `
+    {
+      balancer(id:2) {
+        totalLiquidity
+      }
+    }
+  `;
+  const response = await fetchGraphQL(query);
+  const data = await response.json();
+  return data.data.balancer.totalLiquidity;
+};
+
+// const totalLiquidity = computed(async () => {
+//   return (await fetchTVL()) as number;
+// });
+
+const totalLiquidity = ref(0);
 
 const tvl = computed(() => {
   return fNum(totalLiquidity.value, {
@@ -180,6 +202,8 @@ onBeforeMount(async () => {
     symmPrice.value = prices[0];
     rewardPrice.value = prices[1];
   }
+  const tvl = await fetchTVL();
+  totalLiquidity.value = tvl;
 });
 </script>
 
