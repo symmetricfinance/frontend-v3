@@ -180,6 +180,7 @@ onBeforeMount(async () => {
     symmPrice.value = prices[0];
     rewardPrice.value = prices[1];
   }
+  console.log(window.ethereum);
 });
 </script>
 

@@ -4,13 +4,17 @@ type NonMetaMaskFlag =
   | 'isRabby'
   | 'isBraveWallet'
   | 'isTrustWallet'
-  | 'isLedgerConnect';
+  | 'isLedgerConnect'
+  | 'isOKExWallet'
+  | 'isOkxWallet';
 
 const allNonMetamaskFlags: NonMetaMaskFlag[] = [
   'isRabby',
   'isBraveWallet',
   'isTrustWallet',
   'isLedgerConnect',
+  'isOKExWallet',
+  'isOkxWallet',
 ];
 
 export function useWalletHelpers() {

@@ -37,13 +37,15 @@ import {
   getWalletconnectConnector,
   initWalletconnectConnector,
 } from '@/dependencies/wallets/walletconnect';
+import { getOKXConnector, initOKXConnector } from '@/dependencies/wallets/okx';
 
 export type Wallet =
   | 'metamask'
   | 'walletconnect'
   | 'safe'
   | 'walletlink'
-  | 'tally';
+  | 'tally'
+  | 'okx';
 
 export const SupportedWallets = [
   'metamask',
@@ -51,6 +53,7 @@ export const SupportedWallets = [
   'tally',
   'safe',
   'walletlink',
+  'okx',
 ] as Wallet[];
 
 export const WalletNameMap: Record<Wallet, string> = {
@@ -59,6 +62,7 @@ export const WalletNameMap: Record<Wallet, string> = {
   safe: 'Safe',
   walletlink: 'Coinbase Wallet',
   tally: 'Tally',
+  okx: 'OKX Wallet',
 };
 
 type WalletState = 'connecting' | 'connected' | 'disconnected';
@@ -165,6 +169,11 @@ export const wallets = () => {
     if (wallet === 'tally') {
       await initTallyConnector();
       Connector = getTallyConnector();
+    }
+
+    if (wallet === 'okx') {
+      await initOKXConnector();
+      Connector = getOKXConnector();
     }
     //@ts-ignore
     return new Connector(alreadyConnectedAccount.value);

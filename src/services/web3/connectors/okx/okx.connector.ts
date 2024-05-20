@@ -2,39 +2,31 @@ import { WalletError } from '@/types';
 
 import { Connector, ConnectorId } from '../connector';
 
-type NonMetaMaskFlag =
+type NonOKXFlag =
   | 'isRabby'
   | 'isBraveWallet'
   | 'isTrustWallet'
   | 'isLedgerConnect'
-  | 'isOKExWallet'
-  | 'isOkxWallet';
+  | 'isMetaMask';
 
-const allNonMetamaskFlags: NonMetaMaskFlag[] = [
+const allNonOKXFlags: NonOKXFlag[] = [
   'isRabby',
   'isBraveWallet',
   'isTrustWallet',
   'isLedgerConnect',
-  'isOKExWallet',
-  'isOkxWallet',
+  'isMetaMask',
 ];
 
-export const getIsMetaMaskWallet = () => console.log(window.ethereum);
-Boolean(
-  window.ethereum?.isMetaMask &&
-    !allNonMetamaskFlags.some(flag => window.ethereum?.[flag])
-);
+export const getIsOKXkWallet = () =>
+  Boolean(!allNonOKXFlags.some(flag => window.ethereum?.[flag]));
 
 export function getInjectedProvider() {
-  const ethereum: any = window.ethereum;
-  let provider = ethereum || (window as any).web3?.currentProvider;
+  const ethereum: any = (window as any).okxwallet;
+  let provider = ethereum;
 
   // if multiple providers are injected and one of them is Metamask, prefer Metamask
   if (ethereum?.providers?.length) {
-    ethereum.providers.forEach(p => {
-      console.log(ethereum.providers);
-      if (p.isMetaMask) provider = p;
-    });
+    provider = ethereum.providers[0];
   }
   return provider;
 }
@@ -43,8 +35,8 @@ export function hasInjectedProvider(): boolean {
   return !!getInjectedProvider();
 }
 
-export class MetamaskConnector extends Connector {
-  id = ConnectorId.InjectedMetaMask;
+export class OKXConnector extends Connector {
+  id = ConnectorId.InjectedOKX;
   async connect() {
     const provider = getInjectedProvider();
     // store userRejectedRequest error if the user rejects connection
@@ -102,4 +94,4 @@ export class MetamaskConnector extends Connector {
   }
 }
 
-export const MetamaskConnectorType = typeof MetamaskConnector;
+export const OKXConnectorType = typeof OKXConnector;
