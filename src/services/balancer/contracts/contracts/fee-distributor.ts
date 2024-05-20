@@ -29,7 +29,7 @@ export class FeeDistributor {
       ? [
           '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E', // WTLOS
           '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca', // tSYMM
-          '0x8d97cea50351fb4329d591682b148d43a0c3611b', // USDC
+          '0x8f7D64ea96D729EF24a0F30b4526D47b80d877B9', // USDM
         ]
       : [
           '0x2077a828fd58025655335a8756dbcfeb7e5bec46', //MTRG-wstMTRG
