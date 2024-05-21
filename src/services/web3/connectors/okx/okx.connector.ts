@@ -17,6 +17,12 @@ const allNonOKXFlags: NonOKXFlag[] = [
   'isMetaMask',
 ];
 
+const ua = navigator.userAgent;
+const isIOS = /iphone|ipad|ipod|ios/i.test(ua);
+const isAndroid = /android|XiaoMi|MiuiBrowser/i.test(ua);
+const isMobile = isIOS || isAndroid;
+const isOKApp = /OKApp/i.test(ua);
+
 export const getIsOKXkWallet = () =>
   Boolean(!allNonOKXFlags.some(flag => window.ethereum?.[flag]));
 
@@ -38,6 +44,14 @@ export function hasInjectedProvider(): boolean {
 export class OKXConnector extends Connector {
   id = ConnectorId.InjectedOKX;
   async connect() {
+    if (isMobile && !isOKApp) {
+      const encodedUrl =
+        'https://www.okx.com/download?deeplink=' +
+        encodeURIComponent(
+          'okx://wallet/dapp/url?dappUrl=' + encodeURIComponent(location.href)
+        );
+      window.location.href = encodedUrl;
+    }
     const provider = getInjectedProvider();
     // store userRejectedRequest error if the user rejects connection
     let userRejectedRequest = false;
