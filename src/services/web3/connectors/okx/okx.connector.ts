@@ -6,15 +6,13 @@ type NonOKXFlag =
   | 'isRabby'
   | 'isBraveWallet'
   | 'isTrustWallet'
-  | 'isLedgerConnect'
-  | 'isMetaMask';
+  | 'isLedgerConnect';
 
 const allNonOKXFlags: NonOKXFlag[] = [
   'isRabby',
   'isBraveWallet',
   'isTrustWallet',
   'isLedgerConnect',
-  'isMetaMask',
 ];
 
 const ua = navigator.userAgent;
