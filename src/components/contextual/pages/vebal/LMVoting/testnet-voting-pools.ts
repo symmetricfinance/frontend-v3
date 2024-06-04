@@ -792,6 +792,28 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     },
   };
 
+  const Burn_tSYMM: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000d',
+    address: '',
+    type: GqlPoolMinimalType.Unknown,
+    symbol: 'Burn tSYMM',
+    tokens: [
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.8',
+        symbol: 'Burn tSYMM',
+        logoURI: 'https://em-content.zobj.net/source/apple/391/fire_1f525.png',
+      },
+    ],
+    gauge: {
+      address: '0x9A287E33d7c5Dd701f47731BeCe88bb0Ee1e06fC',
+      isKilled: false,
+      relativeWeightCap: '1.0',
+      addedTimestamp: 1701860941,
+    },
+  };
+
   return [
     tSYMM_WTLOS,
     STLOS_WTLOS,
@@ -815,5 +837,6 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     SOULS_WTLOS,
     SUSD_SOULS,
     Team_Allocation,
+    Burn_tSYMM,
   ];
 }

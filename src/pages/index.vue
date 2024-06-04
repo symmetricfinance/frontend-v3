@@ -79,14 +79,16 @@ async function fetchGraphQL(query: string) {
 const fetchTVL = async () => {
   const query = `
     {
-      balancer(id:2) {
-        totalLiquidity
+      pools {
+        totalLiquiditySansBPT
       }
     }
   `;
   const response = await fetchGraphQL(query);
   const data = await response.json();
-  return data.data.balancer.totalLiquidity;
+  return data.data.pools.reduce((total: number, pool: any) => {
+    return total + Number(pool.totalLiquiditySansBPT);
+  }, 0);
 };
 
 // const totalLiquidity = computed(async () => {

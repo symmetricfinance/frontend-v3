@@ -65,7 +65,12 @@ const pools: Pools = {
       '0xbfd3c6457069bf173714f344447be468a83e7bd500020000000000000000000b', //MST-wstMTRG
     ],
   },
-  Metadata: {},
+  Metadata: {
+    '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000d': {
+      name: 'Burn mSYMM emissions',
+      hasIcon: false,
+    },
+  },
   Deep: [
     '0xd9fe77653c2b75cf3442c365a3f1f9c7ed1612c7000200000000000000000003', //MTRG/USDT-USDC-suUSD
   ],

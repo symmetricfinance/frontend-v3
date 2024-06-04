@@ -107,6 +107,10 @@ const pools: Pools = {
       name: 'Symmetric Team Allocation',
       hasIcon: false,
     },
+    '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000d': {
+      name: 'Burn tSYMM emissions',
+      hasIcon: false,
+    },
   },
   Deep: [
     '0x5e99843486cf052baf0925a0cdeb40920477295900000000000000000000000b', // USDM/USDC-USDT

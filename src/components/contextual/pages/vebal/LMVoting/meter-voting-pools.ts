@@ -225,6 +225,28 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
     },
   };
 
+  const Burn_mSYMM: ApiVotingPool = {
+    chain: network as GqlChain,
+    id: '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000d',
+    address: '',
+    type: GqlPoolMinimalType.Unknown,
+    symbol: 'Burn mSYMM',
+    tokens: [
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.8',
+        symbol: 'burn mSYMM',
+        logoURI: 'https://em-content.zobj.net/source/apple/391/fire_1f525.png',
+      },
+    ],
+    gauge: {
+      address: '0xF4D1405df236BB5bD654B40Db4C055cb59522939',
+      isKilled: false,
+      relativeWeightCap: '1.0',
+      addedTimestamp: 1701860941,
+    },
+  };
+
   return [
     USDT_suUSD_USDC,
     USDT_suUSD_USDC_MTRG,
@@ -233,5 +255,6 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
     ETH_wstMTRG,
     MTRG_wstMTRG,
     MSYMM_wstMTRG,
+    Burn_mSYMM,
   ];
 }
