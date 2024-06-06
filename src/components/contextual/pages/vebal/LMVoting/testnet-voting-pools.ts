@@ -619,6 +619,36 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     },
   };
 
+  const ALI_SOULS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xceb2728bf37332291fa44891414a53b1d668578200020000000000000000001e',
+    address: '0xceb2728bf37332291fa44891414a53b1d6685782',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50ALI-50SOULS',
+    tokens: [
+      {
+        address: '0xce436C598027B39bcC80094B670A60184a290Fe1',
+        weight: '0.5',
+        symbol: 'ALI',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/ALI.png',
+      },
+      {
+        address: '0x836EfDc24A00d42160AF3eF144Af96CBc0c09aa0',
+        weight: '0.5',
+        symbol: 'SUSD',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SUSD.png',
+      },
+    ],
+    gauge: {
+      address: '0x34BD676B1a111ac062b35dBb80085b7528B4B151',
+      isKilled: false,
+      relativeWeightCap: '0.05',
+      addedTimestamp: 1705510584,
+    },
+  };
+
   const TKIND_TSOUL: ApiVotingPool = {
     chain: testnet as GqlChain,
     id: '0x09ef3684052c0566caa6fc61008922030ff455b1000200000000000000000010',
@@ -836,6 +866,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     wUSK_STLOS,
     SOULS_WTLOS,
     SUSD_SOULS,
+    ALI_SOULS,
     Team_Allocation,
     Burn_tSYMM,
   ];
