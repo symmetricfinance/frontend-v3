@@ -634,7 +634,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
           'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/ALI.png',
       },
       {
-        address: '0x836EfDc24A00d42160AF3eF144Af96CBc0c09aa0',
+        address: '0xa3b4aee7b43b2fb390420c411ec180b0ae87e9da',
         weight: '0.5',
         symbol: 'SOULS',
         logoURI:
