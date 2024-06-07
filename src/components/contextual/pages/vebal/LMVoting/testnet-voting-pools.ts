@@ -636,9 +636,9 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
       {
         address: '0x836EfDc24A00d42160AF3eF144Af96CBc0c09aa0',
         weight: '0.5',
-        symbol: 'SUSD',
+        symbol: 'SOULS',
         logoURI:
-          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SUSD.png',
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SOULS.png',
       },
     ],
     gauge: {
