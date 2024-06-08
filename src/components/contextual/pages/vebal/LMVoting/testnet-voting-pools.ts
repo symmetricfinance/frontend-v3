@@ -613,7 +613,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x194CC8af539B5Ec1d61B615ac48BFCc4837A1d19',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
     },
