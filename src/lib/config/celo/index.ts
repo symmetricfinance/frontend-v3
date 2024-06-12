@@ -24,11 +24,11 @@ const config: Config = {
   explorer: 'https://celoscan.io',
   explorerName: 'Celoscan',
   subgraph:
-    'https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-celo',
+    'https://gateway-arbitrum.network.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/2iS1nCtSKbJT7MZ2xH9hMej3CjJDRRGuv25cAt6kbEwj',
   poolsUrlV2: '',
   subgraphs: {
     main: [
-      'https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-celo',
+      'https://gateway-arbitrum.network.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/2iS1nCtSKbJT7MZ2xH9hMej3CjJDRRGuv25cAt6kbEwj',
     ],
     aave: '',
     gauge: '',
