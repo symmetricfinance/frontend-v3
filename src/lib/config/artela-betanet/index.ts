@@ -19,7 +19,7 @@ const config: Config = {
   unknown: false,
   visibleInUI: true,
   testNetwork: false,
-  rpc: 'https://betanet-rpc1.artela.network',
+  rpc: 'https://api.zan.top/node/v1/artela/testnet/43577389172042b2bb9be7d15c89a59d',
   ws: '',
   explorer: 'https://betanet-scan.artela.network/',
   explorerName: 'Artela Testnet Explorer',
