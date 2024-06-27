@@ -351,7 +351,7 @@ export const rewards = {
       },
     ],
   },
-  1718236800: {
+  1719446400: {
     '0x1ff97abe4c5a4b7ff90949b637e71626bef0dcee000000000000000000000002': [
       {
         symbol: 'USDT-USDC-suUSD',
