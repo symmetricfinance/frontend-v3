@@ -103,6 +103,7 @@ export default function useSwapping(
   );
 
   const swapRoute = computed<SwapRoute>(() => {
+    console.log(wrapType.value);
     if (wrapType.value !== WrapType.NonWrap) {
       return 'wrapUnwrap';
     } else if (isNativeAssetSwap.value) {

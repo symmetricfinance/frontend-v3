@@ -7,6 +7,7 @@ import { configService } from '@/services/config/config.service';
 import { convertStEthWrap } from './lido';
 import { TransactionBuilder } from '@/services/web3/transactions/transaction.builder';
 import { WalletProvider } from '@/dependencies/wallets/Web3Provider';
+import { convertERC4626Wrap } from './erc4626Wrappers';
 
 export enum WrapType {
   NonWrap = 0,
@@ -27,15 +28,32 @@ export const isNativeAssetWrap = (
 export const getWrapAction = (tokenIn: string, tokenOut: string): WrapType => {
   const nativeAddress = configService.network.tokens.Addresses.nativeAsset;
   const wNativeAddress = configService.network.tokens.Addresses.wNativeAsset;
-  const { stETH, wstETH } = configService.network.tokens.Addresses;
+  const { stETH, wstETH, erc4626Wrappers } =
+    configService.network.tokens.Addresses;
 
   if (tokenIn === nativeAddress && tokenOut === wNativeAddress)
     return WrapType.Wrap;
+
   if (tokenIn === stETH && tokenOut === wstETH) return WrapType.Wrap;
+  console.log(tokenIn, tokenOut);
+  if (
+    erc4626Wrappers &&
+    Object.keys(erc4626Wrappers).includes(tokenIn.toLowerCase()) &&
+    erc4626Wrappers[tokenIn.toLowerCase()] === tokenOut.toLowerCase()
+  )
+    return WrapType.Wrap;
 
   if (tokenOut === nativeAddress && tokenIn === wNativeAddress)
     return WrapType.Unwrap;
+
   if (tokenOut === stETH && tokenIn === wstETH) return WrapType.Unwrap;
+
+  if (
+    erc4626Wrappers &&
+    Object.keys(erc4626Wrappers).includes(tokenOut.toLowerCase()) &&
+    erc4626Wrappers[tokenOut.toLowerCase()] === tokenIn.toLowerCase()
+  )
+    return WrapType.Unwrap;
 
   return WrapType.NonWrap;
 };
@@ -47,11 +65,21 @@ export const getWrapOutput = async (
 ): Promise<BigNumber> => {
   if (wrapType === WrapType.NonWrap) throw new Error('Invalid wrap type');
   const wNativeAddress = configService.network.tokens.Addresses.wNativeAsset;
-  const { wstETH } = configService.network.tokens.Addresses;
+  const { wstETH, erc4626Wrappers } = configService.network.tokens.Addresses;
 
   if (wrapper === wNativeAddress) return BigNumber.from(wrapAmount);
   if (wrapper === wstETH) {
     return convertStEthWrap({
+      amount: wrapAmount,
+      isWrap: wrapType === WrapType.Wrap,
+    });
+  }
+
+  if (
+    erc4626Wrappers &&
+    Object.values(erc4626Wrappers).includes(wrapper.toLowerCase())
+  ) {
+    return convertERC4626Wrap(wrapper.toLowerCase(), {
       amount: wrapAmount,
       isWrap: wrapType === WrapType.Wrap,
     });
@@ -70,6 +98,13 @@ export async function wrap(
       return wrapNative(network, web3, amount);
     } else if (wrapper === configs[network].tokens.Addresses.wstETH) {
       return wrapLido(network, web3, amount);
+    } else if (
+      configs[network].tokens.Addresses.erc4626Wrappers &&
+      Object.values(configs[network].tokens.Addresses.erc4626Wrappers).includes(
+        wrapper.toLowerCase()
+      )
+    ) {
+      return wrapERC4626(network, web3, wrapper.toLowerCase(), amount);
     }
     throw new Error('Unrecognised wrapper contract');
   } catch (e) {
@@ -89,6 +124,13 @@ export async function unwrap(
       return unwrapNative(network, web3, amount);
     } else if (wrapper === configs[network].tokens.Addresses.wstETH) {
       return unwrapLido(network, web3, amount);
+    } else if (
+      configs[network].tokens.Addresses.erc4626Wrappers &&
+      Object.values(configs[network].tokens.Addresses.erc4626Wrappers).includes(
+        wrapper.toLowerCase()
+      )
+    ) {
+      return unwrapERC4626(network, web3, wrapper.toLowerCase(), amount);
     }
     throw new Error('Unrecognised wrapper contract');
   } catch (e) {
@@ -150,5 +192,41 @@ const unwrapLido = async (
     abi: ['function unwrap(uint256 _wstETHAmount) returns (uint256)'],
     action: 'unwrap',
     params: [amount],
+  });
+};
+
+const wrapERC4626 = async (
+  network: string,
+  web3: WalletProvider,
+  wrapper: string,
+  amount: BigNumber
+): Promise<TransactionResponse> => {
+  const txBuilder = new TransactionBuilder(web3.getSigner());
+  const userAddress = await web3.getSigner().getAddress();
+  return await txBuilder.contract.sendTransaction({
+    contractAddress: wrapper,
+    abi: [
+      'function deposit(uint256 assets, address receiver) returns (uint256)',
+    ],
+    action: 'deposit',
+    params: [amount, userAddress],
+  });
+};
+
+const unwrapERC4626 = async (
+  network: string,
+  web3: WalletProvider,
+  wrapper: string,
+  amount: BigNumber
+): Promise<TransactionResponse> => {
+  const userAddress = await web3.getSigner().getAddress();
+  const txBuilder = new TransactionBuilder(web3.getSigner());
+  return await txBuilder.contract.sendTransaction({
+    contractAddress: wrapper,
+    abi: [
+      'function redeem(uint256 shares, address receiver, address owner) returns (uint256 assets)',
+    ],
+    action: 'redeem',
+    params: [amount, userAddress, userAddress],
   });
 };

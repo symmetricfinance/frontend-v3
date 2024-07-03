@@ -14,6 +14,7 @@ export type CommonTokens = {
   stMATIC?: string;
   reward?: string;
   rewards?: string;
+  erc4626Wrappers?: Record<string, string>;
 };
 
 export type TokenConstants = {
