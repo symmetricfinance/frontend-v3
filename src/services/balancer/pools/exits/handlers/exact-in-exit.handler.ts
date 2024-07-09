@@ -1,6 +1,6 @@
 import { getBalancerSDK } from '@/dependencies/balancer-sdk';
 import { Pool } from '@/services/pool/types';
-import { BalancerSDK, PoolWithMethods } from '@symmetric-v3/sdk';
+import { BalancerSDK, PoolWithMethods, Pools } from '@symmetric-v3/sdk';
 import { TransactionResponse } from '@ethersproject/abstract-provider';
 import { Ref } from 'vue';
 import {
@@ -54,7 +54,13 @@ export class ExactInExitHandler implements ExitPoolHandler {
     const { signer, tokenInfo, bptIn, slippageBsp, amountsOut } = params;
     const exiter = await signer.getAddress();
     const slippage = slippageBsp.toString();
-    const sdkPool = await getBalancerSDK().pools.find(this.pool.value.id);
+    const sdkConfig = getBalancerSDK().networkConfig;
+    const pool = await getBalancerSDK().data.poolsOnChain.find(
+      this.pool.value.id
+    );
+    if (!pool) throw new Error('Failed to find pool: ' + this.pool.value.id);
+    const sdkPool = Pools.wrap(pool, sdkConfig);
+
     const tokenOut = selectByAddress(tokenInfo, amountsOut[0].address);
 
     if (!sdkPool) throw new Error('Failed to find pool: ' + this.pool.value.id);
