@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 import axios from 'axios';
 
 //import HomePageHero from '@/components/heros/HomePageHero.vue';
@@ -7,7 +7,7 @@ import TokenSearchInput from '@/components/inputs/TokenSearchInput.vue';
 // import FeaturedProtocols from '@/components/sections/FeaturedProtocols.vue';
 import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
 import usePoolFilters from '@/composables/pools/usePoolFilters';
-import useBreakpoints from '@/composables/useBreakpoints';
+// import useBreakpoints from '@/composables/useBreakpoints';
 import useNetwork, { rewardSymbol, symmSymbol } from '@/composables/useNetwork';
 import usePools from '@/composables/pools/usePools';
 import { lsGet, lsSet } from '@/lib/utils';
@@ -47,7 +47,7 @@ const filterPoolAttributes = ref<PoolAttributeFilter[]>([]);
 /**
  * COMPOSABLES
  */
-const router = useRouter();
+// const router = useRouter();
 const { injectPrices, getToken, tokens } = useTokens();
 // const { appNetworkConfig } = useNetwork();
 // const isElementSupported = appNetworkConfig.supportsElementPools;
@@ -62,7 +62,7 @@ const { pools, isLoading, isFetchingNextPage, loadMorePools } = usePools({
   poolAttributes: filterPoolAttributes,
 });
 
-const { upToSmallBreakpoint } = useBreakpoints();
+// const { upToSmallBreakpoint } = useBreakpoints();
 const { networkSlug, networkConfig } = useNetwork();
 
 const isPaginated = computed(() => pools.value.length >= 10);
@@ -98,9 +98,9 @@ const rewardPrice = ref(0);
 /**
  * METHODS
  */
-function navigateToCreatePool() {
-  router.push({ name: 'create-pool', params: { networkSlug } });
-}
+// function navigateToCreatePool() {
+//   router.push({ name: 'create-pool', params: { networkSlug } });
+// }
 
 function onColumnSort(columnId: string) {
   sortField.value = columnId;
@@ -246,7 +246,7 @@ onBeforeMount(async () => {
             class="flex flex-col md:flex-row justify-between items-end lg:items-center w-full"
           >
             <div class="flex justify-between items-end mb-2">
-              <BalBtn
+              <!-- <BalBtn
                 v-if="upToSmallBreakpoint"
                 color="blue"
                 size="sm"
@@ -255,7 +255,7 @@ onBeforeMount(async () => {
                 @click="navigateToCreatePool"
               >
                 {{ $t('createAPool.title') }}
-              </BalBtn>
+              </BalBtn> -->
             </div>
             <BalVStack width="full">
               <BalHStack justify="between" width="full">
@@ -271,7 +271,7 @@ onBeforeMount(async () => {
                   />
                 </BalHStack>
 
-                <BalBtn
+                <!-- <BalBtn
                   v-if="!upToSmallBreakpoint"
                   color="blue"
                   size="sm"
@@ -281,7 +281,7 @@ onBeforeMount(async () => {
                   @click="navigateToCreatePool"
                 >
                   {{ $t('createAPool.title') }}
-                </BalBtn>
+                </BalBtn> -->
               </BalHStack>
               <BalHStack spacing="sm">
                 <TransitionGroup name="pop">
