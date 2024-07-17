@@ -38,7 +38,7 @@ const config: Config = {
   bridgeUrl: '',
   supportsEIP1559: false,
   supportsElementPools: false,
-  blockTime: 2,
+  blockTime: 5,
   nativeAsset: {
     name: 'Artela',
     address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
@@ -46,7 +46,7 @@ const config: Config = {
     decimals: 18,
     deeplinkId: 'artela',
     logoURI: 'tokens/artela.png',
-    minTransactionBuffer: '0.05',
+    minTransactionBuffer: '0.1',
   },
   thirdParty: {
     coingecko: {
