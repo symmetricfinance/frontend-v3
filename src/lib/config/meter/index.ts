@@ -49,7 +49,7 @@ const config: Config = {
     decimals: 18,
     deeplinkId: 'meter',
     logoURI: 'tokens/mtr.png',
-    minTransactionBuffer: '0.1',
+    minTransactionBuffer: '1',
   },
   thirdParty: {
     coingecko: {
