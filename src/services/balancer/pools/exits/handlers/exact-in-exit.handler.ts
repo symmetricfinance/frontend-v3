@@ -82,15 +82,30 @@ export class ExactInExitHandler implements ExitPoolHandler {
       tokenOut.address,
       NATIVE_ASSET_ADDRESS
     );
-
-    this.lastExitRes = await sdkPool.buildExitExactBPTIn(
+    console.log(
+      'exiter',
       exiter,
+      'evmBptIn',
       evmBptIn,
+      'slippage',
       slippage,
+      'shouldUnwrapNativeAsset',
       shouldUnwrapNativeAsset,
-      // TODO: singleTokenMaxOutAddress address format. SDK fix?
-      singleTokenMaxOutAddress?.toLowerCase()
+      'singleTokenMaxOutAddress',
+      singleTokenMaxOutAddress
     );
+    try {
+      this.lastExitRes = await sdkPool.buildExitExactBPTIn(
+        exiter,
+        evmBptIn,
+        slippage,
+        shouldUnwrapNativeAsset,
+        // TODO: singleTokenMaxOutAddress address format. SDK fix?
+        singleTokenMaxOutAddress?.toLowerCase()
+      );
+    } catch (e) {
+      console.error(e);
+    }
 
     if (!this.lastExitRes) throw new Error('Failed to construct exit.');
 
