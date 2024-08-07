@@ -257,12 +257,12 @@ export function meterVotingPools(network: 'meter'): ApiVotingPool[] {
       {
         address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
         weight: '0.8',
-        symbol: 'burn mSYMM',
+        symbol: 'burn mSYMM Deprecated',
         logoURI: 'https://em-content.zobj.net/source/apple/391/fire_1f525.png',
       },
     ],
     gauge: {
-      address: '0x306F5A0b2976A1c6a526cbBfD0d33C8232a467c2',
+      address: '0xF4D1405df236BB5bD654B40Db4C055cb59522939',
       isKilled: true,
       relativeWeightCap: '1.0',
       addedTimestamp: 1701860941,
