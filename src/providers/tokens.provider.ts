@@ -43,6 +43,8 @@ import useWeb3 from '@/services/web3/useWeb3';
 import { tokenListService } from '@/services/token-list/token-list.service';
 import { AmountToApprove } from '@/composables/approvals/useTokenApprovalActions';
 import BigNumber from 'bignumber.js';
+import axios from 'axios';
+import { networkSlug } from '@/composables/useNetwork';
 // import { Token } from '@symmetric-v3/sdk';
 
 const { uris: tokenListUris } = tokenListService;
@@ -424,6 +426,22 @@ export const tokensProvider = (
   }
 
   /**
+   * Fetch price for a token
+   */
+  function injectedPriceFor(address: string): number {
+    try {
+      console.log(state.injectedPrices);
+      const price = state.injectedPrices[address]; // const price = selectByAddressFast(prices.value, getAddress(address));
+      if (!price) {
+        return 0;
+      }
+      return price;
+    } catch {
+      return 0;
+    }
+  }
+
+  /**
    * Fetch balance for a token
    */
   function balanceFor(address: string): string {
@@ -509,6 +527,41 @@ export const tokensProvider = (
     );
   }
 
+  async function getTokenPrices() {
+    try {
+      const tokenAddresses = Object.keys(tokens.value).map(address =>
+        address.toLowerCase()
+      );
+      const tokenAddressesString = tokenAddresses.join(',');
+      const response = await axios.get(
+        `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${tokenAddressesString}`
+      );
+      let symmPrice = 0;
+      let rewardPrice = 0;
+      response.data.forEach(price => {
+        if (price.id === TOKENS.Addresses.BAL.toLowerCase()) {
+          symmPrice = price.price;
+        }
+        if (price.id === TOKENS.Addresses.reward?.toLowerCase()) {
+          rewardPrice = price.price;
+        }
+        injectPrices({
+          [getAddress(price.id) as string]: price.price,
+        });
+        if (price.id === TOKENS.Addresses.wNativeAsset.toLowerCase()) {
+          injectPrices({
+            [getAddress(TOKENS.Addresses.nativeAsset.toLowerCase()) as string]:
+              price.price,
+          });
+        }
+      });
+      return [symmPrice, rewardPrice];
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   /**
    * LIFECYCLE
    */
@@ -516,6 +569,9 @@ export const tokensProvider = (
     // Inject veBAL because it's not in tokenlists.
     const { veBAL } = configService.network.addresses;
     await injectTokens([veBAL]);
+    if (networkSlug === 'telos' || networkSlug === 'meter') {
+      await getTokenPrices();
+    }
     queriesEnabled.value = true;
     state.loading = false;
   });
@@ -551,6 +607,7 @@ export const tokensProvider = (
     approvalsRequired,
     allowanceFor,
     priceFor,
+    injectedPriceFor,
     balanceFor,
     getTokens,
     getToken,

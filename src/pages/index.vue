@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import axios from 'axios';
-
 //import HomePageHero from '@/components/heros/HomePageHero.vue';
 import TokenSearchInput from '@/components/inputs/TokenSearchInput.vue';
 // import FeaturedProtocols from '@/components/sections/FeaturedProtocols.vue';
@@ -48,7 +46,7 @@ const filterPoolAttributes = ref<PoolAttributeFilter[]>([]);
  * COMPOSABLES
  */
 const router = useRouter();
-const { injectPrices, getToken, tokens } = useTokens();
+const { getToken, injectedPriceFor } = useTokens();
 // const { appNetworkConfig } = useNetwork();
 // const isElementSupported = appNetworkConfig.supportsElementPools;
 const { selectedTokens, addSelectedToken, removeSelectedToken } =
@@ -165,44 +163,20 @@ function removeAttributeFilter(attribute: PoolAttributeFilter) {
   filterPoolAttributes.value.splice(index, 1);
 }
 
-async function getTokenPrices() {
-  try {
-    const tokenAddresses = Object.keys(tokens.value).map(address =>
-      address.toLowerCase()
-    );
-    const tokenAddressesString = tokenAddresses.join(',');
-    const response = await axios.get(
-      `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${tokenAddressesString}`
-    );
-    let symmPrice = 0;
-    let rewardPrice = 0;
-    response.data.forEach(price => {
-      if (price.id === TOKENS.Addresses.BAL.toLowerCase()) {
-        symmPrice = price.price;
-      }
-      if (price.id === TOKENS.Addresses.reward?.toLowerCase()) {
-        rewardPrice = price.price;
-      }
-      injectPrices({
-        [getAddress(price.id) as string]: price.price,
-      });
-    });
-    return [symmPrice, rewardPrice];
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
-
 watch(poolTypeFilter, newPoolTypeFilter => {
   updatePoolFilters(newPoolTypeFilter);
 });
 
 onBeforeMount(async () => {
   if (networkSlug === 'telos' || networkSlug === 'meter') {
-    const prices = await getTokenPrices();
-    symmPrice.value = prices[0];
-    rewardPrice.value = prices[1];
+    const symm = getAddress(TOKENS.Addresses.BAL);
+    const reward = TOKENS.Addresses.reward
+      ? getAddress(TOKENS.Addresses.reward)
+      : undefined;
+
+    symmPrice.value = injectedPriceFor(symm);
+    console.log(symmPrice.value);
+    rewardPrice.value = reward ? injectedPriceFor(reward) : 0;
   }
   const tvl = await fetchTVL();
   totalLiquidity.value = tvl;
