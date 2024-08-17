@@ -1672,14 +1672,14 @@ export const rewards = {
       },
     ],
   },
-  1722470400: {
+  1723680000: {
     '0x2d714951f7165a51e8bd61f92d8a979ab0ed4b59000200000000000000000006': [
       {
         symbol: 'WTLOS-USDT',
         token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
         tokenSymbol: 'WTLOS',
         gauge: '0xa9d436ab58989354a5c3705f24a5130779055e47',
-        rate: BigInt('750000000000000000000') / BigInt('604800'),
+        rate: BigInt('1408695652173910000000') / BigInt('604800'),
         period_finish: 0,
         decimals: 18,
       },
@@ -1690,7 +1690,7 @@ export const rewards = {
         token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
         tokenSymbol: 'WTLOS',
         gauge: '0xe4c412962fab7f2d406c43a8da95c68f9d60f24e',
-        rate: BigInt('10000000000000000000') / BigInt('604800'),
+        rate: BigInt('1056521739130430000000') / BigInt('604800'),
         period_finish: 0,
         decimals: 18,
       },
@@ -1701,7 +1701,7 @@ export const rewards = {
         token: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
         tokenSymbol: 'WTLOS',
         gauge: '0xec678e92afe25bc5ba4bc2e1ff386c775270e49e',
-        rate: BigInt('2000000000000000000000') / BigInt('604800'),
+        rate: BigInt('2817391304347830000000') / BigInt('604800'),
         period_finish: 0,
         decimals: 18,
       },

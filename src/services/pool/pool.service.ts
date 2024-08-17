@@ -93,13 +93,19 @@ export default class PoolService {
       };
     }
     // has local rewards
-    // const timestamp = roundDownTimestamp(Date.now() / 1000);
-    // const rewards = useNetwork().networkConfig.rewards;
-    if (r && r[this.pool.id]) {
-      // Get gauge
+    const timestamp = roundDownTimestamp(Date.now() / 1000);
+    const rewards = useNetwork().networkConfig.rewards;
+    console.log(
+      rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]
+    );
+    if (
+      (rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]) ||
+      (r && r[this.pool.id])
+    ) {
       const totalSupply = await gaugeTotalSupply(this.pool.address);
       const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
-      const poolRewards = r[this.pool.id];
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const poolRewards = rewards![timestamp][this.pool.id] || r[this.pool.id];
 
       poolRewards.forEach(reward => {
         console.log(reward);
@@ -212,11 +218,14 @@ const gaugeTotalSupply = async (poolAddress: string): Promise<number> => {
   }
 };
 
-// function roundDownTimestamp(timestamp: number): number {
-//   const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
-//   const day = date.getUTCDay(); // Get the day of the week (0 - Sunday, 1 - Monday, ..., 6 - Saturday)
-//   const daysToThursday = (day + 7 - 4) % 7; // Calculate the number of days to Thursday (4 - Thursday)
-//   date.setUTCDate(date.getUTCDate() - daysToThursday); // Subtract the number of days to Thursday
-//   date.setUTCHours(0, 0, 0, 0); // Set the time to midnight (00:00:00)
-//   return Math.floor(date.getTime() / 1000); // Convert back to Unix timestamp in seconds
-// }
+/* The `roundDownTimestamp` function is used to round down a given Unix timestamp to the beginning of
+the current week (starting from Thursday). Here's a breakdown of what each step in the function
+does: */
+function roundDownTimestamp(timestamp: number): number {
+  const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+  const day = date.getUTCDay(); // Get the day of the week (0 - Sunday, 1 - Monday, ..., 6 - Saturday)
+  const daysToThursday = (day + 7 - 4) % 7; // Calculate the number of days to Thursday (4 - Thursday)
+  date.setUTCDate(date.getUTCDate() - daysToThursday); // Subtract the number of days to Thursday
+  date.setUTCHours(0, 0, 0, 0); // Set the time to midnight (00:00:00)
+  return Math.floor(date.getTime() / 1000); // Convert back to Unix timestamp in seconds
+}
