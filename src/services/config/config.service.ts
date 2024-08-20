@@ -1,6 +1,7 @@
 import { networkId } from '@/composables/useNetwork';
 import { Config } from '@/lib/config/types';
 import configs from '@/lib/config';
+import mainnet from '@/lib/config/mainnet';
 import { Network } from '@/lib/config/types';
 import template from '@/lib/utils/template';
 
@@ -62,6 +63,15 @@ export default class ConfigService {
   }
 
   public getNetworkRpc(network: Network): string {
+    if (network === 1) {
+      return template(
+        import.meta.env[`VITE_RPC_URL_${network}`] || mainnet.rpc,
+        {
+          INFURA_KEY: mainnet.keys.infura,
+          ALCHEMY_KEY: mainnet.keys.alchemy,
+        }
+      );
+    }
     const networkConfig = this.getNetworkConfig(network);
 
     return template(

@@ -1,4 +1,3 @@
-import { Network } from '@/lib/config/types';
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers';
 import { resolveENSAvatar } from '@tomfrench/ens-avatar-resolver';
 
@@ -26,7 +25,7 @@ export default class WalletService {
     private readonly config: ConfigService = configService
   ) {
     this.appProvider = this.rpcProviderService.jsonProvider;
-    this.ensProvider = this.rpcProviderService.getJsonProvider(Network.CELO);
+    this.ensProvider = this.rpcProviderService.getJsonProvider(1);
   }
 
   public setUserProvider(provider: ComputedRef<WalletProvider>) {
