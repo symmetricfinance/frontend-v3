@@ -99,13 +99,15 @@ export default class PoolService {
       rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]
     );
     if (
-      (rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]) ||
-      (r && r[this.pool.id])
+      // (rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]) ||
+      r &&
+      r[this.pool.id]
     ) {
+      console.log('has rewards');
       const totalSupply = await gaugeTotalSupply(this.pool.address);
       const totalSupplyUsd = Number(this.bptPrice) * totalSupply;
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const poolRewards = rewards![timestamp][this.pool.id] || r[this.pool.id];
+      const poolRewards = r[this.pool.id];
 
       poolRewards.forEach(reward => {
         console.log(reward);

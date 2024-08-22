@@ -8,6 +8,7 @@ import {
 } from '../rpc-provider/rpc-provider.service';
 import { TransactionBuilder } from './transactions/transaction.builder';
 import { WalletProvider } from '@/dependencies/wallets/Web3Provider';
+import { Network } from '@/lib/config/types';
 
 interface Web3Profile {
   ens: string | null;
@@ -25,7 +26,7 @@ export default class WalletService {
     private readonly config: ConfigService = configService
   ) {
     this.appProvider = this.rpcProviderService.jsonProvider;
-    this.ensProvider = this.rpcProviderService.getJsonProvider(1);
+    this.ensProvider = this.rpcProviderService.getJsonProvider(Network.TELOS);
   }
 
   public setUserProvider(provider: ComputedRef<WalletProvider>) {
