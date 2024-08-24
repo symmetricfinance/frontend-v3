@@ -68,10 +68,14 @@ export class PoolDecorator {
 
     let rewards;
     if (configService.network.chainId === 40) {
-      const request = await fetch(
-        'https://rewards.symmetric.workers.dev/rewards/telos'
-      );
-      rewards = await request.json();
+      // try {
+      //   const request = await fetch(
+      //     'https://rewards.symmetric.workers.dev/rewards/telos'
+      //   );
+      //   rewards = await request.json();
+      // } catch (error) {
+      //   console.error(error);
+      // }
     }
     console.log(rewards);
     const promises = processedPools.map(async pool => {

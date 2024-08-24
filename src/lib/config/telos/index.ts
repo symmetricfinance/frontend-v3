@@ -20,8 +20,8 @@ const config: Config = {
   unknown: false,
   visibleInUI: true,
   testNetwork: false,
-  rpc: `https://mainnet-eu.telos.net/evm`,
-  ws: ``,
+  rpc: `https://mainnet.telos.net/evm`,
+  ws: `wss://telos.drpc.org`,
   explorer: 'https://teloscan.io',
   explorerName: 'Teloscan',
   subgraph:
