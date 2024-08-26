@@ -531,7 +531,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
 
   const SOULS_KINDS: ApiVotingPool = {
     chain: testnet as GqlChain,
-    id: '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018',
+    id: '0xcacc06ea569e239d0e4b718e4da1b456d49e06f6000200000000000000000019',
     address: '0xcf29825Dfe41E62E218Baa10B791A3D087fA7a83',
     type: GqlPoolMinimalType.Weighted,
     symbol: '50KINDs-50SOULS',
@@ -553,7 +553,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x89f6ad1eef23c0c272885dde34b2af9be8033c36',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
     },
@@ -583,7 +583,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x8E512Ba3949ae1CebfaEb460Cc3269d0E01B2242',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
     },
@@ -643,7 +643,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x34BD676B1a111ac062b35dBb80085b7528B4B151',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.05',
       addedTimestamp: 1705510584,
     },
@@ -733,7 +733,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x55b2341fda3af3b042d4722bf221d324d812bcf2',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.03',
       addedTimestamp: 1701860941,
     },
@@ -763,7 +763,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x465abed4fde9d4fb0291a5e7ff6ef0f75457f362',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.03',
       addedTimestamp: 1701860941,
     },

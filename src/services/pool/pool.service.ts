@@ -19,6 +19,8 @@ import { getBalancerSDK } from '@/dependencies/balancer-sdk';
 import { captureBalancerException } from '@/lib/utils/errors';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '@/lib/utils/subgraph';
+import { telosVotingPools } from '@/components/contextual/pages/vebal/LMVoting/testnet-voting-pools';
+import { configService } from '../config/config.service';
 
 export default class PoolService {
   REWARD_PRICE: number | undefined;
@@ -69,6 +71,7 @@ export default class PoolService {
   public async setAPR(r?: any): Promise<AprBreakdown> {
     let apr: any = this.pool.apr;
     const breakdown = {} as AprBreakdown;
+
     try {
       const sdkApr = await getBalancerSDK().pools.apr(this.pool);
       if (sdkApr) apr = sdkApr;
@@ -92,12 +95,22 @@ export default class PoolService {
         max: 0,
       };
     }
-    // has local rewards
-    const timestamp = roundDownTimestamp(Date.now() / 1000);
-    const rewards = useNetwork().networkConfig.rewards;
-    console.log(
-      rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]
-    );
+    if (configService.network.chainId === 40) {
+      const killedGauges = telosVotingPools('telos').filter(
+        pool => pool.gauge.isKilled === true
+      );
+      if (
+        killedGauges.find(
+          pool => pool.id.toLowerCase() === this.pool.id.toLowerCase()
+        )
+      ) {
+        apr.stakingApr = {
+          min: 0,
+          max: 0,
+        };
+      }
+    }
+
     if (
       // (rewards && rewards[timestamp] && rewards[timestamp][this.pool.id]) ||
       r &&
@@ -223,11 +236,11 @@ const gaugeTotalSupply = async (poolAddress: string): Promise<number> => {
 /* The `roundDownTimestamp` function is used to round down a given Unix timestamp to the beginning of
 the current week (starting from Thursday). Here's a breakdown of what each step in the function
 does: */
-function roundDownTimestamp(timestamp: number): number {
-  const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
-  const day = date.getUTCDay(); // Get the day of the week (0 - Sunday, 1 - Monday, ..., 6 - Saturday)
-  const daysToThursday = (day + 7 - 4) % 7; // Calculate the number of days to Thursday (4 - Thursday)
-  date.setUTCDate(date.getUTCDate() - daysToThursday); // Subtract the number of days to Thursday
-  date.setUTCHours(0, 0, 0, 0); // Set the time to midnight (00:00:00)
-  return Math.floor(date.getTime() / 1000); // Convert back to Unix timestamp in seconds
-}
+// function roundDownTimestamp(timestamp: number): number {
+//   const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+//   const day = date.getUTCDay(); // Get the day of the week (0 - Sunday, 1 - Monday, ..., 6 - Saturday)
+//   const daysToThursday = (day + 7 - 4) % 7; // Calculate the number of days to Thursday (4 - Thursday)
+//   date.setUTCDate(date.getUTCDate() - daysToThursday); // Subtract the number of days to Thursday
+//   date.setUTCHours(0, 0, 0, 0); // Set the time to midnight (00:00:00)
+//   return Math.floor(date.getTime() / 1000); // Convert back to Unix timestamp in seconds
+// }

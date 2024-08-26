@@ -12,6 +12,9 @@ import {
 import { APR_THRESHOLD, VOLUME_THRESHOLD } from '@/constants/pools';
 import { Pool } from '@/services/pool/types';
 import { AprBreakdown } from '@symmetric-v3/sdk';
+import { telosVotingPools } from '../vebal/LMVoting/testnet-voting-pools';
+import { configService } from '@/services/config/config.service';
+
 // import { useCrossChainSync } from '@/providers/cross-chain-sync.provider';
 // import useNetwork from '@/composables/useNetwork';
 
@@ -45,10 +48,34 @@ const { t } = useI18n();
 /**
  * COMPUTED
  */
+
+const killedGauges = computed(() => {
+  if (configService.network.chainId === 40) {
+    const killedGauges = telosVotingPools('telos').filter(
+      pool => pool.gauge.isKilled === true
+    );
+    return killedGauges;
+  }
+  return [];
+});
+
 const aprLabel = computed((): string => {
   const poolAPRs = props.poolApr;
   if (!poolAPRs) return '0';
 
+  if (
+    killedGauges.value.find(
+      pool => pool.id.toLowerCase() === props.pool?.id.toLowerCase()
+    )
+  ) {
+    const newApr = { ...poolAPRs };
+    if (newApr && newApr.min && newApr.max) {
+      console.log('newApr', newApr);
+      newApr.min = newApr.swapFees || 0;
+      newApr.max = newApr.swapFees || 0;
+      return totalAprLabel(newApr as AprBreakdown, props.pool?.boost);
+    }
+  }
   return totalAprLabel(poolAPRs, props.pool?.boost);
 });
 
@@ -138,12 +165,12 @@ const stats = computed(() => {
             },
           ]"
         >
-          <span :class="{ 'mr-2': stat.tooltip }">{{ stat.value }}</span>
-          <BalTooltip v-if="stat.tooltip" :text="stat.tooltip">
+          <span>{{ stat.value }}</span>
+          <!-- <BalTooltip v-if="stat.tooltip" :text="stat.tooltip">
             <template #activator>
               <BalIcon name="info" size="sm" class="text-gray-400" />
             </template>
-          </BalTooltip>
+          </BalTooltip> -->
         </div>
       </BalCard>
     </template>

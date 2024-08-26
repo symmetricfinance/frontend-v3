@@ -12,7 +12,8 @@ import VeBalBreakdown from './components/VeBalBreakdown.vue';
 import YieldBreakdown from './components/YieldBreakdown.vue';
 import { AprBreakdown } from '@symmetric-v3/sdk';
 import { hasStakingRewards } from '@/composables/useAPR';
-
+import { telosVotingPools } from '@/components/contextual/pages/vebal/LMVoting/testnet-voting-pools';
+import { configService } from '@/services/config/config.service';
 /**
  * TYPES
  */
@@ -48,9 +49,32 @@ const hasYieldAPR = computed(() => {
 
 const hasVebalAPR = computed((): boolean => isVeBalPool(props.pool.id));
 
-const totalLabel = computed((): string =>
-  apr.value ? totalAprLabel(apr.value, props.pool.boost) : '0'
-);
+const killedGauges = computed(() => {
+  if (configService.network.chainId === 40) {
+    const killedGauges = telosVotingPools('telos').filter(
+      pool => pool.gauge.isKilled === true
+    );
+    return killedGauges;
+  }
+  return [];
+});
+
+const totalLabel = computed((): string => {
+  if (
+    killedGauges.value.find(
+      pool => pool.id.toLowerCase() === props.pool.id.toLowerCase()
+    )
+  ) {
+    const newApr = { ...apr.value };
+    if (newApr && newApr.min && newApr.max) {
+      console.log('newApr', newApr);
+      newApr.min = newApr.swapFees || 0;
+      newApr.max = newApr.swapFees || 0;
+      return totalAprLabel(newApr as AprBreakdown, props.pool.boost);
+    }
+  }
+  return apr.value ? totalAprLabel(apr.value, props.pool.boost) : '0';
+});
 </script>
 
 <template v-slot:aprCell="pool">
