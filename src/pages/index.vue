@@ -175,7 +175,6 @@ onBeforeMount(async () => {
       : undefined;
 
     symmPrice.value = injectedPriceFor(symm);
-    console.log(symmPrice.value);
     rewardPrice.value = reward ? injectedPriceFor(reward) : 0;
   }
   const tvl = await fetchTVL();

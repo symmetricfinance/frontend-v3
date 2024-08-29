@@ -95,7 +95,6 @@ const excludedTokens = computed(() => [
 ]);
 
 const focussedTokenAddress = computed((): string => {
-  console.log(state.results, state.focussedToken);
   const key = Object.keys(tokens.value)[state.focussedToken];
   return tokens.value[key].address;
 });

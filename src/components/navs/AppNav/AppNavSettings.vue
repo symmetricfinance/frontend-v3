@@ -96,7 +96,13 @@ function copyAddress() {
       <div class="flex mt-1 mb-1">
         <div class="flex">
           <div class="relative">
-            <Avatar :iconURI="avatarUri" :address="account" :size="44" />
+            <Avatar
+              v-if="avatarUri"
+              :iconURI="avatarUri"
+              :address="account"
+              :size="100"
+            />
+            <Avatar v-else :address="account" :size="44" />
             <div class="connector-icon-wrapper">
               <img
                 :src="connectorLogo"

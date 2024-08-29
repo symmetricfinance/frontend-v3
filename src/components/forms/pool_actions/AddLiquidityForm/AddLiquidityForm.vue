@@ -95,8 +95,6 @@ const joinTokensWithBalance = computed<string[]>(() =>
   })
 );
 
-console.log('joinTokensWithBalance', joinTokensWithBalance.value);
-
 const joinTokensWithoutBalance = computed<string[]>(() =>
   poolJoinTokens.value.filter(
     address => !includesAddress(tokensWithBalance.value, address)

@@ -38,7 +38,6 @@ const router = useRouter();
  */
 const blockIcon = ref<HTMLDivElement>();
 
-console.log('isVeBalSupported', isVeBalSupported);
 const navLinks = [
   { label: t('pool'), path: `/${networkSlug}`, goal: Goals.ClickNavPools },
   { label: t('swap'), path: `/${networkSlug}/swap`, goal: Goals.ClickNavSwap },

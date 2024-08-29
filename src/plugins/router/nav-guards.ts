@@ -81,7 +81,6 @@ function applyNetworkSubdomainRedirect(router: Router): Router {
  */
 function applyNetworkPathRedirects(router: Router): Router {
   router.beforeEach((to, from, next) => {
-    console.log(to);
     if (redirecting.value) {
       next();
     } else {

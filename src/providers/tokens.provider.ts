@@ -430,7 +430,6 @@ export const tokensProvider = (
    */
   function injectedPriceFor(address: string): number {
     try {
-      console.log(state.injectedPrices);
       const price = state.injectedPrices[address]; // const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
@@ -518,7 +517,6 @@ export const tokensProvider = (
    * Returns true if the token is the native asset or wrapped native asset
    */
   function isWethOrEth(tokenAddress: string): boolean {
-    console.log(wrappedNativeAsset.value);
     if (!nativeAsset || !nativeAsset.address || !wrappedNativeAsset.value)
       return false;
     return (

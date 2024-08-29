@@ -233,7 +233,6 @@ export default defineComponent({
       tokenOutAddress,
       tokenOutAmount
     );
-    console.log(swapping);
     const { errorMessage } = useValidation(
       tokenInAddress,
       tokenInAmount,

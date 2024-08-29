@@ -308,7 +308,6 @@ export const joinPoolProvider = (
       joinPoolService.setJoinHandler(joinHandlerType.value);
       await setApprovalActions();
 
-      console.log('joinHandler:', joinHandlerType.value);
       if (!validateAmountsIn()) return null;
       const output = await joinPoolService.queryJoin({
         amountsIn: amountsInWithValue.value,
@@ -319,7 +318,6 @@ export const joinPoolProvider = (
         approvalActions: approvalActions.value,
         transactionDeadline: transactionDeadline.value,
       });
-      console.log('to: ', output);
       bptOut.value = output.bptOut;
       priceImpact.value = output.priceImpact;
 
@@ -340,7 +338,6 @@ export const joinPoolProvider = (
       joinPoolService.setJoinHandler(joinHandlerType.value);
       await setApprovalActions();
 
-      console.log('joinHandler:', joinHandlerType.value);
       const joinRes = await joinPoolService.join({
         amountsIn: amountsInWithValue.value,
         tokensIn: tokensIn.value,

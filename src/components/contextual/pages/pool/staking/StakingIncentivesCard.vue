@@ -76,8 +76,6 @@ const stakedPctOfShares = computed(() => {
     .toString();
 });
 
-console.log('stakedPctOfShares', stakedPctOfShares.value);
-
 const isStakeDisabled = computed(() => {
   return (
     !!deprecatedDetails(props.pool.id) ||

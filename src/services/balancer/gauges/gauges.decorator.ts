@@ -141,7 +141,6 @@ export class GaugesDecorator {
         return;
 
       gaugesDataMap[gauge.id].rewardTokens.forEach(rewardToken => {
-        console.log('called');
         if (rewardToken === AddressZero) return;
 
         const params = shouldUseRewardHelper

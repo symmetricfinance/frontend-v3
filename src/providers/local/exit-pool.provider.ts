@@ -372,7 +372,6 @@ export const exitPoolProvider = (
 
     exitPoolService.setExitHandler(exitHandlerType.value);
 
-    console.log('exitHandler:', exitHandlerType.value);
     try {
       await nextTick();
       const output = await exitPoolService.queryExit({
@@ -423,7 +422,6 @@ export const exitPoolProvider = (
 
     exitPoolService.setExitHandler(singleAssetMaxedExitHandler);
 
-    console.log('exitHandler:', exitHandlerType.value);
     try {
       await nextTick();
       const output = await exitPoolService.queryExit({
@@ -458,7 +456,6 @@ export const exitPoolProvider = (
       txError.value = '';
       exitPoolService.setExitHandler(exitHandlerType.value);
 
-      console.log('exitHandler:', exitHandlerType.value);
       return exitPoolService.exit({
         exitType: exitType.value,
         bptIn: _bptIn.value,

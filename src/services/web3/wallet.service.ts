@@ -9,6 +9,7 @@ import {
 import { TransactionBuilder } from './transactions/transaction.builder';
 import { WalletProvider } from '@/dependencies/wallets/Web3Provider';
 import { Network } from '@/lib/config/types';
+import { resolveTekikaAvatar } from './tekika-avatars';
 
 interface Web3Profile {
   ens: string | null;
@@ -54,11 +55,20 @@ export default class WalletService {
     }
   }
 
+  async getTekikaAvatar(address: string): Promise<string | null> {
+    try {
+      return await resolveTekikaAvatar(this.ensProvider, address);
+    } catch (error) {
+      return null;
+    }
+  }
+
   async getProfile(address: string): Promise<Web3Profile> {
+    console.log('getProfile', address);
     try {
       return {
-        ens: await this.getEnsName(address),
-        avatar: await this.getEnsAvatar(address),
+        ens: null,
+        avatar: await this.getTekikaAvatar(address),
       };
     } catch (error) {
       console.error('Failed to fetch ENS data', error);

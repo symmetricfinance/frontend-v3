@@ -55,7 +55,6 @@ export default function useVotingPoolsQuery(
   const queryFn = async (): Promise<VotingPool[]> => {
     try {
       let apiVotingPools: ApiVotingPools;
-      console.log(isMeter.value);
       if (isTestnet.value) {
         apiVotingPools = testnetVotingPools('GOERLI');
       } else if (isMainnet.value) {
@@ -64,12 +63,9 @@ export default function useVotingPoolsQuery(
         apiVotingPools = meterVotingPools('meter');
       } else {
         const api = getApi();
-        console.log(api);
         const { veBalGetVotingList } = await api.VeBalGetVotingList();
-        console.log(veBalGetVotingList);
         apiVotingPools = veBalGetVotingList;
       }
-      console.log(apiVotingPools);
 
       const batchSize = 5;
       const gaugeControllerDecorator = new GaugeControllerDecorator();

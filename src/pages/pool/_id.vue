@@ -55,7 +55,6 @@ const { prices, priceQueryLoading } = useTokens();
 const { isWalletReady } = useWeb3();
 const _isVeBalPool = isVeBalPool(poolId);
 const { pool, isLoadingPool } = usePool();
-console.log('pool', pool);
 const {
   isStableLikePool,
   isLiquidityBootstrappingPool,

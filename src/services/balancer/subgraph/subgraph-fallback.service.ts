@@ -23,7 +23,6 @@ export class SubgraphFallbackService {
     }
     try {
       const response = await axios.post(this.url.value, payload);
-      console.log(response);
       const errorMessage = response?.data.errors?.message;
       if (errorMessage) {
         throw new Error(errorMessage);

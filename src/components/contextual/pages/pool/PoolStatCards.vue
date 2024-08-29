@@ -70,7 +70,6 @@ const aprLabel = computed((): string => {
   ) {
     const newApr = { ...poolAPRs };
     if (newApr && newApr.min && newApr.max) {
-      console.log('newApr', newApr);
       newApr.min = newApr.swapFees || 0;
       newApr.max = newApr.swapFees || 0;
       return totalAprLabel(newApr as AprBreakdown, props.pool?.boost);
