@@ -29,7 +29,9 @@ export default class PoolSwaps {
       swaps.map(async (poolSwap: PoolSwap) => {
         const ensName = await walletService.getEnsName(poolSwap.userAddress.id);
         let ensAvatar: null | string = null;
-
+        ensAvatar = await walletService.getTekikaAvatar(
+          poolSwap.userAddress.id
+        );
         if (ensName) {
           ensAvatar = await walletService.getEnsAvatar(ensName);
         }
