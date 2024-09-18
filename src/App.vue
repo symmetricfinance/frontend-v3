@@ -96,7 +96,7 @@ const updateTheme = () => {
   // Assuming your slug is part of the path like /theme/slug
   // You need to adjust this based on your actual route structure
   const themeSlug = route.path.split('/')[1]; // Get the slug from the path
-  const theme = themeMap[themeSlug] || 'taiko'; // Set the theme or default if not found
+  const theme = themeMap[themeSlug] || 'telos'; // Set the theme or default if not found
   document.documentElement.setAttribute('data-theme', theme);
 };
 

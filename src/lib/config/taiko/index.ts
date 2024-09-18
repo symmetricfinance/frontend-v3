@@ -47,7 +47,7 @@ const config: Config = {
     decimals: 18,
     deeplinkId: 'eth',
     logoURI: 'tokens/eth.png',
-    minTransactionBuffer: '1',
+    minTransactionBuffer: '0.0005',
   },
   thirdParty: {
     coingecko: {

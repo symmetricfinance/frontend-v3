@@ -525,7 +525,7 @@ html[data-theme='taiko'] {
   --color-gray-400: 185, 185, 185; /* Text Secondary dark */
   --color-gray-500: 76, 76, 76;
   --color-gray-600: 58, 58, 58;
-  --color-gray-700: 40, 40, 40; /* Select Box Background */
+  --color-gray-700: 70, 70, 70; /* Select Box Background */
   --color-gray-800: 28, 28, 28; /* Box Input Background */
   --color-gray-850: 19, 19, 19; /* Box Background */
   --color-gray-900: 24, 25, 26; /* Background */

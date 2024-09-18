@@ -5,59 +5,54 @@ import pools from './pools';
 import tokenlists from './tokenlists';
 import tokens from './tokens';
 import rateProviders from './rateProviders';
-import { rewards } from './rewards';
 
 const config: Config = {
-  key: '40',
-  chainId: 40,
-  chainName: 'Telos',
-  name: 'Telos',
-  shortName: 'telos',
-  monorepoName: 'telos',
-  slug: 'telos',
-  network: 'telos',
-  trustWalletNetwork: 'telos',
+  key: '42793',
+  chainId: 42793,
+  chainName: 'Etherlink',
+  name: 'Etherlink',
+  shortName: 'etherlink',
+  monorepoName: 'etherlink',
+  slug: 'etherlink',
+  network: 'etherlink',
+  trustWalletNetwork: 'etherlink',
   unknown: false,
   visibleInUI: true,
   testNetwork: false,
-  rpc: `https://mainnet-eu.telos.net/evm`,
-  ws: `wss://telos.drpc.org`,
-  explorer: 'https://teloscan.io',
-  explorerName: 'Teloscan',
+  rpc: 'https://node.mainnet.etherlink.com',
+  ws: ``,
+  explorer: 'https://explorer.etherlink.com/',
+  explorerName: 'Etherlink Explorer',
   subgraph:
-    'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos/prod/gn',
-  // 'https://telosapi.0xgraph.xyz/api/public/3d0109fa-bf83-48be-8595-24ecf0ed29fb/subgraphs/symmetric-telos/1.0.9/gn',
+    'https://gateway.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/4y4fC3k9DMrJ9XYY6Z1Qi8DXJkpRrQuQCjh7zBRhxjQr',
   balancerApi: '',
   poolsUrlV2:
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
   subgraphs: {
     main: [
-      'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos/prod/gn',
-      'https://telosapi.0xgraph.xyz/api/public/3d0109fa-bf83-48be-8595-24ecf0ed29fb/subgraphs/symmetric-telos/1.0.9/gn',
-      'https://thegraph.telos.net/subgraphs/name/symmetric-telos/symmetric-telos-graph',
+      'https://gateway.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/4y4fC3k9DMrJ9XYY6Z1Qi8DXJkpRrQuQCjh7zBRhxjQr',
     ],
     aave: '',
-    gauge:
-      'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-telos-gauges/prod/gn',
+    gauge: '',
     blocks: '',
   },
-  bridgeUrl: 'https://bridge.telos.net/bridge',
+  bridgeUrl: 'https://www.etherlinkbridge.com/bridge',
   supportsEIP1559: false,
   supportsElementPools: false,
   blockTime: 0.5,
   nativeAsset: {
-    name: 'TLOS',
+    name: 'XTZ',
     address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-    symbol: 'TLOS',
+    symbol: 'XTZ',
     decimals: 18,
-    deeplinkId: 'tlos',
-    logoURI: 'tokens/tlos.png',
+    deeplinkId: 'xtz',
+    logoURI: 'tokens/xtz.png',
     minTransactionBuffer: '1',
   },
   thirdParty: {
     coingecko: {
-      nativeAssetId: 'telos',
-      platformId: 'ethereum',
+      nativeAssetId: 'tezos',
+      platformId: 'tezos',
     },
   },
   addresses: {
@@ -72,7 +67,6 @@ const config: Config = {
   },
   tokenlists,
   rateProviders,
-  rewards,
 };
 
 export default config;

@@ -22,6 +22,7 @@ export const isNativeAssetWrap = (
   console.log(tokenIn, tokenOut);
   const nativeAddress = configService.network.tokens.Addresses.nativeAsset;
   const wNativeAddress = configService.network.tokens.Addresses.wNativeAsset;
+  console.log(nativeAddress, wNativeAddress);
   return tokenIn === nativeAddress && tokenOut === wNativeAddress;
 };
 
@@ -30,7 +31,7 @@ export const getWrapAction = (tokenIn: string, tokenOut: string): WrapType => {
   const wNativeAddress = configService.network.tokens.Addresses.wNativeAsset;
   const { stETH, wstETH, erc4626Wrappers } =
     configService.network.tokens.Addresses;
-
+  console.log(nativeAddress, wNativeAddress);
   if (tokenIn === nativeAddress && tokenOut === wNativeAddress)
     return WrapType.Wrap;
 
