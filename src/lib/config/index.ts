@@ -14,12 +14,16 @@ import telos from './telos';
 // import telosTestnet from './telos-testnet';
 import celo from './celo';
 import meter from './meter';
+import taiko from './taiko';
+import etherlink from './etherlink';
 
 const config: Record<Network | number, Config> = {
   [Network.TELOS]: telos,
   [Network.CELO]: celo,
   [Network.GNOSIS]: gnosisChain,
   [Network.METER]: meter,
+  [Network.TAIKO]: taiko,
+  [Network.ETHERLINK]: etherlink,
 };
 
 export default config;
