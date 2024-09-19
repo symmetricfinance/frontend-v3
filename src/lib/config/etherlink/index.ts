@@ -17,7 +17,7 @@ const config: Config = {
   network: 'etherlink',
   trustWalletNetwork: 'etherlink',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: false,
   rpc: 'https://node.mainnet.etherlink.com',
   ws: ``,
