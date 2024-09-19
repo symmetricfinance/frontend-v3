@@ -15,7 +15,7 @@ const pools: Pools = {
   DynamicFees: {
     Gauntlet: [],
   },
-  BlockList: [],
+  BlockList: [''],
   IncludedPoolTypes: [
     'Weighted',
     'Stable',
@@ -35,7 +35,10 @@ const pools: Pools = {
   Weighted: {
     // Only effective after given timestamp here: usePool.ts#createdAfterTimestamp
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
-    AllowList: [],
+    AllowList: [
+      '0xed18b89e2a1b64e4390099869ae7010e47261086000200000000000000000002', // WXTZ-USDC
+      '0xe9ea69169449fbb708bcec267f3e9c0643ecfb52000200000000000000000003', // WETH-USDC
+    ],
   },
   Factories: {
     '0x4e4131dc27ed9501ac5feb76f94572fdae9f0fd0': 'weightedPool', // Weighted V5

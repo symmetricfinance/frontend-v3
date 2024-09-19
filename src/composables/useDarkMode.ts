@@ -2,15 +2,28 @@ import { ref } from 'vue';
 
 import LS_KEYS from '@/constants/local-storage.keys';
 import { lsSet } from '@/lib/utils';
+import { networkSlug } from './useNetwork';
 
 // const osDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 // const lsDarkMode =
 //   lsGet(LS_KEYS.App.DarkMode, osDarkMode.toString()) === 'true';
 
-const lsDarkMode = LS_KEYS.App.DarkMode === 'true';
+const lsDarkMode = ref(LS_KEYS.App.DarkMode === 'true');
 
 // STATE
-const darkMode = ref<boolean>(lsDarkMode);
+const darkMode = computed({
+  get() {
+    if (networkSlug === 'etherlink' || networkSlug === 'taiko') {
+      return true;
+    }
+    return lsDarkMode.value;
+  },
+  set(value: boolean) {
+    if (networkSlug !== 'etherlink' && networkSlug !== 'taiko') {
+      lsDarkMode.value = value;
+    }
+  },
+});
 
 // MUTATIONS
 function setDarkMode(val: boolean): void {
@@ -18,7 +31,7 @@ function setDarkMode(val: boolean): void {
   lsSet(LS_KEYS.App.DarkMode, darkMode.value.toString());
   if (darkMode.value) {
     document.documentElement.classList.add('dark');
-  } else {
+  } else if (networkSlug !== 'etherlink' && networkSlug !== 'taiko') {
     document.documentElement.classList.remove('dark');
   }
 }

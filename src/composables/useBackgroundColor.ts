@@ -12,6 +12,7 @@ import { ref, watch } from 'vue';
 import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 
 import useDarkMode from '@/composables/useDarkMode';
+import { networkSlug } from './useNetwork';
 
 /**
  * CONSTANTS
@@ -41,7 +42,7 @@ function setBackgroundColor(color: string): void {
 function setDefaultBgColor(): void {
   if (darkMode.value) {
     setBackgroundColor(defaultDarkBgColor);
-  } else {
+  } else if (networkSlug !== 'etherlink' && networkSlug !== 'taiko') {
     setBackgroundColor(defaultBgColor);
   }
 }

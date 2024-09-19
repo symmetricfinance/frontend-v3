@@ -226,7 +226,7 @@
     "poolSummary": "Pool summary",
     "poolAlreadyExists": "This pool already exists",
     "previewPool": "Preview new {0} pool",
-    "recommendedLiquidity": "It’s recommended to provide new pools with at least $20,000 in initial funds",
+    "recommendedLiquidity": "It’s recommended to provide new pools with at least $2,000 in initial funds",
     "recoveredState": "We've recovered your previous choices",
     "recoveredStateInfo": "You previously left before creating this pool. Your choices have been saved so you can continue from before.",
     "similarPoolsExist": "Similar pools exist",

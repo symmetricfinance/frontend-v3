@@ -39,6 +39,7 @@ const pools: Pools = {
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
     AllowList: [
       '0xe0f51bf8d30db81d0a93125a17a2a40130ad9f7e000200000000000000000004', //WETH-USDC
+      '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005', //TAIKO-WETH
     ],
   },
   Factories: {
