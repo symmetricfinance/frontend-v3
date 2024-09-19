@@ -6,7 +6,7 @@ const tokens: TokenConstants = {
   },
   InitialSwapTokens: {
     input: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-    output: '0x8d97cea50351fb4329d591682b148d43a0c3611b',
+    output: '0xa9d23408b9ba935c230493c40c73824df71a0975',
   },
   Addresses: {
     nativeAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
