@@ -39,7 +39,7 @@ const config: Config = {
   bridgeUrl: 'https://bridge.taiko.xyz/',
   supportsEIP1559: true,
   supportsElementPools: false,
-  blockTime: 0.5,
+  blockTime: 32,
   nativeAsset: {
     name: 'Ether',
     address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
