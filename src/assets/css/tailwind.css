@@ -606,6 +606,58 @@ html[data-theme='etherlink'] {
   --color-orange-700: 180, 83, 9;
 }
 
+html[data-theme='telos'] {
+  /* Green */
+  --color-blue-50: 225, 255, 239;
+  --color-blue-100: 199, 255, 225;
+  --color-blue-200: 163, 255, 205;
+  --color-blue-300: 112, 255, 180;
+  --color-blue-400: 231, 228, 233; /* New Primary Color */
+  --color-blue-500: 50, 230, 140;
+  --color-blue-600: 42, 200, 120;
+  --color-blue-700: 34, 170, 102;
+  --color-blue-800: 28, 140, 84;
+  --color-blue-900: 22, 110, 66;
+
+  /* Gray */
+
+  /* Gray */
+  --color-gray-50: 230, 230, 230;
+  --color-gray-100: 208, 208, 208; /* Dark Text */
+  --color-gray-200: 182, 182, 182;
+  --color-gray-300: 147, 147, 147;
+  --color-gray-400: 154, 154, 154; /* Text Secondary dark */
+  --color-gray-500: 75, 75, 75;
+  --color-gray-600: 57, 57, 57;
+  --color-gray-700: 69, 69, 69; /* Select Box Background */
+  --color-gray-800: 27, 27, 27; /* Box Input Background */
+  --color-gray-900: 0, 0, 0; /* Background */
+  --color-gray-850: 18, 18, 18; /* Box Background */
+
+  /* Pink */
+  --color-pink-50: 255, 235, 240;
+  --color-pink-100: 255, 210, 220;
+  --color-pink-200: 255, 180, 195;
+  --color-pink-300: 255, 150, 175;
+  --color-pink-400: 0, 100, 0; /* Gradient Loading */
+  --color-pink-500: 255, 226, 160; /* Stars Gradient */
+  --color-pink-600: 34, 170, 102; /* Gradient Base */
+  --color-pink-700: 0, 128, 128; /* Gradient Hover */
+  --color-pink-800: 205, 80, 120;
+  --color-pink-900: 180, 65, 100;
+
+  /* Yellow */
+  --color-yellow-500: 122, 255, 189; /* Stars Gradient */
+
+  /* Purple */
+  --color-purple-500: 255, 226, 160; /* Ve Stars Gradient */
+
+  /* Orange */
+  --color-orange-300: 252, 211, 77; /* Stars on Add liquidity */
+  --color-orange-600: 217, 119, 6;
+  --color-orange-700: 180, 83, 9;
+}
+
 @layer utilities {
   .text-primary {
     @apply text-gray-900 dark:text-gray-100;
