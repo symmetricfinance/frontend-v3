@@ -162,6 +162,7 @@ export type Pools = {
     // Pools that have additional rewards and therefore should be stakable but are not included in the VotingGaugePools list.
     AllowList: string[];
   };
+  PointsGauges?: Record<string, string>;
   Metadata: Record<string, PoolMetadata>;
   Deep: string[];
   BoostedApr: string[];

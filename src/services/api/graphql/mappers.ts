@@ -32,6 +32,12 @@ export function mapApiChain(
       return Network.TELOS;
     case 'meter':
       return Network.METER;
+    case 'taiko':
+      return Network.TAIKO;
+    case 'etherlink':
+      return Network.ETHERLINK;
+    case 'vana-moksha':
+      return Network.VANAMOKSHA;
 
     default:
       throw new Error(`Unexpected API chain: ${apiChain}`);
