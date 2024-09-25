@@ -26,10 +26,18 @@ export const poolStakingProvider = (_poolId?: string) => {
   /**
    * STATE
    */
+
   const poolId = ref(_poolId);
   const poolAddress = computed((): string | undefined =>
     poolId.value ? getAddressFromPoolId(poolId.value) : undefined
   );
+
+  // const isPointsPool = computed((): boolean => {
+  //   if (!poolId.value) return false;
+  //   return (
+  //     configService.network.pools.PointsGauges?.[poolId.value] !== undefined
+  //   );
+  // });
 
   /**
    * COMPOSABLES
@@ -65,11 +73,19 @@ export const poolStakingProvider = (_poolId?: string) => {
           isQueryLoading(userBoostsQuery)))
   );
 
+  const isPointsLoading = computed((): boolean => !isWalletReady.value);
+
   // The current preferential gauge for the specified pool.
   const preferentialGaugeAddress = computed(
     (): string | undefined | null =>
       poolGauges.value?.pool?.preferentialGauge?.id
   );
+
+  const pointsGaugeAddress = computed((): string | undefined | null => {
+    const gauges = configService.network.pools.PointsGauges;
+    if (!gauges || !poolId.value) return null;
+    return gauges[poolId.value] ? gauges[poolId.value] : null;
+  });
 
   // Is it possible to stake this pool's BPT?
   const isStakablePool = computed(
@@ -79,6 +95,10 @@ export const poolStakingProvider = (_poolId?: string) => {
       POOLS.Stakable.VotingGaugePools.concat(POOLS.Stakable.AllowList).includes(
         poolId.value
       )
+  );
+
+  const isStakablePoolForPoints = computed(
+    (): boolean => !!poolId.value && pointsGaugeAddress.value !== null
   );
 
   const gaugeTotalSupply = computed((): string => {
@@ -178,6 +198,21 @@ export const poolStakingProvider = (_poolId?: string) => {
     return await gauge.stake(userBptBalance);
   }
 
+  async function stakeForPoints(): Promise<TransactionResponse> {
+    if (!poolAddress.value) throw new Error('No pool to stake.');
+    if (!pointsGaugeAddress.value) {
+      throw new Error(`No points gauge found for this pool: ${poolId.value}`);
+    }
+
+    const gauge = new LiquidityGauge(pointsGaugeAddress.value);
+    // User's current full BPT balance for this pool.
+    const userBptBalance = parseUnits(
+      balanceFor(getAddress(poolAddress.value))
+    );
+
+    return await gauge.stake(userBptBalance);
+  }
+
   /**
    * unstake
    *
@@ -194,6 +229,15 @@ export const poolStakingProvider = (_poolId?: string) => {
     );
     const firstGaugeWithUserBalance = gaugesWithUserBalance[0];
     const gauge = new LiquidityGauge(firstGaugeWithUserBalance.id);
+    const balance = await gauge.balance(account.value);
+    return await gauge.unstake(balance);
+  }
+
+  async function unstakeForPoints(): Promise<TransactionResponse> {
+    if (!pointsGaugeAddress.value) {
+      throw new Error(`No points gauge found for this pool: ${poolId.value}`);
+    }
+    const gauge = new LiquidityGauge(pointsGaugeAddress.value);
     const balance = await gauge.balance(account.value);
     return await gauge.unstake(balance);
   }
@@ -233,19 +277,24 @@ export const poolStakingProvider = (_poolId?: string) => {
 
   return {
     isLoading,
+    isPointsLoading,
     stakedShares,
     isStakablePool,
+    isStakablePoolForPoints,
     boost,
     hasNonPrefGaugeBalance,
     isRefetchingStakedShares,
     refetchStakedShares,
     preferentialGaugeAddress,
     fetchPreferentialGaugeAddress,
+    pointsGaugeAddress,
     gaugeTotalSupply,
     setCurrentPool,
     refetchAllPoolStakingData,
     stake,
     unstake,
+    stakeForPoints,
+    unstakeForPoints,
     poolGauges,
   };
 };

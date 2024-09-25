@@ -984,6 +984,7 @@
   "somethingWentWrong": "Something went wrong",
   "stablePool": "Stable pool",
   "stake": "Stake",
+  "stakeForPoints": "Stake",
   "staked": "Staked",
   "staking": {
     "minimumStakingApr": "Min staking APR",
@@ -1482,6 +1483,8 @@
   "transactionAction": {
     "stake": "Stake",
     "unstake": "Unstake",
+    "stakeForPoints": "Stake",
+    "unstakeForPoints": "Unstake",
     "approve": "Approve",
     "claim": "Claim",
     "createPool": "Create pool",
@@ -1533,6 +1536,8 @@
   "transactionSummary": {
     "stake": "{amount} in {pool}",
     "unstake": "{amount} from {pool}",
+    "stakeForPoints": "{amount} in {pool}",
+    "unstakeForPoints": "{amount} from {pool}",
     "approveForInvesting": "Approve {0} for adding liquidity",
     "approveForLocking": "Approve {0} for locking",
     "approveForStaking": "Approve {0} for staking",
@@ -1572,6 +1577,7 @@
   "unlocked": "Unlocked",
   "unlocking": "Unlocking",
   "unstake": "Unstake",
+  "unstakeForPoints": "Unstake",
   "unstaked": "Unstaked",
   "restake": "Restake",
   "restaked": "Restaked",

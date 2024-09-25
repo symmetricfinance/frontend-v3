@@ -606,6 +606,57 @@ html[data-theme='etherlink'] {
   --color-orange-700: 180, 83, 9;
 }
 
+html[data-theme='vana-moksha'] {
+  /* Blue */
+  --color-blue-50: 243, 241, 244;
+  --color-blue-100: 237, 235, 240;
+  --color-blue-200: 230, 228, 234;
+  --color-blue-300: 231, 228, 233;
+  --color-blue-400: 231, 228, 233; /* New Primary Color */
+  --color-blue-500: 184, 183, 187;
+  --color-blue-600: 138, 137, 142;
+  --color-blue-700: 92, 91, 96;
+  --color-blue-800: 46, 45, 50;
+  --color-blue-900: 22, 21, 25;
+
+  /* Gray */
+  --color-gray-50: 230, 230, 230;
+  --color-gray-100: 208, 208, 208; /* Dark Text */
+  --color-gray-200: 182, 182, 182;
+  --color-gray-300: 147, 147, 147;
+  --color-gray-400: 154, 154, 154; /* Text Secondary dark */
+  --color-gray-500: 75, 75, 75;
+  --color-gray-600: 57, 57, 57;
+  --color-gray-700: 69, 69, 69; /* Select Box Background */
+  --color-gray-800: 27, 27, 27; /* Box Input Background */
+  --color-gray-900: 0, 0, 0; /* Background */
+  --color-gray-850: 18, 18, 18; /* Box Background */
+
+  /* Pink */
+  --color-pink-50: 255, 235, 240;
+  --color-pink-100: 255, 210, 220;
+  --color-pink-200: 255, 180, 195;
+  --color-pink-300: 255, 150, 175;
+  --color-pink-400: 27, 27, 27; /* Gradient Loading */
+  --color-pink-500: 255, 226, 160; /* Stars Gradient */
+  --color-pink-600: 69, 69, 69; /* Gradient Base */
+  --color-pink-700: 57, 57, 57; /* Gradient Hover */
+  --color-pink-800: 205, 80, 120;
+  --color-pink-900: 180, 65, 100;
+
+  /* Yellow */
+  --color-yellow-500: 255, 255, 255; /* Stars Gradient */
+
+  /* Purple */
+  --color-purple-500: 255, 226, 160; /* Ve Stars Gradient */
+
+  /* Orange */
+  --color-orange-300: 252, 211, 77; /* Stars on Add liquidity */
+  --color-orange-600: 217, 119, 6;
+  --color-orange-700: 180, 83, 9;
+  --bg-white: 240, 240, 234;
+}
+
 @layer utilities {
   .text-primary {
     @apply text-gray-900 dark:text-gray-100;

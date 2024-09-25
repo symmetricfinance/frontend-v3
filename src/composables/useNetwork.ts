@@ -24,7 +24,7 @@ const NETWORK_ID =
   urlNetworkId ||
   localStorageNetworkId ||
   (Number(import.meta.env.VITE_NETWORK) as Network) ||
-  Network.CELO;
+  Network.VANAMOKSHA;
 if (windowAvailable) localStorage.setItem('networkId', NETWORK_ID.toString());
 export const networkSlug = config[NETWORK_ID].slug;
 export const networkConfig = config[NETWORK_ID];
@@ -115,6 +115,9 @@ export const symmSymbol = computed(() => {
   }
   if (networkId.value === Network.GNOSIS) {
     return 'gSYMM';
+  }
+  if (networkId.value === Network.VANAMOKSHA) {
+    return 'vSYMM';
   }
   return 'mSYMM';
 });

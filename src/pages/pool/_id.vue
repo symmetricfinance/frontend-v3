@@ -36,6 +36,7 @@ import PoolRisks from '@/components/contextual/pages/pool/risks/PoolRisks.vue';
 import { usePool } from '@/providers/local/pool.provider';
 import { provideUserStaking } from '@/providers/local/user-staking.provider';
 import { providerUserPools } from '@/providers/local/user-pools.provider';
+import PointsIncentivesCard from '@/components/contextual/pages/pool/staking/PointsIncentivesCard.vue';
 
 const userStaking = provideUserStaking();
 providerUserPools(userStaking);
@@ -156,6 +157,13 @@ const titleTokens = computed<PoolToken[]>(() => {
 
   return orderedPoolTokens(pool.value, pool.value.tokens);
 });
+
+const isPointsStakablePool = computed(() => {
+  if (!pool.value || POOLS.PointsGauges === undefined) return false;
+  return Object.keys(POOLS.PointsGauges).includes(poolId);
+});
+
+console.log('isPointsStakablePool', isPointsStakablePool);
 
 const isStakablePool = computed(
   (): boolean =>
@@ -282,6 +290,12 @@ watch(
           <BalLoadingBlock v-if="loadingPool" class="h-40 pool-actions-card" />
           <StakingIncentivesCard
             v-if="isStakablePool && !loadingPool && pool && isWalletReady"
+            :pool="pool"
+            class="staking-incentives"
+            @set-restake-visibility="setRestakeVisibility"
+          />
+          <PointsIncentivesCard
+            v-if="isPointsStakablePool && !loadingPool && pool && isWalletReady"
             :pool="pool"
             class="staking-incentives"
             @set-restake-visibility="setRestakeVisibility"

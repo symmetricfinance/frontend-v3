@@ -203,7 +203,7 @@ onBeforeMount(async () => {
           />
           <div
             v-else
-            class="flex justify-between p-4 mt-4 mb-4 space-x-4 text-sm dark:bg-gray-850 rounded-lg border dark:border-0"
+            class="flex justify-between p-4 mt-4 mb-4 space-x-4 text-sm dark:bg-gray-850 rounded-lg border dark:border-0 shadow-lg gray-100"
           >
             <div class="flex flex-row items-center space-x-4">
               <div>

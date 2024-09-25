@@ -14,11 +14,19 @@ import {
 import { getAddress } from '@ethersproject/address';
 import { useI18n } from 'vue-i18n';
 import useTokenApprovalActions from '@/composables/approvals/useTokenApprovalActions';
+import useStakedSharesQuery from '@/composables/queries/useStakedSharesQuery';
+import { GaugeShare } from '@/composables/queries/useUserGaugeSharesQuery';
 
 /**
  * TYPES
  */
-export type StakeAction = 'stake' | 'unstake' | 'restake';
+export type StakeAction =
+  | 'stake'
+  | 'unstake'
+  | 'restake'
+  | 'stakeForPoints'
+  | 'unstakeForPoints';
+
 export type StakePreviewProps = {
   pool: AnyPool;
   action: StakeAction;
@@ -43,18 +51,44 @@ export function useStakePreview(props: StakePreviewProps, emit) {
   const { getTokenApprovalActions } = useTokenApprovalActions();
   const {
     isLoading: isPoolStakingLoading,
+    isPointsLoading,
     stake,
     unstake,
+    stakeForPoints,
+    unstakeForPoints,
     stakedShares,
     refetchAllPoolStakingData,
     preferentialGaugeAddress,
+    pointsGaugeAddress,
   } = usePoolStaking();
 
   // Staked or unstaked shares depending on action type.
-  const currentShares =
-    props.action === 'stake'
-      ? balanceFor(getAddress(props.pool.address))
-      : stakedShares.value;
+  let currentShares = '0';
+
+  if (props.action === 'stake' || props.action === 'stakeForPoints') {
+    currentShares = balanceFor(getAddress(props.pool.address));
+  } else if (props.action === 'unstakeForPoints') {
+    const { data: stakedPointsShares } = useStakedSharesQuery(
+      ref([
+        {
+          balance: '0',
+          gauge: {
+            id: pointsGaugeAddress.value,
+            poolAddress: getAddress(props.pool.address),
+            poolId: props.pool.id,
+            totalSupply: '0',
+            isPreferentialGauge: true,
+            isKilled: false,
+          },
+        },
+      ] as GaugeShare[])
+    );
+    currentShares = stakedPointsShares.value
+      ? stakedPointsShares.value[props.pool.id]
+      : '0';
+  } else {
+    currentShares = stakedShares.value;
+  }
 
   const stakeAction = {
     label: t('stake'),
@@ -73,6 +107,22 @@ export function useStakePreview(props: StakePreviewProps, emit) {
       props.action === 'restake'
         ? t('staking.restakeTooltip')
         : t('staking.unstakeTooltip'),
+  };
+
+  const stakeForPointsAction = {
+    label: t('stakeForPoints'),
+    loadingLabel: t('staking.staking'),
+    confirmingLabel: t('confirming'),
+    action: () => txWithNotification(stakeForPoints, 'stakeForPoints'),
+    stepTooltip: t('staking.stakeTooltip'),
+  };
+
+  const unstakeForPointsAction = {
+    label: t('unstakeForPoints'),
+    loadingLabel: t('staking.unstaking'),
+    confirmingLabel: t('confirming'),
+    action: () => txWithNotification(unstakeForPoints, 'unstakeForPoints'),
+    stepTooltip: t('staking.unstakeTooltip'),
   };
 
   /**
@@ -99,9 +149,15 @@ export function useStakePreview(props: StakePreviewProps, emit) {
     },
   ]);
 
-  const isLoading = computed(
-    () => isLoadingApprovalsForGauge.value || isPoolStakingLoading.value
-  );
+  const isLoading = computed(() => {
+    if (
+      props.action === 'stakeForPoints' ||
+      props.action === 'unstakeForPoints'
+    ) {
+      return isLoadingApprovalsForGauge.value || isPointsLoading.value;
+    }
+    return isLoadingApprovalsForGauge.value || isPoolStakingLoading.value;
+  });
 
   /**
    * METHODS
@@ -150,6 +206,20 @@ export function useStakePreview(props: StakePreviewProps, emit) {
     if (approvalActions) stakeActions.value.unshift(...approvalActions);
   }
 
+  async function loadApprovalsForPointsGauge() {
+    const approvalActions = await trackLoading(async () => {
+      if (!pointsGaugeAddress.value) return;
+
+      return await getTokenApprovalActions({
+        amountsToApprove: amountsToApprove.value,
+        spender: pointsGaugeAddress.value,
+        actionType: ApprovalAction.Staking,
+      });
+    }, isLoadingApprovalsForGauge);
+
+    if (approvalActions) stakeActions.value.unshift(...approvalActions);
+  }
+
   async function handleSuccess(receipt: TransactionReceipt) {
     isActionConfirmed.value = true;
     confirmationReceipt.value = receipt;
@@ -173,6 +243,12 @@ export function useStakePreview(props: StakePreviewProps, emit) {
       if (props.action === 'unstake') {
         stakeActions.value = [unstakeAction];
       }
+      if (props.action === 'stakeForPoints') {
+        stakeActions.value = [stakeForPointsAction];
+      }
+      if (props.action === 'unstakeForPoints') {
+        stakeActions.value = [unstakeForPointsAction];
+      }
       if (props.action === 'restake')
         stakeActions.value = [unstakeAction, stakeAction];
     },
@@ -180,15 +256,25 @@ export function useStakePreview(props: StakePreviewProps, emit) {
   );
 
   watch(preferentialGaugeAddress, async () => {
-    if (props.action === 'unstake') return;
+    if (props.action !== 'unstake' && props.action !== 'unstakeForPoints')
+      return;
     await loadApprovalsForGauge();
+  });
+
+  watch(pointsGaugeAddress, async () => {
+    if (props.action !== 'stakeForPoints') return;
+    await loadApprovalsForPointsGauge();
   });
 
   /**
    * LIFECYCLE
    */
   onBeforeMount(async () => {
-    if (props.action !== 'unstake') await loadApprovalsForGauge();
+    if (props.action === 'stakeForPoints') {
+      await loadApprovalsForPointsGauge();
+    } else if (props.action !== 'unstake') {
+      await loadApprovalsForGauge();
+    }
   });
 
   return {

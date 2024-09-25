@@ -55,6 +55,9 @@ export enum GqlChain {
   Zkevm = 'ZKEVM',
   Telos = 'telos',
   Meter = 'meter',
+  Taiko = 'taiko',
+  Etherlink = 'etherlink',
+  VanaMoksha = 'vana-moksha',
 }
 
 export type GqlContentNewsItem = {
