@@ -24,7 +24,7 @@ const tokens = computed(() => {
   const tokensWithValues = Object.values(balancerTokenList.value.tokens)
     .map(token => {
       const balance = balanceFor(token.address);
-      const price = priceFor(token.address);
+      const price = priceFor(token.address.toLowerCase());
       const value = Number(balance) * price;
       return {
         ...token,
@@ -34,6 +34,7 @@ const tokens = computed(() => {
       };
     })
     .filter(t => t.address != '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE');
+  console.log('tokensWithValues', tokensWithValues);
 
   return orderBy(tokensWithValues, ['value', 'balance'], ['desc', 'desc']);
 });

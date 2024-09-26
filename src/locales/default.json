@@ -999,6 +999,8 @@
     "stakedPercentage": "Staked %",
     "stakingAprTooltip": "Your potential staking APR",
     "stakingIncentives": "Staking incentives",
+    "pointsStakingIncentives": "Earn SYMM Points",
+    "pointsIncentivesTooltip": "Earn SYMM Points for staking LP tokens in eligible pools. SYMM Points can be redeemed for rewards in the future.",
     "totalShareTooltip": "Your current total share of LP tokens in the pool",
     "restakeGauge": "Restake to receive future liquidity mining incentives",
     "restakeGaugeDescription": "You are staking in a gauge which has been deprecated. Restake to the new gauge for this pool to receive future liquidity mining incentives.",

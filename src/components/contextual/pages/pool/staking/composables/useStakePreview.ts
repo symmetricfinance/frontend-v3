@@ -14,8 +14,7 @@ import {
 import { getAddress } from '@ethersproject/address';
 import { useI18n } from 'vue-i18n';
 import useTokenApprovalActions from '@/composables/approvals/useTokenApprovalActions';
-import useStakedSharesQuery from '@/composables/queries/useStakedSharesQuery';
-import { GaugeShare } from '@/composables/queries/useUserGaugeSharesQuery';
+import { usePoolPointsStaking } from '@/providers/local/pool-points-staking.provider';
 
 /**
  * TYPES
@@ -51,16 +50,21 @@ export function useStakePreview(props: StakePreviewProps, emit) {
   const { getTokenApprovalActions } = useTokenApprovalActions();
   const {
     isLoading: isPoolStakingLoading,
-    isPointsLoading,
     stake,
     unstake,
-    stakeForPoints,
-    unstakeForPoints,
     stakedShares,
     refetchAllPoolStakingData,
     preferentialGaugeAddress,
-    pointsGaugeAddress,
   } = usePoolStaking();
+
+  const {
+    isLoading: isPointsLoading,
+    stakeForPoints,
+    unstakeForPoints,
+    stakedShares: stakedPointsShares,
+    refetchAllPoolStakingData: refetchAllPointsStakingData,
+    pointsGaugeAddress,
+  } = usePoolPointsStaking();
 
   // Staked or unstaked shares depending on action type.
   let currentShares = '0';
@@ -68,24 +72,7 @@ export function useStakePreview(props: StakePreviewProps, emit) {
   if (props.action === 'stake' || props.action === 'stakeForPoints') {
     currentShares = balanceFor(getAddress(props.pool.address));
   } else if (props.action === 'unstakeForPoints') {
-    const { data: stakedPointsShares } = useStakedSharesQuery(
-      ref([
-        {
-          balance: '0',
-          gauge: {
-            id: pointsGaugeAddress.value,
-            poolAddress: getAddress(props.pool.address),
-            poolId: props.pool.id,
-            totalSupply: '0',
-            isPreferentialGauge: true,
-            isKilled: false,
-          },
-        },
-      ] as GaugeShare[])
-    );
-    currentShares = stakedPointsShares.value
-      ? stakedPointsShares.value[props.pool.id]
-      : '0';
+    currentShares = stakedPointsShares.value;
   } else {
     currentShares = stakedShares.value;
   }
@@ -223,7 +210,14 @@ export function useStakePreview(props: StakePreviewProps, emit) {
   async function handleSuccess(receipt: TransactionReceipt) {
     isActionConfirmed.value = true;
     confirmationReceipt.value = receipt;
-    await Promise.all([refetchBalances(), refetchAllPoolStakingData()]);
+    if (
+      props.action === 'unstakeForPoints' ||
+      props.action === 'stakeForPoints'
+    ) {
+      await Promise.all([refetchBalances(), refetchAllPointsStakingData()]);
+    } else {
+      await Promise.all([refetchBalances(), refetchAllPoolStakingData()]);
+    }
     emit('success');
   }
 

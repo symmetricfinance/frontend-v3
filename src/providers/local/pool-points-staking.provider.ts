@@ -10,13 +10,15 @@ import useWeb3 from '@/services/web3/useWeb3';
 // import { POOLS } from '@/constants/pools';
 import { safeInject } from '../inject';
 import { configService } from '@/services/config/config.service';
+import useStakedSharesQuery from '@/composables/queries/useStakedSharesQuery';
+import { GaugeShare } from '@/composables/queries/useUserGaugeSharesQuery';
 
 /**
  * PoolStakingProvider
  *
  * Fetches data and provides functionality for a specific pool's gauge.
  */
-export const poolStakingProvider = (_poolId?: string) => {
+export const poolPointsStakingProvider = (_poolId?: string) => {
   /**
    * STATE
    */
@@ -26,10 +28,31 @@ export const poolStakingProvider = (_poolId?: string) => {
     poolId.value ? getAddressFromPoolId(poolId.value) : undefined
   );
 
-  // const isPointsPool = computed((): boolean => {
-  //   if (!poolId.value) return false;
-  //   return POOLS.PointsGauges?.[poolId.value] !== undefined;
-  // });
+  const pointsGaugeAddress = computed((): string | undefined | null => {
+    const gauges = configService.network.pools.PointsGauges;
+    if (!gauges || !poolId.value) return null;
+    return gauges[poolId.value] ? gauges[poolId.value] : null;
+  });
+
+  const {
+    data: _stakedShares,
+    isRefetching: isRefetchingStakedShares,
+    refetch: refetchStakedShares,
+  } = useStakedSharesQuery(
+    ref([
+      {
+        balance: '0',
+        gauge: {
+          id: pointsGaugeAddress.value,
+          poolAddress: poolAddress.value,
+          poolId: poolId.value,
+          totalSupply: '0',
+          isPreferentialGauge: true,
+          isKilled: false,
+        },
+      },
+    ] as GaugeShare[])
+  );
 
   /**
    * COMPOSABLES
@@ -67,15 +90,16 @@ export const poolStakingProvider = (_poolId?: string) => {
 
   const isLoading = computed((): boolean => !isWalletReady.value);
 
-  const pointsGaugeAddress = computed((): string | undefined | null => {
-    const gauges = configService.network.pools.PointsGauges;
-    if (!gauges || !poolId.value) return null;
-    return gauges[poolId.value] ? gauges[poolId.value] : null;
-  });
-
   const isStakablePool = computed(
     (): boolean => !!poolId.value && pointsGaugeAddress.value !== null
   );
+
+  // User's staked shares for pool (onchain data).
+  const stakedShares = computed((): string => {
+    if (!poolId.value) return '0';
+
+    return _stakedShares?.value?.[poolId.value] || '0';
+  });
 
   /**
    * METHODS
@@ -92,12 +116,7 @@ export const poolStakingProvider = (_poolId?: string) => {
 
   // Triggers refetch of all queries in this provider.
   async function refetchAllPoolStakingData() {
-    return Promise.all([
-      // refetchPoolGauges(),
-      // refetchStakedShares(),
-      // refetchUserGaugeShares(),
-      // refetchUserBoosts(),
-    ]);
+    return Promise.all([refetchStakedShares()]);
   }
 
   /**
@@ -169,10 +188,12 @@ export const poolStakingProvider = (_poolId?: string) => {
 
   return {
     isLoading,
-    // stakedShares,
+    stakedShares,
     isStakablePool,
     pointsGaugeAddress,
     setCurrentPool,
+    isRefetchingStakedShares,
+    refetchStakedShares,
     refetchAllPoolStakingData,
     stakeForPoints,
     unstakeForPoints,
@@ -182,16 +203,16 @@ export const poolStakingProvider = (_poolId?: string) => {
 /**
  * Provide setup: response type + symbol.
  */
-export type PoolStakingProviderResponse = ReturnType<
-  typeof poolStakingProvider
+export type PoolPointsStakingProviderResponse = ReturnType<
+  typeof poolPointsStakingProvider
 >;
-export const PoolStakingProviderSymbol: InjectionKey<PoolStakingProviderResponse> =
-  Symbol(symbolKeys.Providers.PoolStaking);
+export const PoolPointsStakingProviderSymbol: InjectionKey<PoolPointsStakingProviderResponse> =
+  Symbol(symbolKeys.Providers.PoolPointsStaking);
 
 export function providePoolPointsStaking(poolId?: string) {
-  provide(PoolStakingProviderSymbol, poolStakingProvider(poolId));
+  provide(PoolPointsStakingProviderSymbol, poolPointsStakingProvider(poolId));
 }
 
-export function usePoolPointsStaking(): PoolStakingProviderResponse {
-  return safeInject(PoolStakingProviderSymbol);
+export function usePoolPointsStaking(): PoolPointsStakingProviderResponse {
+  return safeInject(PoolPointsStakingProviderSymbol);
 }

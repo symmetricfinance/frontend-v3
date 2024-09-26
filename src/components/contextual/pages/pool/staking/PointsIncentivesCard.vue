@@ -9,12 +9,10 @@ import { bnum } from '@/lib/utils';
 import { Pool } from '@/services/pool/types';
 
 import StakePreviewModal from './StakePreviewModal.vue';
-import { usePoolStaking } from '@/providers/local/pool-staking.provider';
+import { usePoolPointsStaking } from '@/providers/local/pool-points-staking.provider';
 
 import { deprecatedDetails } from '@/composables/usePoolHelpers';
 import { StakeAction } from './composables/useStakePreview';
-import { GaugeShare } from '@/composables/queries/useUserGaugeSharesQuery';
-import useStakedSharesQuery from '@/composables/queries/useStakedSharesQuery';
 
 type Props = {
   pool: Pool;
@@ -27,7 +25,6 @@ const props = defineProps<Props>();
 
 const isStakePreviewVisible = ref(false);
 const stakeAction = ref<StakeAction>('stakeForPoints');
-const poolId = computed(() => props.pool.id);
 const isOpenedByDefault = ref(true);
 /**
  * COMPOSABLES
@@ -35,40 +32,23 @@ const isOpenedByDefault = ref(true);
 const { fNum } = useNumbers();
 const { balanceFor } = useTokens();
 const {
-  isStakablePoolForPoints: isStakablePool,
-  isPointsLoading: isLoadingStakingData,
+  isStakablePool,
+  isLoading: isLoadingStakingData,
+  isRefetchingStakedShares,
+  stakedShares,
   pointsGaugeAddress,
-} = usePoolStaking();
+} = usePoolPointsStaking();
 
-const { data: stakedShares, isRefetching } = useStakedSharesQuery(
-  ref([
-    {
-      balance: '0',
-      gauge: {
-        id: pointsGaugeAddress.value,
-        poolAddress: getAddress(props.pool.address),
-        poolId: props.pool.id,
-        totalSupply: '0',
-        isPreferentialGauge: true,
-        isKilled: false,
-      },
-    },
-  ] as GaugeShare[])
-);
+console.log(stakedShares.value);
 
-console.log('stakedShares', stakedShares);
 /**
  * COMPUTED
  */
 
-const stakedShare = computed(() => {
-  return stakedShares.value ? stakedShares.value[poolId.value] : '0';
-});
-
 const fiatValueOfStakedShares = computed(() => {
   return bnum(props.pool.totalLiquidity)
     .div(props.pool.totalShares)
-    .times((stakedShare.value || '0').toString())
+    .times((stakedShares.value || '0').toString())
     .toString();
 });
 
@@ -115,7 +95,7 @@ function handlePreviewClose() {
           :class="['shadow-2xl', { handle: isStakablePool }]"
           :sections="[
             {
-              title: $t('staking.stakingIncentives'),
+              title: $t('staking.pointsStakingIncentives'),
               id: 'staking-incentives',
               handle: 'staking-handle',
               isDisabled: isStakablePool,
@@ -142,7 +122,7 @@ function handlePreviewClose() {
                     <BalIcon v-if="isStakablePool" size="sm" name="check" />
                     <BalIcon v-else size="sm" name="x" />
                   </div>
-                  <h6>{{ $t('staking.stakingIncentives') }}</h6>
+                  <h6>{{ $t('staking.pointsStakingIncentives') }}</h6>
                 </BalStack>
                 <BalStack
                   v-if="isStakablePool"
@@ -150,7 +130,9 @@ function handlePreviewClose() {
                   spacing="sm"
                   align="center"
                 >
-                  <BalIcon name="chevron-down" class="text-blue-500" />
+                  <BalTooltip :text="$t('staking.pointsIncentivesTooltip')" />
+
+                  <!-- <BalIcon name="chevron-down" class="text-blue-500" /> -->
                 </BalStack>
               </BalStack>
             </button>
@@ -165,10 +147,10 @@ function handlePreviewClose() {
                 <BalStack horizontal justify="between" class="rounded-b-lg">
                   <span>{{ $t('staked') }} {{ $t('lpTokens') }}</span>
                   <BalStack horizontal spacing="sm" align="center">
-                    <AnimatePresence :isVisible="isRefetching">
+                    <AnimatePresence :isVisible="isRefetchingStakedShares">
                       <BalLoadingBlock class="h-5" />
                     </AnimatePresence>
-                    <AnimatePresence :isVisible="!isRefetching">
+                    <AnimatePresence :isVisible="!isRefetchingStakedShares">
                       <span>
                         {{ fNum(fiatValueOfStakedShares, FNumFormats.fiat) }}
                       </span>
@@ -179,10 +161,10 @@ function handlePreviewClose() {
                 <BalStack horizontal justify="between">
                   <span>{{ $t('unstaked') }} {{ $t('lpTokens') }}</span>
                   <BalStack horizontal spacing="sm" align="center">
-                    <AnimatePresence :isVisible="isRefetching">
+                    <AnimatePresence :isVisible="isRefetchingStakedShares">
                       <BalLoadingBlock class="h-5" />
                     </AnimatePresence>
-                    <AnimatePresence :isVisible="!isRefetching">
+                    <AnimatePresence :isVisible="!isRefetchingStakedShares">
                       <span>
                         {{ fNum(fiatValueOfUnstakedShares, FNumFormats.fiat) }}
                       </span>

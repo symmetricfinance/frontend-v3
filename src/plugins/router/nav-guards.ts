@@ -113,7 +113,7 @@ function applyNetworkPathRedirects(router: Router): Router {
         ) {
           const newPath = to.redirectedFrom?.fullPath ?? to.fullPath;
           router.push({
-            path: `/${config[Network.VANAMOKSHA].slug}${newPath}`,
+            path: `/${config[Network.TELOS].slug}${newPath}`,
           });
         } else if (
           !to.redirectedFrom ||
@@ -124,7 +124,7 @@ function applyNetworkPathRedirects(router: Router): Router {
         } else {
           const newPath = to.redirectedFrom?.fullPath ?? to.fullPath;
           const newNetwork = newPath.includes('/pool')
-            ? config[Network.VANAMOKSHA].slug
+            ? config[Network.TELOS].slug
             : networkSlug;
           router.push({ path: `/${newNetwork}${newPath}` });
         }
