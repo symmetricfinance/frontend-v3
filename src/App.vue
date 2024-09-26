@@ -90,6 +90,7 @@ const themeMap = {
   meter: 'meter',
   taiko: 'taiko',
   etherlink: 'etherlink',
+  'vana-moksha': 'vana-moksha',
 };
 // Function to update theme based on the route slug
 const updateTheme = () => {

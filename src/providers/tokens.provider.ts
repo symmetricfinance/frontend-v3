@@ -534,6 +534,7 @@ export const tokensProvider = (
       const response = await axios.get(
         `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${tokenAddressesString}`
       );
+      console.log(response);
       let symmPrice = 0;
       let rewardPrice = 0;
       response.data.forEach(price => {
@@ -567,7 +568,11 @@ export const tokensProvider = (
     // Inject veBAL because it's not in tokenlists.
     const { veBAL } = configService.network.addresses;
     await injectTokens([veBAL]);
-    if (networkSlug === 'telos' || networkSlug === 'meter') {
+    if (
+      networkSlug === 'telos' ||
+      networkSlug === 'meter' ||
+      networkSlug === 'vana-moksha'
+    ) {
       await getTokenPrices();
     }
     queriesEnabled.value = true;
@@ -624,7 +629,9 @@ export function provideTokens(
   userSettings: UserSettingsResponse,
   tokenLists: TokenListsResponse
 ) {
+  console.log('PROVIDE TOKENS');
   const tokensResponse = tokensProvider(userSettings, tokenLists);
+
   provide(TokensProviderSymbol, tokensResponse);
   return tokensResponse;
 }

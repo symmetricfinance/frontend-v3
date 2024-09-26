@@ -10,7 +10,7 @@ const pools: Pools = {
     PerPoolInitial: 5,
   },
   BoostsEnabled: true,
-  DelegateOwner: '0x45250507e29c26c56935148aD6f534A412068e5d',
+  DelegateOwner: '0x7255Db0d1C1B93Fb756157074fa0613Aa6878F31',
   ZeroAddress: '0x0000000000000000000000000000000000000000',
   DynamicFees: {
     Gauntlet: [],
@@ -28,17 +28,10 @@ const pools: Pools = {
   ],
   Stable: {
     AllowList: [
-      '0x65d5eebb5f1c767ce42c3ccc8cfd00fb3a114122000000000000000000000003', //USDC-USDC.e
+      '0xe9b5659a77148a7ec25de40388d0bf9e89331ad0000000000000000000000003', //USDC-USDT
     ],
   },
-  PointsGauges: {
-    '0x65d5eebb5f1c767ce42c3ccc8cfd00fb3a114122000000000000000000000003':
-      '0x0447cb41A2a0D4C4A76cA3e2b1be65076DD48A06', //USDC-USDC.e
-    '0xe0f51bf8d30db81d0a93125a17a2a40130ad9f7e000200000000000000000004':
-      '0xc4E44B978c814F9223784031474ba1498bd23335', //WETH-USDC
-    '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005':
-      '0x76930FbaAbDB2D04B41835029D2320B2A0139cc5', //TAIKO-WETH
-  },
+
   Investment: {
     AllowList: [],
   },
@@ -46,13 +39,12 @@ const pools: Pools = {
     // Only effective after given timestamp here: usePool.ts#createdAfterTimestamp
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
     AllowList: [
-      '0xe0f51bf8d30db81d0a93125a17a2a40130ad9f7e000200000000000000000004', //WETH-USDC
-      '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005', //TAIKO-WETH
+      '0xd31a782e34c342a8d6d0108b1430f31b3ef3a995000200000000000000000002', //WVANA-USDC
     ],
   },
   Factories: {
-    '0x4e4131dc27ed9501ac5feb76f94572fdae9f0fd0': 'weightedPool', // Weighted V5
-    '0xfef39453770ff2c6b2f453d1b6d075623a79e3eb': 'composableStablePool', // ComposableStable V5
+    '0x8670184f35f9a7b4e28269bee0a7475ea681493d': 'weightedPool', // Weighted V5
+    '0xc7623faa9e41daaf854f07b5b45e70cf1d68583e': 'composableStablePool', // ComposableStable V5
   },
   Stakable: {
     VotingGaugePools: [],

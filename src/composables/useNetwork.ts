@@ -116,6 +116,9 @@ export const symmSymbol = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return 'gSYMM';
   }
+  if (networkId.value === Network.VANAMOKSHA) {
+    return 'vSYMM';
+  }
   return 'mSYMM';
 });
 

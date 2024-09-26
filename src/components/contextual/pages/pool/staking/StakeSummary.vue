@@ -25,9 +25,7 @@ const { fNum } = useNumbers();
       <template #label>
         {{ $t('totalValueTo') }}
         &nbsp;
-        <span class="lowercase">
-          {{ action === 'stake' ? $t('stake') : $t('unstake') }}:
-        </span>
+        <span class="lowercase"> {{ $t(action) }}: </span>
       </template>
       <template #value>
         <span class="capitalize">

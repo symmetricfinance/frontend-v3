@@ -16,6 +16,7 @@ import celo from './celo';
 import meter from './meter';
 import taiko from './taiko';
 import etherlink from './etherlink';
+// import vanaMoksha from './vana-moksha';
 
 const config: Record<Network | number, Config> = {
   [Network.TELOS]: telos,
@@ -24,6 +25,7 @@ const config: Record<Network | number, Config> = {
   [Network.METER]: meter,
   [Network.TAIKO]: taiko,
   [Network.ETHERLINK]: etherlink,
+  //[Network.VANAMOKSHA]: vanaMoksha,
 };
 
 export default config;
