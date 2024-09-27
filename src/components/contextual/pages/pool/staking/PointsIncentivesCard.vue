@@ -110,7 +110,7 @@ function handlePreviewClose() {
             >
               <BalStack horizontal justify="between" align="center">
                 <BalStack spacing="sm" align="center">
-                  <div
+                  <!-- <div
                     :class="[
                       'flex items-center p-1 text-white rounded-full',
                       {
@@ -121,8 +121,14 @@ function handlePreviewClose() {
                   >
                     <BalIcon v-if="isStakablePool" size="sm" name="check" />
                     <BalIcon v-else size="sm" name="x" />
+                  </div> -->
+                  <div
+                    class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-yellow-500"
+                  >
+                    <h6>
+                      {{ $t('staking.pointsStakingIncentives') }}
+                    </h6>
                   </div>
-                  <h6>{{ $t('staking.pointsStakingIncentives') }}</h6>
                 </BalStack>
                 <BalStack
                   v-if="isStakablePool"

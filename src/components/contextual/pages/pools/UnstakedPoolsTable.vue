@@ -14,6 +14,7 @@ import { isVeBalSupported } from '@/composables/useVeBAL';
  * STATE
  */
 const showStakeModal = ref(false);
+const showStakePointsModal = ref(false);
 const stakePool = ref<Pool | undefined>();
 const networkName = configService.network.shortName;
 const hiddenColumns = ['apr', 'poolVolume', 'migrate', 'lockEndDate', 'volume'];
@@ -36,6 +37,7 @@ const {
 } = useUserPools();
 const defaultPoolActions = [
   PoolAction.Stake,
+  PoolAction.StakeForPoints,
   PoolAction.Add,
   PoolAction.Remove,
 ];
@@ -59,9 +61,15 @@ function handleStake(pool: Pool) {
   stakePool.value = pool;
 }
 
+function handleStakeForPoints(pool: Pool) {
+  showStakePointsModal.value = true;
+  stakePool.value = pool;
+}
+
 function handleModalClose() {
   refetchAllUserPools();
   showStakeModal.value = false;
+  showStakePointsModal.value = false;
 }
 
 async function handleStakeSuccess() {
@@ -91,6 +99,7 @@ onMounted(() => {
         showPoolShares
         showActions
         @trigger-stake="handleStake"
+        @trigger-stake-points="handleStakeForPoints"
       />
     </BalStack>
     <StakePreviewModal

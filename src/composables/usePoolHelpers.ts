@@ -108,6 +108,18 @@ export function isBoosted(pool: Pool) {
   );
 }
 
+export function isPointsEarning(pool: Pool) {
+  return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
+    PoolFeature.Points
+  );
+}
+
+export function isTrailblazerXP(pool: Pool) {
+  return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
+    PoolFeature.TBXP
+  );
+}
+
 export function isGyro(pool: Pool | VotingPool) {
   return [PoolType.Gyro2, PoolType.Gyro3, PoolType.GyroE].includes(
     pool.poolType

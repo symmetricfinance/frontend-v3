@@ -2,6 +2,8 @@
 import {
   isLiquidityBootstrapping,
   isBoosted,
+  isPointsEarning,
+  isTrailblazerXP,
   protocolsFor,
   isGyro,
 } from '@/composables/usePoolHelpers';
@@ -21,6 +23,38 @@ defineProps<Props>();
 
 <template>
   <div class="flex items-center">
+    <BalTooltip
+      v-if="isPointsEarning(pool)"
+      :text="$t('pointsTooltip')"
+      width="56"
+    >
+      <template #activator>
+        <PoolFeatureChip
+          :feature="PoolFeature.Points"
+          :protocols="protocolsFor(pool, PoolFeature.Points)"
+          class="ml-3"
+        />
+      </template>
+    </BalTooltip>
+    <BalTooltip
+      v-if="isTrailblazerXP(pool)"
+      :text="$t('trailblazersTooltip')"
+      width="56"
+    >
+      <template #activator>
+        <!-- <PoolFeatureChip
+          :feature="PoolFeature.TBXP"
+          :protocols="protocolsFor(pool, PoolFeature.TBXP)"
+          class="ml-1"
+        /> -->
+        <img
+          src="@/assets/images/icons/networks/taiko.svg"
+          alt="Trailblazer XP"
+          class="ml-1 w-6 h-6"
+        />
+      </template>
+    </BalTooltip>
+
     <BalTooltip v-if="isBoosted(pool)" :text="$t('boostedTooltip')" width="56">
       <template #activator>
         <PoolFeatureChip

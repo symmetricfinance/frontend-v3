@@ -544,6 +544,7 @@ html[data-theme='taiko'] {
 
   /* Yellow */
   --color-yellow-500: 255, 226, 160; /* Stars Gradient */
+  --color-yellow-800: 153, 136, 96;
 
   /* Purple */
   --color-purple-500: 99, 33, 182; /* Ve Stars Gradient */

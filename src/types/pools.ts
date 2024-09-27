@@ -39,6 +39,8 @@ export type FactoryType =
 export enum PoolFeature {
   Boosted = 'boosted',
   CLP = 'clp',
+  Points = 'points',
+  TBXP = 'tbxp',
 }
 
 export type PoolFeatures = {

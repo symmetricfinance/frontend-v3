@@ -18,6 +18,7 @@ import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { usePoolStaking } from '@/providers/local/pool-staking.provider';
 import useWeb3 from '@/services/web3/useWeb3';
 import useNetwork, { veSymbol } from '@/composables/useNetwork';
+import { usePoolPointsStaking } from '@/providers/local/pool-points-staking.provider';
 
 /**
  * TYPES
@@ -34,6 +35,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   (e: 'success', value: TransactionReceipt): void;
   (e: 'showStakeModal'): void;
+  (e: 'showStakePointsModal'): void;
 }>();
 
 /**
@@ -44,6 +46,7 @@ const { fNum } = useNumbers();
 const { addTransaction } = useTransactions();
 const { lockablePoolId } = useVeBal();
 const { isStakablePool } = usePoolStaking();
+const { isStakablePool: isStakablePointsPool } = usePoolPointsStaking();
 const { isMismatchedNetwork } = useWeb3();
 const { poolWeightsLabel } = usePoolHelpers(toRef(props, 'pool'));
 const {
@@ -172,6 +175,17 @@ onUnmounted(() => {
       >
         <StarsIcon class="mr-2 h-5 text-orange-300" />{{
           $t('stakeToGetExtra')
+        }}
+      </BalBtn>
+      <BalBtn
+        v-else-if="isStakablePointsPool"
+        color="gradient"
+        block
+        class="flex mt-2"
+        @click="emit('showStakePointsModal')"
+      >
+        <StarsIcon class="mr-2 h-5 text-orange-300" />{{
+          $t('stakeToGetPoints')
         }}
       </BalBtn>
 
