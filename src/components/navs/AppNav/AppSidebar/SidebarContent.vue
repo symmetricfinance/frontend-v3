@@ -59,7 +59,7 @@ const navLinks = [
   },
   {
     label: 'SYMM Points',
-    path: `/${networkSlug}/symm-points`,
+    path: `/${networkSlug}/points`,
     goal: Goals.ClickNavPortfolio,
     hide: !isPointsSupported.value,
   },
