@@ -66,6 +66,7 @@ function onConfirm() {
     :actionFn="claimTx"
     :onConfirmFn="onConfirm"
     action="claim"
+    :disabled="totalAmount === '0'"
     :summary="`${t('claim')} ${fNum(totalAmount)} points}`"
     :confirmingLabel="t('claiming')"
   />
