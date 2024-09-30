@@ -31,7 +31,7 @@ export const poolPointsStakingProvider = (_poolId?: string) => {
   const pointsGaugeAddress = computed((): string | undefined | null => {
     const gauges = configService.network.pools.PointsGauges;
     if (!gauges || !poolId.value) return null;
-    return gauges[poolId.value] ? gauges[poolId.value] : null;
+    return gauges[poolId.value] ? gauges[poolId.value].gauge : null;
   });
 
   const {

@@ -25,6 +25,7 @@ const contracts: Contracts = {
   feeDistributorDeprecated: '',
   faucet: '',
   omniVotingEscrow: '',
+  gaugeRewardsHelper: '0x7aE881bea5AaA4e8A1dd7cf1B78B92984C3F28D2',
 };
 
 export default contracts;

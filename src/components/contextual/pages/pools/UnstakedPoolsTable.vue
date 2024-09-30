@@ -37,7 +37,7 @@ const {
 } = useUserPools();
 const defaultPoolActions = [
   PoolAction.Stake,
-  PoolAction.StakeForPoints,
+  // PoolAction.StakeForPoints,
   PoolAction.Add,
   PoolAction.Remove,
 ];

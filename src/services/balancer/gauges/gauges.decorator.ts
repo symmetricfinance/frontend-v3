@@ -5,6 +5,8 @@ import {
   Gauge,
   OnchainGaugeData,
   OnchainGaugeDataMap,
+  OnchainPointsData,
+  PointsGauge,
   SubgraphGauge,
 } from './types';
 import { getMulticaller } from '@/dependencies/Multicaller';
@@ -34,7 +36,7 @@ export class GaugesDecorator {
     const nativeGauges = subgraphGauges.filter(gauge => !gauge.streamer);
     this.callClaimableRewards(nativeGauges, userAddress, gaugesDataMap, false);
     // const oldL2Gauges = subgraphGauges.filter(gauge => !!gauge.streamer);
-    //this.callClaimableRewards(oldL2Gauges, userAddress, gaugesDataMap, true);
+    // this.callClaimableRewards(oldL2Gauges, userAddress, gaugesDataMap, true);
 
     gaugesDataMap = await this.multicaller.execute<OnchainGaugeDataMap>(
       gaugesDataMap
@@ -43,6 +45,34 @@ export class GaugesDecorator {
       ...subgraphGauge,
       ...this.format(gaugesDataMap[subgraphGauge.id]),
     }));
+  }
+
+  async decoratePointsGauges(userAddress: string): Promise<PointsGauge[]> {
+    if (!configService.network.pools.PointsGauges) return [];
+    if (!configService.network.addresses.gaugeRewardsHelper) return [];
+    if (!configService.network.tokens.Addresses.POINTS) return [];
+
+    const points = configService.network.tokens.Addresses.POINTS;
+    const pointsGauges = configService.network.pools.PointsGauges;
+    const gauges = Object.keys(pointsGauges).map(
+      poolId => pointsGauges[poolId].gauge
+    );
+    this.callClaimablePointsRewards(userAddress, gauges);
+    const gaugesDataMap = await this.multicaller.execute<OnchainPointsData>();
+    console.log(gaugesDataMap);
+
+    return Object.keys(pointsGauges).map(poolId => {
+      const gauge = pointsGauges[poolId].gauge;
+      return {
+        id: gauge,
+        poolId,
+        symbol: pointsGauges[poolId].symbol,
+        rewardTokens: [points],
+        claimablePointsReward: this.formatClaimableRewards(
+          gaugesDataMap[gauge].claimablePointsRewards
+        ),
+      };
+    });
   }
 
   /**
@@ -167,6 +197,34 @@ export class GaugesDecorator {
           abi,
           params,
         });
+      });
+    });
+  }
+
+  private callClaimablePointsRewards(userAddress: string, gauges: string[]) {
+    const methodName = 'getPendingRewards';
+
+    if (!configService.network.pools.PointsGauges) return;
+
+    const rewardsHelper = configService.network.addresses.gaugeRewardsHelper;
+    if (!rewardsHelper) return;
+
+    gauges.forEach(gauge => {
+      const pointsAddress = configService.network.tokens.Addresses.POINTS;
+      if (!pointsAddress) return;
+
+      const params = [gauge, userAddress, pointsAddress];
+
+      const abi = [
+        'function getPendingRewards(address,address,address) view returns (uint256)',
+      ];
+
+      this.multicaller.call({
+        key: `${gauge}.claimablePointsRewards.${pointsAddress}`,
+        address: rewardsHelper,
+        function: methodName,
+        abi,
+        params,
       });
     });
   }

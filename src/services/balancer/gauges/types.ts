@@ -26,6 +26,20 @@ export interface OnchainGaugeData {
   claimableRewards: Record<string, string>;
 }
 
+export interface OnchainPointsData {
+  claimbalePointsRewards: Record<string, string>;
+}
+
+export type OnchainPointsDataMap = Record<string, OnchainGaugeData>;
+
 export type OnchainGaugeDataMap = Record<string, OnchainGaugeData>;
 
 export type Gauge = SubgraphGauge & OnchainGaugeData;
+
+export type PointsGauge = {
+  id: string;
+  poolId: string;
+  symbol: string;
+  rewardTokens: string[];
+  claimablePointsReward: Record<string, string>;
+};

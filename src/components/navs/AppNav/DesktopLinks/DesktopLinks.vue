@@ -4,12 +4,18 @@ import DesktopLinkItem from './DesktopLinkItem.vue';
 import useNetwork, { isTestnet, veSymbol } from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import { isVeBalSupported, isGaugesSupported } from '@/composables/useVeBAL';
+import { configService } from '@/services/config/config.service';
 
 /**
  * COMPOSABLES
  */
 const route = useRoute();
 const { networkSlug } = useNetwork();
+
+const isPointsSupported = computed(
+  () => configService.network.pools.PointsGauges
+);
+console.log('isPointsSupported', isPointsSupported);
 
 /**
  * METHODS
@@ -72,6 +78,18 @@ function isActive(page: string): boolean {
       @click="trackGoal(Goals.ClickNavVebal)"
     >
       {{ veSymbol }}
+    </DesktopLinkItem>
+    <DesktopLinkItem
+      v-if="isPointsSupported"
+      :to="{ name: 'symm-points', params: { networkSlug } }"
+      :active="isActive('symm-points')"
+      prefetch
+      @click="trackGoal(Goals.ClickNavPoints)"
+    >
+      <span
+        class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-yellow-500"
+        >SYMM Points</span
+      >
     </DesktopLinkItem>
     <!-- <DesktopLinkItem
       v-if="isVeBalSupported"

@@ -5,6 +5,7 @@ import { isTestnet } from '@/composables/useNetwork';
 import { applyNavGuards } from './nav-guards';
 
 const ClaimPage = () => import('@/pages/claim/index.vue');
+const PointsPage = () => import('@/pages/claim/points.vue');
 const LegacyClaimPage = () => import('@/pages/claim/legacy.vue');
 const CookiesPolicyPage = () => import('@/pages/cookies-policy.vue');
 const GetVeBalPage = () => import('@/pages/get-vesymm.vue');
@@ -147,6 +148,11 @@ const routes: RouteRecordRaw[] = [
     path: '/:networkSlug/claim',
     name: 'claim',
     component: ClaimPage,
+  },
+  {
+    path: '/:networkSlug/points',
+    name: 'symm-points',
+    component: PointsPage,
   },
   {
     path: '/:networkSlug/airdrop',

@@ -17,6 +17,7 @@ import MediumIcon from '@/components/_global/icons/brands/MediumIcon.vue';
 // import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
 import GithubIcon from '@/components/_global/icons/brands/GithubIcon.vue';
 import { isGaugesSupported, isVeBalSupported } from '@/composables/useVeBAL';
+import { configService } from '@/services/config/config.service';
 
 /**
  * PROPS & EMITS
@@ -32,6 +33,10 @@ const { networkConfig } = useConfig();
 const { networkSlug } = useNetwork();
 const { t } = useI18n();
 const router = useRouter();
+
+const isPointsSupported = computed(
+  () => configService.network.pools.PointsGauges
+);
 
 /**
  * STATE
@@ -51,6 +56,12 @@ const navLinks = [
     label: t('portfolio'),
     path: `/${networkSlug}/portfolio`,
     goal: Goals.ClickNavPortfolio,
+  },
+  {
+    label: 'SYMM Points',
+    path: `/${networkSlug}/symm-points`,
+    goal: Goals.ClickNavPortfolio,
+    hide: !isPointsSupported.value,
   },
   {
     label: veSymbol.value,

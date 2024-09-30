@@ -2,7 +2,7 @@ import { InjectionKey } from 'vue';
 import { UserStakingResponse } from '@/providers/local/user-staking.provider';
 import { useUserData } from '@/providers/user-data.provider';
 import { Pool, PoolType, allLinearTypes } from '@/services/pool/types';
-import { bnSum } from '@/lib/utils';
+import { bnSum, getAddressFromPoolId } from '@/lib/utils';
 import symbolKeys from '@/constants/symbol.keys';
 import { safeInject } from '../inject';
 import { useLock } from '@/composables/useLock';
@@ -12,6 +12,9 @@ import { isQueryLoading } from '@/composables/queries/useQueryHelpers';
 import { isVeBalSupported } from '@/composables/useVeBAL';
 import { useTokens } from '../tokens.provider';
 import { POOLS } from '@/constants/pools';
+import { configService } from '@/services/config/config.service';
+import { GaugeShare } from '@/composables/queries/useUserGaugeSharesQuery';
+import useStakedSharesQuery from '@/composables/queries/useStakedSharesQuery';
 
 /**
  * Provides user pools data. Primarily for the portfolio page.
@@ -76,12 +79,84 @@ export const provider = (userStaking: UserStakingResponse) => {
       .toString();
   });
 
+  const pointsGaugeShares = computed((): GaugeShare[] => {
+    const pointsGauges = configService.network.pools.PointsGauges;
+    if (pointsGauges) {
+      return Object.entries(pointsGauges).map(([poolId, gauge]) => {
+        return {
+          balance: '0',
+          gauge: {
+            id: gauge.gauge,
+            poolAddress: getAddressFromPoolId(poolId),
+            poolId: poolId,
+            totalSupply: '0',
+            isPreferentialGauge: true,
+            isKilled: false,
+          },
+        };
+      });
+    }
+    return [];
+  });
+
+  const { data: _stakedShares } = useStakedSharesQuery(
+    ref(pointsGaugeShares.value as GaugeShare[])
+  );
+
+  const stakedShares = computed(() => {
+    return Object.fromEntries(
+      Object.entries(_stakedShares?.value || {}).filter(([, balance]) => {
+        return Number(balance) > 0;
+      })
+    );
+  });
+
+  const stakedPointsPoolIds = computed(() => {
+    console.log('stakedShares.value', stakedShares.value);
+    if (stakedShares.value) {
+      return Object.keys(stakedShares.value);
+    }
+    return [];
+  });
+
+  const isPointsPoolsQueryEnabled = computed(
+    (): boolean => stakedPointsPoolIds.value.length > 0
+  );
+
+  const filterPointsOptions = computed(() => ({
+    poolIds: stakedPointsPoolIds.value,
+    pageSize: 999,
+  }));
+
+  const stakedPoolsQuery = usePoolsQuery(filterPointsOptions, {
+    enabled: isPointsPoolsQueryEnabled,
+  });
+
+  const { data: _stakedPools } = stakedPoolsQuery;
+
+  // Pool records for all the pools where a user has staked BPT.
+  const stakedPointsPools = computed(
+    (): Pool[] => _stakedPools.value?.pages[0].pools || []
+  );
+
+  const totalStakedForPointsValue = computed((): string => {
+    return Object.keys(_stakedShares.value || {})
+      .reduce((acc, poolId) => {
+        const pool = stakedPointsPools.value.find(pool => pool.id === poolId);
+        if (!pool) return acc;
+        const bpt = _stakedShares?.value?.[poolId] || '0';
+        return acc + Number(fiatValueOf(pool, bpt));
+      }, 0)
+      .toString();
+  });
+
   // Total portfolio fiat value, including staked, unstaked, and locked positions.
   const totalFiatValue = computed((): string =>
     bnSum([
       totalUnstakedValue.value,
       totalStakedValue.value,
       totalLockedValue.value,
+      totalStakedForPointsValue.value,
     ]).toString()
   );
 

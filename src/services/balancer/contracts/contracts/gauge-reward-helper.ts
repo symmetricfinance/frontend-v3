@@ -31,4 +31,16 @@ export class LiquidityGaugeRewardsHelper {
       params: [gaugeAddress, userAddress],
     });
   }
+
+  async claimRewardsForGauges(
+    gaugeAddresses: string[],
+    userAddress: string
+  ): Promise<TransactionResponse> {
+    return await this.walletService.txBuilder.contract.sendTransaction({
+      contractAddress: this.address,
+      abi: this.abi,
+      action: 'claimRewardsFromGauges',
+      params: [gaugeAddresses, userAddress],
+    });
+  }
 }
