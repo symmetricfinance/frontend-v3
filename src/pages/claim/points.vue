@@ -2,6 +2,7 @@
 import { computed, watch } from 'vue';
 
 import PointsRewardsTable from '@/components/tables/PointsRewardsTable.vue';
+import Leaderboard from '@/components/points/Leaderboard.vue';
 
 import { GaugePool } from '@/composables/useClaimsData';
 import { usePointsClaimsData } from '@/composables/usePointsClaimsData';
@@ -17,7 +18,6 @@ import BalCard from '@/components/_global/BalCard/BalCard.vue';
 import { orderedTokenAddresses } from '@/composables/usePoolHelpers';
 import { PoolToken } from '@/services/pool/types';
 import router from '@/plugins/router';
-
 /**
  * TYPES
  */
@@ -45,6 +45,7 @@ const {
 const loading = computed(
   (): boolean => isPointsClaimsLoading.value && isWalletReady.value
 );
+
 // const pointsAddress = computed(
 //   () => configService.network.tokens.Addresses.POINTS
 // );
@@ -89,6 +90,24 @@ async function injectPoolTokens(pools: GaugePool[]): Promise<void> {
   const allPoolTokens = pools.map(pools => pools.tokensList).flat();
   return await injectTokens(allPoolTokens);
 }
+const leaderboard = ref([]);
+
+const leaderBoardLoading = ref(true);
+
+async function fetchLeaderboard() {
+  leaderBoardLoading.value = true;
+  try {
+    const response = await fetch(
+      `https://tasks.symmetric.workers.dev/points-leaderboard/${networkSlug}`
+    );
+    const data = await response.json();
+    leaderboard.value = data;
+  } catch (error) {
+    console.log(error);
+    leaderboard.value = [];
+  }
+  leaderBoardLoading.value = false;
+}
 
 function symbolFor(token: PoolToken): string {
   return getToken(token.address)?.symbol || token.symbol || '---';
@@ -113,6 +132,10 @@ watch(pointsGauges, async newGauges => {
 
 watch(pointsGaugePools, async newPools => {
   if (newPools) await injectPoolTokens(newPools);
+});
+
+onMounted(async () => {
+  await fetchLeaderboard();
 });
 </script>
 
@@ -214,6 +237,13 @@ watch(pointsGaugePools, async newPools => {
               :isLoading="isPointsClaimsLoading"
             />
           </div>
+        </template>
+        <BalLoadingBlock v-if="leaderBoardLoading" class="h-56" />
+        <template v-if="leaderboard.length > 0">
+          <Leaderboard
+            :isLoading="leaderBoardLoading"
+            :leaderboard="leaderboard"
+          />
         </template>
       </div>
     </div>
