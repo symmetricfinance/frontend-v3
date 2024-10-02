@@ -568,11 +568,7 @@ export const tokensProvider = (
     // Inject veBAL because it's not in tokenlists.
     const { veBAL } = configService.network.addresses;
     await injectTokens([veBAL]);
-    if (
-      networkSlug === 'telos' ||
-      networkSlug === 'meter' ||
-      networkSlug === 'vana-moksha'
-    ) {
+    if (networkSlug === 'vana-moksha') {
       await getTokenPrices();
     }
     queriesEnabled.value = true;
