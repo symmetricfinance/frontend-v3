@@ -17,6 +17,8 @@ const {
   TELOS,
   CELO,
   METER,
+  TAIKO,
+  ETHERLINK,
 } = Network;
 
 export class WalletConnectConnector extends Connector {
@@ -35,6 +37,8 @@ export class WalletConnectConnector extends Connector {
         CELO,
         GNOSIS,
         METER,
+        TAIKO,
+        ETHERLINK,
       ],
       rpcMap: {
         // [MAINNET]: configService.getNetworkRpc(MAINNET),
@@ -48,6 +52,8 @@ export class WalletConnectConnector extends Connector {
         [CELO]: configService.getNetworkRpc(CELO),
         [GNOSIS]: configService.getNetworkRpc(GNOSIS),
         [METER]: configService.getNetworkRpc(METER),
+        [TAIKO]: configService.getNetworkRpc(TAIKO),
+        [ETHERLINK]: configService.getNetworkRpc(ETHERLINK),
       },
       showQrModal: true,
       qrModalOptions: { themeMode: useDarkMode().darkMode ? 'dark' : 'light' },
