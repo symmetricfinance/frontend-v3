@@ -415,7 +415,7 @@ export const tokensProvider = (
    */
   function priceFor(address: string): number {
     try {
-      const price = prices.value[address]; // const price = selectByAddressFast(prices.value, getAddress(address));
+      const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
       }
@@ -430,7 +430,7 @@ export const tokensProvider = (
    */
   function injectedPriceFor(address: string): number {
     try {
-      const price = state.injectedPrices[address]; // const price = selectByAddressFast(prices.value, getAddress(address));
+      const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
       }
