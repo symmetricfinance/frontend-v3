@@ -4,6 +4,8 @@ import { PoolFeature, Pools } from '@/types/pools';
 const pools: Pools = {
   IdsMap: {
     veBAL: '',
+    lpVault:
+      '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005',
   },
   Pagination: {
     PerPage: 15,

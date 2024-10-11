@@ -33,7 +33,8 @@ const config: Config = {
       'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-taiko/1.0.0/gn',
     ],
     aave: '',
-    gauge: '',
+    gauge:
+      'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-taiko-locking/1.0.0/gn',
     blocks: '',
   },
   bridgeUrl: 'https://bridge.taiko.xyz/',

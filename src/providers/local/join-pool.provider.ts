@@ -171,9 +171,11 @@ export const joinPoolProvider = (
   // If we don't have price for an amountIn that has a value greater than 0.
   const missingPricesIn = computed(
     (): boolean =>
-      !amountsInWithValue.value.every(amountIn =>
-        bnum(priceFor(amountIn.address)).gt(0)
-      )
+      !amountsInWithValue.value.every(amountIn => {
+        const price = priceFor(amountIn.address);
+        console.log('price', price, amountIn.address);
+        return bnum(price).gt(0);
+      })
   );
 
   // Calculates total fiat value in for all amountsIn with Coingecko prices.

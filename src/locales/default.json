@@ -116,6 +116,7 @@
   "pointsTooltip": "Earn SYMM points by providing liquidity to this pool and staking your LP tokens. SYMM points can be redeemed for rewards at a future date.",
   "pointsClaimTooltip": "Earn SYMM points by providing liquidity eligible pools and staking your LP tokens. SYMM points can be redeemed for rewards at a future date.",
   "trailblazersTooltip": "Earn Trailblazers XP when you add liquidity or make swaps in this pool. XP can be redeemed for TAIKO tokens at a future date.",
+  "trailblazersLpVaultTooltip": "Earn up to a 60x Trailblazers XP multiplier when you add liquidity to this pool and lock in the Taiko LP Vault.",
   "buy": "Buy",
   "build": "Build",
   "blog": "Blog",
@@ -658,6 +659,11 @@
     "lockBptForVeBal": "Lock LP for {veSymbol}",
     "lockedLpTokensTooltip": "The USD value of your {veSymbol}. These are your locked LP tokens in the {symmSymbol} 80% / {nativeAsset} 20% pool.",
     "unlockedLpTokensTooltip": "The USD value of your liquidity provided to the {symmSymbol} 80% / {nativeAsset} 20% pool that has not been locked."
+  },
+  "lpVault": {
+    "title": "Taiko LP Vault",
+    "lockedLpTokensTooltip": "The USD value of the balance in your Taiko LP Vault. These are your locked LP tokens in the 80% TAIKO / 20% WETH pool.",
+    "unlockedLpTokensTooltip": "The USD value of your liqudity in the 80% TAIKO / 20% WETH pool that has not been locked."
   },
   "logOut": "Log out",
   "lost": "Lost",
@@ -1307,6 +1313,130 @@
       "description": "Get {veSymbol} on Ethereum Mainnet"
     }
   },
+  "getLpVault": {
+    "lockableTokens": {
+      "title": "Lockable tokens in my wallet",
+      "getMoreVeBAL": "Get {0}"
+    },
+    "weeklyBoost": {
+      "title": "Weekly Boost",
+      "tooltip": "Every week from Thursday at 00:00 UTC, you can apply a boost to your vault to increase your share of the weekly SYMM points rewards. The closer you apply the boost to the start of the week, the more SYMM points you will earn."
+    },
+    "howToLock": {
+      "title": "How to lock and earn?",
+      "steps": {
+        "investPart1": "Add liquidity to the",
+        "investPart2": "pool.",
+        "lock": "Lock-up the resulting LP token ({0}). Your tokens can be unlocked from midnight UTC on Thursday December 19th 2024"
+      },
+      "earn": {
+        "boost": "Taiko LP Vault holders can earn up to a 60x trailbalzers XP multiplier on the value of their tokens locked in the vault as well as a higer rate of SYMM points rewards",
+        "voting": "Each week from Thursday 00:00 UTC you will be able to apply a boost to your Vault to increase your share of the weekly SYMM points rewards"
+      }
+    },
+    "myVeBAL": {
+      "title": "My {veSymbol}",
+      "lockedEndDate": "Locked until",
+      "expiredOn": "Expired on",
+      "percentVeBAL": "% of total {veSymbol}"
+    },
+    "lockForm": {
+      "title": "Create your Vault",
+      "lockAmount": {
+        "title": "How much do you want to lock?"
+      },
+      "lockEndDate": {
+        "title": "Lock until",
+        "tooltip": "The longer you lock your stake, the more {veSymbol} voting power you get (up to 4 years). You can extend the lock later. Be careful, locking is not reversible."
+      },
+      "summary": {
+        "receive": {
+          "title": "Total voting escrow",
+          "tooltip": ""
+        },
+        "weeklyYield": {
+          "title": "Potential weekly staking yield",
+          "tooltip": ""
+        }
+      },
+      "lockPeriods": {
+        "1w": "1 week",
+        "2w": "2 weeks",
+        "1m": "1 month",
+        "3m": "3 months",
+        "6m": "6 months",
+        "1y": "1 year"
+      }
+    },
+    "previewModal": {
+      "titles": {
+        "createLock": {
+          "default": "Locking preview",
+          "confirmed": "Locking confirmed"
+        },
+        "extendLock": {
+          "default": "Extend lock preview preview",
+          "confirmed": "Extend lock preview confirmed"
+        },
+        "increaseLock": {
+          "default": "Increase lock amount",
+          "confirmed": "Increase lock amount confirmed"
+        }
+      },
+      "lpTokens": "{0} LP tokens",
+      "summary": {
+        "title": "Locking summary",
+        "totalToLock": "Total to lock",
+        "totalAlreadyLocked": "Total already locked",
+        "lockEndDate": "Lock-up end date",
+        "newLockEndDate": "New lock-up end date",
+        "totalVotingEscrow": "Total voting escrow",
+        "totalVotingEscrowTooltip": {
+          "explainer": "Lock-up end dates can only be on Thursdays at 0:00 UTC. To get as close as possible to a 1 year lock, locking on Thursday is recommended.",
+          "table": {
+            "lockPeriod": "Lock period",
+            "totalVeBAL": "Total {veSymbol}"
+          }
+        },
+        "increasedLockAmount": "Increased lock amount",
+        "potentialWeeklyYield": "Potential weekly yield"
+      },
+      "actions": {
+        "approve": {
+          "confirming": "Confirming approval...",
+          "tooltip": "You must approve {0}.",
+          "loadingLabel": "Confirm approval in wallet"
+        },
+        "createLock": {
+          "label": "Confirm lock until {0}",
+          "confirming": "Confirming...",
+          "tooltip": "Confirm locking.",
+          "loadingLabel": "Confirm lock in wallet"
+        },
+        "extendLock": {
+          "label": "Boost 🚀",
+          "confirming": "Confirming...",
+          "tooltip": "Confirm Boost",
+          "loadingLabel": "Confirm boost in wallet"
+        },
+        "increaseLock": {
+          "label": "Increase lock amount",
+          "confirming": "Confirming...",
+          "tooltip": "Confirm increasing lock amount.",
+          "loadingLabel": "Confirm lock in wallet"
+        }
+      },
+      "returnToVeBalPage": "Return to {veSymbol} page",
+      "firstVeBALReceived": {
+        "title": "Vote on pools to direct liquidity incentives",
+        "description": "Your voting weight is set at the time of the vote. If you acquire additional {veSymbol}, resubmit your votes to utilize your newly acquired voting power. Voting per pool can only be done once every 10 days."
+      }
+    },
+    "notSupported": {
+      "title": "Locking is unavailable on this network",
+      "description": "Get {veSymbol} on Ethereum Mainnet"
+    }
+  },
   "getVeBALToVote": "Get {veSymbol} to vote",
   "unlockVeBAL": {
     "expiredLockableTokens": {
@@ -1552,6 +1682,7 @@
     "approveForUnwrapping": "Approve {0} for unwrapping",
     "unapprove": "Unapprove {0}",
     "extendLock": "Lock until {0}",
+    "boostVault": "Boost Vault reward power",
     "unlock": "Unlock {0}",
     "approveRelayer": "Approve {0} relayer",
     "approveMigration": "Approve {0} migration",

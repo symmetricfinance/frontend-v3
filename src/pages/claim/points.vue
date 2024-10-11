@@ -15,7 +15,10 @@ import useWeb3 from '@/services/web3/useWeb3';
 import { networkSlug } from '@/composables/useNetwork';
 //import { bnum } from '@/lib/utils';
 import BalCard from '@/components/_global/BalCard/BalCard.vue';
-import { orderedTokenAddresses } from '@/composables/usePoolHelpers';
+import {
+  isLpVaultPool,
+  orderedTokenAddresses,
+} from '@/composables/usePoolHelpers';
 import { PoolToken } from '@/services/pool/types';
 import router from '@/plugins/router';
 /**
@@ -217,9 +220,15 @@ onMounted(async () => {
                   <div
                     class="inline-block text-sm text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-yellow-500"
                   >
-                    - SYMM Points
+                    SYMM Points
                   </div>
-                  <div class="flex text-sm">- Trailblazers XP</div>
+                  <div
+                    v-if="isLpVaultPool(pool.id)"
+                    class="text-sm golden-text"
+                  >
+                    60x Trailblazers XP
+                  </div>
+                  <div v-else class="flex text-sm">Trailblazers XP</div>
                 </div>
               </div>
             </BalCard>
@@ -274,5 +283,26 @@ onMounted(async () => {
 
 .symm-points-gradient {
   @apply inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-yellow-500;
+}
+
+.golden-text {
+  background: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+  background-size: 200% auto;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 </style>

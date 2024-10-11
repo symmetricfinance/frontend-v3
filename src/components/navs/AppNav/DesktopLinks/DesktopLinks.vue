@@ -15,6 +15,10 @@ const { networkSlug } = useNetwork();
 const isPointsSupported = computed(
   () => configService.network.pools.PointsGauges
 );
+
+const isLpVaultSupported = computed(
+  () => configService.network.addresses.lpVault
+);
 console.log('isPointsSupported', isPointsSupported);
 
 /**
@@ -91,6 +95,20 @@ function isActive(page: string): boolean {
         >SYMM Points</span
       >
     </DesktopLinkItem>
+    <DesktopLinkItem
+      v-if="isLpVaultSupported"
+      :to="{ name: 'taiko-lp-vault', params: { networkSlug } }"
+      :active="isActive('taiko-lp-vault')"
+      prefetch
+      @click="trackGoal(Goals.ClickNavPoints)"
+    >
+      <span
+        class="golden-border-text"
+        :class="{ 'is-active': isActive('taiko-lp-vault') }"
+      >
+        Taiko LP Vault
+      </span>
+    </DesktopLinkItem>
     <!-- <DesktopLinkItem
       v-if="isVeBalSupported"
       :to="{ name: 'airdrop', params: { networkSlug } }"
@@ -106,5 +124,62 @@ function isActive(page: string): boolean {
 <style scoped>
 .desktop-links {
   @apply grid gap-6 grid-flow-col grid-rows-1 h-full content-center;
+}
+
+.golden-border-text {
+  position: relative;
+  display: inline-block;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 8px; /* Reduced border radius */
+  transition: color 0.3s ease;
+}
+
+.golden-border-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  border-radius: 8px; /* Reduced border radius */
+  background: linear-gradient(
+      90deg,
+      #d4af37,
+      #c5a028,
+      #e0c158,
+      #c5a028,
+      #d4af37
+    )
+    border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: destination-out;
+  mask-composite: exclude;
+  background-size: 400% 100%;
+  transition: background-position 0.3s ease;
+}
+
+.golden-border-text:not(.is-active):hover::before {
+  animation: shimmer 1.5s linear infinite;
+}
+
+.golden-border-text.is-active {
+  color: #d4af37; /* Less yellow gold for active text */
+}
+
+.golden-border-text.is-active::before {
+  background-position: 0 0; /* Static position for active state */
+  animation: none; /* Ensure no animation for active state */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
 }
 </style>

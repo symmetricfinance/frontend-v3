@@ -39,6 +39,13 @@ const {
   pointsGaugeAddress,
 } = usePoolPointsStaking();
 
+const isDeprecated = computed(() => {
+  return (
+    props.pool.id ===
+    '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005'
+  );
+});
+
 console.log(stakedShares.value);
 
 /**
@@ -67,6 +74,17 @@ const isStakeDisabled = computed(() => {
   );
 });
 
+const cardTitle = computed(() => {
+  return isDeprecated.value ? 'Unstake your LP tokens' : 'Earn SYMM Points';
+});
+
+const shouldShowComponent = computed(() => {
+  if (isDeprecated.value) {
+    return bnum(fiatValueOfStakedShares.value).gt(0);
+  }
+  return true;
+});
+
 /**
  * METHODS
  */
@@ -88,17 +106,17 @@ function handlePreviewClose() {
 </script>
 
 <template>
-  <div>
+  <div v-if="shouldShowComponent">
     <AnimatePresence :isVisible="!isLoadingStakingData">
       <div class="relative">
         <BalAccordion
-          :class="['shadow-2xl', { handle: isStakablePool }]"
+          :class="['shadow-2xl', { handle: isStakablePool && !isDeprecated }]"
           :sections="[
             {
-              title: $t('staking.pointsStakingIncentives'),
+              title: cardTitle,
               id: 'staking-incentives',
               handle: 'staking-handle',
-              isDisabled: isStakablePool,
+              isDisabled: isStakablePool && !isDeprecated,
             },
           ]"
           :reCalcKey="1"
@@ -110,35 +128,28 @@ function handlePreviewClose() {
             >
               <BalStack horizontal justify="between" align="center">
                 <BalStack spacing="sm" align="center">
-                  <!-- <div
+                  <div
                     :class="[
-                      'flex items-center p-1 text-white rounded-full',
+                      'inline-block bg-clip-text',
                       {
-                        'bg-green-500': isStakablePool,
-                        'bg-gray-400': !isStakablePool,
+                        'text-transparent bg-gradient-to-r from-blue-500 via-pink-500 to-yellow-500':
+                          !isDeprecated,
+                        'text-red-500': isDeprecated,
                       },
                     ]"
                   >
-                    <BalIcon v-if="isStakablePool" size="sm" name="check" />
-                    <BalIcon v-else size="sm" name="x" />
-                  </div> -->
-                  <div
-                    class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-yellow-500"
-                  >
                     <h6>
-                      {{ $t('staking.pointsStakingIncentives') }}
+                      {{ cardTitle }}
                     </h6>
                   </div>
                 </BalStack>
                 <BalStack
-                  v-if="isStakablePool"
+                  v-if="isStakablePool && !isDeprecated"
                   horizontal
                   spacing="sm"
                   align="center"
                 >
                   <BalTooltip :text="$t('staking.pointsIncentivesTooltip')" />
-
-                  <!-- <BalIcon name="chevron-down" class="text-blue-500" /> -->
                 </BalStack>
               </BalStack>
             </button>
@@ -150,6 +161,17 @@ function handlePreviewClose() {
                 spacing="sm"
                 class="p-4 rounded-b-lg border-t dark:border-gray-900"
               >
+                <div v-if="isDeprecated">
+                  <BalAlert
+                    type="warning"
+                    title="Please remove your LP tokens"
+                    class="mb-4"
+                  >
+                    Rewards for this pool have now been moved to the new Taiko
+                    LP Vault
+                  </BalAlert>
+                </div>
+
                 <BalStack horizontal justify="between" class="rounded-b-lg">
                   <span>{{ $t('staked') }} {{ $t('lpTokens') }}</span>
                   <BalStack horizontal spacing="sm" align="center">
@@ -164,7 +186,7 @@ function handlePreviewClose() {
                     <BalTooltip :text="$t('staking.stakedLpTokensTooltip')" />
                   </BalStack>
                 </BalStack>
-                <BalStack horizontal justify="between">
+                <BalStack v-if="!isDeprecated" horizontal justify="between">
                   <span>{{ $t('unstaked') }} {{ $t('lpTokens') }}</span>
                   <BalStack horizontal spacing="sm" align="center">
                     <AnimatePresence :isVisible="isRefetchingStakedShares">
@@ -180,6 +202,7 @@ function handlePreviewClose() {
                 </BalStack>
                 <BalStack horizontal spacing="sm" class="mt-2">
                   <BalBtn
+                    v-if="!isDeprecated"
                     color="gradient"
                     size="sm"
                     :disabled="isStakeDisabled"

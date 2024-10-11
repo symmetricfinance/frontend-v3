@@ -6,9 +6,11 @@ import { applyNavGuards } from './nav-guards';
 
 const ClaimPage = () => import('@/pages/claim/index.vue');
 const PointsPage = () => import('@/pages/claim/points.vue');
+
 const LegacyClaimPage = () => import('@/pages/claim/legacy.vue');
 const CookiesPolicyPage = () => import('@/pages/cookies-policy.vue');
 const GetVeBalPage = () => import('@/pages/get-vesymm.vue');
+const LPVaultPage = () => import('@/pages/lp-vault.vue');
 const HomePage = () => import('@/pages/index.vue');
 const PoolPage = () =>
   import(/* webpackPrefetch: true */ '@/pages/pool/_id.vue');
@@ -153,6 +155,11 @@ const routes: RouteRecordRaw[] = [
     path: '/:networkSlug/points',
     name: 'symm-points',
     component: PointsPage,
+  },
+  {
+    path: '/:networkSlug/lp-vault',
+    name: 'taiko-lp-vault',
+    component: LPVaultPage,
   },
   {
     path: '/:networkSlug/airdrop',
