@@ -239,7 +239,7 @@ onMounted(async () => {
       <div class="order-1 lg:order-2 col-span-5 px-4 lg:px-0">
         <BalLoadingBlock v-if="loading" class="mb-2 h-56" />
         <template v-if="!isPointsClaimsLoading">
-          <div class="mb-16">
+          <div class="mb-8">
             <PointsRewardsTable
               :pointsGauges="pointsGauges"
               :pointsGaugePools="pointsGaugePools"
