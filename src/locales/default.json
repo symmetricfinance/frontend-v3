@@ -622,6 +622,7 @@
   "language": "Language",
   "learnMore": "Learn more",
   "lockToGetVeBAL": "Lock this to get {veSymbol}",
+  "lockLpVault": "Lock this to earn SYMM points",
   "light": "Light",
   "liquidityBootstrappingPool": "Liquidity Bootstrapping Pool",
   "liquidityIncentives": "liquidity incentives",

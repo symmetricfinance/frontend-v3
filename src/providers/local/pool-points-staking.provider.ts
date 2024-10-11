@@ -90,9 +90,15 @@ export const poolPointsStakingProvider = (_poolId?: string) => {
 
   const isLoading = computed((): boolean => !isWalletReady.value);
 
-  const isStakablePool = computed(
-    (): boolean => !!poolId.value && pointsGaugeAddress.value !== null
-  );
+  const isStakablePool = computed((): boolean => {
+    if (!poolId.value) return false;
+    if (
+      poolId.value ===
+      '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005'
+    )
+      return false;
+    return pointsGaugeAddress.value !== null;
+  });
 
   // User's staked shares for pool (onchain data).
   const stakedShares = computed((): string => {

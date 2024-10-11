@@ -61,6 +61,10 @@ const { networkSlug } = useNetwork();
 
 const approvalActions = ref(joinPoolApprovalActions.value);
 
+const lpVaultPoolId = ref(
+  '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005'
+);
+
 /**
  * COMPUTED
  */
@@ -165,6 +169,25 @@ onUnmounted(() => {
         <StarsIcon class="mr-2 h-5 text-orange-300" />{{
           $t('lockToGetVeBAL', { veSymbol })
         }}
+      </BalBtn>
+      <BalBtn
+        v-if="lpVaultPoolId === pool.id"
+        tag="router-link"
+        :to="{
+          name: 'taiko-lp-vault',
+          query: {
+            returnRoute: $route.name,
+            returnParams: JSON.stringify({
+              id: pool.id,
+              networkSlug,
+            }),
+          },
+        }"
+        color="gradient"
+        block
+        class="flex mt-2"
+      >
+        <StarsIcon class="mr-2 h-5 text-orange-300" />{{ $t('lockLpVault') }}
       </BalBtn>
       <BalBtn
         v-else-if="isStakablePool"
