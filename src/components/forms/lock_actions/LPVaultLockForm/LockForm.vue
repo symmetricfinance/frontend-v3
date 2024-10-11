@@ -61,7 +61,9 @@ console.log(lockablePoolLoading.value, veBalQueryLoading.value);
 
 const router = useRouter();
 const goToPoolPage = () => {
-  router.push({ name: 'pool', params: { id: lockablePoolId.value } });
+  router.push(
+    '/taiko/pool/0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005/add-liquidity'
+  );
 };
 </script>
 

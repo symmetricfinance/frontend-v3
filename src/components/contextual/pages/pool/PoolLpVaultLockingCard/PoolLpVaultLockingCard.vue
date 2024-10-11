@@ -250,17 +250,21 @@ const navigateToLpVault = () => {
   font-weight: bold;
 }
 
-.golden-btn:hover {
+.golden-btn:disabled {
+  background: #ccc; /* or any other color you prefer for disabled state */
+  color: #666; /* or any other color you prefer for disabled text */
+  text-shadow: none;
+  animation: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.golden-btn:hover:not(:disabled) {
   background-size: 100% 100%;
   animation: none;
   background-position: 0% 0%;
   color: #fff;
   text-shadow: 0 1px 2px rgb(0 0 0 / 100%), 0 0 6px rgb(0 0 0 / 60%);
-}
-
-.golden-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 @keyframes golden-shimmer {
