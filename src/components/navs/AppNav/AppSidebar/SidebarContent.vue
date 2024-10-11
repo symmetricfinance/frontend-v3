@@ -38,6 +38,10 @@ const isPointsSupported = computed(
   () => configService.network.pools.PointsGauges
 );
 
+const isLpVaultSupported = computed(
+  () => configService.network.addresses.lpVault
+);
+
 /**
  * STATE
  */
@@ -62,6 +66,12 @@ const navLinks = [
     path: `/${networkSlug}/points`,
     goal: Goals.ClickNavPortfolio,
     hide: !isPointsSupported.value,
+  },
+  {
+    label: 'Taiko LP Vault',
+    path: `/${networkSlug}/lp-vault`,
+    goal: Goals.ClickNavPortfolio,
+    hide: !isLpVaultSupported.value,
   },
   {
     label: veSymbol.value,

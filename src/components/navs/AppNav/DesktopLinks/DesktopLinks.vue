@@ -19,7 +19,9 @@ const isPointsSupported = computed(
 const isLpVaultSupported = computed(
   () => configService.network.addresses.lpVault
 );
-console.log('isPointsSupported', isPointsSupported);
+
+// Add a new computed property for screen size
+const isSmallScreen = computed(() => window.innerWidth < 1180); // Adjust the breakpoint as needed
 
 /**
  * METHODS
@@ -103,10 +105,13 @@ function isActive(page: string): boolean {
       @click="trackGoal(Goals.ClickNavPoints)"
     >
       <span
-        class="golden-border-text"
-        :class="{ 'is-active': isActive('taiko-lp-vault') }"
+        :class="[
+          'golden-border-text',
+          { 'is-active': isActive('taiko-lp-vault') },
+          { 'small-screen': isSmallScreen },
+        ]"
       >
-        Taiko LP Vault
+        {{ isSmallScreen ? 'LP Vault' : 'Taiko LP Vault' }}
       </span>
     </DesktopLinkItem>
     <!-- <DesktopLinkItem
@@ -171,6 +176,11 @@ function isActive(page: string): boolean {
 .golden-border-text.is-active::before {
   background-position: 0 0; /* Static position for active state */
   animation: none; /* Ensure no animation for active state */
+}
+
+.golden-border-text.small-screen {
+  padding: 4px 8px;
+  font-size: 0.9em;
 }
 
 @keyframes shimmer {
