@@ -2,34 +2,40 @@ import { Pool } from '@/services/pool/types';
 import { TokenInfo } from '@/types/TokenList';
 
 import { useTokens } from '@/providers/tokens.provider';
-import { useUserData } from '@/providers/user-data.provider';
 import usePoolQuery from './queries/usePoolQuery';
 import { fiatValueOf } from './usePoolHelpers';
-import useVeBal, { isVeBalSupported } from './useVeBAL';
 import { bnum } from '@/lib/utils';
+import { configService } from '@/services/config/config.service';
+import useLpVaultQuery from './queries/useLPVaultLockInfoQuery';
 
 interface Options {
   enabled?: boolean;
 }
-export function useLock({ enabled = true }: Options = {}) {
+export function useLpVault({ enabled = true }: Options = {}) {
   /**
    * COMPOSABLES
    */
-  const { lockablePoolId } = useVeBal();
+  const lockablePoolId = ref(
+    '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005'
+  );
   const { getToken, balanceFor } = useTokens();
   console.log(lockablePoolId.value);
   /**
    * QUERIES
    */
+  const isLpVaultEnabled = computed((): boolean => {
+    return Boolean(configService.network.pools.IdsMap.lpVault);
+  });
+
   const shouldFetchLockPool = computed(
-    (): boolean => isVeBalSupported.value && enabled
+    (): boolean => isLpVaultEnabled.value && enabled
   );
 
   const lockPoolQuery = usePoolQuery(
     lockablePoolId.value as string,
     shouldFetchLockPool
   );
-  const { lockQuery } = useUserData();
+  const lockQuery = useLpVaultQuery();
 
   /**
    * COMPUTED

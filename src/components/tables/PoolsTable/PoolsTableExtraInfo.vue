@@ -6,6 +6,7 @@ import {
   isTrailblazerXP,
   protocolsFor,
   isGyro,
+  isLpVaultPool,
 } from '@/composables/usePoolHelpers';
 import { Pool } from '@/services/pool/types';
 import { PoolFeature } from '@/types/pools';
@@ -38,20 +39,27 @@ defineProps<Props>();
     </BalTooltip>
     <BalTooltip
       v-if="isTrailblazerXP(pool)"
-      :text="$t('trailblazersTooltip')"
+      :text="
+        isLpVaultPool(pool.id)
+          ? $t('trailblazersLpVaultTooltip')
+          : $t('trailblazersTooltip')
+      "
       width="56"
     >
       <template #activator>
-        <!-- <PoolFeatureChip
-          :feature="PoolFeature.TBXP"
-          :protocols="protocolsFor(pool, PoolFeature.TBXP)"
-          class="ml-1"
-        /> -->
-        <img
-          src="@/assets/images/icons/networks/taiko.svg"
-          alt="Trailblazer XP"
-          class="ml-1 w-6 h-6"
-        />
+        <div class="flex flex-row">
+          <div
+            v-if="isLpVaultPool(pool.id)"
+            class="pt-1 font-bold blue-400 golden-text"
+          >
+            60x
+          </div>
+          <img
+            src="@/assets/images/icons/networks/taiko.svg"
+            alt="Trailblazer XP"
+            class="ml-1 w-6 h-6"
+          />
+        </div>
       </template>
     </BalTooltip>
 
@@ -86,3 +94,26 @@ defineProps<Props>();
     <PoolWarningTooltip :pool="pool" />
   </div>
 </template>
+
+<style scoped>
+.golden-text {
+  background: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+  background-size: 200% auto;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+</style>

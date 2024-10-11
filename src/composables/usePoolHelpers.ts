@@ -359,6 +359,11 @@ export function totalAprLabel(
 export function isVeBalPool(poolId: string): boolean {
   return POOLS.IdsMap?.veBAL === poolId;
 }
+
+export function isLpVaultPool(poolId: string): boolean {
+  return POOLS.IdsMap?.lpVault === poolId;
+}
+
 /**
  * @summary Checks if given token address is BAL 80/20 pool (veBAL)
  */

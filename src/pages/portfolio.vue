@@ -10,6 +10,8 @@ import { provideUserStaking } from '@/providers/local/user-staking.provider';
 import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedInAffectedPoolAlert.vue';
 import { isVeBalSupported } from '@/composables/useVeBAL';
 import { configService } from '@/services/config/config.service';
+import LpVaultPoolTable from '@/components/contextual/pages/pools/LpVaultPoolTable.vue';
+import { useLpVault } from '@/composables/useLpVault';
 
 /**
  * PROVIDERS
@@ -25,6 +27,9 @@ const isPointsSupported = computed(
  * COMPOSABLES
  */
 const { lockPool, lock } = useLock();
+
+const { lockPool: lpVaultPool, lock: lpVault } = useLpVault();
+console.log(lpVaultPool, lpVault);
 </script>
 
 <template>
@@ -46,6 +51,11 @@ const { lockPool, lock } = useLock();
             v-if="lockPool && Number(lock?.lockedAmount) > 0"
             :lock="lock"
             :lockPool="lockPool"
+          />
+          <LpVaultPoolTable
+            v-if="lpVaultPool && Number(lpVault?.lockedAmount) > 0"
+            :lock="lpVault"
+            :lockPool="lpVaultPool"
           />
         </BalStack>
       </BalStack>

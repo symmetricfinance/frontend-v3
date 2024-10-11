@@ -17,12 +17,14 @@ import { configService as _configService } from '@/services/config/config.servic
 import { rpcProviderService as _rpcProviderService } from '@/services/rpc-provider/rpc-provider.service';
 import Vault from './contracts/vault';
 import veBAL from './contracts/veBAL';
+import lpVault from './contracts/lpVault';
 
 export default class BalancerContractsService {
   vault: Vault;
   config: Config;
   provider: JsonRpcProvider;
   veBAL: veBAL;
+  lpVault: lpVault;
 
   constructor(
     readonly configService = _configService,
@@ -37,6 +39,7 @@ export default class BalancerContractsService {
     // Init contracts
     this.vault = new Vault(this);
     this.veBAL = new veBAL(this);
+    this.lpVault = new lpVault(this);
   }
 
   // Combine all the ABIs and remove duplicates

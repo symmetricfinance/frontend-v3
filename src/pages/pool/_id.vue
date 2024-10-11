@@ -10,12 +10,14 @@ import {
 } from '@/components/contextual/pages/pool';
 import StakingIncentivesCard from '@/components/contextual/pages/pool/staking/StakingIncentivesCard.vue';
 import PoolLockingCard from '@/components/contextual/pages/pool/PoolLockingCard/PoolLockingCard.vue';
+import PoolLpVaultLockingCard from '@/components/contextual/pages/pool/PoolLpVaultLockingCard/PoolLpVaultLockingCard.vue';
 import ApyVisionPoolLink from '@/components/links/ApyVisionPoolLink.vue';
 import PoolPageHeader from '@/components/pool/PoolPageHeader.vue';
 import usePoolAprQuery from '@/composables/queries/usePoolAprQuery';
 import usePoolSnapshotsQuery from '@/composables/queries/usePoolSnapshotsQuery';
 import {
   isVeBalPool,
+  isLpVaultPool,
   preMintedBptIndex,
   usePoolHelpers,
   tokensListExclBpt,
@@ -55,6 +57,7 @@ const isRestakePreviewVisible = ref(false);
 const { prices, priceQueryLoading } = useTokens();
 const { isWalletReady } = useWeb3();
 const _isVeBalPool = isVeBalPool(poolId);
+const _isLpVaultPool = isLpVaultPool(poolId);
 const { pool, isLoadingPool } = usePool();
 const {
   isStableLikePool,
@@ -294,6 +297,11 @@ watch(
             class="staking-incentives"
             @set-restake-visibility="setRestakeVisibility"
           />
+          <PoolLpVaultLockingCard
+            v-if="_isLpVaultPool && !loadingPool && pool"
+            :pool="pool"
+            class="pool-locking"
+          />
           <PointsIncentivesCard
             v-if="isPointsStakablePool && !loadingPool && pool && isWalletReady"
             :pool="pool"
@@ -305,6 +313,7 @@ watch(
             :pool="pool"
             class="pool-locking"
           />
+
           <PoolMigrationCard
             v-if="
               poolId &&

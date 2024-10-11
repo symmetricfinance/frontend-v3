@@ -18,11 +18,16 @@ const showRedirectModal = ref(false);
 /**
  * COMPUTED
  */
-export const isVeBalSupported = computed<boolean>(() =>
-  configService.network.addresses.veBAL
-    ? configService.network.addresses.veBAL !== ''
-    : false
-);
+export const isVeBalSupported = computed<boolean>(() => {
+  if (
+    configService.network.addresses.veBAL &&
+    !configService.network.tokens.Addresses.POINTS
+  ) {
+    return configService.network.addresses.veBAL !== '';
+  } else {
+    return false;
+  }
+});
 
 export const isGaugesSupported = computed<boolean>(
   () => configService.network.addresses.gaugeController !== ''

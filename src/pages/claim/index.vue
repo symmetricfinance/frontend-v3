@@ -2,7 +2,6 @@
 import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { computed, onBeforeMount, watch } from 'vue';
-import axios from 'axios';
 
 import HeroClaim from '@/components/contextual/pages/claim/HeroClaim.vue';
 import BalClaimsTable, {
@@ -22,16 +21,10 @@ import { Gauge } from '@/services/balancer/gauges/types';
 import { configService } from '@/services/config/config.service';
 import { BalanceMap } from '@/services/token/concerns/balances.concern';
 import useWeb3 from '@/services/web3/useWeb3';
-import { TOKENS } from '@/constants/tokens';
 // import { buildNetworkIconURL } from '@/lib/utils/urls';
 // import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
-import {
-  lpToken,
-  networkSlug,
-  symmSymbol,
-  veSymbol,
-} from '@/composables/useNetwork';
+import { lpToken, symmSymbol, veSymbol } from '@/composables/useNetwork';
 
 /**
  * TYPES
@@ -44,7 +37,7 @@ type GaugeTable = {
 /**
  * COMPOSABLES
  */
-const { injectTokens, injectPrices, getToken } = useTokens();
+const { injectTokens, getToken } = useTokens();
 const { balToken } = useTokenHelpers();
 const { toFiat, fNum } = useNumbers();
 const { isWalletReady } = useWeb3();
@@ -226,39 +219,38 @@ function formatRewardsData(data?: BalanceMap): ProtocolRewardRow[] {
     };
   });
 }
-
-async function getTokenPrices() {
-  // try {
-  //   const response = await axios.get(
-  //     `https://api.geckoterminal.com/api/v2/simple/networks/tlos/token_price/${TOKENS.Addresses.BAL}%2C${TOKENS.Addresses.WETH}`
-  //   );
-  //   const tokenPrices = response.data.data.attributes.token_prices;
-  //   injectPrices({
-  //     [TOKENS.Addresses.BAL as string]: Number(
-  //       tokenPrices['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']
-  //     ),
-  //     [TOKENS.Addresses.WETH as string]: Number(
-  //       tokenPrices['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']
-  //     ),
-  //   });
-  // } catch (error) {
-  //   console.error(error);
-  //   throw error;
-  // }
-  try {
-    const response = await axios.get(
-      `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${TOKENS.Addresses.BAL},${TOKENS.Addresses.reward}`
-    );
-    response.data.forEach(price => {
-      injectPrices({
-        [getAddress(price.id) as string]: price.price,
-      });
-    });
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
+// async function getTokenPrices() {
+// try {
+//   const response = await axios.get(
+//     `https://api.geckoterminal.com/api/v2/simple/networks/tlos/token_price/${TOKENS.Addresses.BAL}%2C${TOKENS.Addresses.WETH}`
+//   );
+//   const tokenPrices = response.data.data.attributes.token_prices;
+//   injectPrices({
+//     [TOKENS.Addresses.BAL as string]: Number(
+//       tokenPrices['0xd5f2a24199c3dfc44c1bf8b1c01ab147809434ca']
+//     ),
+//     [TOKENS.Addresses.WETH as string]: Number(
+//       tokenPrices['0xd102ce6a4db07d247fcc28f366a623df0938ca9e']
+//     ),
+//   });
+// } catch (error) {
+//   console.error(error);
+//   throw error;
+// }
+//   try {
+//     const response = await axios.get(
+//       `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${TOKENS.Addresses.BAL},${TOKENS.Addresses.reward}`
+//     );
+//     response.data.forEach(price => {
+//       injectPrices({
+//         [getAddress(price.id) as string]: price.price,
+//       });
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// }
 // /**
 //  * @summary Fetches bb-a-USD rate as an appoximation of USD price.
 //  */
@@ -287,7 +279,7 @@ watch(gaugePools, async newPools => {
  * LIFECYCLE
  */
 onBeforeMount(async () => {
-  await getTokenPrices();
+  // await getTokenPrices();
   // await getBBaUSDPrice();
 });
 </script>

@@ -46,6 +46,7 @@ export interface Contracts {
   batchRelayer: string;
   balancerQueries: string;
   veBAL: string;
+  lpVault?: string;
   gaugeController: string;
   gaugeCheckpointer?: string;
   gaugeFactory: string;
