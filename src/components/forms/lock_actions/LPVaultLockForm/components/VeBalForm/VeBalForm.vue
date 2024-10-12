@@ -2,10 +2,11 @@
 import { computed, ref, toRef } from 'vue';
 import { useRouter } from 'vue-router';
 import {
-  addDays,
-  isThursday,
+  //addDays,
+  //isThursday,
   // nextThursday,
-  previousThursday,
+  //previousThursday,
+  parseISO,
 } from 'date-fns';
 
 import { LockType } from '@/components/forms/lock_actions/LockForm/types';
@@ -65,7 +66,7 @@ const {
 // const minLockEndDateTimestamp = ref('1734566400');
 
 const maxLockEndDateTimestamp = computed(() => {
-  return getMaxLockEndDateTimestamp(Date.now());
+  return getMaxLockEndDateTimestamp();
 });
 console.log('maxLockEndDateTimestamp', maxLockEndDateTimestamp.value);
 
@@ -130,14 +131,10 @@ function handleShowPreviewModal() {
   showPreviewModal.value = true;
 }
 
-function getMaxLockEndDateTimestamp(date: number) {
-  const maxLockTimestamp = addDays(date, 70);
-  console.log('maxLockTimestamp', maxLockTimestamp);
-
-  const timestamp = isThursday(maxLockTimestamp)
-    ? maxLockTimestamp
-    : previousThursday(maxLockTimestamp);
-  return timestamp.toDateString();
+function getMaxLockEndDateTimestamp() {
+  // Hardcoded date: December 19th, 2024 00:00 UTC
+  const hardcodedDate = parseISO('2024-12-19T00:00:00Z');
+  return hardcodedDate.toISOString().split('T')[0]; // Returns '2024-12-19'
 }
 
 const lockTitle = computed(() => {
