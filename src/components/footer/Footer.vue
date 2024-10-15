@@ -5,6 +5,7 @@ import IconGithub from '@/components/icons/IconGithub.vue';
 // import IconMail from '@/components/icons/IconMail.vue';
 import IconMedium from '@/components/icons/IconMedium.vue';
 import IconTwitter from '@/components/icons/IconTwitter.vue';
+import IconTelegram from '@/components/icons/IconTelegram.vue';
 // import IconYoutube from '@/components/icons/IconYoutube.vue';
 import { EXTERNAL_LINKS } from '@/constants/links';
 
@@ -161,6 +162,13 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                   <IconTwitter />
                 </BalLink>
                 <BalLink
+                  :href="EXTERNAL_LINKS.Balancer.Social.Telegram"
+                  external
+                  noStyle
+                >
+                  <IconTelegram />
+                </BalLink>
+                <BalLink
                   :href="EXTERNAL_LINKS.Balancer.Social.Discord"
                   external
                   noStyle
@@ -188,6 +196,7 @@ const { handleThirdPartyModalToggle } = useThirdPartyServices();
                 >
                   <IconGithub />
                 </BalLink>
+
                 <!-- <BalLink
                   :href="EXTERNAL_LINKS.Balancer.Social.Linkedin"
                   external

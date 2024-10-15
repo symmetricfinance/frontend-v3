@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { computed, ref, toRef } from 'vue';
 import { useRouter } from 'vue-router';
-import {
-  //addDays,
-  //isThursday,
-  // nextThursday,
-  //previousThursday,
-  parseISO,
-} from 'date-fns';
+// import {
+//   //addDays,
+//   //isThursday,
+//   // nextThursday,
+//   //previousThursday,
+//   parseISO,
+//   subDays,
+//   startOfDay,
+//   nextThursday,
+//   previousThursday,
+//   addWeeks,
+// } from 'date-fns';
 
 import { LockType } from '@/components/forms/lock_actions/LockForm/types';
 import { useTokens } from '@/providers/tokens.provider';
@@ -65,10 +70,7 @@ const {
 
 // const minLockEndDateTimestamp = ref('1734566400');
 
-const maxLockEndDateTimestamp = computed(() => {
-  return getMaxLockEndDateTimestamp();
-});
-console.log('maxLockEndDateTimestamp', maxLockEndDateTimestamp.value);
+const maxLockEndDateTimestamp = ref('2024-12-19T00:00:00Z');
 
 /**
  * COMPOSABLES
@@ -131,11 +133,32 @@ function handleShowPreviewModal() {
   showPreviewModal.value = true;
 }
 
-function getMaxLockEndDateTimestamp() {
-  // Hardcoded date: December 19th, 2024 00:00 UTC
-  const hardcodedDate = parseISO('2024-12-19T00:00:00Z');
-  return hardcodedDate.toISOString().split('T')[0]; // Returns '2024-12-19'
-}
+// function getMaxLockEndDateTimestamp(): string {
+//   try {
+//     const currentDate = parseISO(Date.now().toString());
+//     const startOfToday = startOfDay(currentDate);
+
+//     // Find the previous Thursday
+//     let prevThursday = previousThursday(startOfToday);
+//     if (prevThursday.getTime() === startOfToday.getTime()) {
+//       prevThursday = subDays(prevThursday, 7);
+//     }
+
+//     // Add 10 weeks to the previous Thursday
+//     const maxLockDate = addWeeks(prevThursday, 10);
+//     return maxLockDate.toISOString(); // Return as ISO 8601 string
+//   } catch (error) {
+//     console.error('Error fetching current time:', error);
+//     // Fallback to a default date if API call fails (10 weeks from a fixed date)
+//     return '2024-12-19T00:00:00Z'; // This is 10 weeks from 2024-10-10 00:00:00 UTC
+//   }
+// }
+
+// Update the usage of getMaxLockEndDateTimestamp
+// getMaxLockEndDateTimestamp().then(dateString => {
+//   console.log('Max lock end date:', dateString);
+//   maxLockEndDateTimestamp.value = dateString;
+// });
 
 const lockTitle = computed(() => {
   if (props.veBalLockInfo?.hasExistingLock) {
