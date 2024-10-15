@@ -165,7 +165,22 @@ onMounted(async () => {
             Boost your rewards by staking LP tokens in eligible pools to earn
             <span class="font-bold symm-points-gradient">SYMM Points</span> and
             <span class="font-bold text-blue-400">Trailblazers XP</span>. The
-            more you stake, the more you earn!
+            more you stake, the more you earn, with up to a
+            <span class="font-bold golden-text">60x multiplier</span> on
+            Trailblazers XP when depositing and locking the
+            <router-link
+              :to="{
+                name: 'pool',
+                params: {
+                  id: '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005',
+                  networkSlug,
+                },
+              }"
+              class="hover:text-blue-400 underline"
+            >
+              80TAIKO-20WETH
+            </router-link>
+            pool!
           </p>
           <p class="mb-2">
             Swaps in eligible pools also rack up
@@ -175,10 +190,7 @@ onMounted(async () => {
             Claim your
             <span class="font-bold symm-points-gradient">SYMM Points</span>
             anytime and redeem them during our exciting
-            <span class="font-bold">Taiko Symmetric token launch</span>. Plus,
-            trade
-            <span class="font-bold text-blue-400">Trailblazers XP</span> for
-            <span class="font-bold">TAIKO</span> at a future date!
+            <span class="font-bold">Taiko Symmetric token launch</span>.
           </p>
         </div>
 
@@ -295,7 +307,7 @@ onMounted(async () => {
     #aa771c
   );
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: shine 3s linear infinite;
   background-size: 200% auto;
 }
