@@ -6,12 +6,12 @@ import { useRouter } from 'vue-router';
 //   //isThursday,
 //   // nextThursday,
 //   //previousThursday,
-//   parseISO,
+//   // parseISO,
 //   subDays,
-//   startOfDay,
-//   nextThursday,
-//   previousThursday,
-//   addWeeks,
+//   // startOfDay,
+//   // nextThursday,
+//   // previousThursday,
+//   // addWeeks,
 // } from 'date-fns';
 
 import { LockType } from '@/components/forms/lock_actions/LockForm/types';
@@ -70,8 +70,23 @@ const {
 
 // const minLockEndDateTimestamp = ref('1734566400');
 
-const maxLockEndDateTimestamp = ref('2024-12-19T00:00:00Z');
+const maxLockEndDateTimestamp = ref(getUnixTimestamp());
 
+function getUnixTimestamp() {
+  const today = new Date();
+  const dayOfWeek = today.getUTCDay();
+  const daysToSubtract = (dayOfWeek + 7 - 4) % 7;
+  const lastThursday = new Date(
+    today.setUTCDate(today.getUTCDate() - daysToSubtract)
+  );
+  lastThursday.setUTCHours(0, 0, 0, 0);
+  const tenWeeksAhead = new Date(
+    lastThursday.getTime() + 10 * 7 * 24 * 60 * 60 * 1000
+  );
+  const tenWeeksAheadTimestamp = Math.floor(tenWeeksAhead.getTime());
+  console.log('tenWeeksAheadTimestamp', tenWeeksAheadTimestamp);
+  return tenWeeksAheadTimestamp;
+}
 /**
  * COMPOSABLES
  */

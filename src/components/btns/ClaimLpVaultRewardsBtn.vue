@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 
-import useProtocolRewardsQuery from '@/composables/queries/useProtocolRewardsQuery';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { FeeDistributor } from '@/services/balancer/contracts/contracts/fee-distributor';
 import { configService } from '@/services/config/config.service';
 import useWeb3 from '@/services/web3/useWeb3';
 
 import TxActionBtn from './TxActionBtn/TxActionBtn.vue';
+import useLpVaultRewardsQuery from '@/composables/queries/useLpVaultRewardsQuery';
+import { useTokens } from '@/providers/tokens.provider';
 
 /**
  * TYPES
@@ -22,6 +23,7 @@ type Props = {
  * PROPS & EMITS
  */
 const props = defineProps<Props>();
+const { balanceFor } = useTokens();
 
 /**
  * SERVICES
@@ -39,8 +41,14 @@ const pointsAddress = configService.network.tokens.Addresses.POINTS || '';
 const { t } = useI18n();
 const { fNum } = useNumbers();
 const { account } = useWeb3();
-const protocolRewardsQuery = useProtocolRewardsQuery();
+const lpVaultRewardsQuery = useLpVaultRewardsQuery();
 
+function onConfirm() {
+  lpVaultRewardsQuery.refetch();
+  if (configService.network.tokens.Addresses.POINTS) {
+    balanceFor(configService.network.tokens.Addresses.POINTS);
+  }
+}
 /**
  * METHODS
  */
@@ -58,7 +66,7 @@ function claimTx() {
     size="sm"
     :actionFn="claimTx"
     :disabled="!pointsAddress || props.pointsAmount === '0'"
-    :onConfirmFn="protocolRewardsQuery.refetch"
+    :onConfirmFn="onConfirm"
     action="claim"
     :summary="`${t('claim')} ${fNum(props.pointsAmount, FNumFormats.token)}`"
     :confirmingLabel="$t('claiming')"
