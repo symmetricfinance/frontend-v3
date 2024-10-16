@@ -31,10 +31,16 @@ export class FeeDistributor {
           '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca', // tSYMM
           '0x8f7D64ea96D729EF24a0F30b4526D47b80d877B9', // USDM
         ]
-      : [
+      : networkSlug === 'meter'
+      ? [
           '0x2077a828fd58025655335a8756dbcfeb7e5bec46', //MTRG-wstMTRG
           '0x663345e09F4F4437F3D5df39BA5c2B5690532206', //mSYMM
-        ];
+        ]
+      : networkSlug === 'taiko'
+      ? [
+          '0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7', // TSPTS
+        ]
+      : [];
 
   constructor(
     public readonly address: string,

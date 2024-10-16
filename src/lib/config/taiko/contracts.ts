@@ -24,6 +24,7 @@ const contracts: Contracts = {
   veBALHelpers: '',
   feeDistributor: '',
   feeDistributorDeprecated: '',
+  rewardDistributor: '0xCDa30664D0Df20b19cB35a834594fA8A6A001e5c',
   faucet: '',
   omniVotingEscrow: '',
   gaugeRewardsHelper: '0x7aE881bea5AaA4e8A1dd7cf1B78B92984C3F28D2',

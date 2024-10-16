@@ -20,6 +20,7 @@ import { GaugePool } from '@/composables/usePointsClaimsData';
 type Props = {
   pointsGauges: PointsGauge[];
   pointsGaugePools: GaugePool[];
+  lpVaultPoints: string;
   isLoading: boolean;
 };
 
@@ -171,6 +172,19 @@ const totalPoints = computed((): string => {
                   <AnimatePresence :isVisible="true">
                     <span
                       >{{ fNum(totalPoints, FNumFormats.token) }} Points</span
+                    >
+                  </AnimatePresence>
+                </BalStack>
+              </BalStack>
+              <BalStack horizontal justify="between" class="rounded-b-lg">
+                <span> Claimable LP Vault Points:</span>
+                <BalStack horizontal spacing="sm" align="center">
+                  <AnimatePresence :isVisible="false">
+                    <BalLoadingBlock class="h-5" />
+                  </AnimatePresence>
+                  <AnimatePresence :isVisible="true">
+                    <span
+                      >{{ fNum(lpVaultPoints, FNumFormats.token) }} Points</span
                     >
                   </AnimatePresence>
                 </BalStack>

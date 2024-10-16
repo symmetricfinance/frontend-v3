@@ -57,6 +57,7 @@ export interface Contracts {
   veBALHelpers: string;
   feeDistributor: string;
   feeDistributorDeprecated: string;
+  rewardDistributor?: string;
   faucet: string;
   gaugeRewardsHelper?: string;
   omniVotingEscrow?: string;

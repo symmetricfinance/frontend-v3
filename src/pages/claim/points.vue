@@ -39,8 +39,21 @@ const { isWalletReady } = useWeb3();
 const {
   gauges: pointsGauges,
   gaugePools: pointsGaugePools,
+  lpVaultRewards,
   isLoading: isPointsClaimsLoading,
 } = usePointsClaimsData();
+
+// console.log(
+//   'lpVaultRewards',
+//   lpVaultRewards.value.v2['0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7']
+// );
+
+const lpVaultPoints = computed(() => {
+  return (
+    lpVaultRewards.value?.v2?.['0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7'] ??
+    '0'
+  );
+});
 
 /**
  * COMPUTED
@@ -255,6 +268,7 @@ onMounted(async () => {
             <PointsRewardsTable
               :pointsGauges="pointsGauges"
               :pointsGaugePools="pointsGaugePools"
+              :lpVaultPoints="lpVaultPoints"
               :isLoading="isPointsClaimsLoading"
             />
           </div>

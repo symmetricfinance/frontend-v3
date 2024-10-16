@@ -9,6 +9,9 @@ import { subgraphFallbackService } from '@/services/balancer/subgraph/subgraph-f
 import { PoolType } from '@symmetric-v3/sdk';
 import QUERY_KEYS from '@/constants/queryKeys';
 import usePointsGaugesDecorationQuery from './queries/usePointsGaugesDecorationQuery';
+import useLpVaultRewardsQuery, {
+  ProtocolRewardsQueryResponse,
+} from './queries/useLpVaultRewardsQuery';
 
 export type GaugePool = {
   id: string;
@@ -27,6 +30,10 @@ type GaugePoolQueryResponse = {
  */
 export function usePointsClaimsData() {
   // Decorate subgraph gauges with current account's claim data, e.g. reward values
+  const lpVaultRewardsQuery = useLpVaultRewardsQuery();
+  const lpVaultRewards = computed(
+    (): ProtocolRewardsQueryResponse => lpVaultRewardsQuery.data.value || {}
+  );
   const gaugesQuery = usePointsGaugesDecorationQuery();
   const gauges = computed((): PointsGauge[] => gaugesQuery.data.value || []);
   const gaugePoolIds = computed((): string[] => {
@@ -68,12 +75,15 @@ export function usePointsClaimsData() {
 
   const isLoading = computed(
     (): boolean =>
-      gaugePools.value.length === 0 || isQueryLoading(gaugePoolQuery)
+      gaugePools.value.length === 0 ||
+      isQueryLoading(gaugePoolQuery) ||
+      isQueryLoading(lpVaultRewardsQuery)
   );
 
   return {
     gauges,
     gaugePools,
+    lpVaultRewards,
     //networkHasProtocolRewards,
     // protocolRewards,
     isLoading,
