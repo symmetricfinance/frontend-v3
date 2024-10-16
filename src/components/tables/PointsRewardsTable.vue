@@ -6,6 +6,7 @@ import { computed } from 'vue';
 // import { ColumnDefinition } from '@/components/_global/BalTable/types';
 
 import ClaimPointsRewardsBtn from '@/components/btns/ClaimRewardsBtn/ClaimPointsRewardsBtn.vue';
+import ClaimLpVaultRewardsBtn from '@/components/btns/ClaimLpVaultRewardsBtn.vue';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { useTokens } from '@/providers/tokens.provider';
 import { bnum } from '@/lib/utils';
@@ -164,7 +165,7 @@ const totalPoints = computed((): string => {
                 </BalStack>
               </BalStack>
               <BalStack horizontal justify="between" class="rounded-b-lg">
-                <span> Claimable Points:</span>
+                <span> Claimable Staking Points:</span>
                 <BalStack horizontal spacing="sm" align="center">
                   <AnimatePresence :isVisible="false">
                     <BalLoadingBlock class="h-5" />
@@ -190,6 +191,7 @@ const totalPoints = computed((): string => {
                 </BalStack>
               </BalStack>
               <BalStack horizontal justify="end" spacing="sm" class="mt-2">
+                <ClaimLpVaultRewardsBtn :pointsAmount="lpVaultPoints" />
                 <ClaimPointsRewardsBtn
                   :gauges="gaugesWithRewardsAddresses"
                   :totalAmount="totalPoints"
