@@ -84,7 +84,11 @@ const isExtendDisabled = computed(() => {
   if (!props.lockType.includes(LockType.EXTEND_LOCK)) return false;
 
   const currentLockEnd = new Date(props.veBalLockInfo.lockedEndDate);
-  const proposedLockEnd = new Date(props.lockEndDate);
+
+  // Handle both date string and Unix timestamp in milliseconds
+  const proposedLockEnd = isNaN(Number(props.lockEndDate))
+    ? new Date(props.lockEndDate)
+    : new Date(Number(props.lockEndDate));
 
   return currentLockEnd >= proposedLockEnd;
 });
