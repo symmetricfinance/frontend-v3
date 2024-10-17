@@ -132,7 +132,8 @@ const totalPoints = computed((): string => {
 
 const futurePoints = computed((): string => {
   if (props.totalSupply.eq(BigNumber.from(0))) return '0';
-  return props.userBalance
+  if (!props.veBalLockInfo?.balanceOf) return '0';
+  return props.veBalLockInfo?.balanceOf
     .mul(props.tokensDistributedInWeek)
     .div(props.totalSupply)
     .toString();
