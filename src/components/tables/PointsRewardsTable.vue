@@ -142,8 +142,6 @@ const futurePoints = computed((): string => {
 const hasVault = computed(() => {
   return props.veBalLockInfo && props.veBalLockInfo.hasExistingLock;
 });
-
-console.log(props.veBalLockInfo?.balanceOf.toString());
 </script>
 
 <template>
@@ -229,21 +227,32 @@ console.log(props.veBalLockInfo?.balanceOf.toString());
                 justify="between"
                 class="rounded-b-lg"
               >
-                <span> Estimated Points:</span>
+                <div>
+                  <span style="margin-right: 5px"> Estimated Points:</span>
+                </div>
+
                 <BalStack horizontal spacing="sm" align="center">
                   <AnimatePresence :isVisible="false">
                     <BalLoadingBlock class="h-5" />
                   </AnimatePresence>
                   <AnimatePresence :isVisible="true">
-                    <span v-if="futurePoints !== '0'">
-                      {{
-                        fNum(
-                          bnum(futurePoints).div(1e18).toString(),
-                          FNumFormats.token
-                        )
-                      }}
-                      Points
-                    </span>
+                    <div class="flex flex-row">
+                      <span v-if="futurePoints !== '0'">
+                        {{
+                          fNum(
+                            bnum(futurePoints).div(1e18).toString(),
+                            FNumFormats.token
+                          )
+                        }}
+                        Points
+                      </span>
+                      <!-- <BalTooltip
+                        :text="$t('getLpVault.weeklyBoost.tooltip')"
+                        iconSize="sm"
+                        class="ml-2"
+                      /> -->
+                    </div>
+
                     <!-- <CheckpointUserBtn
                       v-else-if="hasVault"
                       :futurePoints="futurePoints"
