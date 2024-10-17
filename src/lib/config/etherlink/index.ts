@@ -24,13 +24,13 @@ const config: Config = {
   explorer: 'https://explorer.etherlink.com/',
   explorerName: 'Etherlink Explorer',
   subgraph:
-    'https://gateway.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/4y4fC3k9DMrJ9XYY6Z1Qi8DXJkpRrQuQCjh7zBRhxjQr',
+    'https://gateway.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/deployments/id/QmUqKbDHHKeu5qRLsmQ6RixnEKK3ZuphAZpFTuRxS3WvRL',
   balancerApi: '',
   poolsUrlV2:
     'https://storageapi.fleek.co/johngrantuk-team-bucket/poolsV2.json',
   subgraphs: {
     main: [
-      'https://gateway.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/4y4fC3k9DMrJ9XYY6Z1Qi8DXJkpRrQuQCjh7zBRhxjQr',
+      'https://gateway.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/deployments/id/QmUqKbDHHKeu5qRLsmQ6RixnEKK3ZuphAZpFTuRxS3WvRL',
     ],
     aave: '',
     gauge: '',
