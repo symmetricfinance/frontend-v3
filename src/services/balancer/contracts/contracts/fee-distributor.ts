@@ -1,5 +1,5 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider';
-import { formatUnits } from '@ethersproject/units';
+// import { formatUnits } from '@ethersproject/units';
 import { BigNumber, Contract } from 'ethers';
 import { zipObject } from 'lodash';
 
@@ -115,6 +115,17 @@ export class FeeDistributor {
     });
   }
 
+  public async checkpointUser(
+    userAddress: string
+  ): Promise<TransactionResponse> {
+    return await this.walletService.txBuilder.contract.sendTransaction({
+      contractAddress: this.address,
+      abi: this.abi,
+      action: 'checkpointUser',
+      params: [userAddress],
+    });
+  }
+
   /**
    * @summary Get total token distribution in week.
    * @param {string} token address to check distribution for, either bb-a-USD or BAL
@@ -128,8 +139,8 @@ export class FeeDistributor {
   ): Promise<string> {
     if (!instance) instance = this.getInstance();
     const amount = await instance.getTokensDistributedInWeek(token, timestamp);
-
-    return formatUnits(amount, 18);
+    return amount;
+    // return formatUnits(amount, 18);
   }
 
   /**
@@ -143,7 +154,21 @@ export class FeeDistributor {
   ): Promise<string> {
     if (!instance) instance = this.getInstance();
     const amount = await instance.getTotalSupplyAtTimestamp(timestamp);
+    return amount;
+    // return formatUnits(amount, 18);
+  }
 
-    return formatUnits(amount, 18);
+  public async getUserBalance(
+    userAddress: string,
+    timestamp: number,
+    instance?: Contract
+  ): Promise<string> {
+    if (!instance) instance = this.getInstance();
+    const amount = await instance.getUserBalanceAtTimestamp(
+      userAddress,
+      timestamp
+    );
+    return amount;
+    // return formatUnits(amount, 18);
   }
 }

@@ -10,7 +10,7 @@ import { PoolType } from '@symmetric-v3/sdk';
 import QUERY_KEYS from '@/constants/queryKeys';
 import usePointsGaugesDecorationQuery from './queries/usePointsGaugesDecorationQuery';
 import useLpVaultRewardsQuery, {
-  ProtocolRewardsQueryResponse,
+  LpVaultRewardsQueryResponse,
 } from './queries/useLpVaultRewardsQuery';
 
 export type GaugePool = {
@@ -32,7 +32,7 @@ export function usePointsClaimsData() {
   // Decorate subgraph gauges with current account's claim data, e.g. reward values
   const lpVaultRewardsQuery = useLpVaultRewardsQuery();
   const lpVaultRewards = computed(
-    (): ProtocolRewardsQueryResponse => lpVaultRewardsQuery.data.value || {}
+    (): LpVaultRewardsQueryResponse => lpVaultRewardsQuery.data.value || {}
   );
   const gaugesQuery = usePointsGaugesDecorationQuery();
   const gauges = computed((): PointsGauge[] => gaugesQuery.data.value || []);
@@ -80,12 +80,20 @@ export function usePointsClaimsData() {
       isQueryLoading(lpVaultRewardsQuery)
   );
 
+  // Add this new computed property
+  const hasLpVaultRewards = computed(() => {
+    return (
+      lpVaultRewards.value &&
+      Object.keys(lpVaultRewards.value).length > 0 &&
+      !isLoading.value
+    );
+  });
+
   return {
     gauges,
     gaugePools,
     lpVaultRewards,
-    //networkHasProtocolRewards,
-    // protocolRewards,
+    hasLpVaultRewards, // Add this to the returned object
     isLoading,
   };
 }

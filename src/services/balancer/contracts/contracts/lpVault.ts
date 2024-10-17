@@ -19,12 +19,14 @@ export type VeBalLockInfo = {
   epoch: string;
   hasExistingLock: boolean;
   isExpired: boolean;
+  balanceOf: BigNumber;
 };
 
 export type VeBalLockInfoResult = {
   locked: BigNumber[];
   epoch: BigNumber;
   totalSupply: BigNumber;
+  balanceOf: BigNumber;
 };
 
 export default class VeBAL {
@@ -38,7 +40,10 @@ export default class VeBAL {
     return (toUtcTime(new Date(date)) / 1000).toString();
   }
 
-  public async getLockInfo(account: string): Promise<VeBalLockInfo> {
+  public async getLockInfo(
+    account: string,
+    timestamp: number
+  ): Promise<VeBalLockInfo> {
     const Multicaller = getOldMulticaller();
     const veBalMulticaller = new Multicaller(
       this.service.config.key,
@@ -49,6 +54,12 @@ export default class VeBAL {
     veBalMulticaller.call('locked', this.address, 'locked', [account]);
     veBalMulticaller.call('epoch', this.address, 'epoch');
     veBalMulticaller.call('totalSupply', this.address, 'totalSupply()');
+    veBalMulticaller.call(
+      'balanceOf',
+      this.address,
+      'balanceOf(address,uint256)',
+      [account, timestamp]
+    );
 
     const result = await veBalMulticaller.execute<VeBalLockInfoResult>();
 
@@ -69,6 +80,7 @@ export default class VeBAL {
       epoch: lockInfo.epoch.toString(),
       hasExistingLock,
       isExpired,
+      balanceOf: lockInfo.balanceOf,
     };
   }
 

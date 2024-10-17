@@ -7,6 +7,7 @@ import { computed } from 'vue';
 
 import ClaimPointsRewardsBtn from '@/components/btns/ClaimRewardsBtn/ClaimPointsRewardsBtn.vue';
 import ClaimLpVaultRewardsBtn from '@/components/btns/ClaimLpVaultRewardsBtn.vue';
+// import CheckpointUserBtn from '@/components/btns/CheckpointUserBtn.vue';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { useTokens } from '@/providers/tokens.provider';
 import { bnum } from '@/lib/utils';
@@ -14,6 +15,8 @@ import { PointsGauge } from '@/services/balancer/gauges/types';
 import { configService } from '@/services/config/config.service';
 import AnimatePresence from '@/components/animate/AnimatePresence.vue';
 import { GaugePool } from '@/composables/usePointsClaimsData';
+import { BigNumber } from '@ethersproject/bignumber';
+import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/lpVault';
 
 /**
  * TYPES
@@ -22,6 +25,10 @@ type Props = {
   pointsGauges: PointsGauge[];
   pointsGaugePools: GaugePool[];
   lpVaultPoints: string;
+  userBalance: BigNumber;
+  totalSupply: BigNumber;
+  tokensDistributedInWeek: BigNumber;
+  veBalLockInfo: VeBalLockInfo | undefined;
   isLoading: boolean;
 };
 
@@ -122,6 +129,20 @@ const totalPoints = computed((): string => {
     .reduce((acc, reward) => acc.plus(bnum(reward.amount)), bnum('0'))
     .toString();
 });
+
+const futurePoints = computed((): string => {
+  if (props.totalSupply.eq(BigNumber.from(0))) return '0';
+  return props.userBalance
+    .mul(props.tokensDistributedInWeek)
+    .div(props.totalSupply)
+    .toString();
+});
+
+const hasVault = computed(() => {
+  return props.veBalLockInfo && props.veBalLockInfo.hasExistingLock;
+});
+
+console.log(props.veBalLockInfo?.balanceOf.toString());
 </script>
 
 <template>
@@ -177,21 +198,63 @@ const totalPoints = computed((): string => {
                   </AnimatePresence>
                 </BalStack>
               </BalStack>
-              <BalStack horizontal justify="between" class="rounded-b-lg">
+              <BalStack
+                v-if="hasVault && lpVaultPoints !== '0'"
+                horizontal
+                justify="between"
+                class="rounded-b-lg"
+              >
                 <span> Claimable LP Vault Points:</span>
                 <BalStack horizontal spacing="sm" align="center">
                   <AnimatePresence :isVisible="false">
                     <BalLoadingBlock class="h-5" />
                   </AnimatePresence>
                   <AnimatePresence :isVisible="true">
-                    <span
-                      >{{ fNum(lpVaultPoints, FNumFormats.token) }} Points</span
-                    >
+                    <span>
+                      {{
+                        fNum(
+                          bnum(lpVaultPoints).div(1e18).toString(),
+                          FNumFormats.token
+                        )
+                      }}
+                      Points
+                    </span>
+                  </AnimatePresence>
+                </BalStack>
+              </BalStack>
+              <BalStack
+                v-if="hasVault && futurePoints !== '0'"
+                horizontal
+                justify="between"
+                class="rounded-b-lg"
+              >
+                <span> Estimated Points:</span>
+                <BalStack horizontal spacing="sm" align="center">
+                  <AnimatePresence :isVisible="false">
+                    <BalLoadingBlock class="h-5" />
+                  </AnimatePresence>
+                  <AnimatePresence :isVisible="true">
+                    <span v-if="futurePoints !== '0'">
+                      {{
+                        fNum(
+                          bnum(futurePoints).div(1e18).toString(),
+                          FNumFormats.token
+                        )
+                      }}
+                      Points
+                    </span>
+                    <!-- <CheckpointUserBtn
+                      v-else-if="hasVault"
+                      :futurePoints="futurePoints"
+                    /> -->
                   </AnimatePresence>
                 </BalStack>
               </BalStack>
               <BalStack horizontal justify="end" spacing="sm" class="mt-2">
-                <ClaimLpVaultRewardsBtn :pointsAmount="lpVaultPoints" />
+                <ClaimLpVaultRewardsBtn
+                  v-if="lpVaultPoints !== '0'"
+                  :pointsAmount="bnum(lpVaultPoints).div(1e18).toString()"
+                />
                 <ClaimPointsRewardsBtn
                   :gauges="gaugesWithRewardsAddresses"
                   :totalAmount="totalPoints"

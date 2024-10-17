@@ -1,5 +1,6 @@
 import { computed, reactive } from 'vue';
-import { useQuery, UseQueryOptions } from '@tanstack/vue-query';
+import { QueryFunction, useQuery, UseQueryOptions } from '@tanstack/vue-query';
+import { BigNumber } from '@ethersproject/bignumber';
 
 import QUERY_KEYS from '@/constants/queryKeys';
 import { FeeDistributor } from '@/services/balancer/contracts/contracts/fee-distributor';
@@ -12,12 +13,15 @@ import { networkId } from '../useNetwork';
 /**
  * TYPES
  */
-export type ProtocolRewardsQueryResponse = {
+export type LpVaultRewardsQueryResponse = {
   v1?: BalanceMap;
   v2?: BalanceMap;
+  userBalance?: BigNumber;
+  tokensDistributedInWeek?: BigNumber;
+  totalSupply?: BigNumber;
 };
 
-type QueryOptions = UseQueryOptions<ProtocolRewardsQueryResponse>;
+type QueryOptions = UseQueryOptions<LpVaultRewardsQueryResponse>;
 
 /**
  * SERVICES
@@ -63,11 +67,49 @@ export default function useProtocolRewardsQuery(options: QueryOptions = {}) {
    */
   const queryFn = async () => {
     try {
-      const [v2] = await Promise.all([
-        rewardDistributor?.getClaimableBalances(account.value) ??
-          Promise.resolve({}),
-      ]);
-      return { v2 };
+      // Function to get last Thursday midnight UTC
+      const getLastThursdayMidnight = () => {
+        const now = new Date();
+        const lastThursday = new Date(
+          now.setDate(now.getDate() - ((now.getDay() + 3) % 7))
+        );
+        lastThursday.setUTCHours(0, 0, 0, 0);
+        return Math.floor(lastThursday.getTime() / 1000); // Convert to unix timestamp
+      };
+
+      const lastThursdayTimestamp = getLastThursdayMidnight();
+      console.log('lastThursdayTimestamp', lastThursdayTimestamp);
+
+      const pointsAddress = configService.network.tokens.Addresses.POINTS;
+
+      const [v2, userBalance, tokensDistributedInWeek, totalSupply] =
+        await Promise.all([
+          rewardDistributor?.getClaimableBalances(account.value) ??
+            Promise.resolve({}),
+          rewardDistributor?.getUserBalance(
+            account.value,
+            lastThursdayTimestamp
+          ) ?? Promise.resolve(BigNumber.from(0)),
+          rewardDistributor?.getTokensDistributedInWeek(
+            pointsAddress as string,
+            lastThursdayTimestamp
+          ) ?? Promise.resolve(BigNumber.from(0)),
+          rewardDistributor?.getTotalSupply(lastThursdayTimestamp) ??
+            Promise.resolve(BigNumber.from(0)),
+        ]);
+      console.log('v2', v2);
+      console.log('userBalance', userBalance.toString());
+      console.log(
+        'tokensDistributedInWeek',
+        tokensDistributedInWeek.toString()
+      );
+      console.log('totalSupply', totalSupply.toString());
+      return {
+        v2,
+        userBalance: userBalance,
+        tokensDistributedInWeek: tokensDistributedInWeek,
+        totalSupply: totalSupply,
+      };
     } catch (error) {
       console.error('Failed to fetch claimable protocol balances', error);
       return {};
@@ -82,9 +124,9 @@ export default function useProtocolRewardsQuery(options: QueryOptions = {}) {
     ...options,
   });
 
-  return useQuery<ProtocolRewardsQueryResponse>(
+  return useQuery<LpVaultRewardsQueryResponse>(
     queryKey,
-    queryFn,
+    queryFn as QueryFunction<LpVaultRewardsQueryResponse>,
     queryOptions as QueryOptions
   );
 }

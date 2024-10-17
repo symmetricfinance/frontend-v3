@@ -21,6 +21,8 @@ import {
 } from '@/composables/usePoolHelpers';
 import { PoolToken } from '@/services/pool/types';
 import router from '@/plugins/router';
+import { BigNumber } from '@ethersproject/bignumber';
+import useLpVaultQuery from '@/composables/queries/useLPVaultLockInfoQuery';
 /**
  * TYPES
  */
@@ -43,10 +45,11 @@ const {
   isLoading: isPointsClaimsLoading,
 } = usePointsClaimsData();
 
-// console.log(
-//   'lpVaultRewards',
-//   lpVaultRewards.value.v2['0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7']
-// );
+const lpVaultLockInfoQuery = useLpVaultQuery();
+const lpVaultQueryLoading = computed(
+  () => lpVaultLockInfoQuery.isLoading.value
+);
+const lpVaultLockInfo = computed(() => lpVaultLockInfoQuery.data.value);
 
 const lpVaultPoints = computed(() => {
   return (
@@ -55,11 +58,25 @@ const lpVaultPoints = computed(() => {
   );
 });
 
+const userBalance = computed(() => {
+  return lpVaultRewards.value?.userBalance ?? BigNumber.from(0);
+});
+
+const totalSupply = computed(() => {
+  return lpVaultRewards.value?.totalSupply ?? BigNumber.from(0);
+});
+
+const tokensDistributedInWeek = computed(() => {
+  return lpVaultRewards.value?.tokensDistributedInWeek ?? BigNumber.from(0);
+});
+
 /**
  * COMPUTED
  */
 const loading = computed(
-  (): boolean => isPointsClaimsLoading.value && isWalletReady.value
+  (): boolean =>
+    (isPointsClaimsLoading.value || lpVaultQueryLoading.value) &&
+    isWalletReady.value
 );
 
 // const pointsAddress = computed(
@@ -269,6 +286,10 @@ onMounted(async () => {
               :pointsGauges="pointsGauges"
               :pointsGaugePools="pointsGaugePools"
               :lpVaultPoints="lpVaultPoints"
+              :userBalance="userBalance"
+              :totalSupply="totalSupply"
+              :tokensDistributedInWeek="tokensDistributedInWeek"
+              :veBalLockInfo="lpVaultLockInfo"
               :isLoading="isPointsClaimsLoading"
             />
           </div>

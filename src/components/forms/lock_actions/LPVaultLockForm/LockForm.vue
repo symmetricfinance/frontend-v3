@@ -135,7 +135,7 @@ const goToPoolPage = () => {
           v-else-if="veBalLockInfo?.hasExistingLock"
           :veBalLockInfo="veBalLockInfo"
           :lockablePool="lockablePool"
-          :lockablePoolTokenInfo="lockablePoolTokenInfo"
+          :lockablePoolTokenInfo="lockablePoolTokenInfo || undefined"
         />
 
         <BalLoadingBlock
