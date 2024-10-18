@@ -17,7 +17,7 @@ const config: Config = {
   network: 'vana-moksha',
   trustWalletNetwork: 'vana-moksha',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: true,
   rpc: `https://rpc.moksha.vana.org`,
   ws: ``,
