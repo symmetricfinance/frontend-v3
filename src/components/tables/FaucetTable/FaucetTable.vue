@@ -58,13 +58,13 @@ const columns = ref<ColumnDefinition<any>[]>([
     width: 150,
     accessor: ({ balance }) => `${fNum(balance, FNumFormats.token)}`,
   },
-  {
-    name: t('value'),
-    id: 'value',
-    align: 'right',
-    width: 150,
-    accessor: ({ value }) => fNum(value, FNumFormats.fiat),
-  },
+  // {
+  //   name: t('value'),
+  //   id: 'value',
+  //   align: 'right',
+  //   width: 150,
+  //   accessor: ({ value }) => fNum(value, FNumFormats.fiat),
+  // },
   {
     name: 'Drip',
     id: 'drip',
