@@ -5,14 +5,30 @@
     :class="['app-nav-alert', classes]"
     @click="handleClick"
   >
-    <div class="flex flex-1 md:justify-center fade-in-slow">
-      <BalIcon v-if="iconName" :name="iconName" class="mr-3" />
-      <div>
+    <div
+      :class="[
+        'flex flex-1 md:justify-center fade-in-slow',
+        { 'flex-col items-center': isInfoType },
+      ]"
+    >
+      <BalIcon
+        v-if="iconName"
+        :name="iconName"
+        :class="{ 'mr-3': !isInfoType, 'mb-2': isInfoType }"
+      />
+      <div :class="{ 'text-center': isInfoType }">
         <p class="alert-label">
           {{ alert.label }}
+          <a
+            v-if="isInfoType && alert.action && alert.actionLabel"
+            href="#"
+            class="ml-1 underline"
+            @click.prevent="alert.action"
+            >{{ alert.actionLabel }}</a
+          >
         </p>
         <BalBtn
-          v-if="alert.action && alert.actionLabel"
+          v-if="!isInfoType && alert.action && alert.actionLabel"
           class="cursor-pointer"
           color="white"
           size="xs"
@@ -65,10 +81,13 @@ export default defineComponent({
       }
     });
 
+    const isInfoType = computed(() => props.alert.type === AlertType.INFO);
+
     const classes = computed(() => {
       return {
         [colorClass.value]: true,
         'cursor-pointer': props.alert.actionOnClick,
+        'items-center': isInfoType.value,
       };
     });
 
@@ -82,7 +101,7 @@ export default defineComponent({
       }
     }
 
-    return { classes, iconName, handleClose, handleClick };
+    return { classes, iconName, handleClose, handleClick, isInfoType };
   },
 });
 </script>
@@ -96,5 +115,9 @@ export default defineComponent({
 
 .alert-label {
   @apply font-medium pb-1 block md:inline pr-4;
+}
+
+.alert-label a {
+  @apply text-white font-bold;
 }
 </style>

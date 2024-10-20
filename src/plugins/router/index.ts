@@ -20,6 +20,7 @@ const PoolWithdrawPage = () => import('@/pages/pool/withdraw.vue');
 const PrivacyPolicyPage = () => import('@/pages/privacy-policy.vue');
 const TermsOfUsePage = () => import('@/pages/terms-of-use.vue');
 const RisksPage = () => import('@/pages/risks.vue');
+const UKDisclaimerPage = () => import('@/pages/uk-disclaimer.vue');
 const SwapPage = () => import('@/pages/swap.vue');
 
 export const SwapPagePrefetchLinks = async () =>
@@ -73,6 +74,12 @@ const routes: RouteRecordRaw[] = [
     path: '/risks',
     name: 'risks',
     component: RisksPage,
+    meta: { layout: 'ContentLayout' },
+  },
+  {
+    path: '/uk-disclaimer',
+    name: 'uk-disclaimer',
+    component: UKDisclaimerPage,
     meta: { layout: 'ContentLayout' },
   },
   {

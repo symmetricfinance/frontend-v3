@@ -1,6 +1,7 @@
 // import { EthereumTransactionData } from 'bnc-sdk/dist/types/src/interfaces';
 import { watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 import { BLOCKED_ADDRESSES } from '@/constants/blocked';
 import { includesAddress } from '@/lib/utils';
@@ -11,9 +12,12 @@ import useAlerts, { AlertPriority, AlertType } from '../useAlerts';
 // import { useTokens } from '@/providers/tokens.provider';
 import useTransactions from '../useTransactions';
 
+import { isLikelyInUK } from '@/services/location/location.service';
+
 export default function useWeb3Watchers() {
   // COMPOSABLES
   const { t } = useI18n();
+  const router = useRouter(); // Add this line
   // const { blocknative, supportsBlocknative } = useBlocknative();
   const {
     appNetworkConfig,
@@ -82,6 +86,23 @@ export default function useWeb3Watchers() {
     }
   }
 
+  // Add this new function
+  function checkUserLocation() {
+    if (isLikelyInUK()) {
+      addAlert({
+        id: 'uk-disclaimer',
+        label: t('ukDisclaimer'),
+        type: AlertType.INFO,
+        persistent: true,
+        action: () => router.push('/uk-disclaimer'),
+        actionLabel: t('viewUkDisclaimer'),
+        priority: AlertPriority.MEDIUM,
+      });
+    } else {
+      removeAlert('uk-disclaimer');
+    }
+  }
+
   // Watch for user account change:
   // -> Unsubscribe Blocknative from old account if exits
   // -> Listen to new account for transactions and update balances
@@ -124,6 +145,7 @@ export default function useWeb3Watchers() {
   watch(isWalletReady, () => {
     checkIsUnsupportedNetwork();
     checkIfSubgraphIsUnsynced();
+    checkUserLocation(); // Add this line
   });
 
   watch(blockNumber, async () => {
