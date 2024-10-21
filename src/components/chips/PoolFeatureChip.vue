@@ -39,7 +39,7 @@ function getFeatureLabel(): string {
     case PoolFeature.Boosted:
       return t('boosted');
     case PoolFeature.Points:
-      return 'SYMM Points';
+      return `<span class="block leading-tight">40K<br>SYMM Points</span>`;
     case PoolFeature.TBXP:
       return '';
     case PoolFeature.CLP:
@@ -65,6 +65,6 @@ function getFeatureLabel(): string {
       :size="16"
       :ringSize="1"
     />
-    <span class="text-xs font-semibold">{{ getFeatureLabel() }}</span>
+    <span class="text-xs font-semibold" v-html="getFeatureLabel()"></span>
   </div>
 </template>
