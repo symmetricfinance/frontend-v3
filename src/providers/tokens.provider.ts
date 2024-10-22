@@ -415,6 +415,9 @@ export const tokensProvider = (
    */
   function priceFor(address: string): number {
     try {
+      if (address === networkConfig.tokens.Addresses.nativeAsset) {
+        address = networkConfig.tokens.Addresses.wNativeAsset;
+      }
       const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
@@ -430,6 +433,9 @@ export const tokensProvider = (
    */
   function injectedPriceFor(address: string): number {
     try {
+      if (address === networkConfig.tokens.Addresses.nativeAsset) {
+        address = networkConfig.tokens.Addresses.wNativeAsset;
+      }
       const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
