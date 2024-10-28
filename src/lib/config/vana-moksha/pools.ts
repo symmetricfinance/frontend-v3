@@ -15,7 +15,9 @@ const pools: Pools = {
   DynamicFees: {
     Gauntlet: [],
   },
-  BlockList: [''],
+  BlockList: [
+    '0xe9b5659a77148a7ec25de40388d0bf9e89331ad0000000000000000000000003', //USDC-USDT
+  ],
   IncludedPoolTypes: [
     'Weighted',
     'Stable',
@@ -28,7 +30,7 @@ const pools: Pools = {
   ],
   Stable: {
     AllowList: [
-      '0xe9b5659a77148a7ec25de40388d0bf9e89331ad0000000000000000000000003', //USDC-USDT
+      // '0xe9b5659a77148a7ec25de40388d0bf9e89331ad0000000000000000000000003', //USDC-USDT
     ],
   },
 
@@ -40,6 +42,7 @@ const pools: Pools = {
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
     AllowList: [
       '0xd31a782e34c342a8d6d0108b1430f31b3ef3a995000200000000000000000002', //WVANA-USDC
+      '0x47476aacdb93863f25e0e9545f36d1bd5c1381f2000200000000000000000004', //VANA-VOL
     ],
   },
   Factories: {
