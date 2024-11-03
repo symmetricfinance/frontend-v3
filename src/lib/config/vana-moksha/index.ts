@@ -19,7 +19,7 @@ const config: Config = {
   unknown: false,
   visibleInUI: false,
   testNetwork: true,
-  rpc: `https://rpc.moksha.vana.org`,
+  rpc: `https://moksha-vana-rpc.tech-coha05.xyz`,
   ws: ``,
   explorer: 'https://moksha.vanascan.io/',
   explorerName: 'Vanascan',
