@@ -67,7 +67,7 @@ export default function useVotingPoolsQuery(
         apiVotingPools = veBalGetVotingList;
       }
 
-      const batchSize = 5;
+      const batchSize = 4;
       const gaugeControllerDecorator = new GaugeControllerDecorator();
       let pools: VotingPoolWithVotes[] = [];
 
