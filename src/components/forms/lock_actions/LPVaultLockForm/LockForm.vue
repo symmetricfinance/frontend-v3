@@ -74,16 +74,28 @@ const goToPoolPage = () => {
         <!-- New introduction and description with lighter text -->
         <div class="mb-6">
           <h2 class="mb-4 text-3xl font-bold">
-            Unlock Massive Rewards with Symmetric Taiko LP Vault!
+            Unlock Massive Rewards with Symmetric Taiko LP Vault Season 3!
           </h2>
           <div class="py-4 text-white rounded-lg shadow-md">
-            <h2 class="mb-4 text-2xl font-bold">How it Works</h2>
+            <h2 class="mb-4 text-2xl font-bold">Important Update</h2>
+            <p class="mb-4 text-yellow-300">
+              Season 2 is ending on Monday, December 16th at 00:00 UTC. All
+              Season 2 lockers will be able to unlock their LP tokens and
+              participate in Season 3 for enhanced rewards!
+            </p>
+
+            <p class="mb-4">
+              Season 3 starts on December 16th at 00:01 UTC and runs until March
+              17th, 2025 00:00 UTC. Don't miss out on this extended period of
+              enhanced rewards!
+            </p>
+
+            <h2 class="mb-4 text-2xl font-bold">How Season 3 Works</h2>
             <p class="mb-2">
               Boost your earnings by locking your
-              <span class="font-bold">80TAIKO-20WETH LP tokens</span> in a
-              Symmetric Taiko LP Vault until
-              <span class="font-bold">December 19th</span>. You'll enjoy a
-              <span class="text-lg font-bold gold-effect">60x multiplier</span>
+              <span class="font-bold">80TAIKO-20WETH LP tokens</span> in the
+              Symmetric Taiko LP Vault Season 3. You'll enjoy an increased
+              <span class="text-lg font-bold gold-effect">90x multiplier</span>
               on your
               <span class="font-bold text-blue-400">Taiko Trailblazers XP</span>
               based on the value of your locked tokens.
@@ -100,11 +112,9 @@ const goToPoolPage = () => {
               <span class="font-bold symm-points-gradient">SYMM Points</span>.
             </p>
             <p class="mb-2">
-              Lock your tokens now to supercharge your
-              <span class="font-bold text-blue-400">Trailblazers XP</span> and
-              maximize your
-              <span class="font-bold symm-points-gradient">SYMM Points</span>
-              rewards throughout the campaign!
+              If you're a Season 2 participant, make sure to unlock your tokens
+              after Season 2 ends and create a new vault for Season 3 to take
+              advantage of the increased 90x multiplier!
             </p>
             <div class="mt-6">
               <button

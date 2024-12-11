@@ -27,7 +27,7 @@ type Props = {
  * PROPS
  */
 const props = defineProps<Props>();
-const displayLockEndDate = ref('1734566400000');
+const displayLockEndDate = ref('1734307200000');
 
 /**
  * COMPOSABLES

@@ -128,7 +128,6 @@ const lockType = computed(() => {
     if (isExtendedLockEndDate.value) {
       return [LockType.EXTEND_LOCK];
     }
-    console.log('isIncreasedLockAmount.value', isIncreasedLockAmount.value);
     if (isIncreasedLockAmount.value) {
       return [LockType.INCREASE_LOCK];
     }
@@ -197,7 +196,12 @@ function navigateToLPTokenPage() {
 </script>
 
 <template>
-  <BalCard shadow="xl" exposeOverflow noBorder>
+  <BalCard
+    v-if="props.veBalLockInfo?.hasExistingLock"
+    shadow="xl"
+    exposeOverflow
+    noBorder
+  >
     <template #header>
       <div class="w-full">
         <div class="flex justify-between items-center">
