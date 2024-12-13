@@ -1328,10 +1328,10 @@
       "steps": {
         "investPart1": "Add liquidity to the",
         "investPart2": "pool.",
-        "lock": "Lock-up the resulting LP token ({0}). Your tokens can be unlocked from midnight UTC on Thursday December 19th 2024"
+        "lock": "Lock-up the resulting LP token ({0}). Your tokens can be unlocked from midnight UTC on Monday March 17th 2025"
       },
       "earn": {
-        "boost": "Taiko LP Vault holders can earn up to a 60x trailbalzers XP multiplier on the value of their tokens locked in the vault as well as a higher rate of SYMM points rewards",
+        "boost": "Taiko LP Vault holders can earn up to a 90x trailbalzers XP multiplier on the value of their tokens locked in the vault as well as a higher rate of SYMM points rewards",
         "voting": "Each week from Thursday 00:00 UTC you will be able to apply a boost to your Vault to increase your share of the weekly SYMM points rewards"
       }
     },
