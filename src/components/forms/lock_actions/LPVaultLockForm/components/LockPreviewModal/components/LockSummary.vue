@@ -35,7 +35,7 @@ const props = defineProps<Props>();
 const { fNum } = useNumbers();
 // const { veBalTokenInfo } = useVeBal();
 
-const lockEndTimestamp = ref(1734307200000);
+const lockEndTimestamp = ref(1742169600000);
 
 /**
  * COMPUTED

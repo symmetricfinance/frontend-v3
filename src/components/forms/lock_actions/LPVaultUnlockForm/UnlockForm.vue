@@ -69,3 +69,4 @@ const isLoading = computed(() =>
     :veBalLockInfo="veBalLockInfo"
   />
 </template>
+

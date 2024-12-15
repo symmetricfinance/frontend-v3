@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import useVeBalLockInfoQuery from '@/composables/queries/useVeBalLockInfoQuery';
+import useVeBalLockInfoQuery from '@/composables/queries/useOldLPVaultLockInfoQuery';
 import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
 import { Pool } from '@/services/pool/types';
 import { TokenInfo } from '@/types/TokenList';
