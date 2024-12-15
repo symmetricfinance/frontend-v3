@@ -66,6 +66,32 @@ export default class VeBAL {
     return this.formatLockInfo(result);
   }
 
+  public async getOldLockInfo(
+    account: string,
+    timestamp: number
+  ): Promise<VeBalLockInfo> {
+    const Multicaller = getOldMulticaller();
+    const veBalMulticaller = new Multicaller(
+      this.service.config.key,
+      this.service.provider,
+      veBalAbi
+    );
+
+    veBalMulticaller.call('locked', this.oldAddress, 'locked', [account]);
+    veBalMulticaller.call('epoch', this.oldAddress, 'epoch');
+    veBalMulticaller.call('totalSupply', this.oldAddress, 'totalSupply()');
+    veBalMulticaller.call(
+      'balanceOf',
+      this.oldAddress,
+      'balanceOf(address,uint256)',
+      [account, timestamp]
+    );
+
+    const result = await veBalMulticaller.execute<VeBalLockInfoResult>();
+
+    return this.formatLockInfo(result);
+  }
+
   public formatLockInfo(lockInfo: VeBalLockInfoResult) {
     const [lockedAmount, lockedEndDate] = lockInfo.locked;
 
@@ -130,13 +156,17 @@ export default class VeBAL {
   ): Promise<TransactionResponse> {
     const txBuilder = new TransactionBuilder(userProvider.getSigner());
     return await txBuilder.contract.sendTransaction({
-      contractAddress: this.address,
+      contractAddress: this.service.config.addresses.lpVault || '',
       abi: veBalAbi as ContractInterface,
       action: 'withdraw',
     });
   }
 
   public get address(): string {
+    return this.service.config.addresses.lpVault2 || '';
+  }
+
+  public get oldAddress(): string {
     return this.service.config.addresses.lpVault || '';
   }
 }

@@ -27,7 +27,7 @@ type Props = {
  * PROPS
  */
 const props = defineProps<Props>();
-const displayLockEndDate = ref('1734307200000');
+const displayLockEndDate = ref('1742169600000');
 
 /**
  * COMPOSABLES
@@ -61,12 +61,12 @@ const lockEndDate = computed(() => {
     today.setUTCDate(today.getUTCDate() - daysToSubtract)
   );
   lastThursday.setUTCHours(0, 0, 0, 0);
-  const tenWeeksAhead = new Date(
-    lastThursday.getTime() + 10 * 7 * 24 * 60 * 60 * 1000
+  const fourteenWeeksAhead = new Date(
+    lastThursday.getTime() + 14 * 7 * 24 * 60 * 60 * 1000
   );
-  const tenWeeksAheadTimestamp = Math.floor(tenWeeksAhead.getTime());
-  console.log('tenWeeksAheadTimestamp', tenWeeksAheadTimestamp);
-  return tenWeeksAheadTimestamp;
+  const fourteenWeeksAheadTimestamp = Math.floor(fourteenWeeksAhead.getTime());
+  console.log('fourteenWeeksAheadTimestamp', fourteenWeeksAheadTimestamp);
+  return fourteenWeeksAheadTimestamp;
 });
 
 const isLockAlreadyExtended = computed(() => {

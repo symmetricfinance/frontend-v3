@@ -14,6 +14,7 @@ import HowToLock from './components/HowToLock.vue';
 import MyVeBAL from './components/MyVeBAL.vue';
 import VeBalForm from './components/VeBalForm/VeBalForm.vue';
 import { ref } from 'vue';
+import UnlockForm from '../LPVaultUnlockForm/UnlockForm.vue';
 
 /**
  * COMPOSABLES
@@ -140,7 +141,10 @@ const goToPoolPage = () => {
       </div>
 
       <div class="lg:col-span-5 space-y-6">
+        <UnlockForm v-if="veBalLockInfo?.hasExistingLock" />
+
         <BalLoadingBlock v-if="isLoading" class="h-64" />
+
         <MyVeBAL
           v-else-if="veBalLockInfo?.hasExistingLock"
           :veBalLockInfo="veBalLockInfo"
