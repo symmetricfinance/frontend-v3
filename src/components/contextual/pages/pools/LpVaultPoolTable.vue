@@ -38,7 +38,7 @@ const lockPools = computed<Pool[]>(() => {
           ? props.lock?.lockedEndDate
           : undefined,
     });
-    pool.lockedEndDate = 1734566400000;
+    pool.lockedEndDate = 1742169600000;
     if (pool.apr && props.lock?.hasExistingLock && !props.lock?.isExpired) {
       const currentTime = Math.floor(Date.now() / 1000); // Get current Unix timestamp
       const startOfWeek = roundDownToThursday(currentTime); // Round down to start of the week (Thursday midnight UTC)
@@ -80,7 +80,7 @@ const hiddenColumns = ['poolVolume', 'migrate', 'actions', 'myBoost', 'apr'];
   <div>
     <BalStack vertical spacing="sm">
       <h5 class="px-4 xl:px-0">
-        {{ 'Taiko LP Vault liquidity' }}
+        {{ 'Taiko Season 3 LP Vault liquidity' }}
       </h5>
       <PoolsTable
         :key="poolsToRenderKey"

@@ -80,12 +80,12 @@ function getUnixTimestamp() {
     today.setUTCDate(today.getUTCDate() - daysToSubtract)
   );
   lastThursday.setUTCHours(0, 0, 0, 0);
-  const tenWeeksAhead = new Date(
-    lastThursday.getTime() + 10 * 7 * 24 * 60 * 60 * 1000
+  const fourteenWeeksAhead = new Date(
+    lastThursday.getTime() + 14 * 7 * 24 * 60 * 60 * 1000
   );
-  const tenWeeksAheadTimestamp = Math.floor(tenWeeksAhead.getTime());
-  console.log('tenWeeksAheadTimestamp', tenWeeksAheadTimestamp);
-  return tenWeeksAheadTimestamp;
+  const fourteenWeeksAheadTimestamp = Math.floor(fourteenWeeksAhead.getTime());
+  console.log('fourteenWeeksAheadTimestamp', fourteenWeeksAheadTimestamp);
+  return fourteenWeeksAheadTimestamp;
 }
 /**
  * COMPOSABLES
@@ -178,7 +178,7 @@ const lockTitle = computed(() => {
   if (props.veBalLockInfo?.hasExistingLock) {
     return 'Add to your Vault';
   }
-  return 'Create your Vault';
+  return 'Create your S3 Vault';
 });
 
 const buttonLabel = computed(() => {
@@ -196,13 +196,13 @@ function navigateToLPTokenPage() {
 </script>
 
 <template>
-  <BalCard v-if="false" shadow="xl" exposeOverflow noBorder>
+  <BalCard shadow="xl" exposeOverflow noBorder>
     <template #header>
       <div class="w-full">
         <div class="flex justify-between items-center">
-          <h6>
+          <h5>
             {{ lockTitle }}
-          </h6>
+          </h5>
           <BalLink
             href="#"
             external

@@ -196,7 +196,7 @@ onMounted(async () => {
             <span class="font-bold symm-points-gradient">SYMM Points</span> and
             <span class="font-bold text-blue-400">Trailblazers XP</span>. The
             more you stake, the more you earn, with up to a
-            <span class="font-bold golden-text">60x multiplier</span> on
+            <span class="font-bold golden-text">90x multiplier</span> on
             Trailblazers XP when depositing and locking the
             <router-link
               :to="{
@@ -268,7 +268,7 @@ onMounted(async () => {
                     v-if="isLpVaultPool(pool.id)"
                     class="text-sm golden-text"
                   >
-                    60x Trailblazers XP
+                    90x Trailblazers XP
                   </div>
                   <div v-else class="flex text-sm">Trailblazers XP</div>
                 </div>

@@ -16,6 +16,7 @@ const contracts: Contracts = {
   batchRelayer: taiko.BalancerRelayer,
   veBAL: '',
   lpVault: '0xc0A740cDd1C647d9c77367E47f0D0c253140E6e3',
+  lpVault2: '0x9A287E33d7c5Dd701f47731BeCe88bb0Ee1e06fC',
   gaugeController: '',
   gaugeFactory: '',
   balancerMinter: '',

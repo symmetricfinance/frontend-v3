@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 
 import usePoolQuery from '@/composables/queries/usePoolQuery';
 import useVeBalLockInfoQuery from '@/composables/queries/useLPVaultLockInfoQuery';
+import useOldVeBalLockInfoQuery from '@/composables/queries/useOldLPVaultLockInfoQuery';
 // import useBreakpoints from '@/composables/useBreakpoints';
 import { useTokens } from '@/providers/tokens.provider';
 // import useVeBal from '@/composables/useVeBAL';
@@ -14,6 +15,7 @@ import HowToLock from './components/HowToLock.vue';
 import MyVeBAL from './components/MyVeBAL.vue';
 import VeBalForm from './components/VeBalForm/VeBalForm.vue';
 import { ref } from 'vue';
+import UnlockForm from '../LPVaultUnlockForm/UnlockForm.vue';
 
 /**
  * COMPOSABLES
@@ -32,6 +34,7 @@ const lockablePoolId = ref(
 
 const lockablePoolQuery = usePoolQuery(lockablePoolId.value as string);
 const veBalLockInfoQuery = useVeBalLockInfoQuery();
+const oldVeBalLockInfoQuery = useOldVeBalLockInfoQuery();
 
 /**
  * COMPUTED
@@ -51,7 +54,7 @@ const lockablePoolTokenInfo = computed(() =>
 );
 
 const veBalLockInfo = computed(() => veBalLockInfoQuery.data.value);
-
+const oldVeBalLockInfo = computed(() => oldVeBalLockInfoQuery.data.value);
 const isLoading = computed(() =>
   isWalletReady.value
     ? lockablePoolLoading.value || veBalQueryLoading.value
@@ -74,20 +77,18 @@ const goToPoolPage = () => {
         <!-- New introduction and description with lighter text -->
         <div class="mb-6">
           <h2 class="mb-4 text-3xl font-bold">
-            Unlock Massive Rewards with Symmetric Taiko LP Vault Season 3!
+            Symmetric Taiko LP Vault Season 3 is Live!
           </h2>
           <div class="py-4 text-white rounded-lg shadow-md">
-            <h2 class="mb-4 text-2xl font-bold">Important Update</h2>
+            <h2 class="mb-4 text-2xl font-bold">
+              Attention Season 2 Participants!
+            </h2>
             <p class="mb-4 text-yellow-300">
-              Season 2 is ending on Monday, December 16th at 00:00 UTC. All
-              Season 2 lockers will be able to unlock their LP tokens and
-              participate in Season 3 for enhanced rewards!
-            </p>
-
-            <p class="mb-4">
-              Season 3 starts on December 16th at 00:01 UTC and runs until March
-              17th, 2025 00:00 UTC. Don't miss out on this extended period of
-              enhanced rewards!
+              Season 2 has ended! If you participated in Season 2, you can now
+              unlock your LP tokens. Create a new Season 3 vault to upgrade from
+              the Season 2's 60x multiplier to an enhanced
+              <span class="text-lg font-bold gold-effect">90x multiplier</span>
+              on your Trailblazers XP!
             </p>
 
             <h2 class="mb-4 text-2xl font-bold">How Season 3 Works</h2>
@@ -98,7 +99,8 @@ const goToPoolPage = () => {
               <span class="text-lg font-bold gold-effect">90x multiplier</span>
               on your
               <span class="font-bold text-blue-400">Taiko Trailblazers XP</span>
-              based on the value of your locked tokens.
+              based on the value of your locked tokens - that's a 50% increase
+              from Season 2!
             </p>
             <p class="mb-2">
               Earn weekly
@@ -112,10 +114,11 @@ const goToPoolPage = () => {
               <span class="font-bold symm-points-gradient">SYMM Points</span>.
             </p>
             <p class="mb-2">
-              If you're a Season 2 participant, make sure to unlock your tokens
-              after Season 2 ends and create a new vault for Season 3 to take
-              advantage of the increased 90x multiplier!
+              Don't miss out on these enhanced rewards - unlock your Season 2
+              tokens and create a new Season 3 vault today to take advantage of
+              the increased 90x multiplier!
             </p>
+
             <div class="mt-6">
               <button
                 class="py-3 px-6 text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out focus:outline-none"
@@ -141,6 +144,10 @@ const goToPoolPage = () => {
 
       <div class="lg:col-span-5 space-y-6">
         <BalLoadingBlock v-if="isLoading" class="h-64" />
+        <UnlockForm v-if="oldVeBalLockInfo?.hasExistingLock" />
+
+        <BalLoadingBlock v-if="isLoading" class="h-64" />
+
         <MyVeBAL
           v-else-if="veBalLockInfo?.hasExistingLock"
           :veBalLockInfo="veBalLockInfo"

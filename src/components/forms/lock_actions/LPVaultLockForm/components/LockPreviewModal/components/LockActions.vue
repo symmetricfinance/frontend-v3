@@ -78,7 +78,7 @@ const { fNum } = useNumbers();
 const { getTokenApprovalActions } = useTokenApprovalActions();
 // const { refetch: refetchSyncData } = useCrossChainSync();
 
-const displayLockEndDate = ref('1734566400000');
+const displayLockEndDate = ref('1742169600000');
 
 const isExtendDisabled = computed(() => {
   if (!props.lockType.includes(LockType.EXTEND_LOCK)) return false;
@@ -242,7 +242,7 @@ watch(lockActionStatesConfirmed, () => {
 onBeforeMount(async () => {
   const approvalActions = await getTokenApprovalActions({
     amountsToApprove: amountsToApprove.value,
-    spender: networkConfig.addresses.lpVault as string,
+    spender: networkConfig.addresses.lpVault2 as string,
     actionType: ApprovalAction.Locking,
     // veBAL approval should always only suggest the approval of the exact amount.
     forceMax: false,

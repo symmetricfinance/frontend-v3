@@ -47,6 +47,7 @@ export interface Contracts {
   balancerQueries: string;
   veBAL: string;
   lpVault?: string;
+  lpVault2?: string;
   gaugeController: string;
   gaugeCheckpointer?: string;
   gaugeFactory: string;
