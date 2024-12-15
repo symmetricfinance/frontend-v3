@@ -52,7 +52,7 @@ defineProps<Props>();
             v-if="isLpVaultPool(pool.id)"
             class="pt-1 font-bold blue-400 golden-text"
           >
-            60x
+            90x
           </div>
           <img
             src="@/assets/images/icons/networks/taiko.svg"

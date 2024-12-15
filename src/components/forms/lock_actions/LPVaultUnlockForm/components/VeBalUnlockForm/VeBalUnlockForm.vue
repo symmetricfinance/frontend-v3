@@ -67,7 +67,7 @@ const submissionDisabled = computed(() => {
           {{ configService.network.chainName }}
         </div> -->
         <div class="flex justify-between items-center">
-          <h4>Unlock Season 2 Vault</h4>
+          <h5 class="text-red-500">Unlock Season 2 Vault</h5>
         </div>
       </div>
     </template>
@@ -94,7 +94,7 @@ const submissionDisabled = computed(() => {
         :disabled="submissionDisabled"
         @click="showPreviewModal = true"
       >
-        {{ $t('preview') }}
+        Unlock Season 2 Vault
       </BalBtn>
     </div>
   </BalCard>

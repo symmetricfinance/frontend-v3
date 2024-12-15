@@ -116,7 +116,7 @@
   "pointsTooltip": "Earn a share of 40,000 SYMM points each week by providing liquidity to this pool and staking your LP tokens. SYMM points can be redeemed for rewards at a future date.",
   "pointsClaimTooltip": "Earn SYMM points by providing liquidity eligible pools and staking your LP tokens. SYMM points can be redeemed for rewards at a future date.",
   "trailblazersTooltip": "Earn Trailblazers XP when you add liquidity or make swaps in this pool. XP can be redeemed for TAIKO tokens at a future date.",
-  "trailblazersLpVaultTooltip": "Earn up to a 60x Trailblazers XP multiplier when you add liquidity to this pool and lock in the Taiko LP Vault.",
+  "trailblazersLpVaultTooltip": "Earn up to a 90x Trailblazers XP multiplier when you add liquidity to this pool and lock in the Taiko LP Vault.",
   "buy": "Buy",
   "build": "Build",
   "blog": "Blog",

@@ -178,7 +178,7 @@ const lockTitle = computed(() => {
   if (props.veBalLockInfo?.hasExistingLock) {
     return 'Add to your Vault';
   }
-  return 'Create your Vault';
+  return 'Create your S3 Vault';
 });
 
 const buttonLabel = computed(() => {
@@ -196,18 +196,13 @@ function navigateToLPTokenPage() {
 </script>
 
 <template>
-  <BalCard
-    v-if="props.veBalLockInfo?.hasExistingLock"
-    shadow="xl"
-    exposeOverflow
-    noBorder
-  >
+  <BalCard shadow="xl" exposeOverflow noBorder>
     <template #header>
       <div class="w-full">
         <div class="flex justify-between items-center">
-          <h6>
+          <h5>
             {{ lockTitle }}
-          </h6>
+          </h5>
           <BalLink
             href="#"
             external
