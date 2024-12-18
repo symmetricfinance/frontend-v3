@@ -5,7 +5,7 @@ const nftABI = [
   'function tokenOfOwnerByIndex(address _owner, uint256 _index) public view returns (uint256)',
 ];
 
-const nftAddress = '0x5c00D81F7E00188751258a0DA0dd8198681D1fFA';
+const nftAddress = '0xB8a0d67Ecc01E0ADee394a1FD95F87D96A9680a2';
 
 export const resolveTekikaAvatar = async (
   provider: ethers.providers.JsonRpcProvider,
@@ -16,7 +16,7 @@ export const resolveTekikaAvatar = async (
   let avatar = '';
   try {
     const tokenId = await contract.tokenOfOwnerByIndex(address, 0);
-    avatar = `https://tekika-nfts.s3.amazonaws.com/tokens/${tokenId}/${tokenId}.webp`;
+    avatar = `https://tekika-nfts.s3.amazonaws.com/tokens/${tokenId}-2/${tokenId}-2.webp`;
   } catch (error) {
     console.log('No Tekika found :(');
   }
