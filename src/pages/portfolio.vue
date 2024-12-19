@@ -11,8 +11,9 @@ import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedI
 import { isVeBalSupported } from '@/composables/useVeBAL';
 import { configService } from '@/services/config/config.service';
 import LpVaultPoolTable from '@/components/contextual/pages/pools/LpVaultPoolTable.vue';
+import OldLpVaultPoolTable from '@/components/contextual/pages/pools/OldLpVaultPoolTable.vue';
 import { useLpVault } from '@/composables/useLpVault';
-
+import { useOldLpVault } from '@/composables/useOldLpVault';
 /**
  * PROVIDERS
  */
@@ -30,6 +31,8 @@ const { lockPool, lock } = useLock();
 
 const { lockPool: lpVaultPool, lock: lpVault } = useLpVault();
 console.log(lpVaultPool, lpVault);
+
+const { lockPool: oldLpVaultPool, lock: oldLpVault } = useOldLpVault();
 </script>
 
 <template>
@@ -56,6 +59,11 @@ console.log(lpVaultPool, lpVault);
             v-if="lpVaultPool && Number(lpVault?.lockedAmount) > 0"
             :lock="lpVault"
             :lockPool="lpVaultPool"
+          />
+          <OldLpVaultPoolTable
+            v-if="oldLpVaultPool && Number(oldLpVault?.lockedAmount) > 0"
+            :lock="oldLpVault"
+            :lockPool="oldLpVaultPool"
           />
         </BalStack>
       </BalStack>

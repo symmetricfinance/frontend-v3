@@ -23,6 +23,7 @@ import { PoolToken } from '@/services/pool/types';
 import router from '@/plugins/router';
 import { BigNumber } from '@ethersproject/bignumber';
 import useLpVaultQuery from '@/composables/queries/useLPVaultLockInfoQuery';
+import useOldLpVaultQuery from '@/composables/queries/useOldLPVaultLockInfoQuery';
 /**
  * TYPES
  */
@@ -46,11 +47,12 @@ const {
 } = usePointsClaimsData();
 
 const lpVaultLockInfoQuery = useLpVaultQuery();
+const oldLpVaultLockInfoQuery = useOldLpVaultQuery();
 const lpVaultQueryLoading = computed(
   () => lpVaultLockInfoQuery.isLoading.value
 );
 const lpVaultLockInfo = computed(() => lpVaultLockInfoQuery.data.value);
-
+const oldLpVaultLockInfo = computed(() => oldLpVaultLockInfoQuery.data.value);
 const lpVaultPoints = computed(() => {
   return (
     lpVaultRewards.value?.v2?.['0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7'] ??
@@ -290,6 +292,7 @@ onMounted(async () => {
               :totalSupply="totalSupply"
               :tokensDistributedInWeek="tokensDistributedInWeek"
               :veBalLockInfo="lpVaultLockInfo"
+              :oldLpVaultLockInfo="oldLpVaultLockInfo"
               :isLoading="isPointsClaimsLoading"
             />
           </div>

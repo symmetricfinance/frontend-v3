@@ -29,6 +29,7 @@ type Props = {
   totalSupply: BigNumber;
   tokensDistributedInWeek: BigNumber;
   veBalLockInfo: VeBalLockInfo | undefined;
+  oldLpVaultLockInfo: VeBalLockInfo | undefined;
   isLoading: boolean;
 };
 
@@ -132,15 +133,15 @@ const totalPoints = computed((): string => {
 
 const futurePoints = computed((): string => {
   if (props.totalSupply.eq(BigNumber.from(0))) return '0';
-  if (!props.veBalLockInfo?.balanceOf) return '0';
-  return props.veBalLockInfo?.balanceOf
+  if (!props.oldLpVaultLockInfo?.balanceOf) return '0';
+  return props.oldLpVaultLockInfo?.balanceOf
     .mul(props.tokensDistributedInWeek)
     .div(props.totalSupply)
     .toString();
 });
 
 const hasVault = computed(() => {
-  return props.veBalLockInfo && props.veBalLockInfo.hasExistingLock;
+  return props.oldLpVaultLockInfo && props.oldLpVaultLockInfo.hasExistingLock;
 });
 </script>
 
@@ -198,7 +199,7 @@ const hasVault = computed(() => {
                 </BalStack>
               </BalStack>
               <BalStack
-                v-if="hasVault && lpVaultPoints !== '0'"
+                v-if="lpVaultPoints !== '0'"
                 horizontal
                 justify="between"
                 class="rounded-b-lg"
