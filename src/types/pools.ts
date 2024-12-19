@@ -41,6 +41,8 @@ export enum PoolFeature {
   CLP = 'clp',
   Points = 'points',
   TBXP = 'tbxp',
+  Points40k = 'points40k',
+  Points20k = 'points20k',
 }
 
 export type PoolFeatures = {

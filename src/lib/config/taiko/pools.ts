@@ -72,7 +72,7 @@ const pools: Pools = {
   Metadata: {
     '0xe0f51bf8d30db81d0a93125a17a2a40130ad9f7e000200000000000000000004': {
       features: {
-        [PoolFeature.Points]: {
+        [PoolFeature.Points20k]: {
           featureProtocols: [],
         },
         [PoolFeature.TBXP]: {
@@ -82,7 +82,7 @@ const pools: Pools = {
     },
     '0x65d5eebb5f1c767ce42c3ccc8cfd00fb3a114122000000000000000000000003': {
       features: {
-        [PoolFeature.Points]: {
+        [PoolFeature.Points20k]: {
           featureProtocols: [],
         },
         [PoolFeature.TBXP]: {
@@ -92,7 +92,7 @@ const pools: Pools = {
     },
     '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005': {
       features: {
-        [PoolFeature.Points]: {
+        [PoolFeature.Points40k]: {
           featureProtocols: [],
         },
         [PoolFeature.TBXP]: {

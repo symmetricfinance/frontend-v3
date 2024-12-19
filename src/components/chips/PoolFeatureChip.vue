@@ -22,8 +22,10 @@ function getFeatureClasses() {
   switch (props.feature) {
     case PoolFeature.Boosted:
       return 'bg-gradient-to-tr from-yellow-500 to-pink-500 text-white';
-    case PoolFeature.Points:
+    case PoolFeature.Points40k:
       // return 'bg-gradient-to-tr from-blue-500 to-pink-500 text-white';
+      return 'bg-gradient-to-r from-blue-500 to-yellow-500 via-pink-500 inline-block text-transparent bg-clip-text';
+    case PoolFeature.Points20k:
       return 'bg-gradient-to-r from-blue-500 to-yellow-500 via-pink-500 inline-block text-transparent bg-clip-text';
     case PoolFeature.CLP:
       return 'bg-gradient-to-tr from-pink-300 to-yellow-200 text-black';
@@ -38,8 +40,10 @@ function getFeatureLabel(): string {
   switch (props.feature) {
     case PoolFeature.Boosted:
       return t('boosted');
-    case PoolFeature.Points:
+    case PoolFeature.Points40k:
       return `<span class="block leading-tight">40K<br>SYMM Points</span>`;
+    case PoolFeature.Points20k:
+      return `<span class="block leading-tight">20K<br>SYMM Points</span>`;
     case PoolFeature.TBXP:
       return '';
     case PoolFeature.CLP:

@@ -108,9 +108,15 @@ export function isBoosted(pool: Pool) {
   );
 }
 
-export function isPointsEarning(pool: Pool) {
+export function is20kPointsEarning(pool: Pool) {
   return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
-    PoolFeature.Points
+    PoolFeature.Points20k
+  );
+}
+
+export function is40kPointsEarning(pool: Pool) {
+  return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
+    PoolFeature.Points40k
   );
 }
 

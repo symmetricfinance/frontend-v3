@@ -2,7 +2,8 @@
 import {
   isLiquidityBootstrapping,
   isBoosted,
-  isPointsEarning,
+  is20kPointsEarning,
+  is40kPointsEarning,
   isTrailblazerXP,
   protocolsFor,
   isGyro,
@@ -25,14 +26,27 @@ defineProps<Props>();
 <template>
   <div class="flex items-center">
     <BalTooltip
-      v-if="isPointsEarning(pool)"
+      v-if="is20kPointsEarning(pool)"
+      :text="$t('points20kTooltip')"
+      width="56"
+    >
+      <template #activator>
+        <PoolFeatureChip
+          :feature="PoolFeature.Points20k"
+          :protocols="protocolsFor(pool, PoolFeature.Points20k)"
+          class="ml-3"
+        />
+      </template>
+    </BalTooltip>
+    <BalTooltip
+      v-if="is40kPointsEarning(pool)"
       :text="$t('pointsTooltip')"
       width="56"
     >
       <template #activator>
         <PoolFeatureChip
-          :feature="PoolFeature.Points"
-          :protocols="protocolsFor(pool, PoolFeature.Points)"
+          :feature="PoolFeature.Points40k"
+          :protocols="protocolsFor(pool, PoolFeature.Points40k)"
           class="ml-3"
         />
       </template>
