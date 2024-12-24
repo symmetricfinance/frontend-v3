@@ -55,6 +55,14 @@ const lpVaultLockInfo = computed(() => lpVaultLockInfoQuery.data.value);
 const oldLpVaultLockInfo = computed(() => oldLpVaultLockInfoQuery.data.value);
 const lpVaultPoints = computed(() => {
   return (
+    lpVaultRewards.value?.v2V2?.[
+      '0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7'
+    ] ?? '0'
+  );
+});
+
+const oldLpVaultPoints = computed(() => {
+  return (
     lpVaultRewards.value?.v2?.['0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7'] ??
     '0'
   );
@@ -64,12 +72,24 @@ const userBalance = computed(() => {
   return lpVaultRewards.value?.userBalance ?? BigNumber.from(0);
 });
 
+const userBalanceV2 = computed(() => {
+  return lpVaultRewards.value?.userBalanceV2 ?? BigNumber.from(0);
+});
+
 const totalSupply = computed(() => {
   return lpVaultRewards.value?.totalSupply ?? BigNumber.from(0);
 });
 
+const totalSupplyV2 = computed(() => {
+  return lpVaultRewards.value?.totalSupplyV2 ?? BigNumber.from(0);
+});
+
 const tokensDistributedInWeek = computed(() => {
   return lpVaultRewards.value?.tokensDistributedInWeek ?? BigNumber.from(0);
+});
+
+const tokensDistributedInWeekV2 = computed(() => {
+  return lpVaultRewards.value?.tokensDistributedInWeekV2 ?? BigNumber.from(0);
 });
 
 /**
@@ -287,10 +307,14 @@ onMounted(async () => {
             <PointsRewardsTable
               :pointsGauges="pointsGauges"
               :pointsGaugePools="pointsGaugePools"
-              :lpVaultPoints="lpVaultPoints"
+              :lpVaultPoints="oldLpVaultPoints"
+              :lpVaultPointsV2="lpVaultPoints"
               :userBalance="userBalance"
+              :userBalanceV2="userBalanceV2"
               :totalSupply="totalSupply"
+              :totalSupplyV2="totalSupplyV2"
               :tokensDistributedInWeek="tokensDistributedInWeek"
+              :tokensDistributedInWeekV2="tokensDistributedInWeekV2"
               :veBalLockInfo="lpVaultLockInfo"
               :oldLpVaultLockInfo="oldLpVaultLockInfo"
               :isLoading="isPointsClaimsLoading"

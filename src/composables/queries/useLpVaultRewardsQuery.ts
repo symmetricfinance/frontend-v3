@@ -19,6 +19,10 @@ export type LpVaultRewardsQueryResponse = {
   userBalance?: BigNumber;
   tokensDistributedInWeek?: BigNumber;
   totalSupply?: BigNumber;
+  v2V2?: BalanceMap;
+  userBalanceV2?: BigNumber;
+  tokensDistributedInWeekV2?: BigNumber;
+  totalSupplyV2?: BigNumber;
 };
 
 type QueryOptions = UseQueryOptions<LpVaultRewardsQueryResponse>;
@@ -34,10 +38,17 @@ const rewardDistributor = configService.network.addresses.rewardDistributor
   ? new FeeDistributor(configService.network.addresses.rewardDistributor)
   : undefined;
 
+const rewardDistributorV2 = configService.network.addresses.rewardDistributorV2
+  ? new FeeDistributor(configService.network.addresses.rewardDistributorV2)
+  : undefined;
+
 export const networkHasProtocolRewards = computed<boolean>(
-  () => configService.network.addresses.rewardDistributor != ''
+  () =>
+    configService.network.addresses.rewardDistributor != '' ||
+    configService.network.addresses.rewardDistributorV2 != ''
 );
 
+/**
 /**
  * @summary Fetches claimable protocol reward balances.
  */
@@ -97,6 +108,23 @@ export default function useProtocolRewardsQuery(options: QueryOptions = {}) {
           rewardDistributor?.getTotalSupply(lastThursdayTimestamp) ??
             Promise.resolve(BigNumber.from(0)),
         ]);
+
+      const [v2V2, userBalanceV2, tokensDistributedInWeekV2, totalSupplyV2] =
+        await Promise.all([
+          rewardDistributorV2?.getClaimableBalances(account.value) ??
+            Promise.resolve({}),
+          rewardDistributorV2?.getUserBalance(
+            account.value,
+            lastThursdayTimestamp
+          ) ?? Promise.resolve(BigNumber.from(0)),
+          rewardDistributorV2?.getTokensDistributedInWeek(
+            pointsAddress as string,
+            lastThursdayTimestamp
+          ) ?? Promise.resolve(BigNumber.from(0)),
+          rewardDistributorV2?.getTotalSupply(lastThursdayTimestamp) ??
+            Promise.resolve(BigNumber.from(0)),
+        ]);
+
       console.log('v2', v2);
       console.log('userBalance', userBalance.toString());
       console.log(
@@ -104,11 +132,22 @@ export default function useProtocolRewardsQuery(options: QueryOptions = {}) {
         tokensDistributedInWeek.toString()
       );
       console.log('totalSupply', totalSupply.toString());
+      console.log('v2V2', v2V2);
+      console.log('userBalanceV2', userBalanceV2.toString());
+      console.log(
+        'tokensDistributedInWeekV2',
+        tokensDistributedInWeekV2.toString()
+      );
+      console.log('totalSupplyV2', totalSupplyV2.toString());
       return {
         v2,
         userBalance: userBalance,
         tokensDistributedInWeek: tokensDistributedInWeek,
         totalSupply: totalSupply,
+        v2V2,
+        userBalanceV2: userBalanceV2,
+        tokensDistributedInWeekV2: tokensDistributedInWeekV2,
+        totalSupplyV2: totalSupplyV2,
       };
     } catch (error) {
       console.error('Failed to fetch claimable protocol balances', error);

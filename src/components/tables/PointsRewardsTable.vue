@@ -25,9 +25,13 @@ type Props = {
   pointsGauges: PointsGauge[];
   pointsGaugePools: GaugePool[];
   lpVaultPoints: string;
+  lpVaultPointsV2: string;
   userBalance: BigNumber;
+  userBalanceV2: BigNumber;
   totalSupply: BigNumber;
+  totalSupplyV2: BigNumber;
   tokensDistributedInWeek: BigNumber;
+  tokensDistributedInWeekV2: BigNumber;
   veBalLockInfo: VeBalLockInfo | undefined;
   oldLpVaultLockInfo: VeBalLockInfo | undefined;
   isLoading: boolean;
@@ -132,16 +136,16 @@ const totalPoints = computed((): string => {
 });
 
 const futurePoints = computed((): string => {
-  if (props.totalSupply.eq(BigNumber.from(0))) return '0';
-  if (!props.oldLpVaultLockInfo?.balanceOf) return '0';
-  return props.oldLpVaultLockInfo?.balanceOf
-    .mul(props.tokensDistributedInWeek)
-    .div(props.totalSupply)
+  if (props.totalSupplyV2.eq(BigNumber.from(0))) return '0';
+  if (!props.veBalLockInfo?.balanceOf) return '0';
+  return props.veBalLockInfo?.balanceOf
+    .mul(props.tokensDistributedInWeekV2)
+    .div(props.totalSupplyV2)
     .toString();
 });
 
 const hasVault = computed(() => {
-  return props.oldLpVaultLockInfo && props.oldLpVaultLockInfo.hasExistingLock;
+  return props.veBalLockInfo && props.veBalLockInfo.hasExistingLock;
 });
 </script>
 
@@ -199,12 +203,36 @@ const hasVault = computed(() => {
                 </BalStack>
               </BalStack>
               <BalStack
-                v-if="lpVaultPoints !== '0'"
+                v-if="lpVaultPointsV2 !== '0'"
                 horizontal
                 justify="between"
                 class="rounded-b-lg"
               >
                 <span> Claimable LP Vault Points:</span>
+                <BalStack horizontal spacing="sm" align="center">
+                  <AnimatePresence :isVisible="false">
+                    <BalLoadingBlock class="h-5" />
+                  </AnimatePresence>
+                  <AnimatePresence :isVisible="true">
+                    <span>
+                      {{
+                        fNum(
+                          bnum(lpVaultPointsV2).div(1e18).toString(),
+                          FNumFormats.token
+                        )
+                      }}
+                      Points
+                    </span>
+                  </AnimatePresence>
+                </BalStack>
+              </BalStack>
+              <BalStack
+                v-if="lpVaultPoints !== '0'"
+                horizontal
+                justify="between"
+                class="rounded-b-lg"
+              >
+                <span> Claimable S2 Vault Points:</span>
                 <BalStack horizontal spacing="sm" align="center">
                   <AnimatePresence :isVisible="false">
                     <BalLoadingBlock class="h-5" />
@@ -265,6 +293,12 @@ const hasVault = computed(() => {
                 <ClaimLpVaultRewardsBtn
                   v-if="lpVaultPoints !== '0'"
                   :pointsAmount="bnum(lpVaultPoints).div(1e18).toString()"
+                  :deprecated="true"
+                />
+                <ClaimLpVaultRewardsBtn
+                  v-else-if="lpVaultPointsV2 !== '0'"
+                  :pointsAmount="bnum(lpVaultPointsV2).div(1e18).toString()"
+                  :deprecated="false"
                 />
                 <ClaimPointsRewardsBtn
                   :gauges="gaugesWithRewardsAddresses"

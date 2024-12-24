@@ -26,6 +26,7 @@ const contracts: Contracts = {
   feeDistributor: '',
   feeDistributorDeprecated: '',
   rewardDistributor: '0xCDa30664D0Df20b19cB35a834594fA8A6A001e5c',
+  rewardDistributorV2: '0xe9a7672aecD7DCcDE85B7625a5C639A69cF79352',
   faucet: '',
   omniVotingEscrow: '',
   gaugeRewardsHelper: '0x7aE881bea5AaA4e8A1dd7cf1B78B92984C3F28D2',

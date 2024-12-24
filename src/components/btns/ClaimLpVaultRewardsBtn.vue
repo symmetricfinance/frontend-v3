@@ -33,6 +33,10 @@ const rewardDistributor = new FeeDistributor(
   configService.network.addresses.rewardDistributor || ''
 );
 
+const rewardDistributorV2 = new FeeDistributor(
+  configService.network.addresses.rewardDistributorV2 || ''
+);
+
 const pointsAddress = configService.network.tokens.Addresses.POINTS || '';
 
 /**
@@ -57,14 +61,34 @@ function claimTx() {
     return rewardDistributor.claimBalance(account.value, pointsAddress);
   return rewardDistributor.claimBalances(account.value);
 }
+
+function claimTxV2() {
+  if (pointsAddress)
+    return rewardDistributorV2.claimBalance(account.value, pointsAddress);
+  return rewardDistributorV2.claimBalances(account.value);
+}
 </script>
 
 <template>
   <TxActionBtn
-    label="Claim LP Vault Points"
+    v-if="props.deprecated"
+    label="Claim S2 Vault Points"
     class="custom-gradient-btn"
     size="sm"
     :actionFn="claimTx"
+    :disabled="!pointsAddress || props.pointsAmount === '0'"
+    :onConfirmFn="onConfirm"
+    action="claim"
+    :summary="`${t('claim')} ${fNum(props.pointsAmount, FNumFormats.token)}`"
+    :confirmingLabel="$t('claiming')"
+    v-bind="$attrs"
+  />
+  <TxActionBtn
+    v-else
+    label="Claim S3 Vault Points"
+    class="custom-gradient-btn"
+    size="sm"
+    :actionFn="claimTxV2"
     :disabled="!pointsAddress || props.pointsAmount === '0'"
     :onConfirmFn="onConfirm"
     action="claim"

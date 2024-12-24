@@ -59,6 +59,7 @@ export interface Contracts {
   feeDistributor: string;
   feeDistributorDeprecated: string;
   rewardDistributor?: string;
+  rewardDistributorV2?: string;
   faucet: string;
   gaugeRewardsHelper?: string;
   omniVotingEscrow?: string;
