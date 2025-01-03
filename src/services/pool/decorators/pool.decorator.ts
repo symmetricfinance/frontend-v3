@@ -70,7 +70,7 @@ export class PoolDecorator {
     if (configService.network.chainId === 40) {
       try {
         const request = await fetch(
-          'https://rewards.symmetric.workers.dev/rewards/telos'
+          'https://rewards.symmetric.workers.dev/rewards-by-gauge/telos'
         );
         rewards = await request.json();
       } catch (error) {
