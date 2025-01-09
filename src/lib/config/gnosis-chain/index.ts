@@ -27,11 +27,11 @@ const config: Config = {
   explorerName: 'Gnosisscan',
   balancerApi: '',
   subgraph:
-    'https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-gnosis',
+    'https://gateway-arbitrum.network.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/9kdgh1tW36E8MKthUmZ2FJbe2KCuvkibz984SxbQSdJw',
   poolsUrlV2: '',
   subgraphs: {
     main: [
-      'https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-gnosis',
+      'https://gateway-arbitrum.network.thegraph.com/api/0d9bf278d67d70c9368a5c70a486a744/subgraphs/id/9kdgh1tW36E8MKthUmZ2FJbe2KCuvkibz984SxbQSdJw',
     ],
     aave: '',
     gauge: '',

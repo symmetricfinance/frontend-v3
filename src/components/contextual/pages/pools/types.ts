@@ -29,6 +29,8 @@ export enum PoolAction {
   Remove = 'remove',
   Stake = 'stake',
   Unstake = 'unstake',
+  StakeForPoints = 'stakeForPoints',
+  UnstakeForPoints = 'unstakeForPoints',
   MigrateGauge = 'migrateGauge',
   Poke = 'poke',
 }

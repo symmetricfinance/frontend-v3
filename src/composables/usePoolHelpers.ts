@@ -108,6 +108,24 @@ export function isBoosted(pool: Pool) {
   );
 }
 
+export function is20kPointsEarning(pool: Pool) {
+  return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
+    PoolFeature.Points20k
+  );
+}
+
+export function is40kPointsEarning(pool: Pool) {
+  return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
+    PoolFeature.Points40k
+  );
+}
+
+export function isTrailblazerXP(pool: Pool) {
+  return !!Object.keys(poolMetadata(pool.id)?.features || {}).includes(
+    PoolFeature.TBXP
+  );
+}
+
 export function isGyro(pool: Pool | VotingPool) {
   return [PoolType.Gyro2, PoolType.Gyro3, PoolType.GyroE].includes(
     pool.poolType
@@ -347,6 +365,11 @@ export function totalAprLabel(
 export function isVeBalPool(poolId: string): boolean {
   return POOLS.IdsMap?.veBAL === poolId;
 }
+
+export function isLpVaultPool(poolId: string): boolean {
+  return POOLS.IdsMap?.lpVault === poolId;
+}
+
 /**
  * @summary Checks if given token address is BAL 80/20 pool (veBAL)
  */

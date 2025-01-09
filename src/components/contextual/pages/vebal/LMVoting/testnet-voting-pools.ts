@@ -523,7 +523,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x96b9b9c80b76787e7274b4fadc0d887a6064685c',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.1',
       addedTimestamp: 1705510584,
     },
@@ -531,7 +531,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
 
   const SOULS_KINDS: ApiVotingPool = {
     chain: testnet as GqlChain,
-    id: '0xcf29825dfe41e62e218baa10b791a3d087fa7a83000200000000000000000018',
+    id: '0xcacc06ea569e239d0e4b718e4da1b456d49e06f6000200000000000000000019',
     address: '0xcf29825Dfe41E62E218Baa10B791A3D087fA7a83',
     type: GqlPoolMinimalType.Weighted,
     symbol: '50KINDs-50SOULS',
@@ -553,8 +553,98 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x89f6ad1eef23c0c272885dde34b2af9be8033c36',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const SOULS_WTLOS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x30f0797bbe89172b669467039d49d413eb09244b00020000000000000000001c',
+    address: '0x30f0797bbe89172b669467039d49d413eb09244b',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50SOULS-50WTLOS',
+    tokens: [
+      {
+        address: '0xa3b4aee7b43b2fb390420c411ec180b0ae87e9da',
+        weight: '0.5',
+        symbol: 'SOULS',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SOULS.png',
+      },
+      {
+        address: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+        weight: '0.5',
+        symbol: 'WTLOS',
+        logoURI:
+          'https://raw.githubusercontent.com/telosnetwork/token-list/main/logos/telos.png',
+      },
+    ],
+    gauge: {
+      address: '0x8E512Ba3949ae1CebfaEb460Cc3269d0E01B2242',
+      isKilled: true,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const SUSD_SOULS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xfa5f3ba362577e35875e91eb3b16fbe7108f448600020000000000000000001d',
+    address: '0xfa5f3ba362577e35875e91eb3b16fbe7108f4486',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50SUSD-50SOULS',
+    tokens: [
+      {
+        address: '0x836EfDc24A00d42160AF3eF144Af96CBc0c09aa0',
+        weight: '0.5',
+        symbol: 'SUSD',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SUSD.png',
+      },
+      {
+        address: '0xa3b4aee7b43b2fb390420c411ec180b0ae87e9da',
+        weight: '0.5',
+        symbol: 'SOULS',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SOULS.png',
+      },
+    ],
+    gauge: {
+      address: '0x194CC8af539B5Ec1d61B615ac48BFCc4837A1d19',
+      isKilled: true,
+      relativeWeightCap: '0.1',
+      addedTimestamp: 1705510584,
+    },
+  };
+
+  const ALI_SOULS: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0xceb2728bf37332291fa44891414a53b1d668578200020000000000000000001e',
+    address: '0xceb2728bf37332291fa44891414a53b1d6685782',
+    type: GqlPoolMinimalType.Weighted,
+    symbol: '50ALI-50SOULS',
+    tokens: [
+      {
+        address: '0xce436C598027B39bcC80094B670A60184a290Fe1',
+        weight: '0.5',
+        symbol: 'ALI',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/ALI.png',
+      },
+      {
+        address: '0xa3b4aee7b43b2fb390420c411ec180b0ae87e9da',
+        weight: '0.5',
+        symbol: 'SOULS',
+        logoURI:
+          'https://raw.githubusercontent.com/centfinance/tokenlists/main/src/assets/images/tokens/SOULS.png',
+      },
+    ],
+    gauge: {
+      address: '0x34BD676B1a111ac062b35dBb80085b7528B4B151',
+      isKilled: true,
+      relativeWeightCap: '0.05',
       addedTimestamp: 1705510584,
     },
   };
@@ -643,7 +733,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x55b2341fda3af3b042d4722bf221d324d812bcf2',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.03',
       addedTimestamp: 1701860941,
     },
@@ -673,7 +763,7 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     ],
     gauge: {
       address: '0x465abed4fde9d4fb0291a5e7ff6ef0f75457f362',
-      isKilled: false,
+      isKilled: true,
       relativeWeightCap: '0.03',
       addedTimestamp: 1701860941,
     },
@@ -732,6 +822,28 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     },
   };
 
+  const Burn_tSYMM: ApiVotingPool = {
+    chain: testnet as GqlChain,
+    id: '0x6fbfcf88db1aada31f34215b2a1df7fafb4883e900000000000000000000000d',
+    address: '',
+    type: GqlPoolMinimalType.Unknown,
+    symbol: 'Burn tSYMM',
+    tokens: [
+      {
+        address: '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca',
+        weight: '0.8',
+        symbol: 'Burn tSYMM',
+        logoURI: 'https://em-content.zobj.net/source/apple/391/fire_1f525.png',
+      },
+    ],
+    gauge: {
+      address: '0x9A287E33d7c5Dd701f47731BeCe88bb0Ee1e06fC',
+      isKilled: false,
+      relativeWeightCap: '1.0',
+      addedTimestamp: 1701860941,
+    },
+  };
+
   return [
     tSYMM_WTLOS,
     STLOS_WTLOS,
@@ -752,6 +864,10 @@ export function telosVotingPools(testnet: 'telos'): ApiVotingPool[] {
     SOULS_KINDS,
     wUSK_USDC,
     wUSK_STLOS,
+    SOULS_WTLOS,
+    SUSD_SOULS,
+    ALI_SOULS,
     Team_Allocation,
+    Burn_tSYMM,
   ];
 }

@@ -34,6 +34,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   (e: 'close'): void;
   (e: 'showStakeModal'): void;
+  (e: 'showStakePointsModal'): void;
 }>();
 
 /**
@@ -145,6 +146,11 @@ function handleShowStakeModal() {
   emit('showStakeModal');
 }
 
+function handleShowStakePointsModal() {
+  handleClose();
+  emit('showStakePointsModal');
+}
+
 /**
  * WATCHERS
  */
@@ -227,6 +233,7 @@ useIntervalFn(() => {
       class="mt-4"
       @success="confirmed = true"
       @show-stake-modal="handleShowStakeModal"
+      @show-stake-points-modal="handleShowStakePointsModal"
     />
   </BalModal>
 </template>

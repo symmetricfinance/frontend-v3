@@ -87,8 +87,11 @@ export function getNetworkSlug(network: Network): string {
 }
 
 export function networkFromSlug(networkSlug: string): Network | null {
+  let slug = networkSlug;
+  if (slug === 'moksha') slug = 'vana-moksha';
+  if (slug === 'gnosis') slug = 'gnosis-chain';
   const networkConf = Object.values(config).find((config: Config) => {
-    return config.slug === networkSlug;
+    return config.slug === slug;
   });
   return networkConf ? (networkConf.chainId as Network) : null;
 }
@@ -115,6 +118,9 @@ export const symmSymbol = computed(() => {
   }
   if (networkId.value === Network.GNOSIS) {
     return 'gSYMM';
+  }
+  if (networkId.value === Network.VANAMOKSHA) {
+    return 'vSYMM';
   }
   return 'mSYMM';
 });

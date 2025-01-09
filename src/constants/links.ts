@@ -9,6 +9,7 @@ export const EXTERNAL_LINKS = {
     Forum: 'https://forum.balancer.finance/',
     Grants: 'http://grants.balancer.community/',
     Social: {
+      Telegram: 'https://t.me/SymmetricFinanceDiscussion',
       Discord: 'https://discord.gg/z8hJqrFYs3',
       Github: 'https://github.com/centfinance/',
       Mail: 'mailto:contact@balancer.finance',

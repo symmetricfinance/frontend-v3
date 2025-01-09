@@ -17,13 +17,14 @@ export function useLock({ enabled = true }: Options = {}) {
    */
   const { lockablePoolId } = useVeBal();
   const { getToken, balanceFor } = useTokens();
-
+  console.log(lockablePoolId.value);
   /**
    * QUERIES
    */
   const shouldFetchLockPool = computed(
     (): boolean => isVeBalSupported.value && enabled
   );
+
   const lockPoolQuery = usePoolQuery(
     lockablePoolId.value as string,
     shouldFetchLockPool

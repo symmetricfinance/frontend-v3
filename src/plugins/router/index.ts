@@ -5,9 +5,12 @@ import { isTestnet } from '@/composables/useNetwork';
 import { applyNavGuards } from './nav-guards';
 
 const ClaimPage = () => import('@/pages/claim/index.vue');
+const PointsPage = () => import('@/pages/claim/points.vue');
+
 const LegacyClaimPage = () => import('@/pages/claim/legacy.vue');
 const CookiesPolicyPage = () => import('@/pages/cookies-policy.vue');
 const GetVeBalPage = () => import('@/pages/get-vesymm.vue');
+const LPVaultPage = () => import('@/pages/lp-vault.vue');
 const HomePage = () => import('@/pages/index.vue');
 const PoolPage = () =>
   import(/* webpackPrefetch: true */ '@/pages/pool/_id.vue');
@@ -17,6 +20,7 @@ const PoolWithdrawPage = () => import('@/pages/pool/withdraw.vue');
 const PrivacyPolicyPage = () => import('@/pages/privacy-policy.vue');
 const TermsOfUsePage = () => import('@/pages/terms-of-use.vue');
 const RisksPage = () => import('@/pages/risks.vue');
+const UKDisclaimerPage = () => import('@/pages/uk-disclaimer.vue');
 const SwapPage = () => import('@/pages/swap.vue');
 
 export const SwapPagePrefetchLinks = async () =>
@@ -70,6 +74,12 @@ const routes: RouteRecordRaw[] = [
     path: '/risks',
     name: 'risks',
     component: RisksPage,
+    meta: { layout: 'ContentLayout' },
+  },
+  {
+    path: '/uk-disclaimer',
+    name: 'uk-disclaimer',
+    component: UKDisclaimerPage,
     meta: { layout: 'ContentLayout' },
   },
   {
@@ -147,6 +157,16 @@ const routes: RouteRecordRaw[] = [
     path: '/:networkSlug/claim',
     name: 'claim',
     component: ClaimPage,
+  },
+  {
+    path: '/:networkSlug/points',
+    name: 'symm-points',
+    component: PointsPage,
+  },
+  {
+    path: '/:networkSlug/lp-vault',
+    name: 'taiko-lp-vault',
+    component: LPVaultPage,
   },
   {
     path: '/:networkSlug/airdrop',

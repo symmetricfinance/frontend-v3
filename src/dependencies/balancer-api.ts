@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import { api } from '@/services/api/api.client';
-import { handleDependencyError } from '.';
+// import { handleDependencyError } from '.';
 
 let _api: typeof api | undefined;
 
@@ -12,8 +12,8 @@ export function initApi(apiInstance: typeof api = api) {
 }
 
 export function getApi() {
-  if (!_api) {
-    handleDependencyError('api');
-  }
+  // if (!_api) {
+  //   // handleDependencyError('api');
+  // }
   return _api;
 }

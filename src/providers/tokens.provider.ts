@@ -43,6 +43,8 @@ import useWeb3 from '@/services/web3/useWeb3';
 import { tokenListService } from '@/services/token-list/token-list.service';
 import { AmountToApprove } from '@/composables/approvals/useTokenApprovalActions';
 import BigNumber from 'bignumber.js';
+import axios from 'axios';
+import { networkSlug } from '@/composables/useNetwork';
 // import { Token } from '@symmetric-v3/sdk';
 
 const { uris: tokenListUris } = tokenListService;
@@ -413,7 +415,28 @@ export const tokensProvider = (
    */
   function priceFor(address: string): number {
     try {
-      const price = prices.value[address]; // const price = selectByAddressFast(prices.value, getAddress(address));
+      if (address === networkConfig.tokens.Addresses.nativeAsset) {
+        address = networkConfig.tokens.Addresses.wNativeAsset;
+      }
+      const price = selectByAddressFast(prices.value, getAddress(address));
+      if (!price) {
+        return 0;
+      }
+      return price;
+    } catch {
+      return 0;
+    }
+  }
+
+  /**
+   * Fetch price for a token
+   */
+  function injectedPriceFor(address: string): number {
+    try {
+      if (address === networkConfig.tokens.Addresses.nativeAsset) {
+        address = networkConfig.tokens.Addresses.wNativeAsset;
+      }
+      const price = selectByAddressFast(prices.value, getAddress(address));
       if (!price) {
         return 0;
       }
@@ -500,13 +523,48 @@ export const tokensProvider = (
    * Returns true if the token is the native asset or wrapped native asset
    */
   function isWethOrEth(tokenAddress: string): boolean {
-    console.log(wrappedNativeAsset.value);
     if (!nativeAsset || !nativeAsset.address || !wrappedNativeAsset.value)
       return false;
     return (
       isSameAddress(tokenAddress, nativeAsset.address) ||
       isSameAddress(tokenAddress, wrappedNativeAsset.value.address)
     );
+  }
+
+  async function getTokenPrices() {
+    try {
+      const tokenAddresses = Object.keys(tokens.value).map(address =>
+        address.toLowerCase()
+      );
+      const tokenAddressesString = tokenAddresses.join(',');
+      const response = await axios.get(
+        `https://symm-prices.symmetric.workers.dev/${networkSlug}/prices/${tokenAddressesString}`
+      );
+      console.log(response);
+      let symmPrice = 0;
+      let rewardPrice = 0;
+      response.data.forEach(price => {
+        if (price.id === TOKENS.Addresses.BAL.toLowerCase()) {
+          symmPrice = price.price;
+        }
+        if (price.id === TOKENS.Addresses.reward?.toLowerCase()) {
+          rewardPrice = price.price;
+        }
+        injectPrices({
+          [getAddress(price.id) as string]: price.price,
+        });
+        if (price.id === TOKENS.Addresses.wNativeAsset.toLowerCase()) {
+          injectPrices({
+            [getAddress(TOKENS.Addresses.nativeAsset.toLowerCase()) as string]:
+              price.price,
+          });
+        }
+      });
+      return [symmPrice, rewardPrice];
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 
   /**
@@ -516,6 +574,9 @@ export const tokensProvider = (
     // Inject veBAL because it's not in tokenlists.
     const { veBAL } = configService.network.addresses;
     await injectTokens([veBAL]);
+    if (networkSlug === 'vana-moksha') {
+      await getTokenPrices();
+    }
     queriesEnabled.value = true;
     state.loading = false;
   });
@@ -551,6 +612,7 @@ export const tokensProvider = (
     approvalsRequired,
     allowanceFor,
     priceFor,
+    injectedPriceFor,
     balanceFor,
     getTokens,
     getToken,
@@ -569,7 +631,9 @@ export function provideTokens(
   userSettings: UserSettingsResponse,
   tokenLists: TokenListsResponse
 ) {
+  console.log('PROVIDE TOKENS');
   const tokensResponse = tokensProvider(userSettings, tokenLists);
+
   provide(TokensProviderSymbol, tokensResponse);
   return tokensResponse;
 }

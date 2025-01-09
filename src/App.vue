@@ -88,14 +88,18 @@ const themeMap = {
   sepolia: 'celo',
   'gnosis-chain': 'gnosis-chain',
   meter: 'meter',
+  taiko: 'taiko',
+  etherlink: 'etherlink',
+  'vana-moksha': 'vana-moksha',
   'artela-betanet': 'artela-betanet',
 };
 // Function to update theme based on the route slug
 const updateTheme = () => {
   // Assuming your slug is part of the path like /theme/slug
   // You need to adjust this based on your actual route structure
-  const themeSlug = route.path.split('/')[1]; // Get the slug from the path
-  const theme = themeMap[themeSlug] || 'artela-betanet'; // Set the theme or default if not found
+  // const themeSlug = route.path.split('/')[1]; // Get the slug from the path
+
+  const theme = themeMap[networkSlug] || 'telos'; // Set the theme or default if not found
   document.documentElement.setAttribute('data-theme', theme);
 };
 

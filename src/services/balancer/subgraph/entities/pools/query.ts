@@ -77,6 +77,7 @@ const defaultAttrs = {
   swapFee: true,
   tokensList: true,
   totalLiquidity: true,
+  totalLiquiditySansBPT: true,
   totalSwapVolume: true,
   totalSwapFee: true,
   totalShares: true,

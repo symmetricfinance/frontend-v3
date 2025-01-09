@@ -38,6 +38,7 @@ const props = defineProps<Props>();
  */
 const showPreview = ref(false);
 const showStakeModal = ref(false);
+const showStakePointsModal = ref(false);
 
 /**
  * COMPOSABLES
@@ -94,8 +95,6 @@ const joinTokensWithBalance = computed<string[]>(() =>
       : false;
   })
 );
-
-console.log('joinTokensWithBalance', joinTokensWithBalance.value);
 
 const joinTokensWithoutBalance = computed<string[]>(() =>
   poolJoinTokens.value.filter(
@@ -274,12 +273,19 @@ watch(
         :pool="pool"
         @close="showPreview = false"
         @show-stake-modal="showStakeModal = true"
+        @show-stake-points-modal="showStakePointsModal = true"
       />
       <StakePreviewModal
         :pool="pool"
         :isVisible="showStakeModal"
         action="stake"
         @close="showStakeModal = false"
+      />
+      <StakePreviewModal
+        :pool="pool"
+        :isVisible="showStakePointsModal"
+        action="stakeForPoints"
+        @close="showStakePointsModal = false"
       />
     </teleport>
   </div>

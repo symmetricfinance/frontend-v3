@@ -114,7 +114,6 @@ export class GaugeControllerDecorator {
    * @summary Fetch total points allocated towards each gauge for this period
    */
   private callGaugeWeightThisPeriod(votingGauges: ApiVotingGauge[]) {
-    console.log(votingGauges);
     let thisWeekTimestamp = toUnixTimestamp(
       Math.floor(Date.now() / oneWeekInMs) * oneWeekInMs
     );
@@ -134,7 +133,6 @@ export class GaugeControllerDecorator {
     //     );
     //   });
     // }
-    console.log(thisWeekTimestamp);
     return votingGauges.forEach(gauge => {
       this.multicaller.call(
         `gauges.${gauge.address}.gaugeWeightThisPeriod`,

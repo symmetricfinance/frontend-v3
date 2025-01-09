@@ -32,7 +32,6 @@ const sections = computed(() => {
   if (hasBridge.value) sections.push({ title: 'Bridge assets', id: 'bridge' });
   return sections;
 });
-
 /**
  * CALLBACKS
  */

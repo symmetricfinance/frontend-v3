@@ -1,5 +1,5 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider';
-import { formatUnits } from '@ethersproject/units';
+// import { formatUnits } from '@ethersproject/units';
 import { BigNumber, Contract } from 'ethers';
 import { zipObject } from 'lodash';
 
@@ -29,12 +29,18 @@ export class FeeDistributor {
       ? [
           '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E', // WTLOS
           '0xd5f2a24199C3DFc44C1Bf8B1C01aB147809434Ca', // tSYMM
-          '0x8d97cea50351fb4329d591682b148d43a0c3611b', // USDC
+          '0x8f7D64ea96D729EF24a0F30b4526D47b80d877B9', // USDM
         ]
-      : [
+      : networkSlug === 'meter'
+      ? [
           '0x2077a828fd58025655335a8756dbcfeb7e5bec46', //MTRG-wstMTRG
           '0x663345e09F4F4437F3D5df39BA5c2B5690532206', //mSYMM
-        ];
+        ]
+      : networkSlug === 'taiko'
+      ? [
+          '0xAA60Afa2FceC38EE762c52135f6Cbb22D8128DD7', // TSPTS
+        ]
+      : [];
 
   constructor(
     public readonly address: string,
@@ -109,6 +115,17 @@ export class FeeDistributor {
     });
   }
 
+  public async checkpointUser(
+    userAddress: string
+  ): Promise<TransactionResponse> {
+    return await this.walletService.txBuilder.contract.sendTransaction({
+      contractAddress: this.address,
+      abi: this.abi,
+      action: 'checkpointUser',
+      params: [userAddress],
+    });
+  }
+
   /**
    * @summary Get total token distribution in week.
    * @param {string} token address to check distribution for, either bb-a-USD or BAL
@@ -122,8 +139,8 @@ export class FeeDistributor {
   ): Promise<string> {
     if (!instance) instance = this.getInstance();
     const amount = await instance.getTokensDistributedInWeek(token, timestamp);
-
-    return formatUnits(amount, 18);
+    return amount;
+    // return formatUnits(amount, 18);
   }
 
   /**
@@ -137,7 +154,21 @@ export class FeeDistributor {
   ): Promise<string> {
     if (!instance) instance = this.getInstance();
     const amount = await instance.getTotalSupplyAtTimestamp(timestamp);
+    return amount;
+    // return formatUnits(amount, 18);
+  }
 
-    return formatUnits(amount, 18);
+  public async getUserBalance(
+    userAddress: string,
+    timestamp: number,
+    instance?: Contract
+  ): Promise<string> {
+    if (!instance) instance = this.getInstance();
+    const amount = await instance.getUserBalanceAtTimestamp(
+      userAddress,
+      timestamp
+    );
+    return amount;
+    // return formatUnits(amount, 18);
   }
 }

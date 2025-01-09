@@ -6,6 +6,7 @@ export type CommonTokens = {
   wNativeAsset: string;
   WETH: string;
   BAL: string;
+  POINTS?: string;
   bbaUSD?: string;
   bbaUSDv2?: string;
   rETH?: string;
@@ -13,6 +14,8 @@ export type CommonTokens = {
   wstETH?: string;
   stMATIC?: string;
   reward?: string;
+  rewards?: string;
+  erc4626Wrappers?: Record<string, string>;
 };
 
 export type TokenConstants = {
@@ -43,6 +46,8 @@ export interface Contracts {
   batchRelayer: string;
   balancerQueries: string;
   veBAL: string;
+  lpVault?: string;
+  lpVault2?: string;
   gaugeController: string;
   gaugeCheckpointer?: string;
   gaugeFactory: string;
@@ -53,6 +58,8 @@ export interface Contracts {
   veBALHelpers: string;
   feeDistributor: string;
   feeDistributorDeprecated: string;
+  rewardDistributor?: string;
+  rewardDistributorV2?: string;
   faucet: string;
   gaugeRewardsHelper?: string;
   omniVotingEscrow?: string;
@@ -89,11 +96,15 @@ export enum Network {
   METER = 82,
   TELOSTESTNET = 41,
   CELO = 42220,
+  TAIKO = 167000,
+  ETHERLINK = 42793,
+  VANAMOKSHA = 14800,
   ARTELABETANET = 11822,
 }
 
 type Reward = {
   token: string;
+  tokenSymbol: string;
   gauge: string;
   rate: bigint;
   period_finish: number;
@@ -101,7 +112,7 @@ type Reward = {
 
 type Rewards = {
   [key: string]: {
-    [key: string]: Reward;
+    [key: string]: Reward[];
   };
 };
 

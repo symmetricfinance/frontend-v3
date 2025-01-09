@@ -63,6 +63,7 @@ export default function usePoolQuery(
   const queryKey = QUERY_KEYS.Pools.Current(id);
 
   const queryFn = async () => {
+    console.log(getQueryArgs());
     let pool: Pool;
     if (poolInfo) {
       pool = poolInfo;

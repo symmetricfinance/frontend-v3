@@ -17,6 +17,7 @@ import MediumIcon from '@/components/_global/icons/brands/MediumIcon.vue';
 // import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
 import GithubIcon from '@/components/_global/icons/brands/GithubIcon.vue';
 import { isGaugesSupported, isVeBalSupported } from '@/composables/useVeBAL';
+import { configService } from '@/services/config/config.service';
 
 /**
  * PROPS & EMITS
@@ -33,12 +34,19 @@ const { networkSlug } = useNetwork();
 const { t } = useI18n();
 const router = useRouter();
 
+const isPointsSupported = computed(
+  () => configService.network.pools.PointsGauges
+);
+
+const isLpVaultSupported = computed(
+  () => configService.network.addresses.lpVault
+);
+
 /**
  * STATE
  */
 const blockIcon = ref<HTMLDivElement>();
 
-console.log('isVeBalSupported', isVeBalSupported);
 const navLinks = [
   { label: t('pool'), path: `/${networkSlug}`, goal: Goals.ClickNavPools },
   { label: t('swap'), path: `/${networkSlug}/swap`, goal: Goals.ClickNavSwap },
@@ -52,6 +60,18 @@ const navLinks = [
     label: t('portfolio'),
     path: `/${networkSlug}/portfolio`,
     goal: Goals.ClickNavPortfolio,
+  },
+  {
+    label: 'SYMM Points',
+    path: `/${networkSlug}/points`,
+    goal: Goals.ClickNavPortfolio,
+    hide: !isPointsSupported.value,
+  },
+  {
+    label: 'Taiko LP Vault',
+    path: `/${networkSlug}/lp-vault`,
+    goal: Goals.ClickNavPortfolio,
+    hide: !isLpVaultSupported.value,
   },
   {
     label: veSymbol.value,

@@ -1,0 +1,14 @@
+{
+  "Authorizer": "0x00EDdD9621Fb08436d0331c149D1690909a5906d",
+  "BalancerHelpers": "0xc2a0d530e57B1275fbce908031DA636f95EA1E38",
+  "BalancerRelayer": "0x0065c54FCbfE0adD9881046f8A45b871cb6e8610",
+  "BatchRelayerLibrary": "0x98add7DC34a382e188be709a72Ca8fCDF7e548db",
+  "BatchRelayerQueryLibrary": "0xf7CCb992279Fb7D640de3464c475b0d34c01a563",
+  "ComposableStablePoolFactory": "0xFEF39453770fF2C6b2F453D1b6D075623a79e3Eb",
+  "MockComposableStablePool": "0x9569326d7bd9Ada26CA459A11FD0222528A8216D",
+  "MockWeightedPool": "0x79A5Ea74c365cdF91b5A0342A3ccEa0853dD26Ea",
+  "ProtocolFeePercentagesProvider": "0x698fEa3Aa7DBD323D8D896993fD1EC556D308615",
+  "ProtocolFeesCollector": "0x61497C44c7Cb9C3eab99Ef20f58863414A5665d2",
+  "Vault": "0xbccc4b4c6530F82FE309c5E845E50b5E9C89f2AD",
+  "WeightedPoolFactory": "0x4e4131dC27ed9501ac5fEb76F94572fDAe9f0fD0"
+}

@@ -259,6 +259,16 @@ const QUERY_KEYS = {
     ],
     Voting: (account: Ref<string>) => ['gauges', 'voting', { account }],
   },
+  Points: {
+    All: {
+      Static: () => ['points', 'all', 'static'],
+      Onchain: (
+        gauges: Ref<{ gauge: string; symbol: string }[] | undefined>,
+        account: Ref<string>,
+        networkId: Ref<Network>
+      ) => ['points', 'all', 'onchain', { gauges, account, networkId }],
+    },
+  },
   Transaction: {
     ConfirmationDate: (receipt: Ref<TransactionReceipt>) => [
       'tx',

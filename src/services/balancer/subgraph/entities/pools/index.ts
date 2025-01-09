@@ -30,7 +30,6 @@ export default class Pools {
 
     if (!this.repository || !_.isEqual(query, this.lastQuery)) {
       this.lastQuery = _.cloneDeep(query);
-      console.log(query);
       this.repository = new PoolsSubgraphRepository({
         url: configService.network.subgraph,
         chainId: configService.network.chainId as Network,
@@ -42,7 +41,6 @@ export default class Pools {
       first: query.args.first,
       skip: query.args.skip,
     });
-
     return pools as Pool[];
   }
 

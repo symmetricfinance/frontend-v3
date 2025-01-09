@@ -53,6 +53,11 @@ const {
   isExtendedLockEndDate,
 } = useLockEndDate(props.veBalLockInfo);
 
+console.log('minLockEndDateTimestamp', minLockEndDateTimestamp);
+console.log('maxLockEndDateTimestamp', maxLockEndDateTimestamp);
+console.log('isValidLockEndDate', isValidLockEndDate);
+console.log('isExtendedLockEndDate', isExtendedLockEndDate);
+
 /**
  * COMPOSABLES
  */

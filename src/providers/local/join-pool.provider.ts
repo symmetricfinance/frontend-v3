@@ -171,9 +171,11 @@ export const joinPoolProvider = (
   // If we don't have price for an amountIn that has a value greater than 0.
   const missingPricesIn = computed(
     (): boolean =>
-      !amountsInWithValue.value.every(amountIn =>
-        bnum(priceFor(amountIn.address)).gt(0)
-      )
+      !amountsInWithValue.value.every(amountIn => {
+        const price = priceFor(amountIn.address);
+        console.log('price', price, amountIn.address);
+        return bnum(price).gt(0);
+      })
   );
 
   // Calculates total fiat value in for all amountsIn with Coingecko prices.
@@ -308,7 +310,6 @@ export const joinPoolProvider = (
       joinPoolService.setJoinHandler(joinHandlerType.value);
       await setApprovalActions();
 
-      console.log('joinHandler:', joinHandlerType.value);
       if (!validateAmountsIn()) return null;
       const output = await joinPoolService.queryJoin({
         amountsIn: amountsInWithValue.value,
@@ -319,7 +320,6 @@ export const joinPoolProvider = (
         approvalActions: approvalActions.value,
         transactionDeadline: transactionDeadline.value,
       });
-      console.log('to: ', output);
       bptOut.value = output.bptOut;
       priceImpact.value = output.priceImpact;
 
@@ -340,7 +340,6 @@ export const joinPoolProvider = (
       joinPoolService.setJoinHandler(joinHandlerType.value);
       await setApprovalActions();
 
-      console.log('joinHandler:', joinHandlerType.value);
       const joinRes = await joinPoolService.join({
         amountsIn: amountsInWithValue.value,
         tokensIn: tokensIn.value,

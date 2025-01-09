@@ -46,6 +46,7 @@ const {
   stakedShares,
   hasNonPrefGaugeBalance,
   preferentialGaugeAddress,
+  gaugeTotalSupply,
 } = usePoolStaking();
 const { isAffected } = usePoolWarning(poolId);
 const { networkId } = useNetwork();
@@ -53,6 +54,7 @@ const { networkId } = useNetwork();
 /**
  * COMPUTED
  */
+
 const fiatValueOfStakedShares = computed(() => {
   return bnum(props.pool.totalLiquidity)
     .div(props.pool.totalShares)
@@ -64,6 +66,13 @@ const fiatValueOfUnstakedShares = computed(() => {
   return bnum(props.pool.totalLiquidity)
     .div(props.pool.totalShares)
     .times(balanceFor(getAddress(props.pool.address)))
+    .toString();
+});
+
+const stakedPctOfShares = computed(() => {
+  return bnum(gaugeTotalSupply.value || 0)
+    .div(props.pool.totalShares)
+    .times(100)
     .toString();
 });
 
@@ -151,6 +160,25 @@ function handlePreviewClose() {
                 spacing="sm"
                 class="p-4 rounded-b-lg border-t dark:border-gray-900"
               >
+                <BalStack horizontal justify="between">
+                  <span>{{ $t('staking.stakedPercentage') }}</span>
+                  <BalStack horizontal spacing="sm" align="center">
+                    <AnimatePresence :isVisible="isRefetchingStakedShares">
+                      <BalLoadingBlock class="h-5" />
+                    </AnimatePresence>
+                    <AnimatePresence :isVisible="!isRefetchingStakedShares">
+                      <span>
+                        {{
+                          fNum(
+                            Number(stakedPctOfShares) / 100,
+                            FNumFormats.percent
+                          )
+                        }}
+                      </span>
+                    </AnimatePresence>
+                    <BalTooltip :text="$t('staking.totalStakedPercentage')" />
+                  </BalStack>
+                </BalStack>
                 <BalStack horizontal justify="between" class="rounded-b-lg">
                   <span>{{ $t('staked') }} {{ $t('lpTokens') }}</span>
                   <BalStack horizontal spacing="sm" align="center">

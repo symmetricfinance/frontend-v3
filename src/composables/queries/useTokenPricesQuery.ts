@@ -2,15 +2,18 @@ import { reactive, Ref, ref } from 'vue';
 import { useQuery, UseQueryOptions } from '@tanstack/vue-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import useNetwork from '../useNetwork';
-import { getApi } from '@/dependencies/balancer-api';
+// import { getApi } from '@/dependencies/balancer-api';
 // import { GqlTokenPrice } from '@/services/api/graphql/generated/api-types';
 import { oneMinInMs } from '../useTime';
-// import { getAddress } from '@ethersproject/address';
+import { getAddress } from '@ethersproject/address';
 
 /**
  * TYPES
  */
 export type TokenPrices = { [address: string]: number };
+export type PriceAPIReturn = {
+  [chainId: string]: { [address: string]: string };
+};
 type QueryResponse = TokenPrices;
 type QueryOptions = UseQueryOptions<QueryResponse>;
 
@@ -43,34 +46,31 @@ export default function useTokenPricesQuery(
     return prices;
   }
 
-  const api = getApi();
+  const api = 'https://symm-prices.deno.dev/tokens';
 
   const queryFn = async () => {
-    console.log('API: ', api);
     if (api) {
-      // const { prices } = await api.GetCurrentTokenPrices();
-      let pricesMap = {};
-      // priceArrayToMap(prices);
-      pricesMap = injectCustomTokens({}, pricesToInject.value);
-      console.log('pricesMap: ', pricesMap);
-      // console.log('Fetching', Object.values(prices).length, 'prices');
+      const data = await fetch(api).then(res => res.json());
+      let pricesMap: TokenPrices = {};
+
+      // Iterate over chain IDs and their corresponding token prices
+      for (const chainId in data) {
+        const chainPrices = data[chainId];
+        for (const address in chainPrices) {
+          pricesMap[getAddress(address)] = parseFloat(chainPrices[address]);
+        }
+      }
+
+      // Inject custom token prices
+      pricesMap = injectCustomTokens(pricesMap, pricesToInject.value);
 
       return pricesMap;
     }
-    return;
+    return {};
   };
 
-  const queryOptions = reactive({
-    enabled: true,
-    refetchInterval: oneMinInMs * 5,
-    refetchOnWindowFocus: false,
-    keepPreviousData: true,
+  return useQuery<QueryResponse>(queryKey, queryFn, {
+    staleTime: oneMinInMs,
     ...options,
   });
-
-  return useQuery<QueryResponse>(
-    queryKey,
-    queryFn,
-    queryOptions as QueryOptions
-  );
 }

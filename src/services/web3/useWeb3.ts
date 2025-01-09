@@ -125,12 +125,12 @@ export default function useWeb3() {
   const isSubgraphUnsynced = async () => {
     try {
       const block = await rpcProviderService.getBlockNumber();
-      console.log(block);
+      console.log('block', block);
       const subgraphBlock = (await subgraphFallbackService.get({
         query: '{ _meta { block { number } } }',
       })) as any;
-      console.log(subgraphBlock.data.data._meta.block.number);
-      return block - subgraphBlock.data.data._meta.block.number > 4000;
+      console.log('subgraphBlock', subgraphBlock.data.data._meta.block.number);
+      return block - subgraphBlock.data.data._meta.block.number > 1200;
     } catch (error) {
       return true;
     }

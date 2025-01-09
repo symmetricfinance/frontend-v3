@@ -55,7 +55,6 @@ export default function useVotingPoolsQuery(
   const queryFn = async (): Promise<VotingPool[]> => {
     try {
       let apiVotingPools: ApiVotingPools;
-      console.log(isMeter.value);
       if (isTestnet.value) {
         apiVotingPools = testnetVotingPools('GOERLI');
       } else if (isMainnet.value) {
@@ -64,16 +63,23 @@ export default function useVotingPoolsQuery(
         apiVotingPools = meterVotingPools('meter');
       } else {
         const api = getApi();
-        console.log(api);
         const { veBalGetVotingList } = await api.VeBalGetVotingList();
-        console.log(veBalGetVotingList);
         apiVotingPools = veBalGetVotingList;
       }
-      console.log(apiVotingPools);
-      const pools = await new GaugeControllerDecorator().decorateWithVotes(
-        apiVotingPools,
-        account.value
-      );
+
+      const batchSize = 4;
+      const gaugeControllerDecorator = new GaugeControllerDecorator();
+      let pools: VotingPoolWithVotes[] = [];
+
+      for (let i = 0; i < apiVotingPools.length; i += batchSize) {
+        const batch = apiVotingPools.slice(i, i + batchSize);
+        const batchResult = await gaugeControllerDecorator.decorateWithVotes(
+          batch,
+          account.value
+        );
+        pools = pools.concat(batchResult);
+      }
+
       const poolsWithNetwork = pools.map(pool => {
         return {
           ...pool,

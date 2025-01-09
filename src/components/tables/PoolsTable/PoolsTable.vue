@@ -63,6 +63,7 @@ type Props = {
   defaultPoolActions?: PoolAction[];
   shouldPokePoolsMap?: Record<string, string>;
   hasNonPrefGaugesPoolsAddresses?: string[];
+  hideExtraInfo?: boolean;
 };
 
 /**
@@ -83,6 +84,7 @@ const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   selectedTokens: () => [],
   skeletonClass: 'h-64',
+  hideExtraInfo: false,
 });
 
 const emit = defineEmits<{
@@ -379,7 +381,7 @@ function goToPoolPage(id: string) {
           </div>
           <Ve8020Chip v-if="isVe8020Pool(pool)" />
 
-          <PoolsTableExtraInfo :pool="pool" />
+          <PoolsTableExtraInfo v-if="!hideExtraInfo" :pool="pool" />
         </div>
       </template>
       <template #volumeCell="pool">

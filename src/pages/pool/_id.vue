@@ -10,12 +10,14 @@ import {
 } from '@/components/contextual/pages/pool';
 import StakingIncentivesCard from '@/components/contextual/pages/pool/staking/StakingIncentivesCard.vue';
 import PoolLockingCard from '@/components/contextual/pages/pool/PoolLockingCard/PoolLockingCard.vue';
+import PoolLpVaultLockingCard from '@/components/contextual/pages/pool/PoolLpVaultLockingCard/PoolLpVaultLockingCard.vue';
 import ApyVisionPoolLink from '@/components/links/ApyVisionPoolLink.vue';
 import PoolPageHeader from '@/components/pool/PoolPageHeader.vue';
 import usePoolAprQuery from '@/composables/queries/usePoolAprQuery';
 import usePoolSnapshotsQuery from '@/composables/queries/usePoolSnapshotsQuery';
 import {
   isVeBalPool,
+  isLpVaultPool,
   preMintedBptIndex,
   usePoolHelpers,
   tokensListExclBpt,
@@ -25,7 +27,7 @@ import {
 import { useTokens } from '@/providers/tokens.provider';
 import { POOLS } from '@/constants/pools';
 import { includesAddress } from '@/lib/utils';
-import useHistoricalPricesQuery from '@/composables/queries/useHistoricalPricesQuery';
+// import useHistoricalPricesQuery from '@/composables/queries/useHistoricalPricesQuery';
 import { PoolToken } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
 import BrandedRedirectCard from '@/components/pool/branded-redirect/BrandedRedirectCard.vue';
@@ -36,6 +38,7 @@ import PoolRisks from '@/components/contextual/pages/pool/risks/PoolRisks.vue';
 import { usePool } from '@/providers/local/pool.provider';
 import { provideUserStaking } from '@/providers/local/user-staking.provider';
 import { providerUserPools } from '@/providers/local/user-pools.provider';
+import PointsIncentivesCard from '@/components/contextual/pages/pool/staking/PointsIncentivesCard.vue';
 
 const userStaking = provideUserStaking();
 providerUserPools(userStaking);
@@ -54,8 +57,8 @@ const isRestakePreviewVisible = ref(false);
 const { prices, priceQueryLoading } = useTokens();
 const { isWalletReady } = useWeb3();
 const _isVeBalPool = isVeBalPool(poolId);
+const _isLpVaultPool = isLpVaultPool(poolId);
 const { pool, isLoadingPool } = usePool();
-console.log('pool', pool);
 const {
   isStableLikePool,
   isLiquidityBootstrappingPool,
@@ -79,12 +82,13 @@ const snapshots = computed(() => poolSnapshotsQuery.data.value);
 //#endregion
 
 //#region historical prices query
-const historicalPricesQuery = useHistoricalPricesQuery(
-  poolId,
-  undefined,
-  // in order to prevent multiple coingecko requests
-  { refetchOnWindowFocus: false }
-);
+const historicalPricesQuery = { data: ref({}) };
+// useHistoricalPricesQuery(
+//   poolId,
+//   undefined,
+//   // in order to prevent multiple coingecko requests
+//   { refetchOnWindowFocus: false }
+// );
 const historicalPrices = computed(() => historicalPricesQuery.data.value);
 //#endregion
 
@@ -156,6 +160,13 @@ const titleTokens = computed<PoolToken[]>(() => {
 
   return orderedPoolTokens(pool.value, pool.value.tokens);
 });
+
+const isPointsStakablePool = computed(() => {
+  if (!pool.value || POOLS.PointsGauges === undefined) return false;
+  return Object.keys(POOLS.PointsGauges).includes(poolId);
+});
+
+console.log('isPointsStakablePool', isPointsStakablePool);
 
 const isStakablePool = computed(
   (): boolean =>
@@ -286,11 +297,23 @@ watch(
             class="staking-incentives"
             @set-restake-visibility="setRestakeVisibility"
           />
+          <PoolLpVaultLockingCard
+            v-if="_isLpVaultPool && !loadingPool && pool"
+            :pool="pool"
+            class="pool-locking"
+          />
+          <PointsIncentivesCard
+            v-if="isPointsStakablePool && !loadingPool && pool && isWalletReady"
+            :pool="pool"
+            class="staking-incentives"
+            @set-restake-visibility="setRestakeVisibility"
+          />
           <PoolLockingCard
             v-if="_isVeBalPool && !loadingPool && pool"
             :pool="pool"
             class="pool-locking"
           />
+
           <PoolMigrationCard
             v-if="
               poolId &&

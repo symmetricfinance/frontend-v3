@@ -39,6 +39,10 @@ export type FactoryType =
 export enum PoolFeature {
   Boosted = 'boosted',
   CLP = 'clp',
+  Points = 'points',
+  TBXP = 'tbxp',
+  Points40k = 'points40k',
+  Points20k = 'points20k',
 }
 
 export type PoolFeatures = {
@@ -104,6 +108,7 @@ export type NamedPools = {
   veBAL: string;
   veLIT: string;
   veUSH: string;
+  lpVault: string;
 };
 
 export type DeprecatedDetails = {
@@ -162,6 +167,7 @@ export type Pools = {
     // Pools that have additional rewards and therefore should be stakable but are not included in the VotingGaugePools list.
     AllowList: string[];
   };
+  PointsGauges?: Record<string, { gauge: string; symbol: string }>;
   Metadata: Record<string, PoolMetadata>;
   Deep: string[];
   BoostedApr: string[];

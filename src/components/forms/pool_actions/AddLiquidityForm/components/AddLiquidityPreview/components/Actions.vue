@@ -18,6 +18,7 @@ import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { usePoolStaking } from '@/providers/local/pool-staking.provider';
 import useWeb3 from '@/services/web3/useWeb3';
 import useNetwork, { veSymbol } from '@/composables/useNetwork';
+import { usePoolPointsStaking } from '@/providers/local/pool-points-staking.provider';
 
 /**
  * TYPES
@@ -34,6 +35,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   (e: 'success', value: TransactionReceipt): void;
   (e: 'showStakeModal'): void;
+  (e: 'showStakePointsModal'): void;
 }>();
 
 /**
@@ -44,6 +46,7 @@ const { fNum } = useNumbers();
 const { addTransaction } = useTransactions();
 const { lockablePoolId } = useVeBal();
 const { isStakablePool } = usePoolStaking();
+const { isStakablePool: isStakablePointsPool } = usePoolPointsStaking();
 const { isMismatchedNetwork } = useWeb3();
 const { poolWeightsLabel } = usePoolHelpers(toRef(props, 'pool'));
 const {
@@ -57,6 +60,10 @@ const {
 const { networkSlug } = useNetwork();
 
 const approvalActions = ref(joinPoolApprovalActions.value);
+
+const lpVaultPoolId = ref(
+  '0x27ebdb9db75b8ca967ec331cb1e74880f1d7f0a8000200000000000000000005'
+);
 
 /**
  * COMPUTED
@@ -164,6 +171,25 @@ onUnmounted(() => {
         }}
       </BalBtn>
       <BalBtn
+        v-if="lpVaultPoolId === pool.id"
+        tag="router-link"
+        :to="{
+          name: 'taiko-lp-vault',
+          query: {
+            returnRoute: $route.name,
+            returnParams: JSON.stringify({
+              id: pool.id,
+              networkSlug,
+            }),
+          },
+        }"
+        color="gradient"
+        block
+        class="flex mt-2"
+      >
+        <StarsIcon class="mr-2 h-5 text-orange-300" />{{ $t('lockLpVault') }}
+      </BalBtn>
+      <BalBtn
         v-else-if="isStakablePool"
         color="gradient"
         block
@@ -172,6 +198,17 @@ onUnmounted(() => {
       >
         <StarsIcon class="mr-2 h-5 text-orange-300" />{{
           $t('stakeToGetExtra')
+        }}
+      </BalBtn>
+      <BalBtn
+        v-else-if="isStakablePointsPool"
+        color="gradient"
+        block
+        class="flex mt-2"
+        @click="emit('showStakePointsModal')"
+      >
+        <StarsIcon class="mr-2 h-5 text-orange-300" />{{
+          $t('stakeToGetPoints')
         }}
       </BalBtn>
 

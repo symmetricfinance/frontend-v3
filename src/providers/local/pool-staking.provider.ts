@@ -26,10 +26,18 @@ export const poolStakingProvider = (_poolId?: string) => {
   /**
    * STATE
    */
+
   const poolId = ref(_poolId);
   const poolAddress = computed((): string | undefined =>
     poolId.value ? getAddressFromPoolId(poolId.value) : undefined
   );
+
+  // const isPointsPool = computed((): boolean => {
+  //   if (!poolId.value) return false;
+  //   return (
+  //     configService.network.pools.PointsGauges?.[poolId.value] !== undefined
+  //   );
+  // });
 
   /**
    * COMPOSABLES
@@ -65,6 +73,8 @@ export const poolStakingProvider = (_poolId?: string) => {
           isQueryLoading(userBoostsQuery)))
   );
 
+  const isPointsLoading = computed((): boolean => !isWalletReady.value);
+
   // The current preferential gauge for the specified pool.
   const preferentialGaugeAddress = computed(
     (): string | undefined | null =>
@@ -80,6 +90,10 @@ export const poolStakingProvider = (_poolId?: string) => {
         poolId.value
       )
   );
+
+  const gaugeTotalSupply = computed((): string => {
+    return poolGauges.value?.liquidityGauges?.[0]?.totalSupply || '0';
+  });
 
   // User's staked shares for pool (onchain data).
   const stakedShares = computed((): string => {
@@ -229,6 +243,7 @@ export const poolStakingProvider = (_poolId?: string) => {
 
   return {
     isLoading,
+    isPointsLoading,
     stakedShares,
     isStakablePool,
     boost,
@@ -237,6 +252,7 @@ export const poolStakingProvider = (_poolId?: string) => {
     refetchStakedShares,
     preferentialGaugeAddress,
     fetchPreferentialGaugeAddress,
+    gaugeTotalSupply,
     setCurrentPool,
     refetchAllPoolStakingData,
     stake,

@@ -4,6 +4,7 @@ import FocussedLayout from '@/components/layouts/FocussedLayout.vue';
 import { createProviderComponent } from '@/providers/createProviderComponent';
 import { providePool } from '@/providers/local/pool.provider';
 import { providePoolStaking } from '@/providers/local/pool-staking.provider';
+import { providePoolPointsStaking } from '@/providers/local/pool-points-staking.provider';
 import { provideUserTokens } from '@/providers/local/user-tokens.provider';
 
 /**
@@ -24,6 +25,7 @@ const PoolProvider = createProviderComponent(() => {
 
   providePool(poolId);
   providePoolStaking(poolId);
+  providePoolPointsStaking(poolId);
   provideUserTokens();
 });
 
