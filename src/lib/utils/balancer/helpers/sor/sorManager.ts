@@ -146,6 +146,14 @@ export class SorManager {
 
     const timestampSeconds = Math.floor(Date.now() / 1000);
 
+    const isWTLOSUSDT =
+      (v2TokenIn === '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E' ||
+        v2TokenIn === AddressZero ||
+        v2TokenOut === '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E' ||
+        v2TokenOut === AddressZero) &&
+      (v2TokenOut === '0x975Ed13fa16857E83e7C493C7741D556eaaD4A3f' ||
+        v2TokenOut === '0x975Ed13fa16857E83e7C493C7741D556eaaD4A3f');
+
     // The poolTypeFilter can be used to filter to different pool types. Useful for debug/testing.
     const swapOptions: SwapOptions = {
       maxPools: this.maxPools,
@@ -155,6 +163,10 @@ export class SorManager {
       timestamp: timestampSeconds,
       forceRefresh: true,
     };
+
+    if (isWTLOSUSDT) {
+      swapOptions.poolTypeFilter = PoolFilter.Weighted;
+    }
 
     const swapInfoV2: SwapInfo = await this.sorV2.getSwaps(
       v2TokenIn.toLowerCase(),
