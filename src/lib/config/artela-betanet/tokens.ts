@@ -20,7 +20,14 @@ const tokens: TokenConstants = {
     stETH: '',
     wstETH: '',
   },
-  PriceChainMap: {},
+  PriceChainMap: {
+    '0x23625ff2aec3a5e3459a9fd75661a135c567b072':
+      '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+    '0x9c9df9e55f4770132e586f32741d7e4f80c39b2a':
+      '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
+    '0x7bf8b8Da6E71ebc92383dAf6f32F82b073a303cD':
+      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  },
 };
 
 export default tokens;
