@@ -282,7 +282,7 @@ export function getRedirectUrlFor(
   const subdomain = getSubdomain(host);
   const subdomainNetwork = networkFromSlug(subdomain);
 
-  if (subdomainNetwork) {
+  if (subdomainNetwork && subdomain !== 'artela') {
     // Legacy network subdomain, we need to redirect to app.balancer.fi.
     const newDomain = appUrl().replace(subdomain, 'app');
     // If networkSlug provided it will be in the fullPath, so pass empty string instead.
