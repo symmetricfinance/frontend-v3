@@ -1,0 +1,98 @@
+{
+  "20210418-authorizer": {
+    "contracts": [
+      {
+        "name": "Authorizer",
+        "address": "0x00EDdD9621Fb08436d0331c149D1690909a5906d"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20210418-vault": {
+    "contracts": [
+      {
+        "name": "Vault",
+        "address": "0xc2a0d530e57B1275fbce908031DA636f95EA1E38"
+      },
+      {
+        "name": "ProtocolFeesCollector",
+        "address": "0xF5C36b6b91bb20d7caf97b5c21503A2FcCaAC597"
+      },
+      {
+        "name": "BalancerHelpers",
+        "address": "0x698fEa3Aa7DBD323D8D896993fD1EC556D308615"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220721-balancer-queries": {
+    "contracts": [
+      {
+        "name": "BalancerQueries",
+        "address": "0xfff23CDf2e98b6ea6f0ae856e8DeF6Fdb3141dF1"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220725-protocol-fee-percentages-provider": {
+    "contracts": [
+      {
+        "name": "ProtocolFeePercentagesProvider",
+        "address": "0x4e4131dC27ed9501ac5fEb76F94572fDAe9f0fD0"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20230320-weighted-pool-v4": {
+    "contracts": [
+      {
+        "name": "WeightedPoolFactory",
+        "address": "0xc2eb5c675A49F87843c814FE76576d20e10C3CD0"
+      },
+      {
+        "name": "MockWeightedPool",
+        "address": "0x1DA7713e6e30C070595889506dd61dA898613cfb"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20231031-batch-relayer-v6": {
+    "contracts": [
+      {
+        "name": "BatchRelayerLibrary",
+        "address": "0x4fE18fde71267c46d6DDeecc412cd498e88b39Cb"
+      },
+      {
+        "name": "BatchRelayerQueryLibrary",
+        "address": "0x8836a79C28605E62403f1C39A9bC4Ca9aD8C170A"
+      },
+      {
+        "name": "BalancerRelayer",
+        "address": "0x2abb00f1168660B5f0A611810597410aEd0A7efc"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20231122-symm-token": {
+    "contracts": [
+      {
+        "name": "SymmToken",
+        "address": "0xdd58D43a829067129B8C37f1924D31B1896ac0C6"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20240223-composable-stable-pool-v6": {
+    "contracts": [
+      {
+        "name": "ComposableStablePoolFactory",
+        "address": "0x266b53bb135f2dbc324b5C5Aa281e84f1C105B26"
+      },
+      {
+        "name": "MockComposableStablePool",
+        "address": "0x994bB7EE397eCA8E7DA46e3c4714C10100CD0cd8"
+      }
+    ],
+    "status": "ACTIVE"
+  }
+}

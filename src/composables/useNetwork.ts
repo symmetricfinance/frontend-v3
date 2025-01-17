@@ -24,8 +24,9 @@ const NETWORK_ID =
   urlNetworkId ||
   localStorageNetworkId ||
   (Number(import.meta.env.VITE_NETWORK) as Network) ||
-  Network.ARTELABETANET;
+  Network.ARTELA;
 if (windowAvailable) localStorage.setItem('networkId', NETWORK_ID.toString());
+console.log('NETWORK_ID', NETWORK_ID);
 export const networkSlug = config[NETWORK_ID].slug;
 export const networkConfig = config[NETWORK_ID];
 
@@ -106,6 +107,9 @@ export const veSymbol = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return 'vGSYMM';
   }
+  if (networkId.value === Network.ARTELA) {
+    return 'vASYMM';
+  }
   return 'vMSYMM';
 });
 
@@ -122,6 +126,9 @@ export const symmSymbol = computed(() => {
   if (networkId.value === Network.VANAMOKSHA) {
     return 'vSYMM';
   }
+  if (networkId.value === Network.ARTELA) {
+    return 'ASYMM';
+  }
   return 'mSYMM';
 });
 
@@ -134,6 +141,9 @@ export const lpToken = computed(() => {
   }
   if (networkId.value === Network.GNOSIS) {
     return '80GSYMM-20SDAI';
+  }
+  if (networkId.value === Network.ARTELA) {
+    return '80ASYMM-20ART';
   }
   return '80MSYMM-20wstMTRG';
 });
@@ -151,6 +161,9 @@ export const nativeSymbol = computed(() => {
   if (networkId.value === Network.ARTELABETANET) {
     return 'WART';
   }
+  if (networkId.value === Network.ARTELA) {
+    return 'ART';
+  }
   return 'wstMTRG';
 });
 
@@ -165,6 +178,9 @@ export const native = computed(() => {
     return 'XDAI';
   }
   if (networkId.value === Network.ARTELABETANET) {
+    return 'ART';
+  }
+  if (networkId.value === Network.ARTELA) {
     return 'ART';
   }
   return 'MTR';
@@ -195,6 +211,9 @@ export const native_wrapped = computed(() => {
   }
   if (networkId.value === Network.ARTELABETANET) {
     return 'ART/WART';
+  }
+  if (networkId.value === Network.ARTELA) {
+    return 'ART/wART';
   }
   return 'MTR/wMTR';
 });
