@@ -86,15 +86,31 @@ const excludedTokens = computed((): string[] => {
   return tokens;
 });
 
-const joinTokensWithBalance = computed<string[]>(() =>
-  poolJoinTokens.value.filter(address => {
-    return address
-      ? includesAddress(tokensWithBalance.value, address)
-      : false || wrappedNativeAsset.value.address
-      ? isSameAddress(address, wrappedNativeAsset.value.address)
-      : false;
-  })
-);
+const joinTokensWithBalance = computed<string[]>(() => {
+  let shouldAddNativeAsset = false;
+  const joinTokens = poolJoinTokens.value.filter(address => {
+    // If it's the wrapped native asset address
+    if (address && isSameAddress(address, wrappedNativeAsset.value.address)) {
+      // Check if user has wrapped token balance
+      const hasWrappedBalance = includesAddress(
+        tokensWithBalance.value,
+        wrappedNativeAsset.value.address
+      );
+      // If no wrapped balance, replace with native token
+      if (!hasWrappedBalance) {
+        shouldAddNativeAsset = true;
+        return false;
+      }
+      return true;
+    }
+    // For other tokens, check if user has balance
+    return address ? includesAddress(tokensWithBalance.value, address) : false;
+  });
+  if (shouldAddNativeAsset) {
+    joinTokens.push(nativeAsset.address);
+  }
+  return joinTokens;
+});
 
 const joinTokensWithoutBalance = computed<string[]>(() =>
   poolJoinTokens.value.filter(
@@ -129,7 +145,7 @@ function tokenOptions(address: string): string[] {
     [wrappedNativeAsset.value.address, nativeAsset.address],
     address
   )
-    ? [wrappedNativeAsset.value.address, nativeAsset.address]
+    ? [nativeAsset.address, wrappedNativeAsset.value.address]
     : [];
 }
 

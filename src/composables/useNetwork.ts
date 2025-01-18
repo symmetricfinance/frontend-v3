@@ -24,8 +24,9 @@ const NETWORK_ID =
   urlNetworkId ||
   localStorageNetworkId ||
   (Number(import.meta.env.VITE_NETWORK) as Network) ||
-  Network.CELO;
+  Network.ARTELA;
 if (windowAvailable) localStorage.setItem('networkId', NETWORK_ID.toString());
+console.log('NETWORK_ID', NETWORK_ID);
 export const networkSlug = config[NETWORK_ID].slug;
 export const networkConfig = config[NETWORK_ID];
 
@@ -106,6 +107,9 @@ export const veSymbol = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return 'vGSYMM';
   }
+  if (networkId.value === Network.ARTELA) {
+    return 'vASYMM';
+  }
   return 'vMSYMM';
 });
 
@@ -122,6 +126,9 @@ export const symmSymbol = computed(() => {
   if (networkId.value === Network.VANAMOKSHA) {
     return 'vSYMM';
   }
+  if (networkId.value === Network.ARTELA) {
+    return 'ASYMM';
+  }
   return 'mSYMM';
 });
 
@@ -134,6 +141,9 @@ export const lpToken = computed(() => {
   }
   if (networkId.value === Network.GNOSIS) {
     return '80GSYMM-20SDAI';
+  }
+  if (networkId.value === Network.ARTELA) {
+    return '80ASYMM-20ART';
   }
   return '80MSYMM-20wstMTRG';
 });
@@ -148,7 +158,32 @@ export const nativeSymbol = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return 'SDAI';
   }
+  if (networkId.value === Network.ARTELABETANET) {
+    return 'WART';
+  }
+  if (networkId.value === Network.ARTELA) {
+    return 'ART';
+  }
   return 'wstMTRG';
+});
+
+export const native = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'CELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'TLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'XDAI';
+  }
+  if (networkId.value === Network.ARTELABETANET) {
+    return 'ART';
+  }
+  if (networkId.value === Network.ARTELA) {
+    return 'ART';
+  }
+  return 'MTR';
 });
 
 export const rewardSymbol = computed(() => {
@@ -162,6 +197,25 @@ export const rewardSymbol = computed(() => {
     return 'SDAI';
   }
   return 'MTRG-wstMTRG';
+});
+
+export const native_wrapped = computed(() => {
+  if (networkId.value === Network.CELO) {
+    return 'CELO';
+  }
+  if (networkId.value === Network.TELOS) {
+    return 'TLOS/WTLOS';
+  }
+  if (networkId.value === Network.GNOSIS) {
+    return 'xDAI/WXDAI';
+  }
+  if (networkId.value === Network.ARTELABETANET) {
+    return 'ART/WART';
+  }
+  if (networkId.value === Network.ARTELA) {
+    return 'ART/wART';
+  }
+  return 'MTR/wMTR';
 });
 
 export function appUrl(): string {
@@ -197,7 +251,7 @@ export function handleNetworkSlug(
 ) {
   const networkFromUrl = networkFromSlug(networkSlug);
   const localStorageNetwork = networkFor(
-    localStorage.getItem('networkId') ?? '42220'
+    localStorage.getItem('networkId') ?? '11822'
   );
   if (!networkFromUrl) {
     // missing or incorrect network name -> next() withtout network change
@@ -228,7 +282,7 @@ export function getRedirectUrlFor(
   const subdomain = getSubdomain(host);
   const subdomainNetwork = networkFromSlug(subdomain);
 
-  if (subdomainNetwork) {
+  if (subdomainNetwork && subdomain !== 'artela') {
     // Legacy network subdomain, we need to redirect to app.balancer.fi.
     const newDomain = appUrl().replace(subdomain, 'app');
     // If networkSlug provided it will be in the fullPath, so pass empty string instead.
@@ -257,5 +311,7 @@ export default function useNetwork() {
     lpToken,
     nativeSymbol,
     rewardSymbol,
+    native_wrapped,
+    native,
   };
 }

@@ -92,6 +92,7 @@ function applyNetworkPathRedirects(router: Router): Router {
         const networkChangeCallback = () => {
           hardRedirectTo(`/#${to.fullPath}`);
         };
+        console.log(networkSlugFromUrl);
         useFavicon(`/${networkSlugFromUrl}-favicon.png`);
         handleNetworkSlug(
           networkSlugFromUrl,

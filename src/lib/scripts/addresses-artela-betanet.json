@@ -1,0 +1,98 @@
+{
+  "20210418-authorizer": {
+    "contracts": [
+      {
+        "name": "Authorizer",
+        "address": "0xFaaD333BCb828B60e85059D2DF2302cBbf7c7F27"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20210418-vault": {
+    "contracts": [
+      {
+        "name": "Vault",
+        "address": "0x6505f21E7E9DDB4f4A84bd1cA3Cad54B6ADf5cc4"
+      },
+      {
+        "name": "ProtocolFeesCollector",
+        "address": "0x5136E9B82cA2958F78109f14398236AbDE1518D0"
+      },
+      {
+        "name": "BalancerHelpers",
+        "address": "0xA581170C91b36015108f613716Fd248B20D201E3"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220325-test-balancer-token": {
+    "contracts": [
+      {
+        "name": "TestBalancerToken",
+        "address": "0x4a869ed6b3f74dC41537EF27e8eB3A8676AE4614"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220721-balancer-queries": {
+    "contracts": [
+      {
+        "name": "BalancerQueries",
+        "address": "0x958109308366A0B1DC8C453C6dE33123e553344D"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20220725-protocol-fee-percentages-provider": {
+    "contracts": [
+      {
+        "name": "ProtocolFeePercentagesProvider",
+        "address": "0x12368B4c6Dfc7aC89e3Ad5282bd620F90bb67dF7"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20230320-weighted-pool-v4": {
+    "contracts": [
+      {
+        "name": "WeightedPoolFactory",
+        "address": "0x7e3dAe5fd8FaED7C3Bef04F987c2eF68A9A350A4"
+      },
+      {
+        "name": "MockWeightedPool",
+        "address": "0xD807B899BD69Cd3F7c20d4a5C86e8822ED96953E"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20230711-composable-stable-pool-v5": {
+    "contracts": [
+      {
+        "name": "ComposableStablePoolFactory",
+        "address": "0xC941936cE60223963A6aab6Bdb7dF0edF54c4EAa"
+      },
+      {
+        "name": "MockComposableStablePool",
+        "address": "0x14a0f92F3381FD9E590E166214A141B32D673c9b"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "20231031-batch-relayer-v6": {
+    "contracts": [
+      {
+        "name": "BatchRelayerLibrary",
+        "address": "0x73Ad19eb1D7c46c782425340d6f89b3D32E8D197"
+      },
+      {
+        "name": "BatchRelayerQueryLibrary",
+        "address": "0xA2D88B8B7b2d4893bd9053De4AF70C093EEd1D2a"
+      },
+      {
+        "name": "BalancerRelayer",
+        "address": "0xc1DCc30d4769c727aeBb46a2C6DdfF37d7F3bfb6"
+      }
+    ],
+    "status": "ACTIVE"
+  }
+}

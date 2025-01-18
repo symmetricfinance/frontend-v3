@@ -27,7 +27,7 @@ export default class WalletService {
     private readonly config: ConfigService = configService
   ) {
     this.appProvider = this.rpcProviderService.jsonProvider;
-    this.ensProvider = this.rpcProviderService.getJsonProvider(Network.TELOS);
+    this.ensProvider = this.rpcProviderService.getJsonProvider(Network.ARTELA);
   }
 
   public setUserProvider(provider: ComputedRef<WalletProvider>) {

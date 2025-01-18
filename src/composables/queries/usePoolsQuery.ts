@@ -135,7 +135,10 @@ export default function usePoolsQuery(
         tokensList: { [tokensListFilterOperation]: tokenListFormatted },
         poolType: { in: POOLS.IncludedPoolTypes },
         totalShares: { gt: 0.00001 },
-        id: { not_in: POOLS.BlockList },
+        id: {
+          not_in: POOLS.BlockList,
+          in: POOLS.Stable.AllowList.concat(POOLS.Weighted.AllowList),
+        },
       },
     };
 

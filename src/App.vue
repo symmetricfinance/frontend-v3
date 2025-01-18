@@ -91,6 +91,8 @@ const themeMap = {
   taiko: 'taiko',
   etherlink: 'etherlink',
   'vana-moksha': 'vana-moksha',
+  'artela-betanet': 'artela-betanet',
+  artela: 'artela',
 };
 // Function to update theme based on the route slug
 const updateTheme = () => {

@@ -22,11 +22,15 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['close']);
 
 const { isMobile } = useUserAgent();
-const { getIsMetaMaskBrowser } = useWalletHelpers();
+const { getIsMetaMaskBrowser, getIsOKXkWalletBrowser } = useWalletHelpers();
 
 const wallets = SupportedWallets.filter(id => {
   // hide metamask wallet on all mobile browsers except metamask
   if (id === 'metamask' && isMobile && !getIsMetaMaskBrowser()) {
+    return false;
+  }
+
+  if (id !== 'okx' && getIsOKXkWalletBrowser()) {
     return false;
   }
 

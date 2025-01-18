@@ -99,6 +99,8 @@ export enum Network {
   TAIKO = 167000,
   ETHERLINK = 42793,
   VANAMOKSHA = 14800,
+  ARTELA = 11820,
+  ARTELABETANET = 11822,
 }
 
 type Reward = {

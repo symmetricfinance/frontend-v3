@@ -12,6 +12,7 @@ const defaultArgs: GraphQLArgs = {
     },
     id: {
       not_in: POOLS.BlockList,
+      in: POOLS.Stable.AllowList.concat(POOLS.Weighted.AllowList),
     },
   },
 };
