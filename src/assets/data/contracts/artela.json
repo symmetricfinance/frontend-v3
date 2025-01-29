@@ -10,6 +10,7 @@
   "BatchRelayerQueryLibrary": "0x8836a79C28605E62403f1C39A9bC4Ca9aD8C170A",
   "ComposableStablePoolFactory": "0x266b53bb135f2dbc324b5C5Aa281e84f1C105B26",
   "ERC4626RateProviderFactory": "0x118952f33ADfc4b0805f9a049902460f667E9692",
+  "FeeDistributor": "0x71234Fa964a99D8A3a839f763C40132B61964716",
   "GaugeController": "0xFB4662e6D86AF1133C2fbcdCb294e41AC49AF92f",
   "L2BalancerPseudoMinter": "0xBc54d564A12EB444b2daA708Cf9c119d3c2D06a3",
   "MockComposableStablePool": "0x47eabb60e1e921aad02faa93b2114ed1ab8c5127",

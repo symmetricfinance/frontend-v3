@@ -47,6 +47,15 @@
     ],
     "status": "ACTIVE"
   },
+  "20220714-fee-distributor-v2": {
+    "contracts": [
+      {
+        "name": "FeeDistributor",
+        "address": "0x71234Fa964a99D8A3a839f763C40132B61964716"
+      }
+    ],
+    "status": "ACTIVE"
+  },
   "20220721-balancer-queries": {
     "contracts": [
       {

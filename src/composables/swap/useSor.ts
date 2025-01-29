@@ -440,6 +440,12 @@ export default function useSor({
         SwapTypes.SwapExactIn,
         tokenInAmountScaled
       );
+      console.log('tokenInAddress', tokenInAddress);
+      console.log('tokenOutAddress', tokenOutAddress);
+      console.log('tokenInDecimals', tokenInDecimals);
+      console.log('tokenOutDecimals', tokenOutDecimals);
+      console.log('SwapTypes.SwapExactIn', SwapTypes.SwapExactIn);
+      console.log('tokenInAmountScaled', tokenInAmountScaled);
 
       sorReturn.value = swapReturn;
       let tokenOutAmount = swapReturn.returnAmount;

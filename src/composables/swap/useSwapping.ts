@@ -172,6 +172,16 @@ export default function useSwapping(
     isCowswapSwap,
   });
 
+  console.log('tokenIn', tokenIn.value);
+  console.log('tokenOut', tokenOut.value);
+  console.log('tokenInAddressInput', tokenInAddressInput.value);
+  console.log('tokenOutAddressInput', tokenOutAddressInput.value);
+  console.log('tokenInAmountInput', tokenInAmountInput.value);
+  console.log('tokenOutAmountInput', tokenOutAmountInput.value);
+  console.log('wrapType', wrapType.value);
+
+  console.log('sor', JSON.stringify(sor, null, 2));
+
   const cowswap = useCowswap({
     exactIn,
     tokenInAddressInput,

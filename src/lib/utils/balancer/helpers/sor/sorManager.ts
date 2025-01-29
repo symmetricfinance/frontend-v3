@@ -180,6 +180,13 @@ export class SorManager {
       amountScaled,
       swapOptions
     );
+    console.log('v2TokenIn', v2TokenIn);
+    console.log('v2TokenOut', v2TokenOut);
+    console.log('swapType', swapType);
+    console.log('amountScaled', amountScaled.toString());
+    console.log('swapOptions', swapOptions);
+    console.log('gasPrice', this.gasPrice.toString());
+    console.log('swapGas', BigNumber.from(SWAP_COST).toString());
 
     // Both are scaled amounts
     console.log(

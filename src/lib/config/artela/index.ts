@@ -31,7 +31,8 @@ const config: Config = {
       'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-artela/prod/gn',
     ],
     aave: '',
-    gauge: '',
+    gauge:
+      'https://api.goldsky.com/api/public/project_clnbo3e3c16lj33xva5r2aqk7/subgraphs/symmetric-artela-gauges/prod/gn',
     blocks: '',
   },
   bridgeUrl: 'https://artbridge.artela.network/',

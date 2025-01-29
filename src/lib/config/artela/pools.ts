@@ -8,7 +8,7 @@ const pools: Pools = {
       v2: '',
       v3: '',
     },
-    veBAL: '',
+    veBAL: '0xdabf5e2940fd42f97a8306dd9027ba5fda7d316c000200000000000000000005',
   },
   Pagination: {
     PerPage: 10,
@@ -54,7 +54,11 @@ const pools: Pools = {
     '0x266b53bb135f2dbc324b5c5aa281e84f1c105b26': 'composableStablePool',
   },
   Stakable: {
-    VotingGaugePools: [],
+    VotingGaugePools: [
+      '0x47eabb60e1e921aad02faa93b2114ed1ab8c5127000000000000000000000003', // ART-wstART
+      '0x45e045f1c9e62f67cb81710c68019b71a448c271000000000000000000000002', // ART-stART
+      '0x90bbfd93a9da2f0ca27e44a12e56b2709786ffd0000200000000000000000006', // 80ART-20USDC
+    ],
     AllowList: [],
   },
   Metadata: {},

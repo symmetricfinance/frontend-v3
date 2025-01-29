@@ -196,6 +196,9 @@ export const rewardSymbol = computed(() => {
   if (networkId.value === Network.GNOSIS) {
     return 'SDAI';
   }
+  if (networkId.value === Network.ARTELA) {
+    return 'ART';
+  }
   return 'MTRG-wstMTRG';
 });
 
