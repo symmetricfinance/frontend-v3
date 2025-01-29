@@ -24,7 +24,7 @@ const NETWORK_ID =
   urlNetworkId ||
   localStorageNetworkId ||
   (Number(import.meta.env.VITE_NETWORK) as Network) ||
-  Network.ARTELA;
+  Network.TELOS;
 if (windowAvailable) localStorage.setItem('networkId', NETWORK_ID.toString());
 console.log('NETWORK_ID', NETWORK_ID);
 export const networkSlug = config[NETWORK_ID].slug;
@@ -282,7 +282,7 @@ export function getRedirectUrlFor(
   const subdomain = getSubdomain(host);
   const subdomainNetwork = networkFromSlug(subdomain);
 
-  if (subdomainNetwork && subdomain !== 'artela') {
+  if (subdomainNetwork) {
     // Legacy network subdomain, we need to redirect to app.balancer.fi.
     const newDomain = appUrl().replace(subdomain, 'app');
     // If networkSlug provided it will be in the fullPath, so pass empty string instead.

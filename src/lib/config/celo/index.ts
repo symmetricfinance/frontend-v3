@@ -17,7 +17,7 @@ const config: Config = {
   network: 'celo',
   trustWalletNetwork: 'celo',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: false,
   rpc: 'https://forno.celo.org',
   ws: 'wss://forno.celo.org/ws',
