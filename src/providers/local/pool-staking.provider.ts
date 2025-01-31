@@ -80,6 +80,7 @@ export const poolStakingProvider = (_poolId?: string) => {
     (): string | undefined | null =>
       poolGauges.value?.pool?.preferentialGauge?.id
   );
+  console.log('preferentialGaugeAddress', preferentialGaugeAddress.value);
 
   // Is it possible to stake this pool's BPT?
   const isStakablePool = computed(

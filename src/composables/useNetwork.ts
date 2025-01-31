@@ -132,6 +132,27 @@ export const symmSymbol = computed(() => {
   return 'mSYMM';
 });
 
+export const symmAddress = computed(() => {
+  switch (networkId.value) {
+    case Network.CELO:
+      return config[Network.CELO].tokens.Addresses.BAL;
+    case Network.TELOS:
+      return config[Network.TELOS].tokens.Addresses.BAL;
+    case Network.GNOSIS:
+      return config[Network.GNOSIS].tokens.Addresses.BAL;
+    case Network.ARTELA:
+      return config[Network.ARTELA].tokens.Addresses.BAL;
+    case Network.VANAMOKSHA:
+      return config[Network.VANAMOKSHA].tokens.Addresses.BAL;
+    case Network.TAIKO:
+      return config[Network.TAIKO].tokens.Addresses.BAL;
+    case Network.METER:
+      return config[Network.METER].tokens.Addresses.BAL;
+    default:
+      return config[Network.TELOS].tokens.Addresses.BAL;
+  }
+});
+
 export const lpToken = computed(() => {
   if (networkId.value === Network.CELO) {
     return '80CSYMM-20STCELO';
@@ -200,6 +221,27 @@ export const rewardSymbol = computed(() => {
     return 'ART';
   }
   return 'MTRG-wstMTRG';
+});
+
+export const rewardAddress = computed(() => {
+  switch (networkId.value) {
+    case Network.CELO:
+      return config[Network.CELO].tokens.Addresses.WETH;
+    case Network.TELOS:
+      return config[Network.TELOS].tokens.Addresses.WETH;
+    case Network.GNOSIS:
+      return config[Network.GNOSIS].tokens.Addresses.WETH;
+    case Network.ARTELA:
+      return config[Network.ARTELA].tokens.Addresses.WETH;
+    case Network.VANAMOKSHA:
+      return config[Network.VANAMOKSHA].tokens.Addresses.WETH;
+    case Network.TAIKO:
+      return config[Network.TAIKO].tokens.Addresses.WETH;
+    case Network.METER:
+      return config[Network.METER].tokens.Addresses.WETH;
+    default:
+      return config[Network.TELOS].tokens.Addresses.WETH;
+  }
 });
 
 export const native_wrapped = computed(() => {

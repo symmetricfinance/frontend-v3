@@ -21,8 +21,9 @@ export const userDataProvider = () => {
 
   // Fetches all user's gaugeShares.
   const userGaugeSharesQuery = useUserGaugeSharesQuery();
+  console.log('userGaugeSharesQuery', userGaugeSharesQuery);
   const { data: userGaugeShares } = userGaugeSharesQuery;
-
+  console.log('userGaugeShares', userGaugeShares.value);
   // Fetch all user's staked share balances via onchain multicall.
   const stakedSharesQuery = useStakedSharesQuery(userGaugeShares);
 

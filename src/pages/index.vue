@@ -6,7 +6,12 @@ import TokenSearchInput from '@/components/inputs/TokenSearchInput.vue';
 import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
 import usePoolFilters from '@/composables/pools/usePoolFilters';
 // import useBreakpoints from '@/composables/useBreakpoints';
-import useNetwork, { rewardSymbol, symmSymbol } from '@/composables/useNetwork';
+import useNetwork, {
+  rewardSymbol,
+  symmSymbol,
+  symmAddress,
+  rewardAddress,
+} from '@/composables/useNetwork';
 import usePools from '@/composables/pools/usePools';
 import { lsGet, lsSet } from '@/lib/utils';
 import LS_KEYS from '@/constants/local-storage.keys';
@@ -19,10 +24,12 @@ import UserInvestedInAffectedPoolAlert from '@/pages/recovery-exit/UserInvestedI
 import useNumbers from '@/composables/useNumbers';
 import { getAddress } from '@ethersproject/address';
 import { TOKENS } from '@/constants/tokens';
+import useWeb3 from '@/services/web3/useWeb3';
 
 const { fNum } = useNumbers();
 const featuredProtocolsSentinel = ref<HTMLDivElement | null>(null);
 const isFeaturedProtocolsVisible = ref(false);
+const { provider } = useWeb3();
 useIntersectionObserver(featuredProtocolsSentinel, ([{ isIntersecting }]) => {
   if (isIntersecting) {
     isFeaturedProtocolsVisible.value = true;
@@ -163,6 +170,28 @@ function removeAttributeFilter(attribute: PoolAttributeFilter) {
   filterPoolAttributes.value.splice(index, 1);
 }
 
+async function addTokenToWallet(tokenAddress: string) {
+  try {
+    const token = getToken(tokenAddress);
+    if (!token) return;
+    console.log(provider.value);
+    await provider?.value?.request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20',
+        options: {
+          address: tokenAddress,
+          symbol: token.symbol,
+          decimals: token.decimals,
+          image: token.logoURI,
+        },
+      },
+    });
+  } catch (error) {
+    console.error('Failed to add token to wallet:', error);
+  }
+}
+
 watch(poolTypeFilter, newPoolTypeFilter => {
   updatePoolFilters(newPoolTypeFilter);
 });
@@ -180,6 +209,8 @@ onBeforeMount(async () => {
   const tvl = await fetchTVL();
   totalLiquidity.value = tvl;
 });
+
+const availableNetworks = ['telos', 'meter', 'artela'];
 </script>
 
 <template>
@@ -223,8 +254,8 @@ onBeforeMount(async () => {
               </div>
             </div>
             <div
-              v-if="networkSlug === 'telos' || networkSlug === 'meter'"
-              class="flex flex-row items-center space-x-4"
+              v-if="availableNetworks.includes(networkSlug)"
+              class="flex flex-row items-center space-x-2"
             >
               <div>
                 {{ symmSymbol }}:
@@ -232,12 +263,24 @@ onBeforeMount(async () => {
                   fNum(symmPrice, { style: 'currency' })
                 }}</span>
               </div>
+              <BalTooltip
+                :text="`Add ${symmSymbol} to wallet`"
+                iconName="plus-circle"
+                iconSize="sm"
+                @click="addTokenToWallet(symmAddress)"
+              />
               <div>
                 {{ rewardSymbol }}:
                 <span class="font-bold">{{
                   fNum(rewardPrice, { style: 'currency' })
                 }}</span>
               </div>
+              <BalTooltip
+                :text="`Add ${rewardSymbol} to wallet`"
+                iconName="plus-circle"
+                iconSize="sm"
+                @click="addTokenToWallet(rewardAddress)"
+              />
             </div>
           </div>
           <div

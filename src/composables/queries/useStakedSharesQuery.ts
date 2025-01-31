@@ -52,7 +52,8 @@ export default function useStakedSharesQuery(
    */
   const queryFn = async () => {
     try {
-      if (!userGaugeShares.value) return {};
+      if (!userGaugeShares.value || userGaugeShares.value.length === 0)
+        return {};
 
       let result = {} as Record<string, Record<string, BigNumber>>;
       const Multicaller = getMulticaller();

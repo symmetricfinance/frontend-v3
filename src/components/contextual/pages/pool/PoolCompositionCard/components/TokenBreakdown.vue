@@ -31,7 +31,7 @@ const tokenData = computed(() => props.tokensData[token.value.address]);
 /**
  * COMPOSABLES
  */
-const { explorerLinks } = useWeb3();
+const { explorerLinks, provider } = useWeb3();
 const { isDeepPool } = usePoolHelpers(rootPool);
 const isWeighted = isWeightedLike(rootPool.value.poolType);
 const { getToken } = useTokens();
@@ -63,6 +63,28 @@ const nestedPaddingClass = computed(() => {
 function symbolFor(token: PoolToken): string {
   return getToken(token.address)?.symbol || token.symbol || '---';
 }
+
+async function addTokenToWallet(tokenAddress: string) {
+  try {
+    const token = getToken(tokenAddress);
+    if (!token) return;
+    console.log(provider.value);
+    await provider?.value?.request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20',
+        options: {
+          address: tokenAddress,
+          symbol: token.symbol,
+          decimals: token.decimals,
+          image: token.logoURI,
+        },
+      },
+    });
+  } catch (error) {
+    console.error('Failed to add token to wallet:', error);
+  }
+}
 </script>
 
 <template>
@@ -73,35 +95,51 @@ function symbolFor(token: PoolToken): string {
       nestedPaddingClass,
     ]"
   >
-    <BalLink
-      :href="explorerLinks.addressLink(token.address)"
-      external
-      noStyle
-      class="group flex items-center"
-    >
-      <BalAsset
-        :address="token.address"
-        :class="
-          isDeepPool && currentLevel > 1 ? 'nested-token' : 'mr-2 shrink-0 z-10'
-        "
-        :size="
-          isDeepPool && currentLevel > 2
-            ? 24
-            : isDeepPool && currentLevel > 1
-            ? 28
-            : 36
-        "
-      />
-      <span
-        class="group-hover:text-purple-500 dark:group-hover:text-yellow-500 transition-colors"
-        >{{ symbolFor(token) }}</span
+    <div class="flex gap-2 items-center">
+      <BalLink
+        :href="explorerLinks.addressLink(token.address)"
+        external
+        noStyle
+        class="group flex items-center"
       >
-      <BalIcon
-        name="arrow-up-right"
-        size="sm"
-        class="ml-1 text-gray-500 group-hover:text-purple-500 dark:group-hover:text-yellow-500 transition-colors"
-      />
-    </BalLink>
+        <BalAsset
+          :address="token.address"
+          :class="
+            isDeepPool && currentLevel > 1
+              ? 'nested-token'
+              : 'mr-2 shrink-0 z-10'
+          "
+          :size="
+            isDeepPool && currentLevel > 2
+              ? 24
+              : isDeepPool && currentLevel > 1
+              ? 28
+              : 36
+          "
+        />
+        <span
+          class="group-hover:text-purple-500 dark:group-hover:text-yellow-500 transition-colors"
+          >{{ symbolFor(token) }}</span
+        >
+        <BalIcon
+          name="arrow-up-right"
+          size="sm"
+          class="ml-1 text-gray-500 group-hover:text-purple-500 dark:group-hover:text-yellow-500 transition-colors"
+        />
+      </BalLink>
+      <button
+        class="p-1 mt-1 text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+        title="Add to wallet"
+        @click="addTokenToWallet(token.address)"
+      >
+        <BalTooltip
+          :text="`Add ${symbolFor(token)} to wallet`"
+          placement="bottom"
+          iconName="plus-circle"
+          iconSize="md"
+        />
+      </button>
+    </div>
     <div v-if="isWeighted" class="justify-self-end">
       {{ tokenData.tokenWeightLabel }}
     </div>

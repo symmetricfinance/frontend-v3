@@ -48,6 +48,8 @@ const {
   preferentialGaugeAddress,
   gaugeTotalSupply,
 } = usePoolStaking();
+
+console.log('preferentialGaugeAddress', preferentialGaugeAddress.value);
 const { isAffected } = usePoolWarning(poolId);
 const { networkId } = useNetwork();
 

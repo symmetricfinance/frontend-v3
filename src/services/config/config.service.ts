@@ -22,7 +22,7 @@ export default class ConfigService {
   public get env(): Env {
     return {
       APP_ENV: import.meta.env.VITE_ENV || 'development',
-      APP_DOMAIN: import.meta.env.VITE_DOMAIN || 'artela.symm.fi',
+      APP_DOMAIN: import.meta.env.VITE_DOMAIN || 'app.symm.fi',
       APP_HOST: import.meta.env.VITE_HOST || 'symm.fi',
       API_URL:
         import.meta.env.VITE_API_URL || 'https://api-v3.balancer.fi/graphql',
