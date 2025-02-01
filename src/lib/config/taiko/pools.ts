@@ -82,9 +82,9 @@ const pools: Pools = {
     },
     '0x65d5eebb5f1c767ce42c3ccc8cfd00fb3a114122000000000000000000000003': {
       features: {
-        [PoolFeature.Points20k]: {
-          featureProtocols: [],
-        },
+        // [PoolFeature.Points20k]: {
+        //   featureProtocols: [],
+        // },
         [PoolFeature.TBXP]: {
           featureProtocols: [],
         },
