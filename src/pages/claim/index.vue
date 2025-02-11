@@ -25,7 +25,6 @@ import useWeb3 from '@/services/web3/useWeb3';
 // import { Network } from '@/lib/config/types';
 import { poolMetadata } from '@/lib/config/metadata';
 import { lpToken, symmSymbol, veSymbol } from '@/composables/useNetwork';
-
 /**
  * TYPES
  */
@@ -145,7 +144,9 @@ const gaugeTables = computed((): GaugeTable[] => {
 });
 
 const networkHasBalClaiming = computed(
-  () => !!configService.network.addresses.balancerMinter
+  () =>
+    !!configService.network.addresses.balancerMinter &&
+    configService.network.network !== 'telos'
 );
 
 /**
