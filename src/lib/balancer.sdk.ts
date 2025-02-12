@@ -49,6 +49,15 @@ export const balancer = new BalancerSDK({
   },
 });
 
+export const telos2 = new BalancerSDK({
+  network: configService.network.chainId as Network,
+  rpcUrl: configService.rpc,
+  customSubgraphUrl: configService.network.subgraph,
+  sor: {
+    tokenPriceService: 'subgraph',
+  },
+});
+
 export const hasFetchedPoolsForSor = ref(false);
 
 export async function fetchPoolsForSor() {
@@ -57,6 +66,9 @@ export async function fetchPoolsForSor() {
   console.time('fetchPoolsForSor');
   try {
     await balancer.swaps.fetchPools();
+    if (configService.network.chainId === 40) {
+      await telos2.swaps.fetchPools();
+    }
   } catch (e) {
     const subgraphBlock = (await subgraphFallbackService.get({
       query: '{ _meta { block { number } } }',
