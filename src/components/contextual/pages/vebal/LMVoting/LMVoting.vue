@@ -175,7 +175,10 @@ watch(isRefetchingVotingPools, async () => {
 </script>
 
 <template>
-  <div v-if="networkSlug !== 'artela'" class="flex flex-col">
+  <div
+    v-if="networkSlug !== 'artela' && networkSlug !== 'telos'"
+    class="flex flex-col"
+  >
     <div
       class="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-end"
     >

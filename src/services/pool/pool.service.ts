@@ -19,7 +19,7 @@ import { getBalancerSDK } from '@/dependencies/balancer-sdk';
 import { captureBalancerException } from '@/lib/utils/errors';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '@/lib/utils/subgraph';
-import { telosVotingPools } from '@/components/contextual/pages/vebal/LMVoting/testnet-voting-pools';
+// import { telosVotingPools } from '@/components/contextual/pages/vebal/LMVoting/testnet-voting-pools';
 import { configService } from '../config/config.service';
 
 export default class PoolService {
@@ -96,19 +96,19 @@ export default class PoolService {
       };
     }
     if (configService.network.chainId === 40) {
-      const killedGauges = telosVotingPools('telos').filter(
-        pool => pool.gauge.isKilled === true
-      );
-      if (
-        killedGauges.find(
-          pool => pool.id.toLowerCase() === this.pool.id.toLowerCase()
-        )
-      ) {
-        apr.stakingApr = {
-          min: 0,
-          max: 0,
-        };
-      }
+      // const killedGauges = telosVotingPools('telos').filter(
+      //   pool => pool.gauge.isKilled === true
+      // );
+      // if (
+      //   killedGauges.find(
+      //     pool => pool.id.toLowerCase() === this.pool.id.toLowerCase()
+      //   )
+      // ) {
+      apr.stakingApr = {
+        min: 0,
+        max: 0,
+      };
+      // }
     }
 
     if (
