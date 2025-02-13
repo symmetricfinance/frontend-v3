@@ -32,7 +32,7 @@ import { cloneDeep, uniq, uniqWith } from 'lodash';
 import {
   appUrl,
   getNetworkSlug,
-  // isMainnet,
+  // isTelos,
   isPoolBoostsEnabled,
 } from './useNetwork';
 import useNumbers, { FNumFormats, numF } from './useNumbers';

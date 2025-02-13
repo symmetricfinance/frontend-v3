@@ -87,6 +87,13 @@ function getUnixTimestamp() {
   console.log('fourteenWeeksAheadTimestamp', fourteenWeeksAheadTimestamp);
   return fourteenWeeksAheadTimestamp;
 }
+
+const SEASON_3_END_TIMESTAMP = 1709251200; // March 1, 2024 00:00:00 UTC
+
+const isLockingEnded = computed(() => {
+  return Math.floor(Date.now() / 1000) > SEASON_3_END_TIMESTAMP;
+});
+
 /**
  * COMPOSABLES
  */
@@ -199,54 +206,65 @@ function navigateToLPTokenPage() {
   <BalCard shadow="xl" exposeOverflow noBorder>
     <template #header>
       <div class="w-full">
-        <div class="flex justify-between items-center">
-          <h5>
-            {{ lockTitle }}
-          </h5>
-          <BalLink
-            href="#"
-            external
-            class="text-sm"
-            @click.prevent="navigateToLPTokenPage"
+        <template v-if="isLockingEnded">
+          <BalCard
+            class="bg-red-500 bg-opacity-10 border border-red-500 border-opacity-20"
           >
-            Get 80TAIKO-20WETH LP
-          </BalLink>
-        </div>
+            <div class="text-center">
+              <h5 class="mb-2 text-red-500">
+                Season 3 LP Vault Locking Has Ended
+              </h5>
+              <p class="text-sm text-gray-400">
+                The locking period for Season 3 has concluded. Stay tuned for
+                future opportunities. Locked tokens can be unlocked March 17th
+                2025.
+              </p>
+            </div>
+          </BalCard>
+        </template>
+        <template v-else>
+          <div class="flex justify-between items-center">
+            <h5>
+              {{ lockTitle }}
+            </h5>
+            <BalLink
+              href="#"
+              external
+              class="text-sm"
+              @click.prevent="navigateToLPTokenPage"
+            >
+              Get 80TAIKO-20WETH LP
+            </BalLink>
+          </div>
+
+          <LockAmount
+            :lockablePool="lockablePool"
+            :lockablePoolTokenInfo="lockablePoolTokenInfo"
+          />
+
+          <div class="mt-6">
+            <BalBtn
+              v-if="!isWalletReady"
+              :label="$t('connectWallet')"
+              color="gradient"
+              block
+              @click="startConnectWithInjectedProvider"
+            />
+            <BalBtn
+              v-else
+              color="gradient"
+              block
+              :disabled="submissionDisabled"
+              @click="handleShowPreviewModal"
+            >
+              {{ buttonLabel }}
+            </BalBtn>
+          </div>
+        </template>
       </div>
     </template>
-
-    <LockAmount
-      :lockablePool="lockablePool"
-      :lockablePoolTokenInfo="lockablePoolTokenInfo"
-    />
-
-    <!-- <LockEndDate
-      :minLockEndDateTimestamp="minLockEndDateTimestamp"
-      :maxLockEndDateTimestamp="maxLockEndDateTimestamp"
-      :veBalLockInfo="veBalLockInfo"
-    /> -->
-
-    <!-- <Summary :expectedVeBalAmount="expectedVeBalAmount" /> -->
-
-    <div class="mt-6">
-      <BalBtn
-        v-if="!isWalletReady"
-        :label="$t('connectWallet')"
-        color="gradient"
-        block
-        @click="startConnectWithInjectedProvider"
-      />
-      <BalBtn
-        v-else
-        color="gradient"
-        block
-        :disabled="submissionDisabled"
-        @click="handleShowPreviewModal"
-      >
-        {{ buttonLabel }}
-      </BalBtn>
-    </div>
   </BalCard>
+
   <teleport to="#modal">
     <LockPreviewModal
       v-if="showPreviewModal && veBalLockInfo"

@@ -9,10 +9,10 @@ import { bnum } from '@/lib/utils';
 import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
 import { Pool } from '@/services/pool/types';
 import { useTokens } from '@/providers/tokens.provider';
-import LockActions from '../components/LockPreviewModal/components/LockActions.vue';
-import { LockType } from '@/components/forms/lock_actions/LockForm/types';
+// import LockActions from '../components/LockPreviewModal/components/LockActions.vue';
+// import { LockType } from '@/components/forms/lock_actions/LockForm/types';
 import { TokenInfo } from '@/types/TokenList';
-import useVeBalLockInfoQuery from '@/composables/queries/useVeBalLockInfoQuery';
+// import useVeBalLockInfoQuery from '@/composables/queries/useVeBalLockInfoQuery';
 
 /**
  * TYPES
@@ -32,7 +32,7 @@ const displayLockEndDate = ref('1742169600000');
 /**
  * COMPOSABLES
  */
-const { refetch: refetchLockInfo } = useVeBalLockInfoQuery();
+// const { refetch: refetchLockInfo } = useVeBalLockInfoQuery();
 const { fNum } = useNumbers();
 const { balanceFor } = useTokens();
 
@@ -51,50 +51,50 @@ const unlockedLPBalance = computed(() => {
   return balanceFor(props.lockablePool.address);
 });
 
-const lockConfirmed = ref(false);
+// const lockConfirmed = ref(false);
 
-const lockEndDate = computed(() => {
-  const today = new Date();
-  const dayOfWeek = today.getUTCDay();
-  const daysToSubtract = (dayOfWeek + 7 - 4) % 7;
-  const lastThursday = new Date(
-    today.setUTCDate(today.getUTCDate() - daysToSubtract)
-  );
-  lastThursday.setUTCHours(0, 0, 0, 0);
-  const fourteenWeeksAhead = new Date(
-    lastThursday.getTime() + 14 * 7 * 24 * 60 * 60 * 1000
-  );
-  const fourteenWeeksAheadTimestamp = Math.floor(fourteenWeeksAhead.getTime());
-  console.log('fourteenWeeksAheadTimestamp', fourteenWeeksAheadTimestamp);
-  return fourteenWeeksAheadTimestamp;
-});
+// const lockEndDate = computed(() => {
+//   const today = new Date();
+//   const dayOfWeek = today.getUTCDay();
+//   const daysToSubtract = (dayOfWeek + 7 - 4) % 7;
+//   const lastThursday = new Date(
+//     today.setUTCDate(today.getUTCDate() - daysToSubtract)
+//   );
+//   lastThursday.setUTCHours(0, 0, 0, 0);
+//   const fourteenWeeksAhead = new Date(
+//     lastThursday.getTime() + 14 * 7 * 24 * 60 * 60 * 1000
+//   );
+//   const fourteenWeeksAheadTimestamp = Math.floor(fourteenWeeksAhead.getTime());
+//   console.log('fourteenWeeksAheadTimestamp', fourteenWeeksAheadTimestamp);
+//   return fourteenWeeksAheadTimestamp;
+// });
 
-const isLockAlreadyExtended = computed(() => {
-  if (!props.veBalLockInfo?.hasExistingLock) return false;
-  const currentLockEnd = new Date(props.veBalLockInfo?.lockedEndDate);
-  const currentLockEndUTC = Date.UTC(
-    currentLockEnd.getUTCFullYear(),
-    currentLockEnd.getUTCMonth(),
-    currentLockEnd.getUTCDate()
-  );
-  console.log(
-    'Current lock end (UTC):',
-    new Date(currentLockEndUTC).toUTCString()
-  );
+// const isLockAlreadyExtended = computed(() => {
+//   if (!props.veBalLockInfo?.hasExistingLock) return false;
+//   const currentLockEnd = new Date(props.veBalLockInfo?.lockedEndDate);
+//   const currentLockEndUTC = Date.UTC(
+//     currentLockEnd.getUTCFullYear(),
+//     currentLockEnd.getUTCMonth(),
+//     currentLockEnd.getUTCDate()
+//   );
+//   console.log(
+//     'Current lock end (UTC):',
+//     new Date(currentLockEndUTC).toUTCString()
+//   );
 
-  const proposedLockEnd = new Date(lockEndDate.value);
-  const proposedLockEndUTC = Date.UTC(
-    proposedLockEnd.getUTCFullYear(),
-    proposedLockEnd.getUTCMonth(),
-    proposedLockEnd.getUTCDate()
-  );
-  console.log(
-    'Proposed lock end (UTC):',
-    new Date(proposedLockEndUTC).toUTCString()
-  );
+//   const proposedLockEnd = new Date(lockEndDate.value);
+//   const proposedLockEndUTC = Date.UTC(
+//     proposedLockEnd.getUTCFullYear(),
+//     proposedLockEnd.getUTCMonth(),
+//     proposedLockEnd.getUTCDate()
+//   );
+//   console.log(
+//     'Proposed lock end (UTC):',
+//     new Date(proposedLockEndUTC).toUTCString()
+//   );
 
-  return currentLockEndUTC >= proposedLockEndUTC;
-});
+//   return currentLockEndUTC >= proposedLockEndUTC;
+// });
 
 const timeUntilNextBoost = ref('');
 
@@ -151,10 +151,10 @@ updateCountdown();
 /**
  * METHODS
  */
-async function handleSuccess() {
-  lockConfirmed.value = true;
-  refetchLockInfo();
-}
+// async function handleSuccess() {
+//   lockConfirmed.value = true;
+//   refetchLockInfo();
+// }
 </script>
 
 <template>
@@ -200,7 +200,7 @@ async function handleSuccess() {
             }}
           </div>
         </li>
-        <li class="flex justify-between items-center">
+        <!-- <li class="flex items-center justify-between">
           <span class="text-gray-400 dark:text-gray-300"
             >Time Until Next Boost:</span
           >
@@ -210,7 +210,7 @@ async function handleSuccess() {
         </li>
         <li
           v-if="props.veBalLockInfo?.hasExistingLock"
-          class="flex justify-between items-center"
+          class="flex items-center justify-between"
         >
           <span class="text-gray-400 dark:text-gray-300">Weekly Boost:</span>
           <div class="flex flex-row">
@@ -234,7 +234,7 @@ async function handleSuccess() {
               class="mt-1 ml-2"
             />
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </BalCard>
