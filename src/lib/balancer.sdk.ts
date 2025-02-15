@@ -40,7 +40,7 @@ import { subgraphFallbackService } from '@/services/balancer/subgraph/subgraph-f
 //   pools: {},
 // };
 
-export const balancer = new BalancerSDK({
+export const telosOld = new BalancerSDK({
   network: configService.network.chainId as Network,
   rpcUrl: configService.rpc,
   customSubgraphUrl: configService.network.subgraph,
@@ -49,7 +49,7 @@ export const balancer = new BalancerSDK({
   },
 });
 
-export const telos2 = new BalancerSDK({
+export const balancer = new BalancerSDK({
   network: configService.network.chainId as Network,
   rpcUrl: configService.rpc,
   customSubgraphUrl: configService.network.subgraph,
@@ -66,9 +66,9 @@ export async function fetchPoolsForSor() {
   console.time('fetchPoolsForSor');
   try {
     await balancer.swaps.fetchPools();
-    if (configService.network.chainId === 40) {
-      await telos2.swaps.fetchPools();
-    }
+    // if (configService.network.chainId === 40) {
+    //   await telosOld.swaps.fetchPools();
+    // }
   } catch (e) {
     const subgraphBlock = (await subgraphFallbackService.get({
       query: '{ _meta { block { number } } }',
