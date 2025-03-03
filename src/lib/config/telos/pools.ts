@@ -9,7 +9,7 @@ const pools: Pools = {
     PerPool: 15,
     PerPoolInitial: 5,
   },
-  BoostsEnabled: true,
+  BoostsEnabled: false,
   DelegateOwner: '0xa29F1CA1957c164877F6A277C9791ACA3Ad4BD6D',
   ZeroAddress: '0x0000000000000000000000000000000000000000',
   DynamicFees: {
@@ -28,10 +28,11 @@ const pools: Pools = {
   ],
   Stable: {
     AllowList: [
-      '0x301b19cf456ac3d988a7390e5e869465d9c8edd6000000000000000000000003', // S-USDC-USDT"
-      '0x692745235f6f5da540d2ac066f16fdd5871ecc1d000000000000000000000005', // S-wUSK-USDC
-      '0x902ae4c6758a4b18324a4f06b053a1e0f397ee27000000000000000000000004', // S-USDM-USDC-USDT
-      '0x9c9fab6ffadb6de10964156ee03f823b53a594fe000000000000000000000002', // S-USDC-USDT
+      '0x9c9fab6ffadb6de10964156ee03f823b53a594fe000000000000000000000002', // S-STLOS-WTLOS
+      // '0x301b19cf456ac3d988a7390e5e869465d9c8edd6000000000000000000000003', // S-USDC-USDT"
+      // '0x692745235f6f5da540d2ac066f16fdd5871ecc1d000000000000000000000005', // S-wUSK-USDC
+      // '0x902ae4c6758a4b18324a4f06b053a1e0f397ee27000000000000000000000004', // S-USDM-USDC-USDT
+      // '0x9c9fab6ffadb6de10964156ee03f823b53a594fe000000000000000000000002', // S-USDC-USDT
     ],
   },
   Investment: {
@@ -41,9 +42,9 @@ const pools: Pools = {
     // Only effective after given timestamp here: usePool.ts#createdAfterTimestamp
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
     AllowList: [
-      '0x1120ae5bcd8736a3f6ff1c2bfc22413db95e6ede000200000000000000000007', // S-60WTLOS-40USDC
-      '0x1fbbf321ec3598f5260b1581a8dfdbe08d902cf7000100000000000000000008', // S-40BTC.b-40ETH-20USDC
-      '0x321bda978f6c742b3050ebeeefaca9d83fc975cb000200000000000000000006', // S-80WTLOS-20USDT
+      // '0x1120ae5bcd8736a3f6ff1c2bfc22413db95e6ede000200000000000000000007', // S-60WTLOS-40USDC
+      // '0x1fbbf321ec3598f5260b1581a8dfdbe08d902cf7000100000000000000000008', // S-40BTC.b-40ETH-20USDC
+      // '0x321bda978f6c742b3050ebeeefaca9d83fc975cb000200000000000000000006', // S-80WTLOS-20USDT
       '0x6ec6dab312a3dab963e519b0c44520acaaa6f342000200000000000000000009', // S-80STLOS-20wUSK
       '0x7bb386b78d4f1ed654a3bf1e7081dcda4d8a320400020000000000000000000a', // S-80MST-20USDM
     ],
@@ -54,7 +55,11 @@ const pools: Pools = {
   },
   Stakable: {
     VotingGaugePools: [],
-    AllowList: [],
+    AllowList: [
+      '0x9c9fab6ffadb6de10964156ee03f823b53a594fe000000000000000000000002', // S-STLOS-WTLOS
+      '0x6ec6dab312a3dab963e519b0c44520acaaa6f342000200000000000000000009', // S-80STLOS-20wUSK
+      '0x7bb386b78d4f1ed654a3bf1e7081dcda4d8a320400020000000000000000000a', // S-80MST-20USDM
+    ],
   },
   Metadata: {},
   Deep: [

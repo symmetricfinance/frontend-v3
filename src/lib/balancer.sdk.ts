@@ -1,4 +1,4 @@
-import { BalancerSDK } from '@symmetric-v3/sdk';
+import { BalancerSDK } from '@symmetric-v3/sdk-telos2';
 import { Network } from '@/lib/config/types';
 import { configService } from '@/services/config/config.service';
 import { ref } from 'vue';

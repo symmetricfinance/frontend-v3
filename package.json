@@ -75,7 +75,7 @@
     "@sentry/browser": "^7.17.4",
     "@sentry/tracing": "^7.17.4",
     "@symmetric-v3/sdk": "1.2.39-beta.1",
-    "@symmetric-v3/sdk-telos2": "npm:@symmetric-v3/sdk@1.2.39-telos2.1",
+    "@symmetric-v3/sdk-telos2": "npm:@symmetric-v3/sdk@1.2.39-telos2.2",
     "@tanstack/vue-query": "^4.22.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/vue": "^7.0.0",
