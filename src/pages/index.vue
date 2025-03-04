@@ -8,8 +8,8 @@ import usePoolFilters from '@/composables/pools/usePoolFilters';
 // import useBreakpoints from '@/composables/useBreakpoints';
 import useNetwork, {
   rewardSymbol,
-  symmSymbol,
-  symmAddress,
+  // symmSymbol,
+  // symmAddress,
   rewardAddress,
 } from '@/composables/useNetwork';
 import usePools from '@/composables/pools/usePools';
@@ -257,7 +257,7 @@ const availableNetworks = ['telos', 'meter', 'artela'];
               v-if="availableNetworks.includes(networkSlug)"
               class="flex flex-row items-center space-x-2"
             >
-              <div>
+              <!-- <div>
                 {{ symmSymbol }}:
                 <span class="font-bold">{{
                   fNum(symmPrice, { style: 'currency' })
@@ -268,7 +268,7 @@ const availableNetworks = ['telos', 'meter', 'artela'];
                 iconName="plus-circle"
                 iconSize="sm"
                 @click="addTokenToWallet(symmAddress)"
-              />
+              /> -->
               <div>
                 {{ rewardSymbol }}:
                 <span class="font-bold">{{
