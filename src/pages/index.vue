@@ -11,6 +11,7 @@ import useNetwork, {
   // symmSymbol,
   // symmAddress,
   rewardAddress,
+  isTelos,
 } from '@/composables/useNetwork';
 import usePools from '@/composables/pools/usePools';
 import { lsGet, lsSet } from '@/lib/utils';
@@ -215,7 +216,24 @@ const availableNetworks = ['telos', 'meter', 'artela'];
 
 <template>
   <div>
-    <!-- <HomePageHero /> -->
+    <!-- Add this banner at the top -->
+    <div
+      v-if="isTelos"
+      class="p-4 w-full text-center bg-purple-600 dark:bg-purple-900"
+    >
+      <span class="text-white">
+        If you had liquidity on Symmetric before March 5th, 2024, you can
+        withdraw it
+        <a
+          href="https://telos-v1.symm.fi"
+          target="_blank"
+          class="font-medium hover:text-blue-200 underline transition-colors"
+        >
+          here
+        </a>
+      </span>
+    </div>
+
     <div class="xl:container xl:px-4 pt-10 md:pt-8 xl:mx-auto">
       <UserInvestedInAffectedPoolAlert />
       <BalStack vertical>

@@ -9,7 +9,7 @@ import useConfig from '@/composables/useConfig';
 import useDarkMode from '@/composables/useDarkMode';
 import { sleep } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
-import useNetwork, { veSymbol } from '@/composables/useNetwork';
+import useNetwork, { veSymbol, isTelos } from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import TwitterIcon from '@/components/_global/icons/brands/TwitterIcon.vue';
 import DiscordIcon from '@/components/_global/icons/brands/DiscordIcon.vue';
@@ -79,6 +79,13 @@ const navLinks = [
     goal: Goals.ClickNavVebal,
     hide: !isVeBalSupported.value,
   },
+  {
+    label: 'Telos V1',
+    path: 'https://telos-v1.symm.fi',
+    goal: Goals.ClickNavPortfolio,
+    hide: !isTelos.value,
+    external: true,
+  },
   // {
   //   label: 'Airdrop',
   //   path: `/${networkSlug}/airdrop`,
@@ -132,9 +139,13 @@ function getSocialComponent(componentName) {
   return socialLinks[componentName].component;
 }
 
-async function navTo(path: string, goal: string) {
+async function navTo(path: string, goal: string, isExternal = false) {
   trackGoal(goal);
-  router.push(path);
+  if (isExternal) {
+    window.open(path, '_blank');
+  } else {
+    router.push(path);
+  }
   emit('close');
 }
 
@@ -161,9 +172,17 @@ watch(blockNumber, async () => {
         v-for="link in navLinks"
         :key="link.label"
         class="side-bar-link"
-        @click="link.hide ? null : navTo(link.path, link.goal)"
+        @click="link.hide ? null : navTo(link.path, link.goal, link.external)"
       >
-        {{ link.hide ? '' : link.label }}
+        <div class="flex items-center">
+          {{ link.hide ? '' : link.label }}
+          <BalIcon
+            v-if="link.external"
+            name="arrow-up-right"
+            size="xs"
+            class="ml-1"
+          />
+        </div>
       </div>
     </div>
 
