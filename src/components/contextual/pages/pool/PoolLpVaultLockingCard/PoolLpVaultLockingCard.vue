@@ -162,7 +162,7 @@ const navigateToLpVault = () => {
                     size="sm"
                     @click="navigateToLpVault"
                   >
-                    {{ $t('lock') }}
+                    {{ $t('unlock') }}
                   </BalBtn>
                 </BalStack>
               </BalStack>

@@ -156,7 +156,7 @@ export default class VeBAL {
   ): Promise<TransactionResponse> {
     const txBuilder = new TransactionBuilder(userProvider.getSigner());
     return await txBuilder.contract.sendTransaction({
-      contractAddress: this.service.config.addresses.lpVault || '',
+      contractAddress: this.address || '',
       abi: veBalAbi as ContractInterface,
       action: 'withdraw',
     });

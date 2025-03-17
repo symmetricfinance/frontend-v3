@@ -8,8 +8,8 @@ import { Pool } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
 import { TokenInfo } from '@/types/TokenList';
 
-import UnlockPreviewModal from '../UnlockPreviewModal/UnlockPreviewModal.vue';
 import LockedAmount from './components/LockedAmount.vue';
+import NewUnlockPreviewModal from '../UnlockPreviewModal/NewUnlockPreviewModal.vue';
 // import { veSymbol } from '@/composables/useNetwork';
 
 /**
@@ -99,7 +99,7 @@ const submissionDisabled = computed(() => {
     </div>
   </BalCard>
   <teleport to="#modal">
-    <UnlockPreviewModal
+    <NewUnlockPreviewModal
       v-if="showPreviewModal"
       :lockablePool="lockablePool"
       :lockablePoolTokenInfo="lockablePoolTokenInfo"
