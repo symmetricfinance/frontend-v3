@@ -157,7 +157,6 @@ const navigateToLpVault = () => {
                 </BalStack>
                 <BalStack horizontal spacing="sm" class="mt-2">
                   <BalBtn
-                    :disabled="Number(bptBalance) === 0"
                     class="golden-btn"
                     size="sm"
                     @click="navigateToLpVault"

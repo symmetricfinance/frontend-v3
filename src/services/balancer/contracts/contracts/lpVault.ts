@@ -162,6 +162,17 @@ export default class VeBAL {
     });
   }
 
+  public async unlockOld(
+    userProvider: WalletProvider
+  ): Promise<TransactionResponse> {
+    const txBuilder = new TransactionBuilder(userProvider.getSigner());
+    return await txBuilder.contract.sendTransaction({
+      contractAddress: this.oldAddress || '',
+      abi: veBalAbi as ContractInterface,
+      action: 'withdraw',
+    });
+  }
+
   public get address(): string {
     return this.service.config.addresses.lpVault2 || '';
   }

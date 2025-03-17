@@ -7,7 +7,7 @@ import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
 import { Pool } from '@/services/pool/types';
 import { TokenInfo } from '@/types/TokenList';
 
-import UnlockActions from './components/UnlockActions.vue';
+import OldUnlockActions from './components/OldUnlockActions.vue';
 import UnlockAmount from './components/UnlockAmount.vue';
 import UnlockSummary from './components/UnlockSummary.vue';
 
@@ -98,7 +98,7 @@ function handleSuccess() {
       :veBalLockInfo="veBalLockInfo"
     />
 
-    <UnlockActions
+    <OldUnlockActions
       :lockablePool="lockablePool"
       :lockablePoolTokenInfo="lockablePoolTokenInfo"
       :totalLpTokens="totalLpTokens"
