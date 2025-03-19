@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
+import useNetwork from '@/composables/useNetwork';
 import PoolsTable from '@/components/tables/PoolsTable/PoolsTable.vue';
 import { useLpVault } from '@/composables/useLpVault';
 import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
@@ -17,6 +19,8 @@ const props = defineProps<Props>();
 
 /** COMPOSABLES */
 const { totalLockedShares } = useLpVault();
+const { networkSlug } = useNetwork();
+const router = useRouter();
 
 function proxyToObject(proxy) {
   const obj = JSON.parse(JSON.stringify(proxy));
@@ -74,6 +78,10 @@ const poolShares = computed(
 const poolsToRenderKey = computed(() => JSON.stringify(lockPools.value));
 
 const hiddenColumns = ['poolVolume', 'migrate', 'actions', 'myBoost', 'apr'];
+
+const navigateToLpVault = () => {
+  router.push(`/${networkSlug}/lp-vault`);
+};
 </script>
 
 <template>
@@ -89,6 +97,7 @@ const hiddenColumns = ['poolVolume', 'migrate', 'actions', 'myBoost', 'apr'];
         :hiddenColumns="hiddenColumns"
         sortColumn="myBalance"
         showPoolShares
+        @click="navigateToLpVault"
       />
     </BalStack>
   </div>

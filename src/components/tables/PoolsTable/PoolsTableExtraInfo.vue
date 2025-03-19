@@ -2,12 +2,12 @@
 import {
   isLiquidityBootstrapping,
   isBoosted,
-  is20kPointsEarning,
-  is40kPointsEarning,
+  // is20kPointsEarning,
+  // is40kPointsEarning,
   isTrailblazerXP,
   protocolsFor,
   isGyro,
-  isLpVaultPool,
+  //isLpVaultPool,
 } from '@/composables/usePoolHelpers';
 import { Pool } from '@/services/pool/types';
 import { PoolFeature } from '@/types/pools';
@@ -25,7 +25,7 @@ defineProps<Props>();
 
 <template>
   <div class="flex items-center">
-    <BalTooltip
+    <!-- <BalTooltip
       v-if="is20kPointsEarning(pool)"
       :text="$t('points20kTooltip')"
       width="56"
@@ -37,8 +37,8 @@ defineProps<Props>();
           class="ml-3"
         />
       </template>
-    </BalTooltip>
-    <BalTooltip
+    </BalTooltip> -->
+    <!-- <BalTooltip
       v-if="is40kPointsEarning(pool)"
       :text="$t('pointsTooltip')"
       width="56"
@@ -50,24 +50,20 @@ defineProps<Props>();
           class="ml-3"
         />
       </template>
-    </BalTooltip>
+    </BalTooltip> -->
     <BalTooltip
       v-if="isTrailblazerXP(pool)"
-      :text="
-        isLpVaultPool(pool.id)
-          ? $t('trailblazersLpVaultTooltip')
-          : $t('trailblazersTooltip')
-      "
+      :text="$t('trailblazersTooltip')"
       width="56"
     >
       <template #activator>
         <div class="flex flex-row">
-          <div
+          <!-- <div
             v-if="isLpVaultPool(pool.id)"
             class="pt-1 font-bold blue-400 golden-text"
           >
             90x
-          </div>
+          </div> -->
           <img
             src="@/assets/images/icons/networks/taiko.svg"
             alt="Trailblazer XP"

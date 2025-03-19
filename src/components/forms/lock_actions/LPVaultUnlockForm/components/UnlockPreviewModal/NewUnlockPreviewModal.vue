@@ -2,12 +2,12 @@
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import useVeBalLockInfoQuery from '@/composables/queries/useOldLPVaultLockInfoQuery';
+import useVeBalLockInfoQuery from '@/composables/queries/useLPVaultLockInfoQuery';
 import { VeBalLockInfo } from '@/services/balancer/contracts/contracts/veBAL';
 import { Pool } from '@/services/pool/types';
 import { TokenInfo } from '@/types/TokenList';
 
-import OldUnlockActions from './components/OldUnlockActions.vue';
+import UnlockActions from './components/UnlockActions.vue';
 import UnlockAmount from './components/UnlockAmount.vue';
 import UnlockSummary from './components/UnlockSummary.vue';
 
@@ -43,6 +43,7 @@ const unlockConfirmed = ref(false);
 const lockablePool = ref(props.lockablePool);
 const lockablePoolTokenInfo = ref(props.lockablePoolTokenInfo);
 const veBalLockInfo = ref(props.veBalLockInfo);
+console.log('veBalLockInfo', veBalLockInfo.value);
 const totalLpTokens = ref(props.totalLpTokens);
 const fiatTotalLpTokens = ref(props.fiatTotalLpTokens);
 
@@ -98,7 +99,7 @@ function handleSuccess() {
       :veBalLockInfo="veBalLockInfo"
     />
 
-    <OldUnlockActions
+    <UnlockActions
       :lockablePool="lockablePool"
       :lockablePoolTokenInfo="lockablePoolTokenInfo"
       :totalLpTokens="totalLpTokens"
