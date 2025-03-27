@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
 import DesktopLinkItem from './DesktopLinkItem.vue';
-import useNetwork, { isTestnet, veSymbol } from '@/composables/useNetwork';
+import useNetwork, { isTestnet } from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
-import { isVeBalSupported, isGaugesSupported } from '@/composables/useVeBAL';
+import { isGaugesSupported } from '@/composables/useVeBAL';
 import { configService } from '@/services/config/config.service';
 
 /**
@@ -76,7 +76,7 @@ function isActive(page: string): boolean {
     >
       {{ $t('portfolio') }}
     </DesktopLinkItem>
-    <DesktopLinkItem
+    <!-- <DesktopLinkItem
       v-if="isVeBalSupported"
       :to="{ name: 'vesymm', params: { networkSlug } }"
       :active="isActive('vesymm')"
@@ -84,7 +84,7 @@ function isActive(page: string): boolean {
       @click="trackGoal(Goals.ClickNavVebal)"
     >
       {{ veSymbol }}
-    </DesktopLinkItem>
+    </DesktopLinkItem> -->
     <DesktopLinkItem
       v-if="isPointsSupported"
       :to="{ name: 'symm-points', params: { networkSlug } }"

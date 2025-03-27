@@ -9,14 +9,14 @@ import useConfig from '@/composables/useConfig';
 import useDarkMode from '@/composables/useDarkMode';
 import { sleep } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
-import useNetwork, { veSymbol } from '@/composables/useNetwork';
+import useNetwork from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import TwitterIcon from '@/components/_global/icons/brands/TwitterIcon.vue';
 import DiscordIcon from '@/components/_global/icons/brands/DiscordIcon.vue';
 import MediumIcon from '@/components/_global/icons/brands/MediumIcon.vue';
 // import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
 import GithubIcon from '@/components/_global/icons/brands/GithubIcon.vue';
-import { isGaugesSupported, isVeBalSupported } from '@/composables/useVeBAL';
+import { isGaugesSupported } from '@/composables/useVeBAL';
 import { configService } from '@/services/config/config.service';
 
 /**
@@ -73,12 +73,12 @@ const navLinks = [
     goal: Goals.ClickNavPortfolio,
     hide: !isLpVaultSupported.value,
   },
-  {
-    label: veSymbol.value,
-    path: `/${networkSlug}/vesymm`,
-    goal: Goals.ClickNavVebal,
-    hide: !isVeBalSupported.value,
-  },
+  // {
+  //   label: veSymbol.value,
+  //   path: `/${networkSlug}/vesymm`,
+  //   goal: Goals.ClickNavVebal,
+  //   hide: !isVeBalSupported.value,
+  // },
   // {
   //   label: 'Airdrop',
   //   path: `/${networkSlug}/airdrop`,
