@@ -1,4 +1,4 @@
-import { BalancerSDK } from '@symmetric-v3/sdk-telos2';
+import { BalancerSDK } from '@symmetric-v3/sdk';
 import { Network } from '@/lib/config/types';
 import { configService } from '@/services/config/config.service';
 import { ref } from 'vue';
@@ -39,15 +39,6 @@ import { subgraphFallbackService } from '@/services/balancer/subgraph/subgraph-f
 //   },
 //   pools: {},
 // };
-
-export const telosOld = new BalancerSDK({
-  network: configService.network.chainId as Network,
-  rpcUrl: configService.rpc,
-  customSubgraphUrl: configService.network.subgraph,
-  sor: {
-    tokenPriceService: 'subgraph',
-  },
-});
 
 export const balancer = new BalancerSDK({
   network: configService.network.chainId as Network,
