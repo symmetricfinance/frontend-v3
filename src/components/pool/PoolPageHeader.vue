@@ -123,6 +123,7 @@ const poolTypeLabel = computed(() => {
 const poolMetadata = computed(() => getPoolMetadata(props.pool.id));
 const hasMetadata = computed((): boolean => !!poolMetadata.value);
 
+console.log(props.pool);
 /**
  * METHODS
  */
