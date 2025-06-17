@@ -8,6 +8,7 @@ import { bnum, isSameAddress, selectByAddress } from '@/lib/utils';
 import { TransactionBuilder } from '@/services/web3/transactions/transaction.builder';
 import { configService } from '@/services/config/config.service';
 import { AddressZero } from '@ethersproject/constants';
+import { erc4626PoolJoin } from '@/lib/utils/balancer/erc4626Wrappers';
 
 type JoinResponse = Awaited<
   ReturnType<BalancerSDK['pools']['generalisedJoin']>
@@ -53,13 +54,14 @@ export class Erc4626JoinHandler implements JoinPoolHandler {
 
       return parseFixed(value || '0', token.decimals).toString();
     });
-
+    console.log('evmAmountsIn', evmAmountsIn);
     const tokenAddresses: string[] = amountsIn.map(({ address }) =>
       this.formatTokenAddress(address)
     );
+    console.log('tokenAddresses', tokenAddresses);
     const signerAddress = await signer.getAddress();
     const slippage = slippageBsp.toString();
-    const poolId = this.pool.value.id;
+    // const poolId = this.pool.value.id;
     const hasInvalidAmounts = amountsIn.some(item => !item.valid);
 
     const isNativeAssetJoin = amountsIn.some(item =>
@@ -68,6 +70,7 @@ export class Erc4626JoinHandler implements JoinPoolHandler {
 
     // Static call simulation is more accurate than VaultModel, but requires relayer approval,
     // token approvals, and account to have enought token balance.
+    console.log('approvalActions', approvalActions);
     const simulationType = this.getSimulationType({
       isNativeAssetJoin,
       hasInvalidAmounts,
@@ -76,14 +79,15 @@ export class Erc4626JoinHandler implements JoinPoolHandler {
 
     console.log({ simulationType });
 
-    this.lastJoinRes = await this.sdk.pools.generalisedJoin(
-      poolId,
+    this.lastJoinRes = await erc4626PoolJoin(
+      this.pool.value,
       tokenAddresses,
       evmAmountsIn,
       signerAddress,
       slippage,
       signer,
       simulationType,
+      this.sdk,
       relayerSignature
     );
 
@@ -115,6 +119,9 @@ export class Erc4626JoinHandler implements JoinPoolHandler {
     hasInvalidAmounts: boolean;
     approvalActionsLength: number;
   }): SimulationType {
+    console.log('isNativeAssetJoin', isNativeAssetJoin);
+    console.log('hasInvalidAmounts', hasInvalidAmounts);
+    console.log('approvalActionsLength', approvalActionsLength);
     if (isNativeAssetJoin) {
       return SimulationType.VaultModel;
     }
